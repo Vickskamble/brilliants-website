@@ -111,16 +111,16 @@
   <div class="glow-orb orb-2"></div>
   <div class="glow-orb orb-3"></div>
 
-  <div class="float-card" style="top:12%;right:-3%;">
-    <div class="fc-icon" style="background:var(--green-tint);">&#8377;</div>
+  <div class="float-card">
+    <span class="fc-icon" style="background:var(--green-tint);">&#8377;</span>
     <div><div class="fc-label">Collections</div><div class="fc-value">2Cr+/mo</div></div>
   </div>
-  <div class="float-card" style="bottom:22%;right:-6%;animation-delay:1.5s;">
-    <div class="fc-icon" style="background:var(--amber-tint);">&#127939;</div>
+  <div class="float-card" style="animation-delay:1.5s;">
+    <span class="fc-icon" style="background:var(--amber-tint);" data-icon="gym"></span>
     <div><div class="fc-label">Active Users</div><div class="fc-value">50+ Gyms</div></div>
   </div>
-  <div class="float-card" style="top:45%;left:-5%;animation-delay:3s;">
-    <div class="fc-icon" style="background:var(--purple-tint);">&#129302;</div>
+  <div class="float-card" style="animation-delay:3s;">
+    <span class="fc-icon" style="background:var(--purple-tint);" data-icon="ai"></span>
     <div><div class="fc-label">AI Engine</div><div class="fc-value">99.9% Uptime</div></div>
   </div>
 
@@ -130,8 +130,8 @@
       <h1>India's <em>AI Operating System</em> for MSMEs</h1>
       <p class="hero-lede">We build AI-powered software that automates operations, reduces costs, and helps MSMEs make smarter decisions — one intelligent platform for every business vertical.</p>
       <div class="hero-actions">
-        <a href="#products" class="btn btn-primary-glow">&#128640; Explore Products</a>
-        <a href="#contact-form" class="btn btn-ghost">&#128197; Book a Demo</a>
+        <a href="#products" class="btn btn-primary-glow"><span data-icon="trending" data-size="18"></span> Explore Products</a>
+        <a href="#contact-form" class="btn btn-ghost"><span data-icon="phone" data-size="18"></span> Book a Demo</a>
       </div>
       <div class="hero-trust">
         <div class="hero-trust-avatars">
@@ -142,21 +142,72 @@
         </div>
         <div class="hero-trust-text">
           <strong>50+ businesses</strong> already using Brilliants <br>
-          <span style="font-size:0.8rem;">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 average rating</span>
+          <span style="font-size:0.8rem;"><span class="stars"><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span></span> 4.9 average rating</span>
         </div>
       </div>
     </div>
 
     <div class="reveal-scale">
-      <div class="os-stack" style="position:relative;">
-        <canvas id="connections-canvas"></canvas>
-        <div class="os-stack-label">Brilliants AI Dashboard &middot; live snapshot</div>
-        <div class="os-layer layer-gym"><span class="name">&#127939; Fitness — Active Members</span><span class="tag tag-live">1,245 &middot; +12.4%</span></div>
-        <div class="os-layer layer-factory"><span class="name">&#127981; Manufacturing — Uptime</span><span class="tag tag-live">98.2%</span></div>
-        <div class="os-layer layer-billing"><span class="name">&#128722; Retail — Collections (30d)</span><span class="tag tag-live">&#8377;24,75,000</span></div>
-        <div class="os-layer layer-hr"><span class="name">&#128101; HR — Payroll runs</span><span class="tag tag-dev">Automated</span></div>
-        <div class="os-core">
-          <div><div class="name">Brilliants AI Engine</div><div class="sub">one core, every business function</div></div>
+      <div class="dashboard-mockup">
+        <div class="dm-header">
+          <div class="dm-header-left">
+            <div class="dm-dots"><span class="dm-dot r"></span><span class="dm-dot y"></span><span class="dm-dot g"></span></div>
+            <span class="dm-header-title">Brilliants AI &mdash; Live Dashboard</span>
+          </div>
+          <div class="dm-header-right">
+            <span class="dm-search"></span>
+            <span class="dm-avatar-sm"></span>
+          </div>
+        </div>
+        <div class="dm-body">
+          <div class="dm-sidebar">
+            <span class="dm-sidebar-item active" data-icon="dashboard" data-size="16"></span>
+            <span class="dm-sidebar-item" data-icon="users" data-size="16"></span>
+            <span class="dm-sidebar-item" data-icon="chart" data-size="16"></span>
+            <span class="dm-sidebar-item" data-icon="settings" data-size="16"></span>
+          </div>
+          <div class="dm-content">
+            <div class="dm-stats">
+              <div class="dm-stat">
+                <div class="dm-stat-label">Active Members</div>
+                <div class="dm-stat-value">1,245</div>
+                <span class="dm-stat-change up">&#8593; 12.4%</span>
+              </div>
+              <div class="dm-stat">
+                <div class="dm-stat-label">Uptime</div>
+                <div class="dm-stat-value">98.2%</div>
+                <span class="dm-stat-change up">&#8593; 2.1%</span>
+              </div>
+              <div class="dm-stat">
+                <div class="dm-stat-label">Collections (30d)</div>
+                <div class="dm-stat-value">&#8377;24.75L</div>
+                <span class="dm-stat-change up">&#8593; 8.3%</span>
+              </div>
+            </div>
+            <div class="dm-chart-row">
+              <div class="dm-chart">
+                <div class="dm-chart-title">Revenue Trend</div>
+                <div class="dm-chart-bars">
+                  <div class="dm-bar"></div>
+                  <div class="dm-bar"></div>
+                  <div class="dm-bar"></div>
+                  <div class="dm-bar"></div>
+                  <div class="dm-bar"></div>
+                  <div class="dm-bar"></div>
+                  <div class="dm-bar"></div>
+                  <div class="dm-bar"></div>
+                </div>
+                <div class="dm-pulse"></div>
+              </div>
+              <div class="dm-activity">
+                <div class="dm-activity-title">Recent Activity</div>
+                <div class="dm-activity-item"><span class="dm-activity-dot green"></span><span class="dm-activity-text">New member enrolled</span><span class="dm-activity-time">2m ago</span></div>
+                <div class="dm-activity-item"><span class="dm-activity-dot amber"></span><span class="dm-activity-text">Payment processed</span><span class="dm-activity-time">14m ago</span></div>
+                <div class="dm-activity-item"><span class="dm-activity-dot blue"></span><span class="dm-activity-text">AI report generated</span><span class="dm-activity-time">32m ago</span></div>
+                <div class="dm-activity-item"><span class="dm-activity-dot green"></span><span class="dm-activity-text">Attendance sync</span><span class="dm-activity-time">1h ago</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -187,7 +238,7 @@
     </div>
     <div class="grid grid-3">
       <div class="card product-card card-glow reveal">
-        <div class="icon" style="background:var(--green-tint);">&#127939;</div>
+        <span class="icon" style="background:var(--green-tint);" data-icon="gym"></span>
         <div class="head"><h3>IronBook</h3><span class="status" style="background:var(--green-tint);color:var(--green);">Live</span></div>
         <p>AI Gym Operating System — memberships, attendance, billing and member engagement, run from one intelligent dashboard.</p>
         <div class="cta-row">
@@ -197,7 +248,7 @@
       </div>
 
       <div class="card product-card card-amber reveal">
-        <div class="icon" style="background:var(--purple-tint);">&#128101;</div>
+        <span class="icon" style="background:var(--purple-tint);" data-icon="hrms"></span>
         <div class="head"><h3>Smart HRMS</h3><span class="status" style="background:var(--amber-tint);color:var(--amber-ink);">Coming Soon</span></div>
         <p>Employee &amp; payroll automation — geofenced attendance, automated payroll, leave management and workforce analytics.</p>
         <div class="cta-row">
@@ -206,7 +257,7 @@
       </div>
 
       <div class="card product-card card-glow reveal">
-        <div class="icon" style="background:var(--amber-tint);">&#128179;</div>
+        <span class="icon" style="background:var(--amber-tint);" data-icon="billing"></span>
         <div class="head"><h3>Smart Billing</h3><span class="status" style="background:var(--amber-tint);color:var(--amber-ink);">Coming Soon</span></div>
         <p>Billing &amp; inventory — AI-assisted invoicing, GST-ready billing and payment tracking for MSME sales counters.</p>
         <div class="cta-row">
@@ -215,7 +266,7 @@
       </div>
 
       <div class="card product-card card-glow reveal">
-        <div class="icon" style="background:var(--primary-tint);">&#127981;</div>
+        <span class="icon" style="background:var(--primary-tint);" data-icon="factory"></span>
         <div class="head"><h3>Smart Factory</h3><span class="status" style="background:var(--primary-tint);color:var(--primary);">Prototype</span></div>
         <p>Industry 4.0 platform — real-time production, breakdown and energy monitoring via IoT and computer vision.</p>
         <div class="cta-row">
@@ -224,7 +275,7 @@
       </div>
 
       <div class="card product-card card-amber reveal">
-        <div class="icon" style="background:var(--surface-2);">&#129302;</div>
+        <span class="icon" style="background:var(--surface-2);" data-icon="ai"></span>
         <div class="head"><h3>Brilliants AI</h3><span class="status" style="background:var(--primary-tint);color:var(--primary);">Core Engine</span></div>
         <p>The AI engine powering every product — predictive insights, automation rules and business intelligence, shared across the platform.</p>
         <div class="cta-row">
@@ -233,7 +284,7 @@
       </div>
 
       <div class="card product-card card-glow reveal">
-        <div class="icon" style="background:var(--rose-tint);">&#128230;</div>
+        <span class="icon" style="background:var(--rose-tint);" data-icon="inventory"></span>
         <div class="head"><h3>Smart Inventory</h3><span class="status" style="background:var(--purple-tint);color:var(--purple);">Roadmap</span></div>
         <p>AI warehouse — demand prediction, stock alerts and automated reordering for MSME warehouses and stores.</p>
         <div class="cta-row">
@@ -254,42 +305,42 @@
     </div>
     <div class="grid grid-2 reveal">
       <div class="compare-card">
-        <div class="cc-icon" style="background:var(--green-tint);">&#9889;</div>
+        <span class="cc-icon" style="background:var(--green-tint);" data-icon="zap"></span>
         <div class="cc-content">
           <h4>AI Automation</h4>
           <p>Workflows that run themselves — reminders, alerts and actions without manual follow-up. Traditional software needs constant human input.</p>
         </div>
       </div>
       <div class="compare-card">
-        <div class="cc-icon" style="background:var(--amber-tint);">&#9729;&#65039;</div>
+        <span class="cc-icon" style="background:var(--amber-tint);" data-icon="cloud"></span>
         <div class="cc-content">
           <h4>Cloud Ready</h4>
           <p>Access from anywhere, any device. No servers to manage, no IT team needed. Legacy systems require on-premise infrastructure.</p>
         </div>
       </div>
       <div class="compare-card">
-        <div class="cc-icon" style="background:var(--primary-tint);">&#128241;</div>
+        <span class="cc-icon" style="background:var(--primary-tint);" data-icon="phone"></span>
         <div class="cc-content">
           <h4>Mobile Friendly</h4>
           <p>Full featured mobile apps for Android and Web. Most traditional ERPs don't work on phones.</p>
         </div>
       </div>
       <div class="compare-card">
-        <div class="cc-icon" style="background:var(--green-tint);">&#128640;</div>
+        <span class="cc-icon" style="background:var(--green-tint);" data-icon="trending"></span>
         <div class="cc-content">
           <h4>Fast Deployment</h4>
           <p>Go live in days, not months. No customization costs, no lengthy implementation cycles.</p>
         </div>
       </div>
       <div class="compare-card">
-        <div class="cc-icon" style="background:var(--purple-tint);">&#128176;</div>
+        <span class="cc-icon" style="background:var(--purple-tint);" data-icon="billing"></span>
         <div class="cc-content">
           <h4>Affordable</h4>
           <p>Starts free, then &#8377;499/mo. No enterprise minimums, no hidden fees. Traditional software costs 10x more.</p>
         </div>
       </div>
       <div class="compare-card">
-        <div class="cc-icon" style="background:var(--amber-tint);">&#128295;</div>
+        <span class="cc-icon" style="background:var(--amber-tint);" data-icon="settings"></span>
         <div class="cc-content">
           <h4>Custom Development</h4>
           <p>Built specifically for Indian MSMEs — GST-ready, multi-lingual, offline-capable. Not a ported Western product.</p>
@@ -308,12 +359,12 @@
       <p>Built once, reused by every product — so new features ship across the whole platform, not just one app.</p>
     </div>
     <div class="grid grid-3">
-      <div class="card reveal"><div class="icon" style="background:var(--primary-tint);">&#129504;</div><h3>AI Assistant</h3><p>Ask questions, log actions, get answers — right from the dashboard.</p></div>
-      <div class="card reveal"><div class="icon" style="background:var(--amber-tint);">&#128200;</div><h3>Predictive Analytics</h3><p>Forecasts for revenue, churn, demand and downtime before they happen.</p></div>
-      <div class="card reveal"><div class="icon" style="background:var(--purple-tint);">&#127908;</div><h3>Voice AI</h3><p>Talk to the dashboard — hands-free questions and actions.</p></div>
-      <div class="card reveal"><div class="icon" style="background:var(--green-tint);">&#128247;</div><h3>Computer Vision</h3><p>Cameras for attendance, safety and shop-floor monitoring — no manual entry.</p></div>
-      <div class="card reveal"><div class="icon" style="background:var(--amber-tint);">&#127760;</div><h3>IoT Integration</h3><p>Sensors and connected devices streaming real-time data into the platform.</p></div>
-      <div class="card reveal"><div class="icon" style="background:var(--rose-tint);">&#9889;</div><h3>Workflow Automation</h3><p>Rules and AI triggers that take the next action without a human in the loop.</p></div>
+      <div class="card reveal"><span class="icon" style="background:var(--primary-tint);" data-icon="ai"></span><h3>AI Assistant</h3><p>Ask questions, log actions, get answers — right from the dashboard.</p></div>
+      <div class="card reveal"><span class="icon" style="background:var(--amber-tint);" data-icon="chart"></span><h3>Predictive Analytics</h3><p>Forecasts for revenue, churn, demand and downtime before they happen.</p></div>
+      <div class="card reveal"><span class="icon" style="background:var(--purple-tint);" data-icon="phone"></span><h3>Voice AI</h3><p>Talk to the dashboard — hands-free questions and actions.</p></div>
+      <div class="card reveal"><span class="icon" style="background:var(--green-tint);" data-icon="eye"></span><h3>Computer Vision</h3><p>Cameras for attendance, safety and shop-floor monitoring — no manual entry.</p></div>
+      <div class="card reveal"><span class="icon" style="background:var(--amber-tint);" data-icon="cloud"></span><h3>IoT Integration</h3><p>Sensors and connected devices streaming real-time data into the platform.</p></div>
+      <div class="card reveal"><span class="icon" style="background:var(--rose-tint);" data-icon="zap"></span><h3>Workflow Automation</h3><p>Rules and AI triggers that take the next action without a human in the loop.</p></div>
     </div>
   </div>
 </section>
@@ -326,15 +377,15 @@
       <h2>From data to growth — automatically</h2>
     </div>
     <div class="workflow reveal">
-      <div class="workflow-step"><div class="wf-icon">&#127981;</div><div class="wf-label">Your Business</div></div>
+      <div class="workflow-step"><span class="wf-icon" data-icon="factory"></span><div class="wf-label">Your Business</div></div>
       <div class="workflow-arrow">&rarr;</div>
-      <div class="workflow-step"><div class="wf-icon">&#129302;</div><div class="wf-label">AI Analysis</div></div>
+      <div class="workflow-step"><span class="wf-icon" data-icon="ai"></span><div class="wf-label">AI Analysis</div></div>
       <div class="workflow-arrow">&rarr;</div>
-      <div class="workflow-step"><div class="wf-icon">&#9889;</div><div class="wf-label">Smart Automation</div></div>
+      <div class="workflow-step"><span class="wf-icon" data-icon="zap"></span><div class="wf-label">Smart Automation</div></div>
       <div class="workflow-arrow">&rarr;</div>
-      <div class="workflow-step"><div class="wf-icon">&#128202;</div><div class="wf-label">Reports &amp; Insights</div></div>
+      <div class="workflow-step"><span class="wf-icon" data-icon="graph"></span><div class="wf-label">Reports &amp; Insights</div></div>
       <div class="workflow-arrow">&rarr;</div>
-      <div class="workflow-step"><div class="wf-icon">&#128200;</div><div class="wf-label">Business Growth</div></div>
+      <div class="workflow-step"><span class="wf-icon" data-icon="chart"></span><div class="wf-label">Business Growth</div></div>
     </div>
   </div>
 </section>
@@ -350,63 +401,63 @@
     <div class="grid grid-3">
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--green);"></div>
-        <div class="ic-icon">&#127939;</div>
+        <span class="ic-icon" data-icon="gym"></span>
         <h3>Manufacturing</h3>
         <p>Smart Factory brings IoT monitoring, predictive maintenance and safety compliance to shop floors.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--primary);"></div>
-        <div class="ic-icon">&#127973;</div>
+        <span class="ic-icon" data-icon="healthcare"></span>
         <h3>Pharma</h3>
         <p>Temperature monitoring, compliance tracking and automated reporting for pharmaceutical operations.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--amber);"></div>
-        <div class="ic-icon">&#128722;</div>
+        <span class="ic-icon" data-icon="retail"></span>
         <h3>Retail</h3>
         <p>Smart Billing + Inventory with AI demand prediction, auto-reorder and live store dashboards.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--purple);"></div>
-        <div class="ic-icon">&#127939;</div>
+        <span class="ic-icon" data-icon="gym"></span>
         <h3>Gym &amp; Fitness</h3>
         <p>IronBook: face recognition attendance, automated billing, member engagement — 50+ gyms live.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--green);"></div>
-        <div class="ic-icon">&#127973;</div>
+        <span class="ic-icon" data-icon="healthcare"></span>
         <h3>Healthcare</h3>
         <p>Patient management, appointment scheduling, billing automation for clinics and diagnostic centers.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--amber);"></div>
-        <div class="ic-icon">&#128230;</div>
+        <span class="ic-icon" data-icon="warehouse"></span>
         <h3>Warehousing</h3>
         <p>Smart Inventory: stock tracking, demand prediction, automated reordering for warehouses.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--primary);"></div>
-        <div class="ic-icon">&#127979;</div>
+        <span class="ic-icon" data-icon="education"></span>
         <h3>Educational Institutes</h3>
         <p>Student management, attendance tracking, fee automation for schools and training centers.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--purple);"></div>
-        <div class="ic-icon">&#127970;</div>
+        <span class="ic-icon" data-icon="office"></span>
         <h3>MSMEs</h3>
         <p>Every small and medium business — one AI platform that grows with you, whatever your industry.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
       </div>
       <div class="industry-card reveal">
         <div class="ic-bg" style="background:var(--green);"></div>
-        <div class="ic-icon">&#128188;</div>
+        <span class="ic-icon" data-icon="office"></span>
         <h3>Offices &amp; Coworking</h3>
         <p>Smart HRMS for geofenced attendance, payroll, leave management and workforce analytics.</p>
         <a href="industries.html" class="ic-cta">Learn More &rarr;</a>
@@ -445,9 +496,9 @@
     </div>
     <div class="grid grid-3">
       <div class="testimonial-card reveal">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <span class="stars"><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span></span>
         <div class="quote-text">IronBook cut our billing time from 2 hours daily to just 15 minutes. We're now spending that time on member experience instead of spreadsheets.</div>
-        <span class="result-badge">&#128200; 87% faster billing</span>
+        <span class="result-badge"><span data-icon="graph" data-size="14"></span> 87% faster billing</span>
         <div class="testimonial-author">
           <div class="avatar" style="background:#2563EB;">RP</div>
           <div class="info">
@@ -459,9 +510,9 @@
       </div>
 
       <div class="testimonial-card reveal">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <span class="stars"><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span></span>
         <div class="quote-text">Face recognition stopped &#8377;5L of fake attendances in Q1 2026. That's money back in our pocket every month.</div>
-        <span class="result-badge">&#128176; &#8377;5L saved</span>
+        <span class="result-badge"><span data-icon="billing" data-size="14"></span> &#8377;5L saved</span>
         <div class="testimonial-author">
           <div class="avatar" style="background:#06B6D4;">PS</div>
           <div class="info">
@@ -473,7 +524,7 @@
       </div>
 
       <div class="testimonial-card reveal">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <span class="stars"><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span></span>
         <div class="quote-text">Our members trust the system more than the manual register. Renewals went up 18% just because billing is now automated and transparent.</div>
         <span class="result-badge">&#8593; 18% renewal increase</span>
         <div class="testimonial-author">
@@ -533,19 +584,19 @@
     </div>
     <div class="reveal" itemscope itemtype="https://schema.org/FAQPage">
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <div class="faq-q" itemprop="name">What kind of businesses does Brilliants work with?<span class="plus">+</span></div>
+        <div class="faq-q" itemprop="name">What kind of businesses does Brilliants work with?<span class="plus" data-icon="close" data-size="16"></span></div>
         <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Gyms, clinics, manufacturing units, pharma companies and early-stage startups — any MSME looking to automate manual operations with AI.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <div class="faq-q" itemprop="name">Is Smart HRMS ready to use?<span class="plus">+</span></div>
+        <div class="faq-q" itemprop="name">Is Smart HRMS ready to use?<span class="plus" data-icon="close" data-size="16"></span></div>
         <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Smart HRMS is in active early access, with select businesses already onboarded. New organizations can join and help shape the roadmap while getting priority pricing.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <div class="faq-q" itemprop="name">Is Brilliants a product company or an agency?<span class="plus">+</span></div>
+        <div class="faq-q" itemprop="name">Is Brilliants a product company or an agency?<span class="plus" data-icon="close" data-size="16"></span></div>
         <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">We build and own our AI products — IronBook, Smart HRMS, Smart Billing, Smart Factory and Smart Inventory. We're not a custom software services vendor.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <div class="faq-q" itemprop="name">How much does it cost to get started?<span class="plus">+</span></div>
+        <div class="faq-q" itemprop="name">How much does it cost to get started?<span class="plus" data-icon="close" data-size="16"></span></div>
         <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">IronBook starts free. See our <a href="pricing.html" style="color:var(--primary);text-decoration:underline;">pricing page</a> for full plan details.</p></div>
       </div>
     </div>
@@ -567,16 +618,16 @@
         </div>
         <div class="flex gap-16 mt-24" style="flex-wrap:wrap;">
           <div class="card" style="padding:18px;flex:1;min-width:160px;">
-            <h4 style="font-size:0.9rem;">&#128231; Email</h4>
+            <h4 style="font-size:0.9rem;"><span data-icon="email" data-size="16"></span> Email</h4>
             <p style="font-size:0.88rem;">contact@brilliants.in</p>
           </div>
           <div class="card" style="padding:18px;flex:1;min-width:160px;">
-            <h4 style="font-size:0.9rem;">&#128222; Phone</h4>
+            <h4 style="font-size:0.9rem;"><span data-icon="phone" data-size="16"></span> Phone</h4>
             <p style="font-size:0.88rem;">+91-9146121280</p>
           </div>
         </div>
         <div class="card mt-16" style="padding:18px;">
-          <h4 style="font-size:0.9rem;">&#128205; Location</h4>
+          <h4 style="font-size:0.9rem;"><span data-icon="location" data-size="16"></span> Location</h4>
           <p style="font-size:0.88rem;">WAR MD24, Sant Tukdoji Ward, Hinganghat, Maharashtra 442301</p>
         </div>
       </div>
@@ -613,7 +664,7 @@
               <label for="message">Message</label>
               <textarea id="message" rows="3" placeholder="Tell us about your business..." aria-label="Message"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary-glow btn-block">&#128197; Book Free Demo</button>
+            <button type="submit" class="btn btn-primary-glow btn-block"><span data-icon="phone" data-size="18"></span> Book Free Demo</button>
           </form>
         </div>
       </div>
@@ -627,7 +678,7 @@
     <span class="eyebrow" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);color:var(--amber);"><span class="dot" style="background:var(--amber);"></span>No Risk, All Reward</span>
     <h2 style="max-width:700px;margin:0 auto;">Get a free 30-minute AI consultation for your business</h2>
     <p style="max-width:560px;margin:16px auto 28px;color:rgba(255,255,255,0.65);">No commitment. No credit card. Just real advice on how AI can improve your operations.</p>
-    <a href="#contact-form" class="btn btn-amber">&#128197; Book Free Consultation</a>
+    <a href="#contact-form" class="btn btn-amber"><span data-icon="phone" data-size="18"></span> Book Free Consultation</a>
   </div>
 </section>
 
@@ -640,12 +691,13 @@
 </a>
 
 <a href="#" class="sticky-demo" id="stickyDemo" aria-label="Book Demo">
-  &#128197; Book Free Demo
+  <span data-icon="phone" data-size="18"></span> Book Free Demo
 </a>
 
 <a href="#" class="back-to-top" aria-label="Back to top">&#8593;</a>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/icons.js"></script>
 <script src="assets/js/layout.js"></script>
 <script src="assets/js/enhanced.js"></script>
 </body>

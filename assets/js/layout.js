@@ -6,15 +6,14 @@
 
   var currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
-  // Inline SVG logo (replaces 189KB PNG)
-  var logoSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 100 100"><defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(#lg)"/><text x="50" y="68" font-family="Arial,sans-serif" font-weight="bold" font-size="52" fill="#fff" text-anchor="middle">B</text></svg>';
+  var logoSrc = 'assets/images/logo/brilliants-logo.jpeg';
 
   var navHtml =
     '<nav class="nav" role="navigation" aria-label="Main navigation">' +
     '<div class="nav-inner">' +
     '<a href="index.html" class="nav-brand" aria-label="Brilliants Home">' +
-    logoSvg +
-    'Brilliants</a>' +
+    '<img src="' + logoSrc + '" alt="Brilliants" class="nav-brand-img" style="height:32px;width:auto;">' +
+    '</a>' +
     '<div class="nav-links" role="menubar">' +
     '<a href="index.html" role="menuitem" data-page="index.html">Home</a>' +
     '<a href="industries.html" role="menuitem" data-page="industries.html">Case Studies</a>' +
@@ -37,8 +36,8 @@
     '<div class="container">' +
     '<div>' +
     '<a href="index.html" class="footer-brand" aria-label="Brilliants Home">' +
-    logoSvg.replace('width="28"', 'width="24"').replace('height="28"', 'height="24"') +
-    'Brilliants</a>' +
+    '<img src="' + logoSrc + '" alt="Brilliants" style="height:28px;width:auto;">' +
+    '</a>' +
     '<p>India\'s AI Operating System for MSMEs — automating operations with AI, analytics, automation, IoT, computer vision and business intelligence.</p>' +
     '<div class="footer-social">' +
     '<a href="https://www.linkedin.com/in/vikas-kamble-2603b6120" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>' +
