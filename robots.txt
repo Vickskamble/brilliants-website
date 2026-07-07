@@ -1,0 +1,6 @@
+# Brilliants - Robots
+User-agent: *
+Allow: /
+Disallow: /assets/downloads/
+
+Sitemap: https://www.brilliants.in/sitemap.xml
