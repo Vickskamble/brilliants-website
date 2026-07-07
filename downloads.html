@@ -57,21 +57,21 @@
     <div class="section-head reveal">
       <span class="eyebrow"><span class="dot"></span>Available Now &amp; Coming Soon</span>
       <h2>Choose your product</h2>
-      <p>Each product plugs into the same Brilliants AI core — download what you need today, and add more as your business grows.</p>
+      <p>Click on IronBook to see full details and features.</p>
     </div>
 
-    <div class="grid grid-3">
-      <div class="card product-card card-glow reveal">
+    <div class="grid grid-3" id="productGrid">
+      <div class="card product-card card-glow reveal" id="ironbookCard" onclick="toggleIronBook()" style="cursor:pointer;">
         <div class="head"><h3>IronBook</h3><span class="status" style="background:var(--green-tint);color:var(--green);">Live</span></div>
-        <p style="font-size:0.85rem;color:var(--ink-faint);">AI Gym Operating System &middot; v1.0.0 &middot; ~35 MB &middot; updated recently</p>
+        <p style="font-size:0.85rem;color:var(--ink-faint);">AI Gym Operating System &middot; v1.0.0 &middot; ~35 MB</p>
         <p>Complete gym management — members, billing, attendance, workouts and AI insights, run from one app.</p>
         <div class="flex gap-8" style="flex-wrap:wrap;">
           <span class="pill" style="background:var(--surface-2);border:1px solid var(--line-strong);color:var(--ink-soft);">Android 8.0+</span>
           <span class="pill" style="background:var(--surface-2);border:1px solid var(--line-strong);color:var(--ink-soft);">Web App</span>
         </div>
         <div class="cta-row">
-          <a href="https://github.com/Vickskamble/Ironbook-gym-management/releases/download/v1.0.0/Ironbook.v1.0.0.apk" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Download APK</a>
-          <a href="#" class="btn btn-ghost btn-sm">Try Web App</a>
+          <a href="https://github.com/Vickskamble/Ironbook-gym-management/releases/download/v1.0.0/Ironbook.v1.0.0.apk" class="btn btn-primary btn-sm" target="_blank" rel="noopener" onclick="event.stopPropagation()">Download APK</a>
+          <span class="btn btn-ghost btn-sm" style="pointer-events:none;">Click to expand &darr;</span>
         </div>
       </div>
 
@@ -124,29 +124,104 @@
         <div class="cta-row"><a href="ai-engine.html" class="btn btn-ghost btn-sm">Explore the AI Engine &rarr;</a></div>
       </div>
     </div>
+
+    <!-- IronBook Expanded Details (hidden by default) -->
+    <div id="ironbookDetails" style="display:none;margin-top:32px;">
+      <div class="card" style="padding:32px;border:1px solid var(--green);">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h3 style="margin:0;color:var(--green);">IronBook — AI Gym Operating System</h3>
+            <p style="margin:4px 0 0;color:var(--ink-faint);">v1.0.0 &middot; Android 8.0+ &middot; Web App</p>
+          </div>
+          <a href="https://github.com/Vickskamble/Ironbook-gym-management/releases/download/v1.0.0/Ironbook.v1.0.0.apk" class="btn btn-primary" target="_blank" rel="noopener">Download APK</a>
+        </div>
+        <hr style="border-color:var(--line-strong);margin:24px 0;">
+        <div class="grid grid-2">
+          <div>
+            <h4>Member Management</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Add, edit, search members. Track membership expiry, auto-renewals, and member profiles with photos and contact details.</p>
+          </div>
+          <div>
+            <h4>Plans</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Create membership plans with custom pricing, duration, and features. Assign plans to members with one tap.</p>
+          </div>
+          <div>
+            <h4>Payments</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Record payments with discounts, multiple methods (Cash/UPI/Card). Payment history, receipts and dues tracking.</p>
+          </div>
+          <div>
+            <h4>Attendance</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Check-in/check-out tracking with QR code scanner. Face recognition attendance, daily logs and history.</p>
+          </div>
+          <div>
+            <h4>Staff Management</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Role-based staff access (owner, admin, trainer, staff). Staff attendance, payroll and performance tracking.</p>
+          </div>
+          <div>
+            <h4>Expenses</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Track gym expenses by category. Monthly expense reports and comparison with revenue.</p>
+          </div>
+          <div>
+            <h4>Reports</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Export PDF/CSV/Excel reports for members, revenue, attendance and expenses. Share or print directly.</p>
+          </div>
+          <div>
+            <h4>Notifications</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Real-time via Supabase Realtime. In-app alerts for due payments, new members and expiry reminders.</p>
+          </div>
+          <div>
+            <h4>Import/Export</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Bulk import members from CSV. Export all reports in multiple formats.</p>
+          </div>
+          <div>
+            <h4>Multi-language</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">English, Hindi, Marathi — full UI translated for local gym staff and members.</p>
+          </div>
+        </div>
+        <hr style="border-color:var(--line-strong);margin:24px 0;">
+        <h4>Screenshots</h4>
+        <div class="grid grid-3" style="margin-top:16px;">
+          <a href="assets/images/products/ironbook-ss-1.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-1.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-2.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-2.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-3.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-3.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-4.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-4.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-5.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-5.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-6.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-6.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-7.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-7.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-8.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-8.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+          <a href="assets/images/products/ironbook-ss-9.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-9.jpg" alt="IronBook Screenshot" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>App Preview</span>
-      <h2>IronBook Screenshots</h2>
-      <p>See IronBook in action — member management, payments, attendance, plans and more.</p>
-    </div>
-    <div class="grid grid-3 reveal">
-      <a href="assets/images/products/ironbook-ss-1.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-1.jpg" alt="IronBook Screenshot 1" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-2.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-2.jpg" alt="IronBook Screenshot 2" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-3.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-3.jpg" alt="IronBook Screenshot 3" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-4.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-4.jpg" alt="IronBook Screenshot 4" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-5.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-5.jpg" alt="IronBook Screenshot 5" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-6.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-6.jpg" alt="IronBook Screenshot 6" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-7.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-7.jpg" alt="IronBook Screenshot 7" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-8.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-8.jpg" alt="IronBook Screenshot 8" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-      <a href="assets/images/products/ironbook-ss-9.jpg" target="_blank"><img src="assets/images/products/ironbook-ss-9.jpg" alt="IronBook Screenshot 9" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);"></a>
-    </div>
-  </div>
-</section>
+<style>
+#ironbookCard.active {
+  border-color: var(--green);
+  box-shadow: 0 0 30px rgba(16,185,129,0.3);
+}
+#ironbookCard.active .cta-row span {
+  pointer-events: auto !important;
+  color: var(--green);
+}
+</style>
+
+<script>
+function toggleIronBook() {
+  var details = document.getElementById('ironbookDetails');
+  var card = document.getElementById('ironbookCard');
+  if (details.style.display === 'none') {
+    details.style.display = 'block';
+    card.classList.add('active');
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(function(){ details.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+  } else {
+    details.style.display = 'none';
+    card.classList.remove('active');
+  }
+}
+</script>
 
 <section class="section alt">
   <div class="container" style="max-width:820px;">
