@@ -12,8 +12,8 @@
     '<nav class="nav" role="navigation" aria-label="Main navigation">' +
     '<div class="nav-inner">' +
     '<a href="index.html" class="nav-brand" aria-label="Brilliants Home">' +
-    '<img src="' + logoSrc + '" alt="Brilliants" class="nav-brand-img" style="height:32px;width:auto;">' +
-    '</a>' +
+    '<img src="' + logoSrc + '" alt="Brilliants" style="height:40px;width:auto;">' +
+    '<span>Brilliants <span style="font-size:0.7rem;font-weight:500;color:var(--ink-faint);display:block;margin-top:-2px;letter-spacing:0.02em;">Smarter · Better · Stronger</span></span></a>' +
     '<div class="nav-links" role="menubar">' +
     '<a href="index.html" role="menuitem" data-page="index.html">Home</a>' +
     '<a href="industries.html" role="menuitem" data-page="industries.html">Case Studies</a>' +
@@ -36,8 +36,8 @@
     '<div class="container">' +
     '<div>' +
     '<a href="index.html" class="footer-brand" aria-label="Brilliants Home">' +
-    '<img src="' + logoSrc + '" alt="Brilliants" style="height:28px;width:auto;">' +
-    '</a>' +
+    '<img src="' + logoSrc + '" alt="Brilliants" style="height:36px;width:auto;">' +
+    '<span style="color:#fff;font-weight:800;font-size:1.15rem;">Brilliants</span></a>' +
     '<p>India\'s AI Operating System for MSMEs — automating operations with AI, analytics, automation, IoT, computer vision and business intelligence.</p>' +
     '<div class="footer-social">' +
     '<a href="https://www.linkedin.com/in/vikas-kamble-2603b6120" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>' +
