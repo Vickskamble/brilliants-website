@@ -286,6 +286,12 @@ p { color: var(--ink-soft); }
 .os-core .name { font-family: var(--font-display); font-weight: 800; position: relative; z-index: 1; }
 .os-core .sub { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.6); position: relative; z-index: 1; }
 
+/* ---- Split-Color Brand Logo ---- */
+.brand-half-1 { color: var(--primary); }
+.brand-half-2 { color: var(--amber); }
+.nav-brand .brand-text { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.01em; }
+.footer-brand .brand-text { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; }
+
 /* ---- Floating Cards around Hero ---- */
 .float-card {
   position: absolute; z-index: 1;
@@ -321,9 +327,9 @@ p { color: var(--ink-soft); }
   75% { transform: translate(-6px, -14px) rotate(-0.5deg); }
 }
 
-.hero .float-card:nth-of-type(1) { top: 12%; right: 8%; animation: floatCard1 6s ease-in-out infinite; }
-.hero .float-card:nth-of-type(2) { bottom: 20%; right: 12%; animation: floatCard2 7s ease-in-out infinite; animation-delay: 0.5s; }
-.hero .float-card:nth-of-type(3) { top: 50%; left: 3%; animation: floatCard3 5.5s ease-in-out infinite; animation-delay: 1s; }
+.hero .float-card:nth-child(5) { top: 12%; right: 8%; animation: floatCard1 6s ease-in-out infinite; }
+.hero .float-card:nth-child(6) { bottom: 20%; right: 12%; animation: floatCard2 7s ease-in-out infinite; animation-delay: 0.5s; }
+.hero .float-card:nth-child(7) { top: 50%; left: 3%; animation: floatCard3 5.5s ease-in-out infinite; animation-delay: 1s; }
 
 @media (max-width: 1100px) {
   .float-card { display: none; }
