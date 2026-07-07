@@ -10,7 +10,7 @@
     '<nav class="nav" role="navigation" aria-label="Main navigation">' +
     '<div class="nav-inner">' +
     '<a href="/" class="nav-brand" aria-label="Brilliants Home">' +
-    '<img src="assets/images/logo/brilliants-logo-full.png" alt="" style="height:32px;width:auto;display:block;">' +
+    '<img src="/assets/images/logo/brilliants-logo-full.png" alt="" style="height:32px;width:auto;display:block;">' +
     '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
     '<div class="nav-links" role="menubar">' +
     '<a href="/" role="menuitem" data-page="/">Home</a>' +
@@ -34,7 +34,7 @@
     '<div class="container">' +
     '<div>' +
     '<a href="/" class="footer-brand" aria-label="Brilliants Home">' +
-    '<img src="assets/images/logo/brilliants-logo-full.png" alt="" style="height:28px;width:auto;display:block;">' +
+    '<img src="/assets/images/logo/brilliants-logo-full.png" alt="" style="height:28px;width:auto;display:block;">' +
     '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
     '<p>India\'s AI Operating System for MSMEs — automating operations with AI, analytics, automation, IoT, computer vision and business intelligence.</p>' +
     '<div class="footer-social">' +
