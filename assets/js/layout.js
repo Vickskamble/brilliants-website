@@ -4,27 +4,27 @@
 (function () {
   'use strict';
 
-  var currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  var currentPath = window.location.pathname;
 
   var navHtml =
     '<nav class="nav" role="navigation" aria-label="Main navigation">' +
     '<div class="nav-inner">' +
-    '<a href="index.html" class="nav-brand" aria-label="Brilliants Home">' +
+    '<a href="/" class="nav-brand" aria-label="Brilliants Home">' +
     '<img src="assets/images/logo/brilliants-logo-full.png" alt="" style="height:32px;width:auto;display:block;">' +
     '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
     '<div class="nav-links" role="menubar">' +
-    '<a href="index.html" role="menuitem" data-page="index.html">Home</a>' +
-    '<a href="industries.html" role="menuitem" data-page="industries.html">Case Studies</a>' +
-    '<a href="technology.html" role="menuitem" data-page="technology.html">Technology</a>' +
-    '<a href="ai-engine.html" role="menuitem" data-page="ai-engine.html">AI Engine</a>' +
-    '<a href="vision.html" role="menuitem" data-page="vision.html">Vision 2030</a>' +
-    '<a href="pricing.html" role="menuitem" data-page="pricing.html">Pricing</a>' +
-    '<a href="stories.html" role="menuitem" data-page="stories.html">Stories</a>' +
-    '<a href="downloads.html" role="menuitem" data-page="downloads.html">Downloads</a>' +
+    '<a href="/" role="menuitem" data-page="/">Home</a>' +
+    '<a href="/industries/" role="menuitem" data-page="/industries/">Case Studies</a>' +
+    '<a href="/technology/" role="menuitem" data-page="/technology/">Technology</a>' +
+    '<a href="/ai-engine/" role="menuitem" data-page="/ai-engine/">AI Engine</a>' +
+    '<a href="/vision/" role="menuitem" data-page="/vision/">Vision 2030</a>' +
+    '<a href="/pricing/" role="menuitem" data-page="/pricing/">Pricing</a>' +
+    '<a href="/stories/" role="menuitem" data-page="/stories/">Stories</a>' +
+    '<a href="/downloads/" role="menuitem" data-page="/downloads/">Downloads</a>' +
     '</div>' +
     '<div class="nav-cta">' +
-    '<a href="pricing.html" class="btn btn-ghost btn-sm">Pricing</a>' +
-    '<a href="index.html#contact-form" class="btn btn-primary btn-sm">Book a Demo</a>' +
+    '<a href="/pricing/" class="btn btn-ghost btn-sm">Pricing</a>' +
+    '<a href="/#contact-form" class="btn btn-primary btn-sm">Book a Demo</a>' +
     '<button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">' +
     '<span></span><span></span><span></span></button>' +
     '</div></div></nav>';
@@ -33,7 +33,7 @@
     '<footer class="footer" role="contentinfo">' +
     '<div class="container">' +
     '<div>' +
-    '<a href="index.html" class="footer-brand" aria-label="Brilliants Home">' +
+    '<a href="/" class="footer-brand" aria-label="Brilliants Home">' +
     '<img src="assets/images/logo/brilliants-logo-full.png" alt="" style="height:28px;width:auto;display:block;">' +
     '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
     '<p>India\'s AI Operating System for MSMEs — automating operations with AI, analytics, automation, IoT, computer vision and business intelligence.</p>' +
@@ -43,23 +43,23 @@
     '<a href="mailto:contact@brilliants.in" aria-label="Email">&#9993;</a>' +
     '</div></div>' +
     '<div><h4>Products</h4><ul>' +
-    '<li><a href="index.html#products">IronBook</a></li>' +
-    '<li><a href="index.html#products">Smart HRMS</a></li>' +
-    '<li><a href="index.html#products">Smart Billing</a></li>' +
-    '<li><a href="index.html#products">Smart Factory</a></li>' +
-    '<li><a href="ai-engine.html">Brilliants AI Engine</a></li>' +
-    '<li><a href="downloads.html">Download Center</a></li>' +
+    '<li><a href="/#products">IronBook</a></li>' +
+    '<li><a href="/#products">Smart HRMS</a></li>' +
+    '<li><a href="/#products">Smart Billing</a></li>' +
+    '<li><a href="/#products">Smart Factory</a></li>' +
+    '<li><a href="/ai-engine/">Brilliants AI Engine</a></li>' +
+    '<li><a href="/downloads/">Download Center</a></li>' +
     '</ul></div>' +
     '<div><h4>Company</h4><ul>' +
-    '<li><a href="technology.html">Technology</a></li>' +
-    '<li><a href="industries.html">Industries</a></li>' +
-    '<li><a href="stories.html">Blog / Stories</a></li>' +
-    '<li><a href="vision.html">Vision 2030</a></li>' +
-    '<li><a href="index.html#contact-form">Contact</a></li>' +
+    '<li><a href="/technology/">Technology</a></li>' +
+    '<li><a href="/industries/">Industries</a></li>' +
+    '<li><a href="/stories/">Blog / Stories</a></li>' +
+    '<li><a href="/vision/">Vision 2030</a></li>' +
+    '<li><a href="/#contact-form">Contact</a></li>' +
     '</ul></div>' +
     '<div><h4>Resources</h4><ul>' +
-    '<li><a href="downloads.html">Installation Guide</a></li>' +
-    '<li><a href="pricing.html">Pricing</a></li>' +
+    '<li><a href="/downloads/">Installation Guide</a></li>' +
+    '<li><a href="/pricing/">Pricing</a></li>' +
     '<li><a href="#">Privacy Policy</a></li>' +
     '<li><a href="#">Terms of Service</a></li>' +
     '</ul></div></div>' +
