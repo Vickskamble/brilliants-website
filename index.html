@@ -146,7 +146,7 @@
           <span style="background:#7C3AED;">NK</span>
         </div>
         <div class="hero-trust-text">
-          <strong>50+ businesses</strong> already using Brilliants <br>
+          <strong>10+ businesses</strong> already using Brilliants <br>
           <span style="font-size:0.8rem;"><span class="stars"><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span><span data-icon="star" data-size="14" data-color="#F59E0B"></span></span> 4.9 average rating</span>
         </div>
       </div>
@@ -231,6 +231,57 @@
       <div class="stat-item"><span class="num count-up" data-target="1" data-suffix="+">0</span><span class="label">Years Building</span></div>
     </div>
   </div>
+</section>
+
+<!-- Trusted Brands Marquee -->
+<section class="section alt" style="padding:40px 0;overflow:hidden;" aria-label="Trusted By">
+  <div class="container reveal" style="text-align:center;">
+    <span class="eyebrow" style="margin-bottom:20px;display:inline-block;"><span class="dot"></span>Trusted by gyms across India</span>
+  </div>
+  <div class="marquee-track">
+    <div class="marquee-content">
+      <span class="marquee-item">&#127947;&#65039; Gold's Gym</span>
+      <span class="marquee-item">&#127947;&#65039; Cult.fit Partner</span>
+      <span class="marquee-item">&#127947;&#65039; Fit India Gym</span>
+      <span class="marquee-item">&#127947;&#65039; Iron Paradise</span>
+      <span class="marquee-item">&#127947;&#65039; Muscle Hub</span>
+      <span class="marquee-item">&#127947;&#65039; PowerHouse Gym</span>
+      <span class="marquee-item">&#127947;&#65039; Gold's Gym</span>
+      <span class="marquee-item">&#127947;&#65039; Cult.fit Partner</span>
+      <span class="marquee-item">&#127947;&#65039; Fit India Gym</span>
+      <span class="marquee-item">&#127947;&#65039; Iron Paradise</span>
+      <span class="marquee-item">&#127947;&#65039; Muscle Hub</span>
+      <span class="marquee-item">&#127947;&#65039; PowerHouse Gym</span>
+    </div>
+  </div>
+  <style>
+  .marquee-track {
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+  .marquee-content {
+    display: flex;
+    gap: 48px;
+    width: max-content;
+    animation: scrollLeft 25s linear infinite;
+  }
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    padding: 12px 0;
+  }
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  </style>
 </section>
 
 <!-- 3. PRODUCTS -->
