@@ -13,7 +13,7 @@
     '<div class="nav-inner">' +
     '<a href="index.html" class="nav-brand" aria-label="Brilliants Home">' +
     '<img src="' + logoSrc + '" alt="Brilliants" style="height:40px;width:auto;">' +
-    '<span>Brilliants <span style="font-size:0.7rem;font-weight:500;color:var(--ink-faint);display:block;margin-top:-2px;letter-spacing:0.02em;">Smarter · Better · Stronger</span></span></a>' +
+    'Brilliants</a>' +
     '<div class="nav-links" role="menubar">' +
     '<a href="index.html" role="menuitem" data-page="index.html">Home</a>' +
     '<a href="industries.html" role="menuitem" data-page="industries.html">Case Studies</a>' +

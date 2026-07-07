@@ -321,9 +321,9 @@ p { color: var(--ink-soft); }
   75% { transform: translate(-6px, -14px) rotate(-0.5deg); }
 }
 
-.float-card:nth-child(1) { top: 12%; right: 8%; animation: floatCard1 6s ease-in-out infinite; }
-.float-card:nth-child(2) { bottom: 20%; right: 12%; animation: floatCard2 7s ease-in-out infinite; animation-delay: 0.5s; }
-.float-card:nth-child(3) { top: 50%; left: 3%; animation: floatCard3 5.5s ease-in-out infinite; animation-delay: 1s; }
+.hero .float-card:nth-of-type(1) { top: 12%; right: 8%; animation: floatCard1 6s ease-in-out infinite; }
+.hero .float-card:nth-of-type(2) { bottom: 20%; right: 12%; animation: floatCard2 7s ease-in-out infinite; animation-delay: 0.5s; }
+.hero .float-card:nth-of-type(3) { top: 50%; left: 3%; animation: floatCard3 5.5s ease-in-out infinite; animation-delay: 1s; }
 
 @media (max-width: 1100px) {
   .float-card { display: none; }
@@ -814,6 +814,40 @@ p { color: var(--ink-soft); }
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease-out;
 }
+
+/* ---- SVG Icon Fixes ---- */
+.card .icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--primary-tint); margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.card .icon svg { width: 24px; height: 24px; stroke-width: 2; }
+.card .icon:has(svg) { font-size: 0; }
+
+.industry-card .ic-icon {
+  font-size: 2rem; margin-bottom: 16px; position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px;
+}
+.industry-card .ic-icon svg { width: 36px; height: 36px; stroke-width: 2; stroke: var(--primary); }
+
+.wf-icon { font-size: 2rem; display: flex; align-items: center; justify-content: center; }
+.wf-icon svg { width: 36px; height: 36px; stroke-width: 2; stroke: var(--primary); }
+
+.fc-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.fc-icon svg { width: 20px; height: 20px; stroke-width: 2; }
+
+.footer-social a svg { width: 16px; height: 16px; stroke-width: 2; }
+
+.dm-sidebar-item svg { width: 16px; height: 16px; stroke-width: 2; }
+
+/* Fallback: hide empty icon containers that failed to render */
+.icon:empty, .ic-icon:empty, .wf-icon:empty { display: none; }
 
 /* ---- Connection lines canvas ---- */
 #connections-canvas {
