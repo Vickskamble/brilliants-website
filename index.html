@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Brilliants — India's AI Platform for MSMEs">
 <meta name="twitter:description" content="AI-first technology company building intelligent software platforms for India's MSMEs.">
 <link rel="canonical" href="https://www.brilliants.in/">
-<link rel="icon" href="assets/images/logo/brilliants-icon.png">
+<link rel="icon" href="assets/images/logo/brilliants-logo-full.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
@@ -47,7 +47,7 @@
   "name": "Brilliants",
   "alternateName": "Brilliants — AI Platform for MSMEs",
   "url": "https://www.brilliants.in/",
-  "logo": "https://www.brilliants.in/assets/images/logo/brilliants-icon.png",
+  "logo": "https://www.brilliants.in/assets/images/logo/brilliants-logo-full.png",
   "email": "contact@brilliants.in",
   "telephone": "+91-9146121280",
   "address": {
@@ -82,7 +82,7 @@
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.brilliants.in/" },
     { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.brilliants.in/#products" },
-    { "@type": "ListItem", "position": 3, "name": "Pricing", "item": "https://www.brilliants.in/pricing.html" }
+    { "@type": "ListItem", "position": 3, "name": "Pricing", "item": "https://www.brilliants.in/pricing/" }
   ]
 }
 </script>
@@ -700,10 +700,13 @@
         <div class="lead-form">
           <h3>Book Your Free Demo</h3>
           <p style="font-size:0.9rem;margin-bottom:24px;">Fill this form and our team will reach out within 24 hours.</p>
-          <form action="#" method="POST" onsubmit="return false;">
+          <form id="demo-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="8084b478-252d-4290-8cc1-b636dd96239d">
+            <input type="hidden" name="subject" value="New Brilliants Demo Request">
+            <input type="checkbox" name="botcheck" style="display:none;">
             <div class="form-group">
               <label for="product-interest">I'm interested in</label>
-              <select id="product-interest" required aria-label="Product interest">
+              <select id="product-interest" name="product" required aria-label="Product interest">
                 <option value="">Select a product</option>
                 <option>IronBook</option>
                 <option>Smart HRMS</option>
@@ -715,22 +718,65 @@
             </div>
             <div class="form-group">
               <label for="name">Your Name</label>
-              <input type="text" id="name" placeholder="Enter your name" required aria-label="Your name">
+              <input type="text" id="name" name="name" placeholder="Enter your name" required aria-label="Your name">
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="you@company.com" required aria-label="Email address">
+              <input type="email" id="email" name="email" placeholder="you@company.com" required aria-label="Email address">
             </div>
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="+91-9876543210" aria-label="Phone number">
+              <input type="tel" id="phone" name="phone" placeholder="+91-9876543210" aria-label="Phone number">
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" rows="3" placeholder="Tell us about your business..." aria-label="Message"></textarea>
+              <textarea id="message" name="message" rows="3" placeholder="Tell us about your business..." aria-label="Message"></textarea>
             </div>
             <button type="submit" class="btn btn-primary-glow btn-block"><span data-icon="phone" data-size="18"></span> Book Free Demo</button>
+            <div id="form-status" style="margin-top:16px;font-size:0.9rem;"></div>
           </form>
+          <script>
+          document.getElementById('demo-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = this.querySelector('button[type="submit"]');
+            var status = document.getElementById('form-status');
+            var data = {
+              access_key: '8084b478-252d-4290-8cc1-b636dd96239d',
+              subject: 'New Brilliants Demo Request',
+              product: this.product.value,
+              name: this.name.value,
+              email: this.email.value,
+              phone: this.phone.value,
+              message: this.message.value
+            };
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            status.textContent = '';
+            status.style.color = '';
+            fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            }).then(function (r) {
+              if (!r.ok) throw new Error('Server error');
+              return r.json();
+            }).then(function (res) {
+              if (res.success) {
+                status.style.color = 'var(--green)';
+                status.textContent = 'Thank you! We will reach out within 24 hours.';
+                document.getElementById('demo-form').reset();
+              } else {
+                throw new Error('Submission failed');
+              }
+            }).catch(function () {
+              status.style.color = '#dc2626';
+              status.textContent = 'Something went wrong. Please email us at sells.brilliants.in@gmail.com or try again.';
+            }).finally(function () {
+              btn.disabled = false;
+              btn.innerHTML = '<span data-icon="phone" data-size="18"></span> Book Free Demo';
+            });
+          });
+          </script>
         </div>
       </div>
     </div>

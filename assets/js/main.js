@@ -13,24 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(function (item) {
-    var q = item.querySelector('.faq-q');
-    var a = item.querySelector('.faq-a');
-    if (!q || !a) return;
-    q.addEventListener('click', function () {
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function (other) {
-        if (other !== item) {
-          other.classList.remove('open');
-          other.querySelector('.faq-a').style.maxHeight = null;
-        }
-      });
-      item.classList.toggle('open', !isOpen);
-      a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
-    });
-  });
-
   // Scroll reveal
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
