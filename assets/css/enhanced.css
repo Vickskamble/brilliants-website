@@ -765,6 +765,7 @@ p { color: var(--ink-soft); }
   border-radius: var(--radius); overflow: hidden;
   transition: all 0.4s var(--transition);
 }
+.blog-card { display: block; }
 .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .blog-card .bc-img {
   height: 200px; background: var(--surface-2);
