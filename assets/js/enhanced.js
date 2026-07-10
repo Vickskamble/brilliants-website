@@ -508,6 +508,25 @@
       });
     })();
 
+    // 20. Word-by-word typewriter
+    (function () {
+      var el = qs('#typewriter');
+      if (!el) return;
+      var words = ["India's", 'AI', 'Operating', 'System', 'for', 'MSMEs'];
+      var i = 0;
+      el.textContent = '';
+      function typeNext() {
+        if (i >= words.length) return;
+        var span = doc.createElement('span');
+        span.className = 'word-fade';
+        span.textContent = (i > 0 ? ' ' : '') + words[i];
+        el.appendChild(span);
+        i++;
+        setTimeout(typeNext, 280);
+      }
+      setTimeout(typeNext, 400);
+    })();
+
   }); // DOMContentLoaded
 
 })();
