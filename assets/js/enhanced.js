@@ -35,22 +35,31 @@
     }
 
     // 3. FAQ accordion
-    qsa('.faq-item').forEach(function (item) {
-      var q = qs('.faq-q', item);
-      var a = qs('.faq-a', item);
-      if (!q || !a) return;
-      q.addEventListener('click', function () {
-        var isOpen = item.classList.contains('open');
-        qsa('.faq-item.open').forEach(function (other) {
-          if (other !== item) {
-            other.classList.remove('open');
-            qs('.faq-a', other).style.maxHeight = null;
+      qsa('.faq-item').forEach(function (item) {
+        var q = qs('.faq-q', item);
+        var a = qs('.faq-a', item);
+        if (!q || !a) return;
+        function toggleFaq() {
+          var isOpen = item.classList.contains('open');
+          qsa('.faq-item.open').forEach(function (other) {
+            if (other !== item) {
+              other.classList.remove('open');
+              qs('.faq-a', other).style.maxHeight = null;
+            }
+          });
+          item.classList.toggle('open', !isOpen);
+          a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
+        }
+        q.addEventListener('click', toggleFaq);
+        q.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleFaq();
           }
         });
-        item.classList.toggle('open', !isOpen);
-        a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
+        q.setAttribute('tabindex', '0');
+        q.setAttribute('role', 'button');
       });
-    });
 
     // 4. Scroll Reveal
     (function () {

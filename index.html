@@ -98,7 +98,6 @@
   ]
 }
 </script>
-<script src="/assets/js/main.min.js" defer></script>
 <script src="/assets/js/icons.min.js" defer></script>
 <script src="/assets/js/layout.min.js" defer></script>
 <script src="/assets/js/enhanced.min.js" defer></script>
@@ -108,8 +107,8 @@
 
 <div id="nav-placeholder"></div>
 
-<div class="mouse-follower"></div>
-<canvas id="particle-canvas"></canvas>
+<div class="mouse-follower" aria-hidden="true"></div>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
 
 <!-- 1. HERO -->
 <section class="hero" id="main-content" aria-label="Hero">
@@ -133,7 +132,7 @@
   
   <div class="container hero-grid">
     <div class="reveal">
-      <h1><span id="typewriter"></span><span class="cursor">|</span></h1>
+      <h1><span id="typewriter">India's AI Operating System for MSMEs</span><span class="cursor">|</span></h1>
       <p class="hero-lede">We build AI-powered software that automates operations, reduces costs, and helps MSMEs make smarter decisions — one intelligent platform for every business vertical.</p>
       <div class="hero-actions">
         <a href="/pricing/" class="btn btn-primary-glow"><span data-icon="trending" data-size="18"></span> Get Started</a>
@@ -763,6 +762,12 @@
           <script>
           document.getElementById('demo-form').addEventListener('submit', function (e) {
             e.preventDefault();
+            if (window.location.hostname !== 'www.brilliants.in' && window.location.hostname !== 'brilliants.in' && window.location.hostname !== 'localhost') {
+              var status = document.getElementById('form-status');
+              status.style.color = '#dc2626';
+              status.textContent = 'Invalid origin. Please submit from brilliants.in.';
+              return;
+            }
             var btn = this.querySelector('button[type="submit"]');
             var status = document.getElementById('form-status');
             var data = {
