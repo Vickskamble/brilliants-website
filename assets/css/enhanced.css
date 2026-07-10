@@ -886,9 +886,10 @@ p { color: var(--ink-soft); }
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xl), 0 0 60px var(--primary-glow);
+  transform-style: preserve-3d;
   transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition);
 }
-.dashboard-mockup:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-xl), 0 0 80px var(--primary-glow); }
+.dashboard-mockup:hover { transform: translateY(-4px) scale(1.01); box-shadow: var(--shadow-xl), 0 0 80px var(--primary-glow); }
 
 .dm-header {
   display: flex; align-items: center; justify-content: space-between;

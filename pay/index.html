@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Payment — IronBook</title>
+<style>
+  :root{--primary:#2563EB;--bg:#0F172A;--surface:#1E293B;--surface-2:#334155;--ink:#F8FAFC;--ink-soft:#94A3B8;--ink-faint:#64748B;--line:#334155;--green:#10B981;--red:#EF4444;--radius:12px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px;max-width:440px;width:100%}
+  .logo{font-size:24px;font-weight:800;text-align:center;margin-bottom:24px}
+  .logo span:first-child{color:var(--primary)}.logo span:last-child{color:#F59E0B}
+  .detail{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .detail:last-child{border-bottom:none}
+  .label{color:var(--ink-soft);font-size:14px}
+  .value{font-weight:600;font-size:14px}
+  .amount{font-size:28px;font-weight:800;color:var(--primary);text-align:center;padding:16px 0}
+  .btn{display:block;width:100%;padding:14px;border-radius:var(--radius);font-size:16px;font-weight:700;border:none;cursor:pointer;transition:opacity .2s;text-align:center}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{opacity:.9}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .status{text-align:center;padding:12px;border-radius:var(--radius);margin-top:16px;display:none}
+  .status.success{display:block;background:rgba(16,185,129,.15);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+  .status.error{display:block;background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+  .status.loading{display:block;background:rgba(37,99,235,.1);color:var(--primary);border:1px solid rgba(37,99,235,.2)}
+  .spinner{display:inline-block;width:16px;height:16px;border:2px solid var(--primary);border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;margin-right:8px;vertical-align:middle}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="card" id="app">
+  <div class="logo"><span>Iron</span><span>Book</span></div>
+  <div id="loading-state" style="text-align:center;padding:40px 0">
+    <div class="spinner" style="display:block;margin:0 auto 16px;width:32px;height:32px;border-width:3px"></div>
+    <p style="color:var(--ink-soft)">Loading payment details...</p>
+  </div>
+  <div id="payment-details" style="display:none">
+    <div class="amount" id="amount-display">&#8377;0</div>
+    <div class="detail"><span class="label">Plan</span><span class="value" id="plan-name">--</span></div>
+    <div class="detail"><span class="label">Billing</span><span class="value">Monthly</span></div>
+    <div style="margin-top:24px">
+      <button class="btn btn-primary" id="pay-btn" onclick="startPayment()">
+        Pay &#8377;<span id="pay-amount">0</span>
+      </button>
+    </div>
+    <div class="status" id="status-msg"></div>
+  </div>
+  <div id="error-state" style="display:none;text-align:center;padding:40px 0">
+    <p style="color:var(--red);font-size:18px;font-weight:600">&#10060; Invalid Payment Request</p>
+    <p style="color:var(--ink-soft);margin-top:8px;font-size:14px">This payment link is invalid or expired.</p>
+    <a href="https://www.brilliants.in" style="display:inline-block;margin-top:20px;color:var(--primary);text-decoration:none">&larr; Back to Home</a>
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+const SUPABASE_URL = 'https://your-project.supabase.co';
+const SUPABASE_ANON_KEY = 'your-anon-key';
+const EDGE_FUNCTION_URL = SUPABASE_URL + '/functions/v1/handle-payment';
+
+const params = new URLSearchParams(window.location.search);
+const requestId = params.get('request_id');
+
+if (!requestId) {
+  document.getElementById('loading-state').style.display = 'none';
+  document.getElementById('error-state').style.display = 'block';
+}
+
+async function fetchPaymentRequest() {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/payment_requests?id=eq.${requestId}`, {
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+    }
+  });
+  if (!res.ok) throw new Error('Not found');
+  const data = await res.json();
+  if (!data || data.length === 0) throw new Error('Not found');
+  const r = data[0];
+  return {
+    id: r.id,
+    amount: r.amount,
+    plan_name: r.plan_name || r.plan_type || 'Plan',
+    plan_type: r.plan_type,
+    status: r.status
+  };
+}
+
+async function startPayment() {
+  const btn = document.getElementById('pay-btn');
+  const statusEl = document.getElementById('status-msg');
+  btn.disabled = true;
+  btn.textContent = 'Processing...';
+  statusEl.className = 'status loading';
+  statusEl.innerHTML = '<span class="spinner"></span>Creating order...';
+  statusEl.style.display = 'block';
+
+  try {
+    const orderRes = await fetch(`${EDGE_FUNCTION_URL}/create-order`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      },
+      body: JSON.stringify({ request_id: requestId })
+    });
+    if (!orderRes.ok) {
+      const errText = await orderRes.text();
+      throw new Error(errText || 'Failed to create order');
+    }
+    const orderData = await orderRes.json();
+
+    const options = {
+      key: orderData.key_id,
+      amount: orderData.amount,
+      currency: 'INR',
+      name: 'IronBook',
+      description: orderData.description || 'Subscription',
+      order_id: orderData.id,
+      prefill: { contact: '', email: '' },
+      theme: { color: '#2563EB' },
+      handler: function(response) {
+        statusEl.className = 'status success';
+        statusEl.textContent = 'Payment successful! Redirecting...';
+        statusEl.style.display = 'block';
+        window.location.href = `/pay/success/?request_id=${requestId}&payment_id=${response.razorpay_payment_id}&order_id=${response.razorpay_order_id}`;
+      },
+      modal: {
+        ondismiss: function() {
+          btn.disabled = false;
+          btn.innerHTML = 'Pay &#8377;<span id="pay-amount">' + document.getElementById('pay-amount').textContent + '</span>';
+          statusEl.className = 'status error';
+          statusEl.textContent = 'Payment cancelled. You can try again.';
+          statusEl.style.display = 'block';
+        }
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function(response) {
+      statusEl.className = 'status error';
+      statusEl.textContent = 'Payment failed: ' + (response.error?.description || 'Unknown error');
+      statusEl.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = 'Pay &#8377;<span id="pay-amount">' + document.getElementById('pay-amount').textContent + '</span>';
+    });
+    rzp.open();
+  } catch (e) {
+    statusEl.className = 'status error';
+    statusEl.textContent = 'Error: ' + e.message;
+    statusEl.style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = 'Pay &#8377;<span id="pay-amount">' + document.getElementById('pay-amount').textContent + '</span>';
+  }
+}
+
+if (requestId) {
+  fetchPaymentRequest().then(data => {
+    if (data.status === 'completed') {
+      document.getElementById('loading-state').style.display = 'none';
+      document.getElementById('payment-details').style.display = 'block';
+      document.getElementById('amount-display').textContent = '\u20B9' + data.amount;
+      document.getElementById('plan-name').textContent = data.plan_name;
+      document.getElementById('pay-btn').style.display = 'none';
+      const statusEl = document.getElementById('status-msg');
+      statusEl.className = 'status success';
+      statusEl.textContent = 'Payment already completed. Your IronBook subscription is active!';
+      statusEl.style.display = 'block';
+      return;
+    }
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('payment-details').style.display = 'block';
+    document.getElementById('amount-display').textContent = '\u20B9' + data.amount;
+    document.getElementById('plan-name').textContent = data.plan_name;
+    document.getElementById('pay-amount').textContent = data.amount;
+  }).catch(e => {
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('error-state').style.display = 'block';
+  });
+}
+</script>
+</body>
+</html>

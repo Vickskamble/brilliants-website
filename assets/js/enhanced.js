@@ -482,9 +482,29 @@
 
     // 18. Font Display Swap fix
     (function () {
-      // Add font-display: swap to all Google Font links
       qsa('link[href*="fonts.googleapis.com"]').forEach(function (link) {
         link.setAttribute('media', 'all');
+      });
+    })();
+
+    // 19. Dashboard 3D Tilt on mouse move
+    (function () {
+      var dashboard = qs('.dashboard-mockup');
+      if (!dashboard) return;
+
+      dashboard.addEventListener('mousemove', function (e) {
+        var rect = this.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var rotateX = ((y - centerY) / centerY) * -8;
+        var rotateY = ((x - centerX) / centerX) * 8;
+        this.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
+      });
+
+      dashboard.addEventListener('mouseleave', function () {
+        this.style.transform = '';
       });
     })();
 
