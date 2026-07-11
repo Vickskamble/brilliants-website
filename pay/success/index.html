@@ -21,10 +21,11 @@
   <div class="icon">&#10003;</div>
   <h1>Payment Successful!</h1>
   <p>Your IronBook subscription has been activated.</p>
-  <p style="font-size:13px">Go back to the app and your plan will be updated automatically.</p>
+  <p style="font-size:13px">Returning to the app...</p>
   <div style="margin-top:28px">
-    <a href="https://www.brilliants.in" class="btn btn-primary">Back to Home</a>
+    <button class="btn btn-primary" onclick="window.close()">Return to IronBook</button>
   </div>
+  <script>setTimeout(function(){ var c = window.close(); if(!c) document.querySelector('p[style]').textContent = 'Please switch back to the IronBook app.'; }, 3000);</script>
 </div>
 </body>
 </html>

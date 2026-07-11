@@ -46,6 +46,11 @@
     </div>
     <div class="status" id="status-msg"></div>
   </div>
+  <div id="cancel-state" style="display:none;text-align:center;padding:40px 0">
+    <p style="color:var(--ink);font-size:18px;font-weight:600">Payment Cancelled</p>
+    <p style="color:var(--ink-soft);margin-top:8px;font-size:14px">No charges were made.</p>
+    <button class="btn btn-primary" style="margin-top:20px" onclick="returnToApp()">Return to IronBook</button>
+  </div>
   <div id="error-state" style="display:none;text-align:center;padding:40px 0">
     <p style="color:var(--red);font-size:18px;font-weight:600">&#10060; Invalid Payment Request</p>
     <p style="color:var(--ink-soft);margin-top:8px;font-size:14px">This payment link is invalid or expired.</p>
@@ -85,6 +90,22 @@ async function fetchPaymentRequest() {
     plan_type: r.plan_type,
     status: r.status
   };
+}
+
+function showCancelUI() {
+  document.getElementById('payment-details').style.display = 'none';
+  document.getElementById('cancel-state').style.display = 'block';
+  setTimeout(returnToApp, 2000);
+}
+
+function returnToApp() {
+  const closed = window.close();
+  if (!closed) {
+    document.getElementById('cancel-state').innerHTML =
+      '<p style="color:var(--ink);font-size:18px;font-weight:600">Payment Cancelled</p>' +
+      '<p style="color:var(--ink-soft);margin-top:8px;font-size:14px">No charges were made. Please switch back to the IronBook app.</p>' +
+      '<p style="color:var(--ink-faint);margin-top:16px;font-size:12px">Tap the Recent Apps button &#x2630; and select IronBook</p>';
+  }
 }
 
 async function startPayment() {
@@ -128,11 +149,7 @@ async function startPayment() {
       },
       modal: {
         ondismiss: function() {
-          btn.disabled = false;
-          btn.innerHTML = 'Pay &#8377;<span id="pay-amount">' + document.getElementById('pay-amount').textContent + '</span>';
-          statusEl.className = 'status error';
-          statusEl.textContent = 'Payment cancelled. You can try again.';
-          statusEl.style.display = 'block';
+          showCancelUI();
         }
       }
     };
