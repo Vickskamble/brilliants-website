@@ -1309,3 +1309,37 @@ p { color: var(--ink-soft); }
   font-family: var(--font-mono); font-size: 10px; font-weight: 700;
   padding: 3px 10px; border-radius: 100px;
 }
+
+/* ==========================================================================
+   Nav look revamp — clean Odoo-style bar
+   ========================================================================== */
+.nav {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--line);
+}
+.nav.scrolled { background: rgba(255, 255, 255, 0.96); box-shadow: 0 1px 8px rgba(15, 23, 42, 0.06); }
+.nav-inner { gap: 20px; }
+.nav-brand img { height: 34px; }
+.nav-brand .brand-text { font-size: 1.3rem; }
+.nav-links { gap: 2px; }
+.nav-links a, .nav-drop-btn {
+  font-size: 0.86rem; font-weight: 600; color: #334155;
+  padding: 8px 12px; border-radius: 8px;
+}
+.nav-links a:hover, .nav-drop-btn:hover { color: var(--ink); background: #F1F5F9; }
+.nav-links a.active, .nav-drop.active .nav-drop-btn { color: var(--primary); background: var(--primary-tint); }
+.nav-caret { width: 10px; height: 10px; opacity: 0.5; }
+.nav-cta { gap: 8px; }
+.nav-cta .btn { padding: 10px 18px; font-size: 0.88rem; border-radius: 10px; }
+.nav-cta .btn-ghost { border: 1.5px solid var(--line-strong); color: var(--ink-soft); background: transparent; }
+.nav-cta .btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-tint); }
+.nav-panel { padding: 10px; border-radius: 14px; border-color: var(--line-strong); }
+.nav-panel-grid { gap: 4px; }
+.nav-panel-col > a { border-radius: 10px; }
+@media (max-width: 940px) {
+  .nav-links { background: rgba(255, 255, 255, 0.98); }
+  .nav-cta { gap: 8px; }
+  .nav-cta .btn { padding: 9px 16px; }
+}
