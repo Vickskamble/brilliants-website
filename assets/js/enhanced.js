@@ -501,7 +501,7 @@
     (function () {
       var el = qs('#typewriter');
       if (!el) return;
-      var words = ["India's", 'AI', 'Operating', 'System', 'for', 'MSMEs'];
+      var words = ['All', 'your', 'business', 'on', 'one', 'platform.'];
       var i = 0;
       el.textContent = '';
       function typeNext() {

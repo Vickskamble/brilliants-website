@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -134,11 +134,13 @@
   
   <div class="container hero-grid">
     <div class="reveal">
-      <h1><span id="typewriter">India's AI Operating System for MSMEs</span><span class="cursor">|</span></h1>
-      <p class="hero-lede">We build AI-powered software that automates operations, reduces costs, and helps MSMEs make smarter decisions — one intelligent platform for every business vertical.</p>
+      <span class="eyebrow" style="margin-bottom:16px;"><span class="dot"></span>India's AI Operating System for MSMEs</span>
+      <h1><span id="typewriter">All your business on one platform.</span><span class="cursor">|</span></h1>
+      <p class="hero-lede">One intelligent platform for every department — billing, HR, inventory, finance and shop-floor automation, all powered by native AI.</p>
+      <div class="hero-price"><span class="hp-badge">100% Free to start</span><strong>&#8377;499/mo</strong> for ALL apps &middot; no long-term contract</div>
       <div class="hero-actions">
-        <a href="/pricing/" class="btn btn-primary-glow"><span data-icon="trending" data-size="18"></span> Get Started</a>
-        <a href="#contact-form" class="btn btn-ghost"><span data-icon="play" data-size="18"></span> Watch Demo</a>
+        <a href="/pricing/" class="btn btn-primary-glow"><span data-icon="trending" data-size="18"></span> Start Now &mdash; It's Free</a>
+        <a href="#contact-form" class="btn btn-ghost"><span data-icon="play" data-size="18"></span> Book a Demo</a>
       </div>
       <div class="hero-trust">
         <div class="hero-trust-avatars">
@@ -321,73 +323,112 @@
 <section class="section" id="products" aria-label="Products">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Our Products</span>
-      <h2>Powerful products. One AI platform.</h2>
-      <p>AI products designed for Indian MSMEs — from gyms to shop floors to warehouses.</p>
+      <span class="eyebrow"><span class="dot"></span>Apps</span>
+      <h2>All your business, on one platform.</h2>
+      <p>Every app shares the same data, the same AI engine and one simple subscription.</p>
     </div>
-    <div class="grid grid-3">
-      <a href="/ironbook/" style="text-decoration:none;color:inherit;display:block;">
-        <div class="card product-card card-glow reveal" style="cursor:pointer;">
-          <span class="icon" style="background:var(--green-tint);" data-icon="gym"></span>
-          <div class="head"><h3>IronBook</h3><span class="status" style="background:var(--green-tint);color:var(--green);">Live</span></div>
-          <p>AI Gym Operating System — memberships, attendance, billing and member engagement, run from one intelligent dashboard.</p>
-          <div class="cta-row">
-            <a href="/downloads/" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">Download APK</a>
-            <span class="btn btn-ghost btn-sm" style="pointer-events:none;">Learn more &rarr;</span>
-          </div>
-        </div>
+    <div class="app-tiles reveal">
+      <a href="/ironbook/" class="app-tile">
+        <span class="at-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span>
+        <span class="at-name">IronBook</span>
+        <span class="at-tag live">Live</span>
+        <span class="at-desc">AI Gym Operating System</span>
       </a>
+      <a href="/#products" class="app-tile">
+        <span class="at-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span>
+        <span class="at-name">Smart HRMS</span>
+        <span class="at-tag soon">Early Access</span>
+        <span class="at-desc">Payroll &amp; attendance</span>
+      </a>
+      <a href="/#products" class="app-tile">
+        <span class="at-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="billing"></span>
+        <span class="at-name">Smart Billing</span>
+        <span class="at-tag soon">Coming Soon</span>
+        <span class="at-desc">GST billing &amp; inventory</span>
+      </a>
+      <a href="/#products" class="app-tile">
+        <span class="at-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="factory"></span>
+        <span class="at-name">Smart Factory</span>
+        <span class="at-tag proto">Prototype</span>
+        <span class="at-desc">Industry 4.0 platform</span>
+      </a>
+      <a href="/#products" class="app-tile">
+        <span class="at-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="inventory"></span>
+        <span class="at-name">Smart Inventory</span>
+        <span class="at-tag roadmap">Roadmap</span>
+        <span class="at-desc">AI warehouse</span>
+      </a>
+      <a href="/ai-engine/" class="app-tile">
+        <span class="at-icon" style="background:var(--ink);color:#fff;" data-icon="ai"></span>
+        <span class="at-name">Brilliants AI</span>
+        <span class="at-tag core">Core Engine</span>
+        <span class="at-desc">One engine, every capability</span>
+      </a>
+      <a href="/downloads/" class="app-tile">
+        <span class="at-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="download"></span>
+        <span class="at-name">Download Center</span>
+        <span class="at-tag live">Guides &amp; APKs</span>
+        <span class="at-desc">Install &amp; setup help</span>
+      </a>
+      <a href="/pricing/" class="app-tile">
+        <span class="at-icon" style="background:var(--green-tint);color:var(--green);" data-icon="rupee"></span>
+        <span class="at-name">Pricing</span>
+        <span class="at-tag live">Free to start</span>
+        <span class="at-desc">&#8377;499/mo for all apps</span>
+      </a>
+      <div class="app-tiles-cta"><a href="/downloads/" class="btn btn-ghost">Browse everything &rarr;</a></div>
+    </div>
+  </div>
+</section>
 
-      <div class="card product-card card-amber reveal">
-        <span class="icon" style="background:var(--purple-tint);" data-icon="hrms"></span>
-        <div class="head"><h3>Smart HRMS</h3><span class="status" style="background:var(--amber-tint);color:var(--amber-ink);">Coming Soon</span></div>
-        <p>Employee &amp; payroll automation — geofenced attendance, automated payroll, leave management and workforce analytics.</p>
-        <div class="cta-row">
-          <a href="/downloads/" class="btn btn-primary btn-sm">Join Early Access</a>
-        </div>
+<!-- 4. QUOTE STRIP -->
+<section class="section" style="padding:40px 0 8px;" aria-label="Founder Quote">
+  <div class="container">
+    <div class="quote-strip reveal">
+      <div class="qs-mark">&ldquo;</div>
+      <blockquote>If you simplify everything, you can do anything.</blockquote>
+      <cite>Vikas Kamble &middot; Founder &amp; CEO, Brilliants</cite>
+    </div>
+  </div>
+</section>
+
+<!-- 5. VALUE PROPOSITION -->
+<section class="section alt" aria-label="Our Promise">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow"><span class="dot"></span>Enterprise software done right</span>
+      <h2>Built for Indian MSMEs. Priced like a friend.</h2>
+      <p>All the power of big-enterprise software — minus the complexity, the lock-in and the shock invoices.</p>
+    </div>
+    <div class="value-grid reveal">
+      <div class="value-card">
+        <span class="vc-icon" style="background:var(--green-tint);color:var(--green);" data-icon="rupee"></span>
+        <h3>Fair pricing</h3>
+        <p>No usage-based pricing, no feature upsells, no long-term contracts. One price per user — every app included.</p>
+        <a href="/pricing/" class="vc-link">View pricing &rarr;</a>
       </div>
-
-      <div class="card product-card card-glow reveal">
-        <span class="icon" style="background:var(--amber-tint);" data-icon="billing"></span>
-        <div class="head"><h3>Smart Billing</h3><span class="status" style="background:var(--amber-tint);color:var(--amber-ink);">Coming Soon</span></div>
-        <p>Billing &amp; inventory — AI-assisted invoicing, GST-ready billing and payment tracking for MSME sales counters.</p>
-        <div class="cta-row">
-          <a href="/downloads/" class="btn btn-primary btn-sm">Get Notified</a>
-        </div>
+      <div class="value-card">
+        <span class="vc-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="lock"></span>
+        <h3>No vendor lock-in</h3>
+        <p>Your data is yours. Export anything, cancel anytime — leaving should be as easy as joining.</p>
       </div>
-
-      <div class="card product-card card-glow reveal">
-        <span class="icon" style="background:var(--primary-tint);" data-icon="factory"></span>
-        <div class="head"><h3>Smart Factory</h3><span class="status" style="background:var(--primary-tint);color:var(--primary);">Prototype</span></div>
-        <p>Industry 4.0 platform — real-time production, breakdown and energy monitoring via IoT and computer vision.</p>
-        <div class="cta-row">
-          <a href="/downloads/" class="btn btn-primary btn-sm">Register Interest</a>
-        </div>
+      <div class="value-card">
+        <span class="vc-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="ai"></span>
+        <h3>Native AI everywhere</h3>
+        <p>One AI Engine powers every product — recognition, automation and insight built in, not bolted on later.</p>
+        <a href="/ai-engine/" class="vc-link">See the engine &rarr;</a>
       </div>
-
-      <div class="card product-card card-amber reveal">
-        <span class="icon" style="background:var(--surface-2);" data-icon="ai"></span>
-        <div class="head"><h3>Brilliants AI</h3><span class="status" style="background:var(--primary-tint);color:var(--primary);">Core Engine</span></div>
-        <p>The AI engine powering every product — predictive insights, automation rules and business intelligence, shared across the platform.</p>
-        <div class="cta-row">
-          <a href="/ai-engine/" class="btn btn-ghost btn-sm">See how it works &rarr;</a>
-        </div>
-      </div>
-
-      <div class="card product-card card-glow reveal">
-        <span class="icon" style="background:var(--rose-tint);" data-icon="inventory"></span>
-        <div class="head"><h3>Smart Inventory</h3><span class="status" style="background:var(--purple-tint);color:var(--purple);">Roadmap</span></div>
-        <p>AI warehouse — demand prediction, stock alerts and automated reordering for MSME warehouses and stores.</p>
-        <div class="cta-row">
-          <a href="/downloads/" class="btn btn-primary btn-sm">Register Interest</a>
-        </div>
+      <div class="value-card">
+        <span class="vc-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="dashboard"></span>
+        <h3>Made for India</h3>
+        <p>GST-ready billing, offline-first apps, local support and pricing in rupees. Not a ported Western product.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 4. WHY BRILLIANTS (Comparison) -->
-<section class="section alt" aria-label="Why Brilliants">
+<!-- 6. WHY BRILLIANTS (Comparison) -->
+<section class="section" aria-label="Why Brilliants">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
       <span class="eyebrow"><span class="dot"></span>Why Brilliants</span>
@@ -441,7 +482,7 @@
   </div>
 </section>
 
-<!-- 5. AI CAPABILITIES -->
+<!-- 7. AI CAPABILITIES -->
 <section class="section" aria-label="AI Capabilities">
   <div class="container">
     <div class="section-head reveal">
@@ -490,7 +531,7 @@
   </div>
 </section>
 
-<!-- AI WORKFLOW -->
+<!-- 8. AI WORKFLOW -->
 <section class="section alt" aria-label="AI Workflow">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
@@ -511,7 +552,7 @@
   </div>
 </section>
 
-<!-- 6. INDUSTRIES WE SERVE -->
+<!-- 9. INDUSTRIES WE SERVE -->
 <section class="section" aria-label="Industries">
   <div class="container">
     <div class="section-head reveal">
@@ -594,7 +635,7 @@
   </div>
 </section>
 
-<!-- 7. VISION 2030 -->
+<!-- 10. VISION 2030 -->
 <section class="section alt" aria-label="Vision 2030">
   <div class="container">
     <div class="section-head reveal">
@@ -614,7 +655,7 @@
   </div>
 </section>
 
-<!-- 8. TESTIMONIALS -->
+<!-- 11. TESTIMONIALS -->
 <section class="section" aria-label="Testimonials">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
@@ -671,7 +712,7 @@
   </div>
 </section>
 
-<!-- 9. FOUNDER STORY -->
+<!-- 12. FOUNDER STORY -->
 <section class="section alt" id="founder" aria-label="Founder">
   <div class="container">
     <div class="grid grid-2" style="align-items:center; gap:48px;">
@@ -706,7 +747,7 @@
   </div>
 </section>
 
-<!-- 10. FAQ -->
+<!-- 13. FAQ -->
 <section class="section" aria-label="FAQ">
   <div class="container" style="max-width:820px;">
     <div class="section-head center reveal">
@@ -738,7 +779,7 @@
   </div>
 </section>
 
-<!-- 11. CONTACT / LEAD CAPTURE -->
+<!-- 14. CONTACT / LEAD CAPTURE -->
 <section class="section alt" id="contact-form" aria-label="Book a Demo">
   <div class="container">
     <div class="grid grid-2" style="gap:48px;">
@@ -764,6 +805,7 @@
         <div class="card mt-16" style="padding:18px;">
           <h4 style="font-size:0.9rem;"><span data-icon="location" data-size="16"></span> Location</h4>
           <p style="font-size:0.88rem;">WAR MD24, Sant Tukdoji Ward, Hinganghat, Maharashtra 442301</p>
+          <a href="https://www.google.com/maps/place/WAR+MD24,+Sant+Tukdoji+Ward,+Hinganghat,+Maharashtra+442301" target="_blank" rel="noopener" style="font-size:0.82rem;color:var(--primary);text-decoration:underline;display:inline-block;margin-top:6px;">View on Google Maps &rarr;</a>
         </div>
       </div>
       <div class="reveal-right">
@@ -859,7 +901,7 @@
   </div>
 </section>
 
-<!-- 12. FREE CONSULTATION BANNER -->
+<!-- 15. FREE CONSULTATION BANNER -->
 <section class="section dark" aria-label="Free Consultation">
   <div class="container text-center reveal">
     <span class="eyebrow" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);color:var(--amber);"><span class="dot" style="background:var(--amber);"></span>No Risk, All Reward</span>
