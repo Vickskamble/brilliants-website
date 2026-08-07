@@ -497,26 +497,7 @@
       });
     })();
 
-    // 20. Word-by-word typewriter
-    (function () {
-      var el = qs('#typewriter');
-      if (!el) return;
-      var words = ['All', 'your', 'business', 'on', 'one', 'platform.'];
-      var i = 0;
-      el.textContent = '';
-      function typeNext() {
-        if (i >= words.length) return;
-        var span = doc.createElement('span');
-        span.className = 'word-fade';
-        span.textContent = (i > 0 ? ' ' : '') + words[i];
-        el.appendChild(span);
-        i++;
-        setTimeout(typeNext, 280);
-      }
-      setTimeout(typeNext, 400);
-    })();
-
-    // 21. WebP image swap for supported browsers
+    // 20. WebP image swap for supported browsers
     (function () {
       var imgs = qsa('img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"]');
       if (!imgs.length) return;
