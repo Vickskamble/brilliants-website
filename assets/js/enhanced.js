@@ -14,19 +14,7 @@
   // ---- DOM Ready ----
   doc.addEventListener('DOMContentLoaded', function () {
 
-    // 1. Mobile Nav Toggle
-    var toggle = qs('.nav-toggle');
-    var navLinks = qs('.nav-links');
-    if (toggle && navLinks) {
-      toggle.addEventListener('click', function () {
-        navLinks.classList.toggle('open');
-      });
-      qsa('a', navLinks).forEach(function (a) {
-        a.addEventListener('click', function () { navLinks.classList.remove('open'); });
-      });
-    }
-
-    // 2. Nav scroll effect
+    // 1. Nav scroll effect
     var nav = qs('.nav');
     if (nav) {
       win.addEventListener('scroll', function () {
@@ -34,7 +22,7 @@
       }, { passive: true });
     }
 
-    // 3. FAQ accordion
+    // 2. FAQ accordion
       qsa('.faq-item').forEach(function (item) {
         var q = qs('.faq-q', item);
         var a = qs('.faq-a', item);

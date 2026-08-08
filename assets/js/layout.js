@@ -99,7 +99,7 @@
     '</div>' +
     '<div class="nav-cta">' +
     '<a href="/pricing/" class="btn btn-ghost btn-sm">Pricing</a>' +
-    '<a href="/#contact-form" class="btn btn-primary btn-sm">Book a Demo</a>' +
+    '<a href="/#contact-form" class="btn btn-primary btn-sm">Discuss Your Business Problem</a>' +
     '<button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">' +
     '<span></span><span></span><span></span></button>' +
     '</div></div></nav>';
