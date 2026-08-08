@@ -42,13 +42,13 @@
     '<div class="nav-panel-grid nav-panel-2col">' +
     '<div class="nav-panel-col">' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span><span class="np-text"><strong>Gym &amp; Fitness</strong><small>IronBook — live</small></span></a>' +
-    '<a href="/industries/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="factory"></span><span class="np-text"><strong>Manufacturing</strong><small>Smart Factory</small></span></a>' +
-    '<a href="/industries/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="retail"></span><span class="np-text"><strong>Retail</strong><small>Smart Billing + Inventory</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="factory"></span><span class="np-text"><strong>Manufacturing</strong><small>Automation &amp; dashboards</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="retail"></span><span class="np-text"><strong>Retail</strong><small>Inventory &amp; sales tools</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="healthcare"></span><span class="np-text"><strong>Pharma</strong><small>Compliance &amp; monitoring</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="healthcare"></span><span class="np-text"><strong>Healthcare</strong><small>Clinics &amp; diagnostics</small></span></a>' +
     '</div>' +
     '<div class="nav-panel-col">' +
-    '<a href="/industries/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="warehouse"></span><span class="np-text"><strong>Warehousing</strong><small>Smart Inventory</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="warehouse"></span><span class="np-text"><strong>Warehousing</strong><small>Stock &amp; logistics tools</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="education"></span><span class="np-text"><strong>Education</strong><small>Schools &amp; institutes</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="office"></span><span class="np-text"><strong>Offices &amp; Coworking</strong><small>Smart HRMS</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--ink);color:#fff;" data-icon="dashboard"></span><span class="np-text"><strong>Every MSME</strong><small>One AI platform</small></span></a>' +
@@ -122,10 +122,7 @@
     '<div class="footer-col"><h4>Products</h4><ul>' +
     '<li><a href="/ironbook/">IronBook</a></li>' +
     '<li><a href="/#products">Smart HRMS</a></li>' +
-    '<li><a href="/#products">Smart Billing</a></li>' +
-    '<li><a href="/#products">Smart Factory</a></li>' +
-    '<li><a href="/#products">Smart Inventory</a></li>' +
-    '<li><a href="/ai-engine/">AI Engine</a></li>' +
+    '<li><a href="/#products">Power EmS</a></li>' +
     '</ul></div>' +
     '<div class="footer-col"><h4>Company</h4><ul>' +
     '<li><a href="/technology/">Technology</a></li>' +
