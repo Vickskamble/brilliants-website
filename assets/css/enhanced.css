@@ -3,7 +3,7 @@
    Premium SaaS aesthetic. Glassmorphism. Fluid animations.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
   --primary: #2563EB;
@@ -1498,4 +1498,107 @@ p { color: var(--ink-soft); }
 @media (max-width: 480px) {
   .why-grid { grid-template-columns:1fr; }
   .outcome-grid { grid-template-columns:1fr; }
+}
+
+/* ========== HATKE HERO + HEADER (2026-08) ========== */
+
+/* Header — white blur glass */
+.nav { background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.65)); backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.6); box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 10px 30px -18px rgba(15,23,42,0.18); }
+.nav.scrolled { background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78)); box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 10px 30px -12px rgba(15,23,42,0.12); }
+.nav-brand .brand-text { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 700; letter-spacing: -0.02em; font-size: 1.4rem; }
+.nav-links a, .nav-drop-btn { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 500; }
+
+/* Hero — hatke font + white blur */
+.hero h1 { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 700; font-size: clamp(2.3rem, 5vw, 3.9rem); letter-spacing: -0.035em; line-height: 1.1; }
+.h1-accent { background: linear-gradient(92deg, #2563EB 0%, #7C3AED 55%, #F59E0B 110%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; display: inline-block; }
+.hero-badge { background: rgba(255,255,255,0.7); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 8px 24px -12px rgba(37,99,235,0.25); }
+.ht-chip { background: rgba(255,255,255,0.75); backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 4px 14px -6px rgba(15,23,42,0.1); }
+.hero-bg { background: radial-gradient(ellipse 80% 60% at 30% 40%, rgba(37,99,235,0.09) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 70% 60%, rgba(245,158,11,0.08) 0%, transparent 60%); }
+.hero-blob { opacity: 0.3; }
+
+/* Paint-brush CTA */
+.btn-brush {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 28px; border-radius: 999px; border: none; cursor: pointer;
+  font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 600; font-size: 0.98rem;
+  color: #fff; text-decoration: none;
+  background: linear-gradient(120deg, #1D4ED8 0%, #2563EB 50%, #4F46E5 100%);
+  box-shadow: 0 14px 34px -10px rgba(37,99,235,0.6), inset 0 1px 0 rgba(255,255,255,0.35);
+  transition: transform .25s var(--transition), box-shadow .25s var(--transition);
+}
+.btn-brush::before {
+  content: ''; position: absolute; inset: -60%; z-index: -1;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.4) 50%, transparent 62%);
+  transform: translateX(-70%) rotate(6deg);
+  animation: brushSheen 3.8s ease-in-out infinite;
+}
+@keyframes brushSheen {
+  0%, 50% { transform: translateX(-70%) rotate(6deg); }
+  100% { transform: translateX(70%) rotate(6deg); }
+}
+.btn-brush:hover { transform: translateY(-2px); box-shadow: 0 20px 44px -12px rgba(37,99,235,0.75), inset 0 1px 0 rgba(255,255,255,0.4); }
+.btn-brush:active { transform: translateY(0); }
+.btn-brush .brush-underline {
+  position: absolute; left: 14%; right: 14%; bottom: 5px; height: 4px; border-radius: 999px;
+  background: linear-gradient(90deg, #F59E0B, #FBBF24 60%, #FDE68A);
+  transform: rotate(-1.5deg) skewX(-18deg); opacity: 0.95;
+  box-shadow: 0 2px 6px rgba(245,158,11,0.4);
+}
+.btn-glass {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 28px; border-radius: 999px;
+  font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 600; font-size: 0.98rem;
+  color: var(--ink); text-decoration: none;
+  background: rgba(255,255,255,0.55); backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1.5px solid rgba(226,232,240,0.9);
+  box-shadow: 0 10px 26px -14px rgba(15,23,42,0.25);
+  transition: transform .25s var(--transition), border-color .25s var(--transition), background .25s var(--transition), color .25s var(--transition);
+}
+.btn-glass:hover { transform: translateY(-2px); border-color: rgba(37,99,235,0.5); color: var(--primary); background: rgba(255,255,255,0.85); }
+.btn-glass:active { transform: translateY(0); }
+
+/* Hero mock — real product screenshot */
+.hero-visual { position: relative; perspective: 1400px; }
+.hero-mock {
+  position: relative; width: 100%; max-width: 480px;
+  background: rgba(255,255,255,0.6); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.85); border-radius: 18px;
+  box-shadow: 0 30px 70px -24px rgba(15,23,42,0.3);
+  overflow: visible;
+  transform: rotateY(-7deg) rotateX(2deg);
+  transition: transform .45s var(--transition);
+}
+.hero-mock:hover { transform: rotateY(0deg) rotateX(0deg); }
+.hm-top { display: flex; align-items: center; gap: 6px; padding: 11px 14px; border-bottom: 1px solid rgba(226,232,240,0.8); background: rgba(255,255,255,0.55); border-radius: 18px 18px 0 0; }
+.hm-dot { width: 10px; height: 10px; border-radius: 50%; }
+.hm-dot:nth-child(1) { background: #F87171; }
+.hm-dot:nth-child(2) { background: #FBBF24; }
+.hm-dot:nth-child(3) { background: #34D399; }
+.hm-url { margin-left: 8px; font-size: 0.68rem; font-family: var(--font-mono); color: var(--ink-faint); letter-spacing: 0.02em; }
+.hero-mock img { width: 100%; display: block; border-radius: 0 0 18px 18px; }
+.hm-chip {
+  position: absolute; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 999px;
+  font-family: 'Space Grotesk', var(--font-display), sans-serif; font-size: 0.78rem; font-weight: 700;
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.95);
+  box-shadow: 0 12px 26px -10px rgba(15,23,42,0.3);
+  animation: hmFloat 5s ease-in-out infinite;
+}
+.hm-chip.live { top: -16px; left: -12px; color: var(--green); }
+.hm-chip.price { bottom: -16px; right: -12px; color: var(--amber-ink); animation-delay: 1.4s; }
+@keyframes hmFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-mock { max-width: 420px; margin: 0 auto; transform: none; }
+}
+@media (max-width: 768px) {
+  .hero-actions .btn-brush, .hero-actions .btn-glass { padding: 13px 22px; font-size: 0.92rem; }
+  .hm-chip.live { left: -4px; }
+  .hm-chip.price { right: -4px; }
 }

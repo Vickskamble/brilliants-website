@@ -19,19 +19,16 @@
     '<div class="nav-links" role="menubar">' +
     '<a href="/" role="menuitem" data-page="/">Home</a>' +
 
-    '<div class="nav-drop" data-pages="/ironbook/ /ai-engine/ /downloads/ /pricing/ /pay/">' +
+    '<div class="nav-drop" data-pages="/ironbook/ /downloads/ /pricing/ /pay/">' +
     dd('products', 'Products') +
     '<div class="nav-panel" data-panel="products">' +
     '<div class="nav-panel-grid">' +
     '<div class="nav-panel-col">' +
     '<a href="/ironbook/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span><span class="np-text"><strong>IronBook</strong><small>AI Gym Operating System</small><em class="np-tag live">Live</em></span></a>' +
     '<a href="/#products"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span><span class="np-text"><strong>Smart HRMS</strong><small>Payroll &amp; attendance</small><em class="np-tag soon">Early Access</em></span></a>' +
-    '<a href="/#products"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="billing"></span><span class="np-text"><strong>Smart Billing</strong><small>GST billing &amp; inventory</small><em class="np-tag soon">Soon</em></span></a>' +
-    '<a href="/#products"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="factory"></span><span class="np-text"><strong>Smart Factory</strong><small>Industry 4.0 platform</small><em class="np-tag proto">Prototype</em></span></a>' +
-    '<a href="/#products"><span class="np-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="inventory"></span><span class="np-text"><strong>Smart Inventory</strong><small>AI warehouse</small><em class="np-tag roadmap">Roadmap</em></span></a>' +
+    '<a href="/#products"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="zap"></span><span class="np-text"><strong>Power EmS</strong><small>Energy monitoring &amp; IoT</small><em class="np-tag soon">Coming Soon</em></span></a>' +
     '</div>' +
     '<div class="nav-panel-col">' +
-    '<a href="/ai-engine/"><span class="np-icon" style="background:var(--ink);color:#fff;" data-icon="ai"></span><span class="np-text"><strong>Brilliants AI Engine</strong><small>One engine powering every product</small></span></a>' +
     '<a href="/downloads/"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="download"></span><span class="np-text"><strong>Download Center</strong><small>APKs, guides &amp; install help</small></span></a>' +
     '<a href="/pricing/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="rupee"></span><span class="np-text"><strong>Pricing</strong><small>Start free &#183; &#8377;499/mo for all apps</small></span></a>' +
     '</div>' +
