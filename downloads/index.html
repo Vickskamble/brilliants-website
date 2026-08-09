@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#0F172A">
 <meta name="robots" content="index, follow">
 <title>Download Center — Brilliants Apps for MSMEs</title>
-<meta name="description" content="Download the IronBook APK for Android. Smart HRMS, Smart Billing, Smart Factory and Smart Inventory coming soon. Direct downloads from Brilliants.">
+<meta name="description" content="Download the Power EmS and IronBook APKs for Android. Direct downloads from Brilliants. Smart HRMS and more coming soon.">
 <meta name="keywords" content="IronBook APK download, gym app Android, download IronBook, Brilliants APK, gym management app free, IronBook install, Android APK gym software, download gym app India, IronBook v1.0.0">
 <meta property="og:title" content="Download Center — Brilliants Apps">
-<meta property="og:description" content="Direct downloads for Brilliants products. Install IronBook APK today; Smart HRMS, Smart Billing, Smart Factory coming soon.">
+<meta property="og:description" content="Direct downloads for Brilliants products. Install IronBook and Power EmS APKs today; Smart HRMS coming soon.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.brilliants.in/downloads/">
 <meta property="og:image" content="https://www.brilliants.in/assets/images/logo/brilliants-logo-full.jpeg">
@@ -54,7 +54,7 @@
   <div class="container section-head center reveal">
     <span class="eyebrow"><span class="dot"></span>Download Center</span>
     <h1>Get Brilliants apps. Straight from us.</h1>
-    <p>Direct downloads for every Brilliants product — no app store required. Install IronBook today; the rest of the AI Operating System is on its way.</p>
+    <p>Direct downloads for every Brilliants product — no app store required. IronBook and Power EmS are live today; the rest of the AI Operating System is on its way.</p>
   </div>
 </section>
 
@@ -63,7 +63,7 @@
     <div class="section-head reveal">
       <span class="eyebrow"><span class="dot"></span>Available Now &amp; Coming Soon</span>
       <h2>Choose your product</h2>
-      <p>Click on IronBook to see full details and features.</p>
+      <p>Click any Live product to see full details and features.</p>
     </div>
 
     <div class="grid grid-3" id="productGrid">
@@ -77,6 +77,20 @@
         </div>
         <div class="cta-row">
           <a href="https://github.com/Vickskamble/Ironbook-gym-management/releases/download/v1.0.0/Ironbook.v1.0.0.apk" class="btn btn-primary btn-sm" target="_blank" rel="noopener" onclick="event.stopPropagation()">Download APK</a>
+          <span class="btn btn-ghost btn-sm" style="pointer-events:none;">Click to expand &darr;</span>
+        </div>
+      </div>
+
+      <div class="card product-card card-amber reveal" id="powerEmsCard" onclick="togglePowerEms()" style="cursor:pointer;">
+        <div class="head"><h3>Power EmS</h3><span class="status" style="background:var(--green-tint);color:var(--green);">Live</span></div>
+        <p style="font-size:0.85rem;color:var(--ink-faint);">Smart Energy Management &middot; v1.0.2 &middot; ~60 MB</p>
+        <p>Live energy dashboards, smart meter insights, bill accuracy checks, power quality monitoring and anomaly detection.</p>
+        <div class="flex gap-8" style="flex-wrap:wrap;">
+          <span class="pill" style="background:var(--surface-2);border:1px solid var(--line-strong);color:var(--ink-soft);">Android 8.0+</span>
+          <span class="pill" style="background:var(--surface-2);border:1px solid var(--line-strong);color:var(--ink-soft);">Web App</span>
+        </div>
+        <div class="cta-row">
+          <a href="https://github.com/Vickskamble/Energy-Management-System/releases/download/v1.0.2/app-release.apk" class="btn btn-primary btn-sm" target="_blank" rel="noopener" onclick="event.stopPropagation()">Download APK</a>
           <span class="btn btn-ghost btn-sm" style="pointer-events:none;">Click to expand &darr;</span>
         </div>
       </div>
@@ -226,6 +240,74 @@
         </div>
       </div>
     </div>
+
+    <!-- Power EmS Expanded Details (hidden by default) -->
+    <div id="powerEmsDetails" style="display:none;margin-top:32px;">
+      <div class="card" style="padding:32px;border:1px solid var(--amber);">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h3 style="margin:0;color:var(--amber-ink);">Power EmS — Smart Energy Management System</h3>
+            <p style="margin:4px 0 0;color:var(--ink-faint);">v1.0.2 &middot; Android 8.0+ &middot; Web App</p>
+          </div>
+          <a href="https://github.com/Vickskamble/Energy-Management-System/releases/download/v1.0.2/app-release.apk" class="btn btn-primary" target="_blank" rel="noopener">Download APK</a>
+        </div>
+        <hr style="border-color:var(--line-strong);margin:24px 0;">
+        <div class="grid grid-2">
+          <div>
+            <h4>Live Energy Dashboard</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Real-time view of energy consumption across meters. Track units, demand and costs at a glance.</p>
+          </div>
+          <div>
+            <h4>Smart Meter Insights</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Usage patterns, load profiles and trends from smart meter data — see exactly where energy goes.</p>
+          </div>
+          <div>
+            <h4>Bill Accuracy Checks</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Verify utility bills against your own readings. Detect overbilling and errors before you pay.</p>
+          </div>
+          <div>
+            <h4>Power Quality Monitoring</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Monitor voltage, current and power quality. Spot sags, swells and harmonics that damage equipment.</p>
+          </div>
+          <div>
+            <h4>Anomaly Detection</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Automatic detection of unusual consumption, tampering and leakages — alerted the moment it happens.</p>
+          </div>
+          <div>
+            <h4>Meter Management</h4>
+            <p style="color:var(--ink-soft);font-size:0.9rem;">Register and organise multiple meters from one place. Manual or smart readings, always up to date.</p>
+          </div>
+        </div>
+        <hr style="border-color:var(--line-strong);margin:24px 0;">
+        <h4>Screenshots</h4>
+        <div class="grid grid-3" style="margin-top:16px;">
+          <a href="/assets/images/ems/dashboard.jpg" target="_blank"><picture>
+<source srcset="/assets/images/ems/dashboard.webp" type="image/webp">
+<img src="/assets/images/ems/dashboard.jpg" alt="Power EmS live energy dashboard" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
+</picture></a>
+          <a href="/assets/images/ems/bill-accuracy.jpg" target="_blank"><picture>
+<source srcset="/assets/images/ems/bill-accuracy.webp" type="image/webp">
+<img src="/assets/images/ems/bill-accuracy.jpg" alt="Power EmS bill accuracy verification screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
+</picture></a>
+          <a href="/assets/images/ems/anomaly.jpg" target="_blank"><picture>
+<source srcset="/assets/images/ems/anomaly.webp" type="image/webp">
+<img src="/assets/images/ems/anomaly.jpg" alt="Power EmS anomaly detection screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
+</picture></a>
+          <a href="/assets/images/ems/power-quality.jpg" target="_blank"><picture>
+<source srcset="/assets/images/ems/power-quality.webp" type="image/webp">
+<img src="/assets/images/ems/power-quality.jpg" alt="Power EmS power quality monitoring screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
+</picture></a>
+          <a href="/assets/images/ems/smart-meter-insight.jpg" target="_blank"><picture>
+<source srcset="/assets/images/ems/smart-meter-insight.webp" type="image/webp">
+<img src="/assets/images/ems/smart-meter-insight.jpg" alt="Power EmS smart meter insights screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
+</picture></a>
+          <a href="/assets/images/ems/reports.jpg" target="_blank"><picture>
+<source srcset="/assets/images/ems/reports.webp" type="image/webp">
+<img src="/assets/images/ems/reports.jpg" alt="Power EmS energy reports screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
+</picture></a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -238,12 +320,33 @@
   pointer-events: auto !important;
   color: var(--green);
 }
+#powerEmsCard.active {
+  border-color: var(--amber);
+  box-shadow: 0 0 30px rgba(245,158,11,0.3);
+}
+#powerEmsCard.active .cta-row span {
+  pointer-events: auto !important;
+  color: var(--amber-ink);
+}
 </style>
 
 <script>
 function toggleIronBook() {
   var details = document.getElementById('ironbookDetails');
   var card = document.getElementById('ironbookCard');
+  if (details.style.display === 'none') {
+    details.style.display = 'block';
+    card.classList.add('active');
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(function(){ details.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+  } else {
+    details.style.display = 'none';
+    card.classList.remove('active');
+  }
+}
+function togglePowerEms() {
+  var details = document.getElementById('powerEmsDetails');
+  var card = document.getElementById('powerEmsCard');
   if (details.style.display === 'none') {
     details.style.display = 'block';
     card.classList.add('active');

@@ -19,14 +19,14 @@
     '<div class="nav-links" role="menubar">' +
     '<a href="/" role="menuitem" data-page="/">Home</a>' +
 
-    '<div class="nav-drop" data-pages="/ironbook/ /downloads/ /pricing/ /pay/">' +
+    '<div class="nav-drop" data-pages="/ironbook/ /power-ems/ /downloads/ /pricing/ /pay/">' +
     dd('products', 'Products') +
     '<div class="nav-panel" data-panel="products">' +
     '<div class="nav-panel-grid">' +
     '<div class="nav-panel-col">' +
     '<a href="/ironbook/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span><span class="np-text"><strong>IronBook</strong><small>AI Gym Operating System</small><em class="np-tag live">Live</em></span></a>' +
     '<a href="/#products"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span><span class="np-text"><strong>Smart HRMS</strong><small>Payroll &amp; attendance</small><em class="np-tag soon">Early Access</em></span></a>' +
-    '<a href="/#products"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="zap"></span><span class="np-text"><strong>Power EmS</strong><small>Energy monitoring &amp; IoT</small><em class="np-tag soon">Coming Soon</em></span></a>' +
+    '<a href="/power-ems/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="zap"></span><span class="np-text"><strong>Power EmS</strong><small>Energy monitoring &amp; IoT</small><em class="np-tag live">Live</em></span></a>' +
     '</div>' +
     '<div class="nav-panel-col">' +
     '<a href="/downloads/"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="download"></span><span class="np-text"><strong>Download Center</strong><small>APKs, guides &amp; install help</small></span></a>' +
@@ -96,7 +96,7 @@
     '</div>' +
     '<div class="nav-cta">' +
     '<a href="/pricing/" class="btn btn-ghost btn-sm">Pricing</a>' +
-    '<a href="/#contact-form" class="btn btn-primary btn-sm">Discuss Your Business Problem</a>' +
+    '<a href="/#contact-form" class="btn btn-primary btn-sm"><span class="nav-cta-long">Discuss Your Business Problem</span><span class="nav-cta-short">Talk to Us</span></a>' +
     '<button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">' +
     '<span></span><span></span><span></span></button>' +
     '</div></div></nav>';
@@ -122,7 +122,7 @@
     '<div class="footer-col"><h4>Products</h4><ul>' +
     '<li><a href="/ironbook/">IronBook</a></li>' +
     '<li><a href="/#products">Smart HRMS</a></li>' +
-    '<li><a href="/#products">Power EmS</a></li>' +
+    '<li><a href="/power-ems/">Power EmS</a></li>' +
     '</ul></div>' +
     '<div class="footer-col"><h4>Company</h4><ul>' +
     '<li><a href="/technology/">Technology</a></li>' +
