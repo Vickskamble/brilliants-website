@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
 <meta name="robots" content="index, follow">
 <title>Brilliants | AI Automation, Software &amp; Digital Solutions for MSMEs</title>
 <meta name="description" content="Brilliants helps Indian MSMEs solve real business problems — automate operations, digitize processes, improve visibility and make better decisions with AI, software, IoT and modern technology. Explore IronBook, Smart HRMS and Power EmS.">
@@ -24,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.web3forms.com">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" as="style" crossorigin>
-<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:'Plus Jakarta Sans',system-ui,sans-serif;--font-body:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.container{max-width:1200px;margin:0 auto;padding:0 24px}.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.6)}.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.15rem}.brand-half-1{color:var(--primary)}.brand-half-2{color:var(--amber)}.nav-brand .brand-text{font-family:var(--font-display);font-weight:800;font-size:1.35rem;letter-spacing:-0.02em;margin-left:2px}.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:var(--nav-h);overflow:hidden}.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:120px 24px 80px;max-width:1200px;margin:0 auto}.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;background:var(--primary-tint);border:1px solid rgba(37,99,235,0.15);font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--primary);margin-bottom:24px;letter-spacing:0.02em}.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--primary)}.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1.15;margin-bottom:24px;letter-spacing:-0.02em}.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--primary),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-lede{font-size:1.15rem;max-width:540px;margin:0 auto 36px 0;line-height:1.7;color:var(--ink-soft)}.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}.hero-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 20px;background:rgba(255,255,255,0.5);backdrop-filter:blur(12px);border-radius:var(--radius);border:1px solid var(--line)}.hero-trust-avatars{display:flex}.hero-trust-avatars span{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:#fff;border:2.5px solid var(--bg);margin-left:-10px}.hero-trust-avatars span:first-child{margin-left:0}.hero-trust-text{font-size:0.88rem;color:var(--ink-faint)}.hero-trust-text strong{color:var(--ink)}.hero-visual{display:flex;justify-content:center}.hero-apps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:420px}.hero-app-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 12px 16px;background:rgba(255,255,255,0.75);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:14px;text-decoration:none;transition:all 0.3s var(--transition)}.hero-app-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}.hero-app-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center}.hero-app-icon svg{width:22px;height:22px}.hero-app-name{font-size:0.78rem;font-weight:700;color:var(--ink);text-align:center;line-height:1.2}.hero-app-tag{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:2px 8px;border-radius:100px}@media(max-width:940px){.hero-content{grid-template-columns:1fr;padding:100px 20px 60px;text-align:center}.hero-lede{margin:0 auto 36px;max-width:680px}.hero-actions{justify-content:center}.hero-trust{justify-content:center}.hero-visual{order:2}.hero-apps-grid{max-width:360px}}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:0.92rem;transition:all 0.3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{box-shadow:0 4px 20px var(--primary-glow)}.btn-ghost{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink)}.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}.section{padding:80px 0}.section-head{max-width:640px;margin-bottom:48px}.section-head h2{font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;margin-bottom:12px;line-height:1.25}.section-head p{color:var(--ink-soft);font-size:1.05rem;line-height:1.7}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:12px}.dot{width:6px;height:6px;border-radius:50%;background:var(--primary)}.grid{display:grid;gap:24px}.grid-3{grid-template-columns:repeat(3,1fr)}@media(max-width:940px){.hero-content{padding:100px 20px 60px;text-align:center}.hero-lede{margin-left:auto;margin-right:auto}.grid-3{grid-template-columns:1fr}}</style>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:'Plus Jakarta Sans',system-ui,sans-serif;--font-body:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,monospace;--nav-h:64px}html[data-theme="dark"]{--bg:#0B1220;--surface:#111A2E;--surface-2:#0E1729;--ink:#F1F5F9;--ink-soft:#B9C4D6;--ink-faint:#8291A8;--line:#22314B;--line-strong:#2C3E5C}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;transition:background-color .3s ease,color .3s ease}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.container{max-width:1200px;margin:0 auto;padding:0 24px}.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.6)}.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.15rem}.brand-half-1{color:var(--primary)}.brand-half-2{color:var(--amber)}.nav-brand .brand-text{font-family:var(--font-display);font-weight:800;font-size:1.35rem;letter-spacing:-0.02em;margin-left:2px}.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:var(--nav-h);overflow:hidden}.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:120px 24px 80px;max-width:1200px;margin:0 auto}.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;background:var(--primary-tint);border:1px solid rgba(37,99,235,0.15);font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--primary);margin-bottom:24px;letter-spacing:0.02em}.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--primary)}.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1.15;margin-bottom:24px;letter-spacing:-0.02em}.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--primary),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-lede{font-size:1.15rem;max-width:540px;margin:0 auto 36px 0;line-height:1.7;color:var(--ink-soft)}.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}.hero-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 20px;background:rgba(255,255,255,0.5);backdrop-filter:blur(12px);border-radius:var(--radius);border:1px solid var(--line)}.hero-trust-avatars{display:flex}.hero-trust-avatars span{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:#fff;border:2.5px solid var(--bg);margin-left:-10px}.hero-trust-avatars span:first-child{margin-left:0}.hero-trust-text{font-size:0.88rem;color:var(--ink-faint)}.hero-trust-text strong{color:var(--ink)}.hero-visual{display:flex;justify-content:center}.hero-apps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:420px}.hero-app-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 12px 16px;background:rgba(255,255,255,0.75);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:14px;text-decoration:none;transition:all 0.3s var(--transition)}.hero-app-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}.hero-app-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center}.hero-app-icon svg{width:22px;height:22px}.hero-app-name{font-size:0.78rem;font-weight:700;color:var(--ink);text-align:center;line-height:1.2}.hero-app-tag{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:2px 8px;border-radius:100px}@media(max-width:940px){.hero-content{grid-template-columns:1fr;padding:100px 20px 60px;text-align:center}.hero-lede{margin:0 auto 36px;max-width:680px}.hero-actions{justify-content:center}.hero-trust{justify-content:center}.hero-visual{order:2}.hero-apps-grid{max-width:360px}}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:0.92rem;transition:all 0.3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{box-shadow:0 4px 20px var(--primary-glow)}.btn-ghost{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink)}.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}.section{padding:80px 0}.section-head{max-width:640px;margin-bottom:48px}.section-head h2{font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;margin-bottom:12px;line-height:1.25}.section-head p{color:var(--ink-soft);font-size:1.05rem;line-height:1.7}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:12px}.dot{width:6px;height:6px;border-radius:50%;background:var(--primary)}.grid{display:grid;gap:24px}.grid-3{grid-template-columns:repeat(3,1fr)}@media(max-width:940px){.hero-content{padding:100px 20px 60px;text-align:center}.hero-lede{margin-left:auto;margin-right:auto}.grid-3{grid-template-columns:1fr}}</style>
 <link rel="preload" href="assets/css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="assets/css/enhanced.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/enhanced.min.css"></noscript>
@@ -112,6 +123,7 @@
 <!-- 1. HERO -->
 <section class="hero" id="main-content" aria-label="Hero">
   <div class="hero-bg"></div>
+  <div class="hero-dot-grid" aria-hidden="true"></div>
   <div class="hero-blob b1"></div>
   <div class="hero-blob b2"></div>
   <div class="hero-blob b3"></div>
@@ -122,7 +134,7 @@
       <h1>We Don't Build Software.<br><span class="h1-accent">We Solve Business Problems.</span></h1>
       <p class="hero-lede">We help MSMEs automate operations, digitize processes, improve visibility, and make better business decisions with AI, software, IoT, and modern technology.</p>
       <div class="hero-actions">
-        <a href="#contact-form" class="btn btn-brush"><span data-icon="phone" data-size="18"></span> Discuss Your Business Problem<span class="brush-underline" aria-hidden="true"></span></a>
+        <a href="#contact-form" class="btn btn-brush"><span data-icon="phone" data-size="18"></span> <span class="hero-cta-long">Discuss Your Business Problem</span><span class="hero-cta-short">Talk to Us</span><span class="brush-underline" aria-hidden="true"></span></a>
         <a href="#solutions" class="btn btn-glass"><span data-icon="arrow-right" data-size="18"></span> Explore Solutions</a>
       </div>
       <div class="hero-trust">
@@ -133,6 +145,16 @@
     </div>
 
     <div class="hero-visual">
+      <div class="hero-peek hp-hrms" aria-hidden="true">
+        <span class="hp-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span>
+        <div class="hp-name">Smart HRMS</div>
+        <div class="hp-tag">Early access</div>
+      </div>
+      <div class="hero-peek hp-ems" aria-hidden="true">
+        <span class="hp-icon" style="background:var(--green-tint);color:var(--green);" data-icon="zap"></span>
+        <div class="hp-name">Power EmS</div>
+        <div class="hp-tag">Coming soon</div>
+      </div>
       <div class="hero-mock" aria-hidden="true">
         <div class="hm-top">
           <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
@@ -170,13 +192,15 @@
       <p>Most problems aren't visible on any dashboard &mdash; they live in manual work, scattered files and tasks that nobody can speed up. Silently, they cost you hours every single day.</p>
     </div>
     <div class="problem-grid">
-      <div class="problem-card reveal">
+      <div class="problem-card pc-highlight reveal">
+        <span class="pc-badge">Most common</span>
         <span class="pb-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="clock"></span>
         <h3>Too Much Manual Work</h3>
         <p>Repetitive entries, approvals, reports and follow-ups consume employee time that could serve customers.</p>
         <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
       </div>
-      <div class="problem-card reveal">
+      <div class="problem-card pc-highlight reveal">
+        <span class="pc-badge">Most common</span>
         <span class="pb-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="file"></span>
         <h3>Excel &amp; WhatsApp Dependency</h3>
         <p>Important business information is scattered across spreadsheets, chats and disconnected systems.</p>
@@ -206,6 +230,19 @@
         <p>Processes "work" &mdash; but consume more time, people and resources than they should.</p>
         <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- MID-PAGE CTA -->
+<section class="section tight" aria-label="Quick contact">
+  <div class="container">
+    <div class="mid-cta reveal">
+      <div class="mid-cta-copy">
+        <h3>Not sure where to start?</h3>
+        <p>Tell us your biggest business problem &mdash; we'll tell you exactly how to fix it.</p>
+      </div>
+      <a href="#contact-form" class="btn btn-mid-cta"><span data-icon="phone" data-size="18"></span> Talk to Us &rarr;</a>
     </div>
   </div>
 </section>
@@ -304,7 +341,7 @@
 </section>
 
 <!-- 5. HOW WE WORK (PROCESS) -->
-<section class="section" id="process" aria-label="How We Work">
+<section class="section tight" id="process" aria-label="How We Work">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
       <span class="eyebrow"><span class="dot"></span>How We Work</span>
@@ -610,7 +647,7 @@
 </section>
 
 <!-- 10. OUTCOMES -->
-<section class="section" id="outcomes" aria-label="Business outcomes">
+<section class="section tight" id="outcomes" aria-label="Business outcomes">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
       <span class="eyebrow"><span class="dot"></span>The goal is always the same</span>
@@ -679,28 +716,56 @@
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" itemprop="name">Do you always recommend software to a business?<span class="plus" data-icon="close" data-size="16"></span></div>
-        <div <div class="faq-a"><p itemprop="text">No. If a process change or a small tool solves the problem without new software, we'll tell you. We earn trust by giving honest advice &mdash; not by selling licenses.</p></div>
+        <div class="faq-a"><p itemprop="text">No. If a process change or a small tool solves the problem without new software, we'll tell you. We earn trust by giving honest advice &mdash; not by selling licenses.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" itemprop="name">How long does a typical project take?<span class="plus" data-icon="close" data-size="16"></span></div>
-        <div <div class="faq-a"><p itemprop="text">It depends on the problem. A focused automation workflow can go live in weeks. Larger systems are built in phases, starting with the part of your business that will show value first.</p></div>
+        <div class="faq-a"><p itemprop="text">It depends on the problem. A focused automation workflow can go live in weeks. Larger systems are built in phases, starting with the part of your business that will show value first.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" itemprop="name">What does it cost to get started?<span class="plus" data-icon="close" data-size="16"></span></div>
-        <div <div class="faq-a"><p itemprop="text">IronBook starts free with a plan for up to 25 members. For custom automation and software work we scope the project after understanding your process &mdash; so you only pay for what solves your problem. See our <a href="/pricing/" style="color:var(--primary);text-decoration:underline;">pricing page</a>.</p></div>
+        <div class="faq-a"><p itemprop="text">IronBook starts free with a plan for up to 25 members. For custom automation and software work we scope the project after understanding your process &mdash; so you only pay for what solves your problem. See our <a href="/pricing/" style="color:var(--primary);text-decoration:underline;">pricing page</a>.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" itemprop="name">Is my business data safe?<span class="plus" data-icon="close" data-size="16"></span></div>
-        <div <div class="faq-a"><p itemprop="text">Yes. Our systems are cloud-hosted with encrypted connections and role-based access &mdash; every business's data stays isolated and its workforce sees only what you authorize. You always own your data and can export it.</p></div>
+        <div class="faq-a"><p itemprop="text">Yes. Our systems are cloud-hosted with encrypted connections and role-based access &mdash; every business's data stays isolated and its workforce sees only what you authorize. You always own your data and can export it.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" itemprop="name">Is BRILLIANTS a product company or a services company?<span class="plus" data-icon="close" data-size="16"></span></div>
-        <div <div class="faq-a"><p itemprop="text">Both. We build and own our products &mdash; IronBook, Smart HRMS and Power EmS. And we build custom solutions with you when your problem is unique. Either way, the approach is the same: understand your business first.</p></div>
+        <div class="faq-a"><p itemprop="text">Both. We build and own our products &mdash; IronBook, Smart HRMS and Power EmS. And we build custom solutions with you when your problem is unique. Either way, the approach is the same: understand your business first.</p></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" itemprop="name">What happens after the solution is implemented?<span class="plus" data-icon="close" data-size="16"></span></div>
-        <div <div class="faq-a"><p itemprop="text">We don't leave. We stay available by WhatsApp and email for support, and we monitor and improve the solution along with running business changes. A long-term partnership, not a hand-off.</p></div>
+        <div class="faq-a"><p itemprop="text">We don't leave. We stay available by WhatsApp and email for support, and we monitor and improve the solution along with running business changes. A long-term partnership, not a hand-off.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG STRIP -->
+<section class="section tight alt" aria-label="Latest from our blog">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:32px;">
+      <span class="eyebrow"><span class="dot"></span>From the blog</span>
+      <h2>Latest From Our Blog</h2>
+    </div>
+    <div class="blog-strip reveal">
+      <a href="/blog/ai-for-msme-india.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--primary-tint);color:var(--primary);">AI</span>
+        <h4>How AI is Transforming MSME Operations in India</h4>
+      </a>
+      <a href="/blog/questions-msme-owners-ask-before-buying-software.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--purple-tint);color:var(--purple);">Guide</span>
+        <h4>7 Questions Every MSME Owner Asks Before Buying Software</h4>
+      </a>
+      <a href="/blog/billing-software-small-business-india.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--amber-tint);color:var(--amber-ink);">Billing</span>
+        <h4>How to Choose Billing Software for Your Small Business</h4>
+      </a>
+      <a href="/blog/gym-management-software-india.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--green-tint);color:var(--green);">Gyms</span>
+        <h4>Best Gym Management Software in India — Complete Guide</h4>
+      </a>
     </div>
   </div>
 </section>
@@ -830,6 +895,32 @@
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
+
+<button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <span id="themeToggleIcon">&#9789;</span> <span id="themeToggleLabel">Dark mode</span>
+</button>
+<script>
+(function () {
+  var root = document.documentElement;
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('themeToggle');
+    var icon = document.getElementById('themeToggleIcon');
+    var label = document.getElementById('themeToggleLabel');
+    function sync() {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      icon.innerHTML = isDark ? '&#9728;' : '&#9789;';
+      label.textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+    sync();
+    btn.addEventListener('click', function () {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      if (isDark) { root.removeAttribute('data-theme'); localStorage.setItem('brilliants-theme', 'light'); }
+      else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('brilliants-theme', 'dark'); }
+      sync();
+    });
+  });
+})();
+</script>
 
 <a href="https://wa.me/919146121280" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
   <div class="pulse-ring"></div>
