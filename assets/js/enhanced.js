@@ -33,20 +33,18 @@
             if (other !== item) {
               other.classList.remove('open');
               qs('.faq-a', other).style.maxHeight = null;
+              var otherBtn = qs('.faq-q', other);
+              if (otherBtn) { otherBtn.setAttribute('aria-expanded', 'false'); }
+              var otherPanel = qs('.faq-a', other);
+              if (otherPanel) { otherPanel.setAttribute('aria-hidden', 'true'); }
             }
           });
           item.classList.toggle('open', !isOpen);
           a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
+          q.setAttribute('aria-expanded', String(!isOpen));
+          a.setAttribute('aria-hidden', String(isOpen));
         }
         q.addEventListener('click', toggleFaq);
-        q.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleFaq();
-          }
-        });
-        q.setAttribute('tabindex', '0');
-        q.setAttribute('role', 'button');
       });
 
     // 4. Scroll Reveal
