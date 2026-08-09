@@ -1,5 +1,5 @@
-/* ==========================================================================
-   Brilliants — Enhanced Design System v2.0
+﻿/* ==========================================================================
+   Brilliants â€” Enhanced Design System v2.0
    Premium SaaS aesthetic. Glassmorphism. Fluid animations.
    ========================================================================== */
 
@@ -245,7 +245,7 @@ p { color: var(--ink-soft); }
 .hero-trust-text { font-size: 0.88rem; color: var(--ink-faint); }
 .hero-trust-text strong { color: var(--ink); }
 
-/* Hero visual — app cards grid */
+/* Hero visual â€” app cards grid */
 .hero-visual { display: flex; justify-content: center; }
 .hero-apps-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
@@ -394,7 +394,7 @@ p { color: var(--ink-soft); }
   animation-delay: -14s;
 }
 
-/* typewriter removed — static headline now */
+/* typewriter removed â€” static headline now */
 
 @keyframes morphBlob {
   0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0, 0) scale(1); }
@@ -1332,7 +1332,7 @@ p { color: var(--ink-soft); }
 }
 
 /* ==========================================================================
-   Nav look revamp — clean Odoo-style bar
+   Nav look revamp â€” clean Odoo-style bar
    ========================================================================== */
 .nav {
   background: rgba(255, 255, 255, 0.82);
@@ -1504,13 +1504,13 @@ p { color: var(--ink-soft); }
 
 /* ========== HATKE HERO + HEADER (2026-08) ========== */
 
-/* Header — white blur glass */
+/* Header â€” white blur glass */
 .nav { background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.65)); backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.6); box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 10px 30px -18px rgba(15,23,42,0.18); }
 .nav.scrolled { background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78)); box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 10px 30px -12px rgba(15,23,42,0.12); }
 .nav-brand .brand-text { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 700; letter-spacing: -0.02em; font-size: 1.4rem; }
 .nav-links a, .nav-drop-btn { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 500; }
 
-/* Hero — hatke font + white blur */
+/* Hero â€” hatke font + white blur */
 .hero h1 { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-weight: 700; font-size: clamp(2.3rem, 5vw, 3.9rem); letter-spacing: -0.035em; line-height: 1.1; }
 .h1-accent { position: relative; background: linear-gradient(100deg, #2563EB 8%, #6D8CF5 45%, #F59E0B 95%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; display: inline-block; filter: drop-shadow(0 2px 20px rgba(37,99,235,0.28)); }
 .h1-accent::after { content: ''; position: absolute; left: 2px; right: 2px; bottom: -4px; height: 10px; background: linear-gradient(90deg, rgba(37,99,235,0.25), rgba(245,158,11,0.25)); border-radius: 6px; z-index: -1; }
@@ -1527,7 +1527,7 @@ p { color: var(--ink-soft); }
 }
 @media (prefers-reduced-motion: reduce) { .hero-dot-grid { display: none; } }
 
-/* Hero peek cards — hints of the other two products */
+/* Hero peek cards â€” hints of the other two products */
 .hero-peek {
   position: absolute; width: 138px; padding: 13px; border-radius: 14px; z-index: 1;
   background: rgba(255,255,255,0.85); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%);
@@ -1589,7 +1589,7 @@ p { color: var(--ink-soft); }
 .btn-glass:hover { transform: translateY(-2px); border-color: rgba(37,99,235,0.5); color: var(--primary); background: rgba(255,255,255,0.85); }
 .btn-glass:active { transform: translateY(0); }
 
-/* Hero mock — real product screenshot */
+/* Hero mock â€” real product screenshot */
 .hero-visual { position: relative; perspective: 1400px; }
 .hero-mock {
   position: relative; width: 100%; max-width: 480px;
@@ -1636,7 +1636,7 @@ p { color: var(--ink-soft); }
 
 /* ========== UI ATTRACTIVENESS PASS (2026-08) ========== */
 
-/* Section rhythm — vary spacing instead of uniform 96px everywhere */
+/* Section rhythm â€” vary spacing instead of uniform 96px everywhere */
 .section.tight { padding: 64px 0; }
 
 /* Mid-page CTA band */
@@ -1773,53 +1773,64 @@ p { color: var(--ink-soft); }
 /* FAQ buttons: full-width click target */
 .faq-q { width: 100%; text-align: left; background: none; border: none; }
 
-/* ===== Hero generic dashboard mock ===== */
-.hm-dash { padding: 16px; display: grid; gap: 12px; background: rgba(255,255,255,0.55); }
-.hm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.hm-stat {
-  display: flex; flex-direction: column; gap: 2px;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-  padding: 10px 12px; box-shadow: var(--shadow-sm);
+/* ===== Hero services cycle ===== */
+.hm-svc { padding: 16px 16px 14px; background: rgba(255,255,255,0.55); }
+.hm-svc-stage { position: relative; min-height: 196px; }
+.hm-svc-item {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); box-shadow: var(--shadow-md);
+  opacity: 0; transform: translateY(14px) scale(0.98);
+  animation: hmSvcCycle 25s infinite; pointer-events: none;
 }
-.hs-label { font-family: var(--font-mono); font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
-.hs-value { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); line-height: 1.15; }
-.hs-trend { font-family: var(--font-mono); font-size: 9px; font-weight: 700; }
-.hs-trend.up { color: var(--green); }
-.hs-trend.warn { color: var(--rose); }
-.hs-trend { color: var(--primary); }
-.hm-chart {
-  display: flex; align-items: flex-end; gap: 6px; height: 84px;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-  padding: 10px 12px 6px; box-shadow: var(--shadow-sm);
+.hm-svc-item:nth-child(1) { animation-delay: 0s; }
+.hm-svc-item:nth-child(2) { animation-delay: 5s; }
+.hm-svc-item:nth-child(3) { animation-delay: 10s; }
+.hm-svc-item:nth-child(4) { animation-delay: 15s; }
+.hm-svc-item:nth-child(5) { animation-delay: 20s; }
+@keyframes hmSvcCycle {
+  0% { opacity: 0; transform: translateY(14px) scale(0.98); }
+  4% { opacity: 1; transform: translateY(0) scale(1); }
+  20% { opacity: 1; transform: translateY(0) scale(1); }
+  24% { opacity: 0; transform: translateY(-14px) scale(0.98); }
+  100% { opacity: 0; transform: translateY(-14px) scale(0.98); }
 }
-.hm-bar {
-  flex: 1; border-radius: 4px 4px 2px 2px;
-  background: linear-gradient(180deg, var(--primary-light, #60A5FA), var(--primary));
-  opacity: 0.9; transform-origin: bottom;
-  animation: hmBarGrow 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+.hsi-icon {
+  width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-sm);
 }
-.hm-bar:nth-child(2n) { background: linear-gradient(180deg, #A78BFA, var(--purple)); }
-.hm-bar.up { background: linear-gradient(180deg, #FBBF24, var(--amber)); }
-@keyframes hmBarGrow { from { transform: scaleY(0.15); } to { transform: scaleY(1); } }
-.hm-rows { display: grid; gap: 8px; }
-.hm-row {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-  padding: 9px 12px; box-shadow: var(--shadow-sm);
+.hsi-body { min-width: 0; }
+.hsi-body h4 { font-family: 'Space Grotesk', var(--font-display), sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.hsi-body p { font-size: 0.78rem; line-height: 1.5; color: var(--ink-soft); margin-bottom: 10px; }
+.hsi-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.hsi-chips span {
+  font-size: 0.64rem; font-weight: 600; color: var(--ink-faint);
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 999px; padding: 4px 9px;
 }
-.hm-row-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.hm-row-dot.ok { background: var(--green); }
-.hm-row-dot.warn { background: var(--amber); }
-.hm-row-dot.info { background: var(--primary); }
-.hm-row-text { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
-.hm-row-text strong { font-size: 0.78rem; font-weight: 700; color: var(--ink); }
-.hm-row-text small { font-size: 0.68rem; color: var(--ink-faint); }
-.hm-autom { display: flex; flex-wrap: wrap; gap: 6px; }
-.hm-auto-chip {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.68rem; font-weight: 600; color: var(--primary-ink);
-  background: var(--primary-tint); border: 1px solid rgba(37,99,235,0.18);
-  border-radius: 999px; padding: 5px 10px;
+.hm-svc-tabs { display: flex; justify-content: center; gap: 6px; padding-top: 14px; }
+.hst-tab {
+  width: 26px; height: 4px; border-radius: 999px;
+  background: var(--line-strong);
+  animation: hmTabCycle 25s infinite;
 }
-[data-theme="dark"] .hm-dash { background: rgba(17,26,46,0.5); }
-[data-theme="dark"] .hm-auto-chip { color: #BFD4FF; }
+.hst-tab:nth-child(1) { animation-delay: 0s; }
+.hst-tab:nth-child(2) { animation-delay: 5s; }
+.hst-tab:nth-child(3) { animation-delay: 10s; }
+.hst-tab:nth-child(4) { animation-delay: 15s; }
+.hst-tab:nth-child(5) { animation-delay: 20s; }
+@keyframes hmTabCycle {
+  0%, 20% { background: var(--primary); box-shadow: 0 0 8px var(--primary-glow); }
+  24%, 100% { background: var(--line-strong); box-shadow: none; }
+}
+@media (max-width: 900px) { .hm-svc-stage { min-height: 210px; } }
+[data-theme="dark"] .hm-svc { background: rgba(17,26,46,0.5); }
+[data-theme="dark"] .hsi-chips span { background: rgba(255,255,255,0.04); }
+@media (prefers-reduced-motion: reduce) {
+  .hm-svc-item, .hst-tab { animation: none; }
+  .hm-svc-item { opacity: 0; }
+  .hm-svc-item:first-child { opacity: 1; transform: none; }
+  .hst-tab:first-child { background: var(--primary); }
+}
