@@ -2,5 +2,7 @@
 User-agent: *
 Allow: /
 Disallow: /assets/downloads/
+Disallow: /pay/
+Disallow: /pay/success/
 
 Sitemap: https://www.brilliants.in/sitemap.xml
