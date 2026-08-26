@@ -661,7 +661,7 @@
           product: form.product.value,
           message: form.message.value,
           source_page: currentInterest,
-          botcheck: form.botcheck.value
+          redirect: false
         };
 
           console.log('[LeadGate] Submitting:', data);
