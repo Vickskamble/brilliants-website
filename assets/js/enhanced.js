@@ -664,13 +664,19 @@
           botcheck: form.botcheck.value
         };
 
+          console.log('[LeadGate] Submitting:', data);
         fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         }).then(function (r) {
-          if (!r.ok) throw new Error('Server error');
-          return r.json();
+          return r.json().then(function (res) {
+            if (!res.success) {
+              console.error('[LeadGate] Web3Forms error:', res);
+              throw new Error(res.message || 'Submission failed');
+            }
+            return res;
+          });
         }).then(function (res) {
           if (res.success) {
             try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (e) {}
@@ -689,7 +695,8 @@
           } else {
             throw new Error('Submission failed');
           }
-        }).catch(function () {
+        }).catch(function (err) {
+          console.error('[LeadGate] Fetch failed:', err);
           errEl.textContent = 'Something went wrong. Please email us at contact@brilliants.in or try again.';
           errEl.style.display = 'block';
         }).finally(function () {
