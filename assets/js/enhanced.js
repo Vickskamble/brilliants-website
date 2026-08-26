@@ -510,6 +510,7 @@
       var overlay = null;
       var currentHref = '';
       var currentInterest = '';
+      var currentTarget = '';
 
       function hasCaptured() {
         try {
@@ -677,7 +678,13 @@
             success.style.display = '';
             setTimeout(function () {
               closeModal();
-              if (currentHref) win.location.href = currentHref;
+              if (currentHref) {
+                if (currentTarget === '_blank') {
+                  win.open(currentHref, '_blank');
+                } else {
+                  win.location.href = currentHref;
+                }
+              }
             }, 2000);
           } else {
             throw new Error('Submission failed');
@@ -702,8 +709,13 @@
         el.addEventListener('click', function (e) {
           e.preventDefault();
           currentHref = el.getAttribute('href') || '';
+          currentTarget = el.getAttribute('target') || '';
           if (hasCaptured()) {
-            win.location.href = currentHref;
+            if (currentTarget === '_blank') {
+              win.open(currentHref, '_blank');
+            } else {
+              win.location.href = currentHref;
+            }
             return;
           }
           showModal(el.getAttribute('data-lead-gate'));
