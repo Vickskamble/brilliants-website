@@ -115,145 +115,428 @@
 
 <div id="nav-placeholder"></div>
 
-<!-- 1. HERO — Odoo-style clean hero -->
-<section class="odoo-hero" id="main-content" aria-label="Hero">
-  <div class="container" style="text-align:center; padding:120px 24px 60px;">
-    <h1 style="font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.15;margin-bottom:16px;">All your MSME problems.<br><span style="color:var(--primary);">One platform.</span></h1>
-    <p style="font-size:1.15rem;color:var(--ink-soft);max-width:640px;margin:0 auto 12px;">Simple, efficient, yet affordable! <strong style="color:var(--amber-ink);">From &#8377;499/mo</strong> for all apps</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;">
-      <a href="#contact-form" class="btn btn-primary-glow" style="padding:14px 32px;font-size:1rem;"><span data-icon="phone" data-size="18"></span> Start now &mdash; It's free</a>
-      <a href="#contact-form" class="btn btn-ghost" style="padding:14px 32px;font-size:1rem;border:1px solid var(--line);">Meet an advisor</a>
-    </div>
+<div class="mouse-follower" aria-hidden="true"></div>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- 1. HERO -->
+<section class="hero" id="main-content" aria-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dot-grid" aria-hidden="true"></div>
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-blob b3"></div>
+  <div class="energy-bg" aria-hidden="true">
+    <span class="eg-t t1"><span class="ems-blades"><i></i><i></i><i></i></span><span class="ems-hub"></span><span class="ems-pole"></span></span>
+    <span class="eg-t t2"><span class="ems-blades"><i></i><i></i><i></i></span><span class="ems-hub"></span><span class="ems-pole"></span></span>
+    <span class="eg-bolt e1"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg></span>
+    <span class="eg-bolt e2"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg></span>
+    <span class="eg-bolt e3"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg></span>
   </div>
-</section>
 
-<!-- 2. APP GRID — Odoo-style interactive product showcase with video -->
-<section class="section alt" id="products" aria-label="Our Products" style="padding:48px 0 64px;">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:32px;">
-      <span class="eyebrow"><span class="dot"></span>Our Products</span>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;">Imagine a vast collection of business apps at your disposal.</h2>
-      <p style="color:var(--ink-soft);max-width:600px;margin:8px auto 0;">Each app simplifies a process and empowers more people. Imagine the impact when everyone gets the right tool for the job.</p>
-    </div>
-    <div class="odoo-app-grid">
-      <a href="/ironbook/" class="odoo-app-item">
-        <figure>
-          <span class="odoo-app-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span>
-          <figcaption>IronBook</figcaption>
-          <small style="color:var(--green);font-weight:600;">Live</small>
-        </figure>
-      </a>
-      <a href="/power-ems/" class="odoo-app-item">
-        <figure>
-          <span class="odoo-app-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="zap"></span>
-          <figcaption>Power EmS</figcaption>
-          <small style="color:var(--green);font-weight:600;">Live</small>
-        </figure>
-      </a>
-      <a href="/#products" class="odoo-app-item">
-        <figure>
-          <span class="odoo-app-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span>
-          <figcaption>Smart HRMS</figcaption>
-          <small style="color:var(--amber-ink);font-weight:600;">Early Access</small>
-        </figure>
-      </a>
-      <a href="/pricing/" class="odoo-app-item">
-        <figure>
-          <span class="odoo-app-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="rupee"></span>
-          <figcaption>Pricing</figcaption>
-          <small style="color:var(--ink-faint);">Free to start</small>
-        </figure>
-      </a>
-      <a href="/downloads/" class="odoo-app-item">
-        <figure>
-          <span class="odoo-app-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="download"></span>
-          <figcaption>Downloads</figcaption>
-          <small style="color:var(--ink-faint);">APKs &amp; Guides</small>
-        </figure>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:32px;">
-      <a href="/downloads/" class="btn btn-ghost" style="border:1px solid var(--line);">Browse everything &rarr;</a>
+  <div class="container hero-content">
+    <div>
+      <span class="hero-badge"><span class="dot"></span> Trusted Technology Partner for MSMEs</span>
+      <h1>We Don't Build Software.<br><span class="h1-accent">We Solve Business Problems.</span></h1>
+      <p class="hero-lede">We help MSMEs automate operations, digitize processes, improve visibility, and make better business decisions with AI, software, IoT, and modern technology.</p>
+      <div class="hero-actions">
+        <a href="#contact-form" class="btn btn-brush"><span data-icon="phone" data-size="18"></span> <span class="hero-cta-long">Discuss Your Business Problem</span><span class="hero-cta-short">Talk to Us</span><span class="brush-underline" aria-hidden="true"></span></a>
+        <a href="#solutions" class="btn btn-glass"><span data-icon="arrow-right" data-size="18"></span> Explore Solutions</a>
+      </div>
+      <div class="hero-trust">
+        <span class="ht-chip"><span data-icon="check" data-size="14" data-color="var(--green)"></span> <strong>IronBook</strong> is live in real businesses</span>
+        <span class="ht-chip"><span data-icon="rupee" data-size="14" data-color="var(--amber-ink)"></span> Founded <strong>2025</strong> &middot; Hinganghat, Maharashtra</span>
+        <span class="ht-chip"><span data-icon="users" data-size="14" data-color="var(--primary)"></span> <strong>3 products</strong> &middot; one partner</span>
+      </div>
     </div>
 
-    <!-- Video placeholder -->
-    <div class="odoo-video-section" style="margin-top:48px;">
-      <div class="odoo-video-wrapper">
-        <video loop="loop" muted="muted" playsinline class="odoo-demo-video" poster="assets/images/logo/brilliants-logo-full.png">
-          <source src="https://videos.pexels.com/video-files/37616263/37616263-uhd_2560_1440_30fps.mp4" type="video/mp4">
-        </video>
-        <div class="odoo-video-overlay">
-          <span data-icon="eye" data-size="32" data-color="#fff"></span>
-          <p>See how Brilliants works</p>
+    <div class="hero-visual">
+      <div class="hero-peek hp-hrms" aria-hidden="true">
+        <span class="hp-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span>
+        <div class="hp-name">Smart HRMS</div>
+        <div class="hp-tag">Early access</div>
+      </div>
+      <div class="hero-peek hp-ems" aria-hidden="true">
+        <span class="hp-icon" style="background:var(--green-tint);color:var(--green);" data-icon="zap"></span>
+        <div class="hp-name">Power EmS</div>
+        <div class="hp-tag">Live &middot; v1.2.5</div>
+      </div>
+      <div class="hero-mock" aria-hidden="true">
+        <div class="hm-top">
+          <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
+          <span class="hm-url">app.brilliants.in</span>
         </div>
+        <div class="hm-svc">
+          <div class="hm-svc-grid">
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="repeat"></span>
+              <div class="hsi-body">
+                <h4>Business Automation</h4>
+                <div class="hsi-chips"><span>Workflows</span><span>Approvals</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="code"></span>
+              <div class="hsi-body">
+                <h4>Business Software</h4>
+                <div class="hsi-chips"><span>Custom apps</span><span>ERP / CRM</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="ai"></span>
+              <div class="hsi-body">
+                <h4>AI Solutions</h4>
+                <div class="hsi-chips"><span>Assistants</span><span>Chatbots</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--green-tint);color:var(--green);" data-icon="activity"></span>
+              <div class="hsi-body">
+                <h4>IoT &amp; Monitoring</h4>
+                <div class="hsi-chips"><span>Energy</span><span>Dashboards</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item hm-svc-item--wide">
+              <span class="hsi-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="file"></span>
+              <div class="hsi-body">
+                <h4>Digital Transformation</h4>
+                <div class="hsi-chips"><span>Digitization</span><span>Data centralization</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hm-chip live"><span data-icon="check" data-size="14" data-color="var(--green)"></span> Live &middot; Real businesses</div>
+        <div class="hm-chip price"><span data-icon="rupee" data-size="14" data-color="var(--amber-ink)"></span> Free to start</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3. IMAGINE WITHOUT BRILLIANTS — Before/after comparison -->
-<section class="section" id="imagine" aria-label="Imagine without Brilliants" style="padding:64px 0;">
+<!-- 2. TRUST STRIP -->
+<section class="section alt" id="about" aria-label="Why businesses rely on us" style="padding:56px 0;">
+  <div class="container reveal">
+    <div class="trust-strip">
+      <div class="trust-item"><span class="ti-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="check"></span><span class="ti-text"><strong>Live Products, Not Promises</strong><small>IronBook ships today &mdash; others are in active development</small></span></div>
+      <div class="trust-item"><span class="ti-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="rupee"></span><span class="ti-text"><strong>Practical Pricing</strong><small>Starts free &middot; one simple plan at &#8377;499/mo</small></span></div>
+      <div class="trust-item"><span class="ti-icon" style="background:var(--green-tint);color:var(--green);" data-icon="phone"></span><span class="ti-text"><strong>Support That Responds</strong><small>WhatsApp support &amp; 24-hour response time</small></span></div>
+      <div class="trust-item"><span class="ti-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="eye"></span><span class="ti-text"><strong>Radically Transparent</strong><small>Honest about what's live, what's coming &amp; what you can do today</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PROBLEMS -->
+<section class="section" id="problems" aria-label="Business Problems">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>We start with your reality</span>
+      <h2>Where Is Your Business <span class="h2-grad">Losing Time?</span></h2>
+      <p>Most problems aren't visible on any dashboard &mdash; they live in manual work, scattered files and tasks that nobody can speed up. Silently, they cost you hours every single day.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card pc-highlight reveal">
+        <span class="pc-badge">Most common</span>
+        <span class="pb-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="clock"></span>
+        <h3>Too Much Manual Work</h3>
+        <p>Repetitive entries, approvals, reports and follow-ups consume employee time that could serve customers.</p>
+        <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
+      </div>
+      <div class="problem-card pc-highlight reveal">
+        <span class="pc-badge">Most common</span>
+        <span class="pb-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="file"></span>
+        <h3>Excel &amp; WhatsApp Dependency</h3>
+        <p>Important business information is scattered across spreadsheets, chats and disconnected systems.</p>
+        <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
+      </div>
+      <div class="problem-card reveal">
+        <span class="pb-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="bell"></span>
+        <h3>Missed Leads &amp; Follow-ups</h3>
+        <p>Opportunities are lost because follow-ups are manual or inconsistent &mdash; leads go cold without a single call.</p>
+        <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
+      </div>
+      <div class="problem-card reveal">
+        <span class="pb-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="eye"></span>
+        <h3>Limited Business Visibility</h3>
+        <p>Management can't get real-time, reliable information when a decision needs to be made.</p>
+        <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
+      </div>
+      <div class="problem-card reveal">
+        <span class="pb-icon" style="background:var(--green-tint);color:var(--green);" data-icon="layers"></span>
+        <h3>Disconnected Processes</h3>
+        <p>Teams and systems operate separately &mdash; the left hand doesn't know what the right hand is doing.</p>
+        <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
+      </div>
+      <div class="problem-card reveal">
+        <span class="pb-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="zap"></span>
+        <h3>Operational Inefficiency</h3>
+        <p>Processes "work" &mdash; but consume more time, people and resources than they should.</p>
+        <a href="#solutions" class="pb-link">See how we fix it &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MID-PAGE CTA -->
+<section class="section tight" aria-label="Quick contact">
+  <div class="container">
+    <div class="mid-cta reveal">
+      <div class="mid-cta-copy">
+        <h3>Not sure where to start?</h3>
+        <p>Tell us your biggest business problem &mdash; we'll tell you exactly how to fix it.</p>
+      </div>
+      <a href="#contact-form" class="btn btn-mid-cta"><span data-icon="phone" data-size="18"></span> Talk to Us &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SOLUTION CATEGORIES -->
+<section class="section alt" id="solutions" aria-label="Solutions">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Built around your process</span>
+      <h2>Turn Business Problems Into <span class="h2-grad">Practical Digital Solutions.</span></h2>
+      <p>We don't start with technology. We start with your process &mdash; understand how your business actually works, find the inefficiencies, then recommend the right technology. <span class="hl">If you don't need a new tool, we say so.</span></p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card reveal">
+        <div class="sc-head">
+          <span class="sc-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="repeat"></span>
+          <h3>Business Automation</h3>
+        </div>
+        <p>Remove repetitive manual work with workflows that run themselves.</p>
+        <div class="sc-chips">
+          <span class="sc-chip">Workflow automation</span>
+          <span class="sc-chip">Approvals</span>
+          <span class="sc-chip">Reporting automation</span>
+          <span class="sc-chip">CRM automation</span>
+          <span class="sc-chip">WhatsApp automation</span>
+          <span class="sc-chip">Repetitive task automation</span>
+        </div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sc-head">
+          <span class="sc-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="code"></span>
+          <h3>Business Software</h3>
+        </div>
+        <p>Software built around your exact operations &mdash; not a rigid system you must change your business for.</p>
+        <div class="sc-chips">
+          <span class="sc-chip">Custom web applications</span>
+          <span class="sc-chip">Mobile applications</span>
+          <span class="sc-chip">Business management systems</span>
+          <span class="sc-chip">ERP / CRM solutions</span>
+          <span class="sc-chip">SaaS products</span>
+        </div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sc-head">
+          <span class="sc-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="ai"></span>
+          <h3>AI Solutions</h3>
+        </div>
+        <p>Practical AI that works with your data &mdash; from answering assistants to decisions made automatically.</p>
+        <div class="sc-chips">
+          <span class="sc-chip">AI assistants</span>
+          <span class="sc-chip">Intelligent chatbots</span>
+          <span class="sc-chip">Document processing</span>
+          <span class="sc-chip">AI-powered workflows</span>
+          <span class="sc-chip">Business intelligence</span>
+        </div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sc-head">
+          <span class="sc-icon" style="background:var(--green-tint);color:var(--green);" data-icon="activity"></span>
+          <h3>IoT &amp; Monitoring</h3>
+        </div>
+        <p>See what's happening on your shop floor, in your energy meters and with your equipment &mdash; in real time.</p>
+        <div class="sc-chips">
+          <span class="sc-chip">Energy monitoring</span>
+          <span class="sc-chip">Equipment monitoring</span>
+          <span class="sc-chip">Industrial IoT</span>
+          <span class="sc-chip">Real-time dashboards</span>
+          <span class="sc-chip">Sensor-based systems</span>
+        </div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sc-head">
+          <span class="sc-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="file"></span>
+          <h3>Digital Transformation</h3>
+        </div>
+        <p>Move your business from paper and spreadsheets to one connected, searchable digital operation.</p>
+        <div class="sc-chips">
+          <span class="sc-chip">Process digitization</span>
+          <span class="sc-chip">Process optimization</span>
+          <span class="sc-chip">Legacy modernization</span>
+          <span class="sc-chip">Data centralization</span>
+          <span class="sc-chip">Management dashboards</span>
+          <span class="sc-chip">System integrations</span>
+        </div>
+      </div>
+      <div class="sol-card sol-card-accent reveal">
+        <div class="sc-head">
+          <span class="sc-icon" style="background:var(--ink);color:#fff;" data-icon="users"></span>
+          <h3>Not Sure What You Need?</h3>
+        </div>
+        <p>Tell us what's slowing you down and we'll map out what can be automated, digitized or optimized &mdash; before any technology is recommended.</p>
+        <a href="#contact-form" class="btn btn-primary-glow" style="margin-top:auto;"><span data-icon="phone" data-size="16"></span> Discuss Your Business Problem</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. HOW WE WORK (PROCESS) -->
+<section class="section tight" id="process" aria-label="How We Work">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-      <span class="eyebrow"><span class="dot"></span>Imagine without Brilliants</span>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;">If you simplify everything, you can do anything!</h2>
+      <span class="eyebrow"><span class="dot"></span>How We Work</span>
+      <h2>From Business Problem to <span class="h2-grad">Digital Solution.</span></h2>
+      <p>A clear five-step path &mdash; no jargon, no surprises, no unnecessary software.</p>
     </div>
-    <div class="odoo-compare-grid">
-      <div class="odoo-compare-card reveal">
-        <div class="odoo-compare-header" style="background:var(--rose-tint);">
-          <span data-icon="clock" data-size="24" data-color="var(--rose)"></span>
-          <h3 style="color:var(--rose);">Without Brilliants</h3>
-        </div>
-        <ul class="odoo-compare-list">
-          <li>Manual data entry in Excel sheets</li>
-          <li>WhatsApp for business communication</li>
-          <li>No real-time visibility</li>
-          <li>Missed follow-ups and lost leads</li>
-          <li>Disconnected systems</li>
-        </ul>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <span class="ps-num">01</span>
+        <span class="ps-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="search"></span>
+        <h3>Understand</h3>
+        <p>We sit with you and understand your business, workflow and pain points &mdash; how work actually happens today.</p>
       </div>
-      <div class="odoo-compare-card reveal">
-        <div class="odoo-compare-header" style="background:var(--green-tint);">
-          <span data-icon="check" data-size="24" data-color="var(--green)"></span>
-          <h3 style="color:var(--green);">With Brilliants</h3>
-        </div>
-        <ul class="odoo-compare-list">
-          <li>Automated workflows</li>
-          <li>Centralized business platform</li>
-          <li>Real-time dashboards</li>
-          <li>Automated follow-ups</li>
-          <li>Fully integrated systems</li>
-        </ul>
+      <div class="process-step reveal">
+        <span class="ps-num">02</span>
+        <span class="ps-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="chart"></span>
+        <h3>Analyse</h3>
+        <p>We identify inefficiencies, repetitive work and the processes with the highest automation potential.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">03</span>
+        <span class="ps-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="settings"></span>
+        <h3>Design</h3>
+        <p>We define the right solution, the architecture, and a practical implementation roadmap for your budget.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">04</span>
+        <span class="ps-icon" style="background:var(--green-tint);color:var(--green);" data-icon="repeat"></span>
+        <h3>Build &amp; Implement</h3>
+        <p>We develop, integrate, test and deploy &mdash; with your team involved at every step, not a black box.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">05</span>
+        <span class="ps-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="trending"></span>
+        <h3>Improve &amp; Scale</h3>
+        <p>We monitor, optimize and evolve the solution as your business grows &mdash; a partnership, not a project.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 4. WHY BRILLIANTS — 4 differentiators -->
-<section class="section alt" id="why" aria-label="Why Brilliants" style="padding:64px 0;">
+<!-- 4. WHAT CAN WE AUTOMATE -->
+<section class="section alt" id="automate" aria-label="What we can automate">
   <div class="container">
-    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-      <span class="eyebrow"><span class="dot"></span>Enterprise software done right</span>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;">Why Businesses Choose <span style="color:var(--primary);">BRILLIANTS</span></h2>
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Real scenarios</span>
+      <h2>What Can We Automate?</h2>
+      <p>Practical workflows we build for MSMEs every day &mdash; pick the one that looks like your business.</p>
     </div>
-    <div class="odoo-features-grid">
-      <div class="odoo-feature-card reveal">
-        <span class="odoo-feature-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="target"></span>
+    <div class="uc-grid">
+      <div class="uc-card reveal">
+        <span class="uc-num">01</span>
+        <div class="uc-flow">
+          <span class="uc-chip">Lead capture</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">CRM</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">WhatsApp follow-up</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip strong">Conversion tracking</span>
+        </div>
+        <p class="uc-outcome"><strong style="color:var(--primary);">Outcome:</strong> Every lead is followed up automatically &mdash; no missed enquiry, no forgotten call.</p>
+      </div>
+      <div class="uc-card reveal">
+        <span class="uc-num">02</span>
+        <div class="uc-flow">
+          <span class="uc-chip">Manual reports</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Automated data collection</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Dashboard</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip strong">Management insights</span>
+        </div>
+        <p class="uc-outcome"><strong style="color:var(--primary);">Outcome:</strong> Reports build themselves, and owners see the numbers that matter, when they matter.</p>
+      </div>
+      <div class="uc-card reveal">
+        <span class="uc-num">03</span>
+        <div class="uc-flow">
+          <span class="uc-chip">Maintenance records</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">PM reminders</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Breakdown history</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip strong">Maintenance dashboard</span>
+        </div>
+        <p class="uc-outcome"><strong style="color:var(--primary);">Outcome:</strong> Machines stop breaking down unexpectedly &mdash; preventive maintenance runs on schedule.</p>
+      </div>
+      <div class="uc-card reveal">
+        <span class="uc-num">04</span>
+        <div class="uc-flow">
+          <span class="uc-chip">Energy data</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">IoT monitoring</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Consumption dashboard</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip strong">Alerts</span>
+        </div>
+        <p class="uc-outcome"><strong style="color:var(--primary);">Outcome:</strong> Energy wastage and spikes surface automatically &mdash; savings become visible, not guesswork.</p>
+      </div>
+      <div class="uc-card reveal">
+        <span class="uc-num">05</span>
+        <div class="uc-flow">
+          <span class="uc-chip">Multiple branches</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Centralized system</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Branch-wise reports</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip strong">Management dashboard</span>
+        </div>
+        <p class="uc-outcome"><strong style="color:var(--primary);">Outcome:</strong> Every branch visible from one dashboard &mdash; decisions based on true business-wide numbers.</p>
+      </div>
+      <div class="uc-card reveal">
+        <span class="uc-num">06</span>
+        <div class="uc-flow">
+          <span class="uc-chip">Documents</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Digital workflow</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Approval</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip strong">Searchable records</span>
+        </div>
+        <p class="uc-outcome"><strong style="color:var(--primary);">Outcome:</strong> Files get found in seconds, approvals move in hours &mdash; not days of email ping-pong.</p>
+      </div>
+      <div class="uc-card reveal">
+        <span class="uc-num">07</span>
+        <div class="uc-flow">
+          <span class="uc-chip">Repetitive Excel work</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Automated workflow</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip">Centralized database</span><span class="uc-arrow">&rarr;</span>
+          <span class="uc-chip strong">Reports</span>
+        </div>
+        <p class="uc-outcome"><strong style="color:var(--primary);">Outcome:</strong> Hours of spreadsheet work become minutes a week &mdash; data is clean, current, and shared.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. WHY BRILLIANTS -->
+<section class="section section-md" id="why" aria-label="Why BRILLIANTS">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>The difference</span>
+      <h2>Why Businesses Choose <span class="h2-grad">BRILLIANTS</span></h2>
+      <p>We're not a tech company looking for a problem to fit our solution. <span class="hl">We're a business partner who happens to be very good with technology.</span></p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="wc-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="target"></span>
         <h3>Business-First Approach</h3>
         <p>We understand the process before we recommend anything &mdash; technology is only ever the answer because it fits your business.</p>
       </div>
-      <div class="odoo-feature-card reveal">
-        <span class="odoo-feature-icon" style="background:var(--green-tint);color:var(--green);" data-icon="trending"></span>
+      <div class="why-card reveal">
+        <span class="wc-icon" style="background:var(--green-tint);color:var(--green);" data-icon="trending"></span>
         <h3>Practical &amp; Scalable</h3>
         <p>Solutions designed around actual business needs and realistic budgets &mdash; start small, scale as you grow.</p>
       </div>
-      <div class="odoo-feature-card reveal">
-        <span class="odoo-feature-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="layers"></span>
+      <div class="why-card reveal">
+        <span class="wc-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="layers"></span>
         <h3>One Technology Partner</h3>
         <p>Automation, software, AI, IoT and digital transformation under one roof &mdash; no 5 vendors pointing fingers at each other.</p>
       </div>
-      <div class="odoo-feature-card reveal">
-        <span class="odoo-feature-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="refresh"></span>
+      <div class="why-card reveal">
+        <span class="wc-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="settings"></span>
+        <h3>Built Around Your Workflow</h3>
+        <p>Technology adapts to your business &mdash; not the other way around. Your team won't need to unlearn how you work.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="wc-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="refresh"></span>
         <h3>Long-Term Partnership</h3>
         <p>Support, improvements and scalability after implementation &mdash; we stay until your business goes digital end-to-end.</p>
       </div>
@@ -261,90 +544,197 @@
   </div>
 </section>
 
-<!-- 5. INDUSTRIES — Industry cards -->
-<section class="section" id="industries" aria-label="Industries" style="padding:64px 0;">
+<!-- 7. INDUSTRIES -->
+<section class="section alt" id="industries" aria-label="Industries">
   <div class="container">
-    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+    <div class="section-head reveal">
       <span class="eyebrow"><span class="dot"></span>Every industry faces similar problems</span>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;">Building for the <span style="color:var(--primary);">businesses of India</span></h2>
-      <p style="color:var(--ink-soft);max-width:600px;margin:8px auto 0;">The problems &mdash; scattered data, manual work, no visibility &mdash; look the same across industries.</p>
+      <h2>Building for the <span class="h2-grad">businesses of India</span></h2>
+      <p>The problems &mdash; scattered data, manual work, no visibility &mdash; look the same across industries. Our technology is customized around your specific process, whatever you do.</p>
     </div>
-    <div class="odoo-industry-grid">
-      <a href="/industries/" class="odoo-industry-card reveal">
-        <span class="odoo-industry-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="factory"></span>
-        <h3>Manufacturing</h3>
-        <p>Machine maintenance, shop-floor workflows, energy monitoring</p>
-      </a>
-      <a href="/industries/" class="odoo-industry-card reveal">
-        <span class="odoo-industry-icon" style="background:var(--green-tint);color:var(--green);" data-icon="healthcare"></span>
-        <h3>Pharma &amp; Healthcare</h3>
-        <p>Inventory, billing and customer follow-ups</p>
-      </a>
-      <a href="/industries/" class="odoo-industry-card reveal">
-        <span class="odoo-industry-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="retail"></span>
+    <div class="grid grid-3">
+      <div class="industry-card reveal">
+        <div class="ic-bg" style="background:var(--primary);"></div>
+        <span class="ic-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="factory"></span>
+        <h3>Manufacturing &amp; Engineering</h3>
+        <p>Machine maintenance, shop-floor workflows, energy monitoring, production dashboards &mdash; built around how your factory runs.</p>
+      </div>
+      <div class="industry-card reveal">
+        <div class="ic-bg" style="background:var(--green);"></div>
+        <span class="ic-icon" style="background:var(--green-tint);color:var(--green);" data-icon="healthcare"></span>
+        <h3>Pharma &amp; Healthcare Businesses</h3>
+        <p>Inventory, temperature/sealed-chain monitoring, billing and customer follow-ups &mdash; without claiming anyone's compliance.</p>
+      </div>
+      <div class="industry-card reveal">
+        <div class="ic-bg" style="background:var(--amber);"></div>
+        <span class="ic-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="retail"></span>
         <h3>Distributors &amp; Traders</h3>
-        <p>Invoices, stock, godown tracking and customer statements</p>
-      </a>
-      <a href="/industries/" class="odoo-industry-card reveal">
-        <span class="odoo-industry-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="gym"></span>
-        <h3>Gyms &amp; Fitness</h3>
-        <p>Memberships, attendance, billing and staff management</p>
-      </a>
-      <a href="/industries/" class="odoo-industry-card reveal">
-        <span class="odoo-industry-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="office"></span>
+        <p>Invoices, stock, godown tracking and customer statements &mdash; every transaction visible without digging through papers.</p>
+      </div>
+      <div class="industry-card reveal">
+        <div class="ic-bg" style="background:var(--purple);"></div>
+        <span class="ic-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="office"></span>
         <h3>Service Businesses</h3>
-        <p>Appointments, job sheets and billing automation</p>
-      </a>
-      <a href="/industries/" class="odoo-industry-card reveal">
-        <span class="odoo-industry-icon" style="background:var(--green-tint);color:var(--green);" data-icon="trending"></span>
-        <h3>Startups</h3>
-        <p>Processes that scale as you add people and locations</p>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:32px;">
-      <a href="/industries/" class="btn btn-ghost" style="border:1px solid var(--line);">Browse all Industries &rarr;</a>
+        <p>Appointments, technicians, job sheets and billing automation &mdash; so service work is profitable, not just busy.</p>
+      </div>
+      <div class="industry-card reveal">
+        <div class="ic-bg" style="background:var(--green);"></div>
+        <span class="ic-icon" style="background:var(--green-tint);color:var(--green);" data-icon="trending"></span>
+        <h3>Startups &amp; Growing Businesses</h3>
+        <p>Get from "managed on WhatsApp" to "managed on purpose" &mdash; processes that scale as you add people and locations.</p>
+      </div>
+      <div class="industry-card reveal">
+        <div class="ic-bg" style="background:var(--rose);"></div>
+        <span class="ic-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="briefcase"></span>
+        <h3>Multi-Branch Businesses</h3>
+        <p>One system, every branch &mdash; branch-wise performance, consistent processes and a single view for management.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 6. TESTIMONIALS -->
-<section class="section alt" id="testimonials" aria-label="Testimonials" style="padding:64px 0;">
+<!-- 8. SOLUTIONS WE'RE BUILDING -->
+<section class="section section-md" id="projects" aria-label="Solutions we are building">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>In development</span>
+      <h2>Solutions We're Building</h2>
+      <p>These are working concepts in active development &mdash; not finished case studies. Each one targets a business problem we understand deeply. Tell us yours and we'll build it with you.</p>
+    </div>
+    <div class="pb-grid">
+      <div class="proof-card reveal">
+        <span class="pc-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="settings"></span>
+        <span class="pc-tag">Concept &middot; In development</span>
+        <h3>Maintenance Management Automation</h3>
+        <p>Preventive maintenance reminders, breakdown logs and a maintenance dashboard for manufacturing units.</p>
+      </div>
+      <div class="proof-card reveal">
+        <span class="pc-icon" style="background:var(--green-tint);color:var(--green);" data-icon="phone"></span>
+        <span class="pc-tag">Concept &middot; In development</span>
+        <h3>CRM + WhatsApp Lead Automation</h3>
+        <p>Lead capture, automatic WhatsApp follow-ups and conversion tracking for service businesses.</p>
+      </div>
+      <a href="/power-ems/" class="proof-card reveal" style="display:block;">
+        <span class="pc-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="activity"></span>
+        <span class="pc-tag live">Live &middot; v1.2.5</span>
+        <h3>Power EmS &mdash; Energy Monitoring</h3>
+        <p>Energy consumption monitoring with real-time dashboards and automatic alerts for factories and offices.</p>
+      </a>
+      <div class="proof-card reveal">
+        <span class="pc-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="briefcase"></span>
+        <span class="pc-tag">Concept &middot; In development</span>
+        <h3>Business Management SaaS</h3>
+        <p>One platform consolidating billing, inventory, HR and customer management for small businesses.</p>
+      </div>
+      <div class="proof-card reveal">
+        <span class="pc-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="ai"></span>
+        <span class="pc-tag">Concept &middot; In development</span>
+        <h3>AI-Powered Workflow Automation</h3>
+        <p>AI assistants, document processing and intelligent workflows that run tasks without human involvement.</p>
+      </div>
+      <div class="proof-card proof-card--cta reveal">
+        <span class="pc-icon" style="background:var(--ink);color:#fff;" data-icon="target"></span>
+        <h3>Have a Different Problem?</h3>
+        <p>Then that's the one we want to hear about. Share your workflow and we'll tell you honestly what can and can't be automated.</p>
+        <a href="#contact-form" class="btn btn-primary-glow"><span data-icon="phone" data-size="16"></span> Discuss Your Business Problem</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. TRUSTED PRODUCTS (LIVE TODAY) -->
+<section class="section alt" id="products" aria-label="Our Products">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Live today</span>
+      <h2>Products With <span class="h2-grad">Honest Status</span></h2>
+      <p>No aspirational screenshots. Every product carries its true status &mdash; what's live, what's being built, and what's on the roadmap.</p>
+    </div>
+    <div class="app-tiles reveal">
+      <a href="/ironbook/" class="app-tile">
+        <span class="at-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span>
+        <span class="at-name">IronBook</span>
+        <span class="at-tag live">Live</span>
+        <span class="at-desc">AI Gym Operating System</span>
+      </a>
+      <a href="/#products" class="app-tile">
+        <span class="at-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span>
+        <span class="at-name">Smart HRMS</span>
+        <span class="at-tag soon">Early Access</span>
+        <span class="at-desc">Payroll &amp; attendance</span>
+      </a>
+      <a href="/power-ems/" class="app-tile">
+        <span class="at-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="zap"></span>
+        <span class="at-name">Power EmS</span>
+        <span class="at-tag live">Live</span>
+        <span class="at-desc">Energy monitoring &amp; IoT</span>
+      </a>
+      <a href="/downloads/" class="app-tile">
+        <span class="at-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="download"></span>
+        <span class="at-name">Download Center</span>
+        <span class="at-tag live">Guides &amp; APKs</span>
+        <span class="at-desc">Install &amp; setup help</span>
+      </a>
+      <a href="/pricing/" class="app-tile">
+        <span class="at-icon" style="background:var(--green-tint);color:var(--green);" data-icon="rupee"></span>
+        <span class="at-name">Pricing</span>
+        <span class="at-tag live">Free to start</span>
+        <span class="at-desc">Paid plans from &#8377;499/mo</span>
+      </a>
+      <div class="app-tiles-cta"><a href="/downloads/" class="btn btn-ghost">Browse everything &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. OUTCOMES -->
+<section class="section tight" id="outcomes" aria-label="Business outcomes">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-      <span class="eyebrow"><span class="dot"></span>What our customers say</span>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;">Trusted by businesses across India</h2>
+      <span class="eyebrow"><span class="dot"></span>The goal is always the same</span>
+      <h2>What Your Business Gains</h2>
+      <p>No magic percentages here &mdash; just the outcomes that every one of these projects moves toward.</p>
     </div>
-    <div class="odoo-testimonial-grid">
-      <div class="odoo-testimonial-card reveal">
-        <div class="odoo-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="odoo-testimonial-text">"IronBook transformed how we manage our gym. Member check-ins, billing, attendance &mdash; everything in one place. We used to spend hours on Excel, now it's automated."</p>
-        <div class="odoo-testimonial-author">
-          <div class="odoo-testimonial-avatar" style="background:var(--green-tint);color:var(--green);">G</div>
-          <div>
-            <strong>Gym Owner</strong>
-            <small>Hinganghat, Maharashtra</small>
-          </div>
+    <div class="outcome-grid">
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="clock" style="background:var(--primary-tint);color:var(--primary);"></span><span class="oc-text"><strong>Less manual work</strong><small>Time returned to the business</small></span></div>
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="eye" style="background:var(--amber-tint);color:var(--amber-ink);"></span><span class="oc-text"><strong>Better process visibility</strong><small>See what's actually happening</small></span></div>
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="zap" style="background:var(--green-tint);color:var(--green);"></span><span class="oc-text"><strong>Faster workflows</strong><small>Tasks finish in hours, not days</small></span></div>
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="database" style="background:var(--purple-tint);color:var(--purple);"></span><span class="oc-text"><strong>Centralized information</strong><small>No more scattered files &amp; chats</small></span></div>
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="phone" style="background:var(--rose-tint);color:var(--rose);"></span><span class="oc-text"><strong>Better follow-up</strong><small>Never lose a lead or a task</small></span></div>
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="chart" style="background:var(--primary-tint);color:var(--primary);"></span><span class="oc-text"><strong>Data-driven decisions</strong><small>Focus on real, live numbers</small></span></div>
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="file" style="background:var(--amber-tint);color:var(--amber-ink);"></span><span class="oc-text"><strong>Less spreadsheet dependency</strong><small>The end of version-me-v3.xls</small></span></div>
+      <div class="outcome-card reveal"><span class="oc-icon" data-icon="trending" style="background:var(--green-tint);color:var(--green);"></span><span class="oc-text"><strong>Scalable digital processes</strong><small>Systems that grow with you</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. FOUNDER -->
+<section class="section alt" id="founder" aria-label="Founder">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:center; gap:48px;">
+      <div class="reveal-left">
+        <span class="eyebrow"><span class="dot"></span>Our Story</span>
+        <h2>Built from <span class="h2-grad">Real-World Business Understanding.</span></h2>
+        <p class="mt-16" style="font-size:1.05rem;">BRILLIANTS exists because technology should solve practical operational problems &mdash; not create additional complexity. We don't sell software first. We look at a business and help it move forward.</p>
+        <div class="card mt-24" style="padding:24px;border-left:3px solid var(--primary);">
+          <p style="font-size:0.92rem;line-height:1.7;">With a background in mechanical engineering and hands-on experience across automotive and pharma manufacturing, our founder saw the same problem everywhere: manual processes, disconnected systems, zero visibility. Having worked inside operations himself, he knows why most MSME owners hesitate to adopt software &mdash; complex ERPs, high costs, no local support. BRILLIANTS is built to change that.</p>
+        </div>
+        <div class="flex gap-16 mt-24" style="flex-wrap:wrap;">
+          <div><strong style="font-size:1.3rem;color:var(--ink);">Mission</strong><p style="font-size:0.88rem;">Practical technology for every Indian MSME</p></div>
+          <div><strong style="font-size:1.3rem;color:var(--ink);">Approach</strong><p style="font-size:0.88rem;">Business problem first. Solution. Technology last.</p></div>
         </div>
       </div>
-      <div class="odoo-testimonial-card reveal">
-        <div class="odoo-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="odoo-testimonial-text">"Power EmS gave us visibility into our energy consumption we never had before. We can now see exactly where power is being wasted and take action."</p>
-        <div class="odoo-testimonial-author">
-          <div class="odoo-testimonial-avatar" style="background:var(--amber-tint);color:var(--amber-ink);">M</div>
-          <div>
-            <strong>Factory Manager</strong>
-            <small>Maharashtra</small>
-          </div>
-        </div>
-      </div>
-      <div class="odoo-testimonial-card reveal">
-        <div class="odoo-testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="odoo-testimonial-text">"The team at Brilliants understood our business first before recommending any technology. That honesty is rare. They built exactly what we needed."</p>
-        <div class="odoo-testimonial-author">
-          <div class="odoo-testimonial-avatar" style="background:var(--primary-tint);color:var(--primary);">S</div>
-          <div>
-            <strong>Business Owner</strong>
-            <small>India</small>
+      <div class="reveal-right">
+        <div class="card" style="text-align:center; padding:32px; position:relative; overflow:hidden;">
+          <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%, var(--primary-tint), transparent 60%);opacity:0.5;"></div>
+          <picture>
+            <source srcset="assets/images/founder/founder-photo.webp" type="image/webp">
+            <img src="assets/images/founder/founder-photo.jpeg" alt="Vikas Kamble - Founder & CEO of BRILLIANTS" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 18px;position:relative;z-index:1;box-shadow:0 8px 30px var(--primary-glow);border:3px solid #fff;" loading="lazy">
+          </picture>
+          <h3 style="position:relative;z-index:1;">Vikas Kamble</h3>
+          <p style="position:relative;z-index:1;">Founder &amp; CEO, BRILLIANTS</p>
+          <div class="flex gap-8 justify-center mt-16" style="flex-wrap:wrap;position:relative;z-index:1;">
+            <span class="pill" style="background:var(--primary-tint);color:var(--primary);">Mechanical Engineer</span>
+            <span class="pill" style="background:var(--amber-tint);color:var(--amber-ink);">Manufacturing Background</span>
           </div>
         </div>
       </div>
@@ -352,12 +742,12 @@
   </div>
 </section>
 
-<!-- 7. FAQ -->
-<section class="section" aria-label="FAQ" style="padding:64px 0;">
+<!-- 12. FAQ -->
+<section class="section section-md" aria-label="FAQ">
   <div class="container" style="max-width:820px;">
     <div class="section-head center reveal">
       <span class="eyebrow"><span class="dot"></span>Common questions</span>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;">Questions <span style="color:var(--primary);">business owners ask us</span></h2>
+      <h2>Questions <span class="h2-grad">business owners ask us</span></h2>
     </div>
     <div class="reveal" itemscope itemtype="https://schema.org/FAQPage">
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -380,17 +770,145 @@
 <button type="button" class="faq-q" id="faq-q5" aria-expanded="false" aria-controls="faq-a5" itemprop="name">Is my business data safe?<span class="plus" data-icon="close" data-size="16"></span></button>
 <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5" aria-hidden="true"><p itemprop="text">Yes. Our systems are cloud-hosted with encrypted connections and role-based access &mdash; every business's data stays isolated and its workforce sees only what you authorize. You always own your data and can export it.</p></div>
 </div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<button type="button" class="faq-q" id="faq-q6" aria-expanded="false" aria-controls="faq-a6" itemprop="name">Is BRILLIANTS a product company or a services company?<span class="plus" data-icon="close" data-size="16"></span></button>
+<div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6" aria-hidden="true"><p itemprop="text">Both. We build and own our products &mdash; IronBook, Smart HRMS and Power EmS. And we build custom solutions with you when your problem is unique. Either way, the approach is the same: understand your business first.</p></div>
+</div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<button type="button" class="faq-q" id="faq-q7" aria-expanded="false" aria-controls="faq-a7" itemprop="name">What happens after the solution is implemented?<span class="plus" data-icon="close" data-size="16"></span></button>
+<div class="faq-a" id="faq-a7" role="region" aria-labelledby="faq-q7" aria-hidden="true"><p itemprop="text">We don't leave. We stay available by WhatsApp and email for support, and we monitor and improve the solution along with running business changes. A long-term partnership, not a hand-off.</p></div>
+</div>
     </div>
   </div>
 </section>
 
-<!-- 8. FINAL CTA / CONTACT -->
-<section class="section alt" id="contact-form" aria-label="Discuss Your Business Problem" style="padding:64px 0;">
+<!-- BLOG STRIP -->
+<section class="section tight alt" aria-label="Latest from our blog">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:32px;">
+      <span class="eyebrow"><span class="dot"></span>From the blog</span>
+      <h2>Latest From Our Blog</h2>
+    </div>
+    <div class="blog-strip reveal">
+      <a href="/blog/ai-for-msme-india.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--primary-tint);color:var(--primary);">AI</span>
+        <h4>How AI is Transforming MSME Operations in India</h4>
+      </a>
+      <a href="/blog/questions-msme-owners-ask-before-buying-software.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--purple-tint);color:var(--purple);">Guide</span>
+        <h4>7 Questions Every MSME Owner Asks Before Buying Software</h4>
+      </a>
+      <a href="/blog/billing-software-small-business-india.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--amber-tint);color:var(--amber-ink);">Billing</span>
+        <h4>How to Choose Billing Software for Your Small Business</h4>
+      </a>
+      <a href="/blog/gym-management-software-india.html" class="blog-strip-card">
+        <span class="bs-tag" style="background:var(--green-tint);color:var(--green);">Gyms</span>
+        <h4>Best Gym Management Software in India — Complete Guide</h4>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 12b. OUR WORK / REAL BUSINESSES -->
+<section class="section alt" id="our-work" aria-label="Real businesses using Brilliants">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Real work, real businesses</span>
+      <h2>Real Businesses Using <span class="h2-grad">BRILLIANTS</span></h2>
+      <p>No stock photos &mdash; these are the actual places where IronBook and our other solutions run every day.</p>
+    </div>
+    <div class="work-strip reveal">
+      <div class="work-card">
+        <div class="work-ph wp-gym" role="img" aria-label="IronBook check-in screen mock">
+          <div class="wpm">
+            <div class="wpm-top"><span class="wpm-logo"></span><span class="wpm-dots"></span></div>
+            <div class="wpm-name">IronBook</div>
+            <div class="wpm-row"><span class="wpm-av"></span><span class="wpm-line"></span><span class="wpm-badge ok">&#10003;</span></div>
+            <div class="wpm-row"><span class="wpm-av"></span><span class="wpm-line"></span><span class="wpm-badge ok">&#10003;</span></div>
+            <div class="wpm-row"><span class="wpm-av"></span><span class="wpm-line"></span><span class="wpm-badge ok">&#10003;</span></div>
+            <div class="wpm-row"><span class="wpm-av"></span><span class="wpm-line"></span><span class="wpm-badge soon">&#8987;</span></div>
+          </div>
+        </div>
+        <!-- REPLACE WITH REAL IMAGE: a gym front desk / reception running IronBook. Drop files at assets/images/gallery/gym-ironbook.webp + .jpg, then uncomment below and remove the .work-ph div above. -->
+        <!--
+        <picture>
+          <source srcset="assets/images/gallery/gym-ironbook.webp" type="image/webp">
+          <img src="assets/images/gallery/gym-ironbook.jpg" alt="Gym owner using IronBook at the front desk to check in members" loading="lazy">
+        </picture>
+        -->
+        <span class="work-cap">IronBook in a live gym<small>Front desk &amp; member check-ins</small></span>
+      </div>
+      <div class="work-card">
+        <div class="work-ph wp-clinic" role="img" aria-label="Clinic appointment list mock">
+          <div class="wpm">
+            <div class="wpm-top"><span class="wpm-logo"></span><span class="wpm-dots"></span></div>
+            <div class="wpm-name">Clinic</div>
+            <div class="wpm-row"><span class="wpm-chip">9:00</span><span class="wpm-line"></span><span class="wpm-badge ok">&#10003;</span></div>
+            <div class="wpm-row"><span class="wpm-chip">9:30</span><span class="wpm-line"></span><span class="wpm-badge soon">&#8987;</span></div>
+            <div class="wpm-row"><span class="wpm-chip">10:00</span><span class="wpm-line"></span><span class="wpm-badge soon">&#8987;</span></div>
+            <div class="wpm-row"><span class="wpm-chip">10:30</span><span class="wpm-line"></span><span class="wpm-badge soon">&#8987;</span></div>
+          </div>
+        </div>
+        <!-- REPLACE WITH REAL IMAGE: a clinic or pharmacy counter with the Brilliants system visible. Drop files at assets/images/gallery/clinic-system.webp + .jpg, then uncomment below and remove the .work-ph div above. -->
+        <!--
+        <picture>
+          <source srcset="assets/images/gallery/clinic-system.webp" type="image/webp">
+          <img src="assets/images/gallery/clinic-system.jpg" alt="Clinic staff managing appointments and billing on Brilliants software" loading="lazy">
+        </picture>
+        -->
+        <span class="work-cap">Clinic operations<small>Appointments, billing &amp; follow-ups</small></span>
+      </div>
+      <div class="work-card">
+        <div class="work-ph wp-factory" role="img" aria-label="Energy usage bar chart mock">
+          <div class="wpm">
+            <div class="wpm-top"><span class="wpm-logo"></span><span class="wpm-dots"></span></div>
+            <div class="wpm-name">Power EmS</div>
+            <div class="wpm-chart">
+              <span style="--h:38%"></span><span style="--h:52%"></span><span style="--h:44%"></span>
+              <span style="--h:66%"></span><span style="--h:58%"></span><span style="--h:78%"></span>
+              <span style="--h:70%"></span>
+            </div>
+            <div class="wpm-meta">kWh &middot; this week</div>
+          </div>
+        </div>
+        <!-- REPLACE WITH REAL IMAGE: a manufacturing floor or energy meter panel for Power EmS. Drop files at assets/images/gallery/manufacturing-em.webp + .jpg, then uncomment below and remove the .work-ph div above. -->
+        <!--
+        <picture>
+          <source srcset="assets/images/gallery/manufacturing-em.webp" type="image/webp">
+          <img src="assets/images/gallery/manufacturing-em.jpg" alt="Manufacturing unit with energy monitoring dashboard for Power EmS" loading="lazy">
+        </picture>
+        -->
+        <span class="work-cap">Manufacturing monitoring<small>Energy &amp; equipment visibility</small></span>
+      </div>
+      <div class="work-card">
+        <div class="work-ph wp-team" role="img" aria-label="Brilliants wordmark mock">
+          <div class="wpm wpm-team">
+            <div class="wpm-name-grad">Brilliants</div>
+            <div class="wpm-meta">Hinganghat &middot; Maharashtra</div>
+            <div class="wpm-pulse"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <!-- REPLACE WITH REAL IMAGE: the Brilliants team or office. Drop files at assets/images/gallery/team-office.webp + .jpg, then uncomment below and remove the .work-ph div above. -->
+        <!--
+        <picture>
+          <source srcset="assets/images/gallery/team-office.webp" type="image/webp">
+          <img src="assets/images/gallery/team-office.jpg" alt="Brilliants team working together in the Hinganghat office" loading="lazy">
+        </picture>
+        -->
+        <span class="work-cap">The Brilliants team<small>Hinganghat, Maharashtra</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. FINAL CTA / CONTACT -->
+<section class="section alt" id="contact-form" aria-label="Discuss Your Business Problem">
   <div class="container">
     <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-      <span class="eyebrow"><span class="dot"></span>Unleash your growth potential</span>
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;">Start now &mdash; it's free</h2>
-      <p style="color:var(--ink-soft);">No credit card required. Instant access.</p>
+      <span class="eyebrow"><span class="dot"></span>Start the conversation</span>
+      <h2>Have a Business Problem That <span class="h2-grad">Technology Could Solve?</span></h2>
+      <p>Tell us what is slowing your business down. We'll assess what can be automated, digitized or optimized &mdash; and tell you honestly.</p>
     </div>
     <div class="grid grid-2" style="gap:48px;align-items:start;">
       <div class="reveal-left">
@@ -482,14 +1000,16 @@
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(data)
             }).then(function (r) {
-              return r.json().then(function (res) {
-                if (!res.success) throw new Error(res.message || 'Submission failed');
-                return res;
-              });
+              if (!r.ok) throw new Error('Server error');
+              return r.json();
             }).then(function (res) {
-              status.style.color = 'var(--green)';
-              status.textContent = 'Thank you! We will reach out within 24 hours.';
-              document.getElementById('demo-form').reset();
+              if (res.success) {
+                status.style.color = 'var(--green)';
+                status.textContent = 'Thank you! We will reach out within 24 hours.';
+                document.getElementById('demo-form').reset();
+              } else {
+                throw new Error('Submission failed');
+              }
             }).catch(function () {
               status.style.color = '#dc2626';
               status.textContent = 'Something went wrong. Please email us at contact@brilliants.in or try again.';
@@ -508,6 +1028,32 @@
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
 
+<button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <span id="themeToggleIcon">&#9789;</span> <span id="themeToggleLabel">Dark mode</span>
+</button>
+<script>
+(function () {
+  var root = document.documentElement;
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('themeToggle');
+    var icon = document.getElementById('themeToggleIcon');
+    var label = document.getElementById('themeToggleLabel');
+    function sync() {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      icon.innerHTML = isDark ? '&#9728;' : '&#9789;';
+      label.textContent = isDark ? 'Light mode' : 'Dark mode';
+    }
+    sync();
+    btn.addEventListener('click', function () {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      if (isDark) { root.removeAttribute('data-theme'); localStorage.setItem('brilliants-theme', 'light'); }
+      else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('brilliants-theme', 'dark'); }
+      sync();
+    });
+  });
+})();
+</script>
+
 <a href="https://wa.me/919146121280" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
   <div class="pulse-ring"></div>
   &#128172;
@@ -518,6 +1064,9 @@
 </a>
 
 <a href="#" class="back-to-top" aria-label="Back to top">&#8593;</a>
+
+
+
 
 </body>
 </html>
