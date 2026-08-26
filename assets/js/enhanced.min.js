@@ -571,7 +571,7 @@
                   '<input type="checkbox" id="lead-consent" required>' +
                   '<label for="lead-consent">I agree to be contacted regarding my inquiry.</label>' +
                 '</div>' +
-                '<button type="submit" class="lead-submit">Submit &amp; Continue &rarr;</button>' +
+                '<button type="submit" class="lead-submit">Submit &amp; Start Download &rarr;</button>' +
                 '<div class="error-msg"></div>' +
               '</form>' +
             '</div>' +
@@ -700,7 +700,7 @@
           errEl.style.display = 'block';
         }).finally(function () {
           btn.disabled = false;
-          btn.textContent = 'Submit & Continue \u2192';
+          btn.textContent = 'Submit & Start Download \u2192';
         });
       }
 
