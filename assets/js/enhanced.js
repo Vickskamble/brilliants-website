@@ -502,6 +502,216 @@
       testImg.src = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMwAgSSNtse/cXjxyCCmrYrP0rJmgAA';
     })();
 
+    // 12. Lead Capture Gate
+    (function () {
+      var STORAGE_KEY = 'brilliants_lead_captured';
+      var STORAGE_TTL = 30 * 24 * 60 * 60 * 1000;
+      var ACCESS_KEY = '8084b478-252d-4290-8cc1-b636dd96239d';
+      var overlay = null;
+      var currentHref = '';
+      var currentInterest = '';
+
+      function hasCaptured() {
+        try {
+          var ts = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+          return ts && (Date.now() - ts < STORAGE_TTL);
+        } catch (e) { return false; }
+      }
+
+      function createOverlay() {
+        if (overlay) return overlay;
+        overlay = doc.createElement('div');
+        overlay.className = 'lead-modal-overlay';
+        overlay.innerHTML =
+          '<div class="lead-modal">' +
+            '<button class="lead-modal-close" aria-label="Close">&times;</button>' +
+            '<h3>Let\'s connect</h3>' +
+            '<p class="lead-modal-sub">Fill in your details and we\'ll reach out within 24 hours.</p>' +
+            '<div class="lead-modal-body">' +
+              '<form id="lead-modal-form">' +
+                '<div class="honeypot"><input type="text" name="botcheck" tabindex="-1" autocomplete="off"></div>' +
+                '<input type="hidden" name="access_key" value="' + ACCESS_KEY + '">' +
+                '<input type="hidden" name="subject" value="New BRILLIANTS Lead">' +
+                '<input type="hidden" name="source_page" value="">' +
+                '<div class="form-group">' +
+                  '<label for="lead-name">Your Name *</label>' +
+                  '<input type="text" id="lead-name" name="name" placeholder="Enter your name" required aria-label="Your name">' +
+                '</div>' +
+                '<div class="form-group">' +
+                  '<label for="lead-email">Email Address *</label>' +
+                  '<input type="email" id="lead-email" name="email" placeholder="you@company.com" required aria-label="Email address">' +
+                '</div>' +
+                '<div class="form-group">' +
+                  '<label for="lead-phone">Phone / WhatsApp</label>' +
+                  '<input type="tel" id="lead-phone" name="phone" placeholder="+91-9876543210" aria-label="Phone number">' +
+                '</div>' +
+                '<div class="form-group">' +
+                  '<label for="lead-company">Company</label>' +
+                  '<input type="text" id="lead-company" name="company" placeholder="Your company name" aria-label="Company">' +
+                '</div>' +
+                '<div class="form-group">' +
+                  '<label for="lead-product">Interested in *</label>' +
+                  '<select id="lead-product" name="product" required aria-label="Product interest">' +
+                    '<option value="">Select a product</option>' +
+                    '<option>Power EmS</option>' +
+                    '<option>IronBook</option>' +
+                    '<option>Smart HRMS</option>' +
+                    '<option>Smart Billing</option>' +
+                    '<option>Smart Factory</option>' +
+                    '<option>Smart Inventory</option>' +
+                    '<option>General Inquiry</option>' +
+                  '</select>' +
+                '</div>' +
+                '<div class="form-group">' +
+                  '<label for="lead-message">Message</label>' +
+                  '<textarea id="lead-message" name="message" rows="3" placeholder="Tell us what you need..." aria-label="Message"></textarea>' +
+                '</div>' +
+                '<div class="consent-row">' +
+                  '<input type="checkbox" id="lead-consent" required>' +
+                  '<label for="lead-consent">I agree to be contacted regarding my inquiry.</label>' +
+                '</div>' +
+                '<button type="submit" class="lead-submit">Submit &amp; Continue &rarr;</button>' +
+                '<div class="error-msg"></div>' +
+              '</form>' +
+            '</div>' +
+            '<div class="lead-modal-success" style="display:none">' +
+              '<div class="check-icon">&#10003;</div>' +
+              '<h4>Thank you!</h4>' +
+              '<p>We\'ll reach out within 24 hours. Redirecting you now...</p>' +
+            '</div>' +
+          '</div>';
+        doc.body.appendChild(overlay);
+
+        overlay.querySelector('.lead-modal-close').addEventListener('click', closeModal);
+        overlay.addEventListener('click', function (e) {
+          if (e.target === overlay) closeModal();
+        });
+
+        var form = overlay.querySelector('#lead-modal-form');
+        form.addEventListener('submit', handleSubmit);
+
+        return overlay;
+      }
+
+      function showModal(interest) {
+        createOverlay();
+        currentInterest = interest || '';
+
+        var body = overlay.querySelector('.lead-modal-body');
+        var success = overlay.querySelector('.lead-modal-success');
+        var form = overlay.querySelector('#lead-modal-form');
+        var errEl = overlay.querySelector('.error-msg');
+
+        body.style.display = '';
+        success.style.display = 'none';
+        form.reset();
+        errEl.style.display = 'none';
+
+        var productSelect = overlay.querySelector('#lead-product');
+        var sourceInput = overlay.querySelector('input[name="source_page"]');
+        sourceInput.value = currentInterest;
+
+        var options = productSelect.options;
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].text === currentInterest || options[i].value === currentInterest) {
+            productSelect.selectedIndex = i;
+            break;
+          }
+        }
+
+        overlay.classList.add('active');
+        doc.body.style.overflow = 'hidden';
+
+        setTimeout(function () {
+          overlay.querySelector('#lead-name').focus();
+        }, 100);
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        var form = overlay.querySelector('#lead-modal-form');
+        var btn = overlay.querySelector('.lead-submit');
+        var errEl = overlay.querySelector('.error-msg');
+        var body = overlay.querySelector('.lead-modal-body');
+        var success = overlay.querySelector('.lead-modal-success');
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        if (win.location.hostname !== 'www.brilliants.in' && win.location.hostname !== 'brilliants.in' && win.location.hostname !== 'localhost') {
+          errEl.textContent = 'Invalid origin. Please submit from brilliants.in.';
+          errEl.style.display = 'block';
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        errEl.style.display = 'none';
+
+        var data = {
+          access_key: ACCESS_KEY,
+          subject: 'New BRILLIANTS Lead — ' + currentInterest,
+          name: form.name.value,
+          email: form.email.value,
+          phone: form.phone.value,
+          company: form.company.value,
+          product: form.product.value,
+          message: form.message.value,
+          source_page: currentInterest,
+          botcheck: form.botcheck.value
+        };
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).then(function (r) {
+          if (!r.ok) throw new Error('Server error');
+          return r.json();
+        }).then(function (res) {
+          if (res.success) {
+            try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch (e) {}
+            body.style.display = 'none';
+            success.style.display = '';
+            setTimeout(function () {
+              closeModal();
+              if (currentHref) win.location.href = currentHref;
+            }, 2000);
+          } else {
+            throw new Error('Submission failed');
+          }
+        }).catch(function () {
+          errEl.textContent = 'Something went wrong. Please email us at contact@brilliants.in or try again.';
+          errEl.style.display = 'block';
+        }).finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Submit & Continue \u2192';
+        });
+      }
+
+      function closeModal() {
+        if (overlay) {
+          overlay.classList.remove('active');
+          doc.body.style.overflow = '';
+        }
+      }
+
+      qsa('[data-lead-gate]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          currentHref = el.getAttribute('href') || '';
+          if (hasCaptured()) {
+            win.location.href = currentHref;
+            return;
+          }
+          showModal(el.getAttribute('data-lead-gate'));
+        });
+      });
+
+    })();
+
   }); // DOMContentLoaded
 
 })();
