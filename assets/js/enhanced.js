@@ -660,8 +660,7 @@
           company: form.company.value,
           product: form.product.value,
           message: form.message.value,
-          source_page: currentInterest,
-          redirect: false
+          source_page: currentInterest
         };
 
           console.log('[LeadGate] Submitting:', data);
