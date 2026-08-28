@@ -730,6 +730,46 @@
 
     })();
 
+  // 8. Feature Showcase — scroll progress dots
+  (function () {
+    var prog = document.getElementById('featureProgress');
+    if (!prog) return;
+    var dots = prog.querySelectorAll('.fp-dot');
+    var rows = document.querySelectorAll('.feature-row');
+    if (!rows.length) return;
+
+    // Show/hide progress bar based on feature section visibility
+    var fSection = document.querySelector('.feature-showcase');
+    if (!fSection) return;
+    var sectionObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        prog.classList.toggle('visible', e.isIntersecting);
+      });
+    }, { threshold: 0.05 });
+    sectionObs.observe(fSection);
+
+    // Track which feature row is active
+    var rowObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var id = e.target.id;
+          dots.forEach(function (d) {
+            d.classList.toggle('active', d.getAttribute('data-target') === id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    rows.forEach(function (r) { rowObs.observe(r); });
+
+    // Click dots to scroll
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () {
+        var t = document.getElementById(d.getAttribute('data-target'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  })();
+
   }); // DOMContentLoaded
 
 })();

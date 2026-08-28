@@ -235,126 +235,190 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>All Features</span>
-      <h2>&#128640; Everything your energy needs</h2>
-      <p>Power EmS turns smart meter data into clear insights — track usage, verify bills, catch anomalies and keep power quality in check.</p>
+<!-- FEATURE SHOWCASE — Scroll-triggered alternating layout -->
+<div class="feature-progress" id="featureProgress" aria-hidden="true">
+  <span class="fp-dot active" data-target="fs-1"></span>
+  <span class="fp-dot" data-target="fs-2"></span>
+  <span class="fp-dot" data-target="fs-3"></span>
+  <span class="fp-dot" data-target="fs-4"></span>
+  <span class="fp-dot" data-target="fs-5"></span>
+  <span class="fp-dot" data-target="fs-6"></span>
+</div>
+
+<section class="feature-showcase" aria-label="Feature Showcase">
+
+  <!-- 01 — Live Energy Dashboard -->
+  <div class="feature-row" id="fs-1">
+    <div class="feature-screenshot reveal-left">
+      <div class="feature-browser">
+        <div class="feature-browser-bar"><span></span><span></span><span></span><small>PowerEMS — Dashboard</small></div>
+        <picture>
+          <source srcset="/assets/images/ems/dashboard.webp" type="image/webp">
+          <img src="/assets/images/ems/dashboard.jpg" alt="Power EmS live energy dashboard showing bill, consumption, demand and power factor" loading="lazy">
+        </picture>
+      </div>
     </div>
-    <div class="grid grid-2">
-      <div class="card reveal" style="border-left:3px solid var(--amber);">
-        <h3>&#128202; Live Energy Dashboard</h3>
-        <p>Real-time view of energy consumption across meters. Track units, demand and costs at a glance with an always-current dashboard.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--primary);">
-        <h3>&#128260; Smart Meter Insights</h3>
-        <p>Deep insights from smart meter data — usage patterns, load profiles and trends that help you understand exactly where energy goes.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--green);">
-        <h3>&#10003; Bill Accuracy Checks</h3>
-        <p>Verify utility bills against your own meter readings. Detect overbilling, billing errors and discrepancies before you pay.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--purple);">
-        <h3>&#128737;&#65039; Power Quality Monitoring</h3>
-        <p>Monitor voltage, current and power quality parameters. Spot sags, swells and harmonics that damage equipment and inflate bills.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--amber);">
-        <h3>&#128276; Anomaly Detection</h3>
-        <p>Automatic detection of unusual consumption, tampering and leakages. Get alerted the moment something looks wrong.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--primary);">
-        <h3>&#128227; System Alerts</h3>
-        <p>Timely notifications for abnormal readings, meter communication failures and threshold breaches — so nothing slips through.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--green);">
-        <h3>&#128221; Meter Management</h3>
-        <p>Register, organise and manage multiple meters from one place. Map meters to locations, consumers and tariff categories.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--purple);">
-        <h3>&#9998;&#65039; Manual &amp; Smart Entry</h3>
-        <p>Add readings manually or pull them from smart meters automatically. Flexible entry keeps data flowing even offline.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--amber);">
-        <h3>&#128200; Analysis &amp; Reports</h3>
-        <p>Compare consumption across months, meters and consumers. Export reports for audits, submissions and decision-making.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--primary);">
-        <h3>&#9889; Energy Analytics</h3>
-        <p>Consumption analysis by period, tariff and category. Spot seasonal trends and optimise when and how you use energy.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--green);">
-        <h3>&#127758; Local-Ready</h3>
-        <p>Built for Indian consumers and businesses — supports Indian tariffs, billing cycles and utility billing formats.</p>
-      </div>
-      <div class="card reveal" style="border-left:3px solid var(--purple);">
-        <h3>&#128274; Secure by Design</h3>
-        <p>Row-Level Security on all data, safe authentication and role-based access — your energy data stays private.</p>
+    <div class="feature-content reveal-right">
+      <span class="feature-num">01</span>
+      <h3 class="feature-title">Live Energy Dashboard</h3>
+      <p class="feature-desc">Real-time view of energy consumption across all meters. Track estimated monthly bill, total consumption, maximum demand and power factor — everything at a glance, always current.</p>
+      <div class="feature-callout" style="border-left-color:var(--amber);">
+        <div class="fc-stat"><span class="fc-val" style="color:var(--amber);">&#8377;1,18,492</span><span class="fc-label">Est. Monthly Bill</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--primary);">2143 kWh</span><span class="fc-label">Total Consumption</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--green);">PF 1.000</span><span class="fc-label">Rebate earned</span></div>
       </div>
     </div>
   </div>
+
+  <!-- 02 — Smart Meter Insights -->
+  <div class="feature-row reverse" id="fs-2">
+    <div class="feature-content reveal-left">
+      <span class="feature-num">02</span>
+      <h3 class="feature-title">Smart Meter Insights</h3>
+      <p class="feature-desc">AI-powered analysis that tells you what your numbers actually mean — which bill component is largest, whether your tariff category is right, and how much you can save by improving power factor.</p>
+      <div class="feature-callout" style="border-left-color:var(--primary);">
+        <div class="fc-stat"><span class="fc-val" style="color:var(--primary);">55%</span><span class="fc-label">Energy charges share of bill</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--amber);">&#8377;15.41/kWh</span><span class="fc-label">Average unit cost</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--green);">&#8377;2,501/mo</span><span class="fc-label">PF rebate savings</span></div>
+      </div>
+    </div>
+    <div class="feature-screenshot reveal-right">
+      <div class="feature-browser">
+        <div class="feature-browser-bar"><span></span><span></span><span></span><small>PowerEMS — Smart Insights</small></div>
+        <picture>
+          <source srcset="/assets/images/ems/smart-meter-insight.webp" type="image/webp">
+          <img src="/assets/images/ems/smart-meter-insight.jpg" alt="Power EmS smart insights showing energy charges breakdown and recommendations" loading="lazy">
+        </picture>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 — Bill Accuracy Checks -->
+  <div class="feature-row" id="fs-3">
+    <div class="feature-screenshot reveal-left">
+      <div class="feature-browser">
+        <div class="feature-browser-bar"><span></span><span></span><span></span><small>PowerEMS — Bill Accuracy</small></div>
+        <picture>
+          <source srcset="/assets/images/ems/bill-accuracy.webp" type="image/webp">
+          <img src="/assets/images/ems/bill-accuracy.jpg" alt="Power EmS bill accuracy check comparing estimated vs actual utility bill" loading="lazy">
+        </picture>
+      </div>
+    </div>
+    <div class="feature-content reveal-right">
+      <span class="feature-num">03</span>
+      <h3 class="feature-title">Bill Accuracy Checks</h3>
+      <p class="feature-desc">Verify your utility bill against your own meter readings before you pay. Compare estimated vs actual amounts, track reading history and detect overbilling or billing errors instantly.</p>
+      <div class="feature-callout" style="border-left-color:var(--green);">
+        <div class="fc-stat"><span class="fc-val" style="color:var(--green);">27</span><span class="fc-label">Readings tracked</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--amber);">&#8377;1,52,131</span><span class="fc-label">Jul estimated bill</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--primary);">vs Actual</span><span class="fc-label">Side-by-side comparison</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 — Anomaly Detection -->
+  <div class="feature-row reverse" id="fs-4">
+    <div class="feature-content reveal-left">
+      <span class="feature-num">04</span>
+      <h3 class="feature-title">Anomaly Detection</h3>
+      <p class="feature-desc">Automatic detection of unusual consumption patterns — spikes, dips and deviations from normal. Get alerted the moment something looks wrong, with a full bill breakdown to investigate.</p>
+      <div class="feature-callout" style="border-left-color:var(--rose);">
+        <div class="fc-stat"><span class="fc-val" style="color:var(--rose);">741% &#8593;</span><span class="fc-label">Jul 2026 — spike detected</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--primary);">88% &#8595;</span><span class="fc-label">Aug 2026 — dip detected</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--amber);">&#8377;2,77,664</span><span class="fc-label">Net bill with full breakdown</span></div>
+      </div>
+    </div>
+    <div class="feature-screenshot reveal-right">
+      <div class="feature-browser">
+        <div class="feature-browser-bar"><span></span><span></span><span></span><small>PowerEMS — Anomaly Detection</small></div>
+        <picture>
+          <source srcset="/assets/images/ems/anomaly.webp" type="image/webp">
+          <img src="/assets/images/ems/anomaly.jpg" alt="Power EmS anomaly detection showing spike and dip alerts with bill analysis" loading="lazy">
+        </picture>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 — Power Quality Monitoring -->
+  <div class="feature-row" id="fs-5">
+    <div class="feature-screenshot reveal-left">
+      <div class="feature-browser">
+        <div class="feature-browser-bar"><span></span><span></span><span></span><small>PowerEMS — Power Quality</small></div>
+        <picture>
+          <source srcset="/assets/images/ems/power-quality.webp" type="image/webp">
+          <img src="/assets/images/ems/power-quality.jpg" alt="Power EmS power quality trends showing power factor and load factor over time" loading="lazy">
+        </picture>
+      </div>
+    </div>
+    <div class="feature-content reveal-right">
+      <span class="feature-num">05</span>
+      <h3 class="feature-title">Power Quality Monitoring</h3>
+      <p class="feature-desc">Track power factor, load factor and quality parameters over time. Spot sags, swells and inefficiencies that damage equipment and inflate bills — and earn rebates by keeping PF high.</p>
+      <div class="feature-callout" style="border-left-color:var(--purple);">
+        <div class="fc-stat"><span class="fc-val" style="color:var(--purple);">PF 0.9</span><span class="fc-label">Power factor tracked</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--green);">&#8377;2,501</span><span class="fc-label">Rebate earned monthly</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--amber);">27 readings</span><span class="fc-label">History with edit/delete</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 — Meter Management -->
+  <div class="feature-row reverse" id="fs-6">
+    <div class="feature-content reveal-left">
+      <span class="feature-num">06</span>
+      <h3 class="feature-title">Meter Management</h3>
+      <p class="feature-desc">Register, organise and manage multiple meters from one place. Map meters to sites, set contract demand, configure multiplier factors and track location — all with search and edit.</p>
+      <div class="feature-callout" style="border-left-color:var(--primary);">
+        <div class="fc-stat"><span class="fc-val" style="color:var(--primary);">200 kVA</span><span class="fc-label">Contract demand</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--amber);">MF 5.00</span><span class="fc-label">Multiplier factor</span></div>
+        <div class="fc-stat"><span class="fc-val" style="color:var(--green);">Main Site</span><span class="fc-label">Location mapping</span></div>
+      </div>
+    </div>
+    <div class="feature-screenshot reveal-right">
+      <div class="feature-browser">
+        <div class="feature-browser-bar"><span></span><span></span><span></span><small>PowerEMS — Meter Management</small></div>
+        <picture>
+          <source srcset="/assets/images/ems/meter-management.webp" type="image/webp">
+          <img src="/assets/images/ems/meter-management.jpg" alt="Power EmS meter management screen showing configured meters with contract details" loading="lazy">
+        </picture>
+      </div>
+    </div>
+  </div>
+
 </section>
 
-<section class="section alt">
+<!-- More Features — smaller grid -->
+<section class="section" style="padding:48px 0;">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Screenshots</span>
-      <h2>&#128248; See Power EmS in action</h2>
-      <p>Real screens from the app — dashboards, meter management, bill verification and more.</p>
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow"><span class="dot"></span>And more</span>
+      <h2>Everything else Power EmS offers</h2>
     </div>
-    <div class="grid grid-3 reveal">
-      <a href="/assets/images/ems/login.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/login.webp" type="image/webp">
-<img src="/assets/images/ems/login.jpg" alt="Power EmS login screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/dashboard.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/dashboard.webp" type="image/webp">
-<img src="/assets/images/ems/dashboard.jpg" alt="Power EmS live energy dashboard with consumption charts" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/dashboard-july.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/dashboard-july.webp" type="image/webp">
-<img src="/assets/images/ems/dashboard-july.jpg" alt="Power EmS July energy dashboard showing monthly usage" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/meter-management.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/meter-management.webp" type="image/webp">
-<img src="/assets/images/ems/meter-management.jpg" alt="Power EmS meter management screen listing all meters" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/entry.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/entry.webp" type="image/webp">
-<img src="/assets/images/ems/entry.jpg" alt="Power EmS meter reading entry screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/bill-accuracy.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/bill-accuracy.webp" type="image/webp">
-<img src="/assets/images/ems/bill-accuracy.jpg" alt="Power EmS bill accuracy verification screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/smart-meter-insight.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/smart-meter-insight.webp" type="image/webp">
-<img src="/assets/images/ems/smart-meter-insight.jpg" alt="Power EmS smart meter insights and usage analysis" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/analysis.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/analysis.webp" type="image/webp">
-<img src="/assets/images/ems/analysis.jpg" alt="Power EmS energy consumption analysis screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/power-quality.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/power-quality.webp" type="image/webp">
-<img src="/assets/images/ems/power-quality.jpg" alt="Power EmS power quality monitoring screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/anomaly.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/anomaly.webp" type="image/webp">
-<img src="/assets/images/ems/anomaly.jpg" alt="Power EmS anomaly detection screen highlighting unusual usage" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/system-alert.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/system-alert.webp" type="image/webp">
-<img src="/assets/images/ems/system-alert.jpg" alt="Power EmS system alerts screen with notifications" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/reports.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/reports.webp" type="image/webp">
-<img src="/assets/images/ems/reports.jpg" alt="Power EmS energy reports screen with export options" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
-      <a href="/assets/images/ems/settings.jpg" target="_blank"><picture>
-<source srcset="/assets/images/ems/settings.webp" type="image/webp">
-<img src="/assets/images/ems/settings.jpg" alt="Power EmS settings screen" style="width:100%;border-radius:12px;border:1px solid var(--line-strong);" loading="lazy">
-</picture></a>
+    <div class="grid grid-3" style="gap:16px;">
+      <div class="card reveal" style="border-left:3px solid var(--amber);padding:20px;">
+        <h4 style="font-size:0.95rem;">&#9998;&#65039; Manual &amp; Smart Entry</h4>
+        <p style="font-size:0.85rem;color:var(--ink-soft);">Add readings manually or pull from smart meters automatically — data flows even offline.</p>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--primary);padding:20px;">
+        <h4 style="font-size:0.95rem;">&#128221; Analysis &amp; Reports</h4>
+        <p style="font-size:0.85rem;color:var(--ink-soft);">Compare consumption across months, meters and consumers. Export for audits.</p>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--green);padding:20px;">
+        <h4 style="font-size:0.95rem;">&#128227; System Alerts</h4>
+        <p style="font-size:0.85rem;color:var(--ink-soft);">Timely notifications for abnormal readings, meter failures and threshold breaches.</p>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--purple);padding:20px;">
+        <h4 style="font-size:0.95rem;">&#9889; Energy Analytics</h4>
+        <p style="font-size:0.85rem;color:var(--ink-soft);">Consumption by period, tariff and category. Spot seasonal trends.</p>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--amber);padding:20px;">
+        <h4 style="font-size:0.95rem;">&#127758; Local-Ready</h4>
+        <p style="font-size:0.85rem;color:var(--ink-soft);">Built for Indian tariffs, billing cycles and utility billing formats.</p>
+      </div>
+      <div class="card reveal" style="border-left:3px solid var(--primary);padding:20px;">
+        <h4 style="font-size:0.95rem;">&#128274; Secure by Design</h4>
+        <p style="font-size:0.85rem;color:var(--ink-soft);">Row-Level Security, safe auth and role-based access — your data stays private.</p>
+      </div>
     </div>
   </div>
 </section>
