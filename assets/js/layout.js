@@ -74,6 +74,8 @@
     '</div>' +
     '</div>' +
 
+    '<a href="/partner/" role="menuitem" data-page="/partner/">Partner Program</a>' +
+
     '<div class="nav-drop" data-pages="/privacy/ /terms/ /refund-policy/ /grievance-redressal/">' +
     dd('company', 'Company') +
     '<div class="nav-panel" data-panel="company">' +
@@ -131,6 +133,7 @@
     '<li><a href="/vision/">Vision 2030</a></li>' +
     '<li><a href="/pricing/">Pricing</a></li>' +
     '<li><a href="/#contact-form">Contact</a></li>' +
+    '<li><a href="/partner/">Partner Program</a></li>' +
     '</ul></div>' +
     '<div class="footer-col"><h4>Resources &amp; Legal</h4><ul>' +
     '<li><a href="/downloads/">Download Center</a></li>' +
