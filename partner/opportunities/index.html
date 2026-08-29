@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>My Opportunities — Brilliants Partner Portal</title>
+<meta name="description" content="View and manage your opportunities on the Brilliants Partner Portal.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}.btn-danger{background:linear-gradient(135deg,var(--rose),#BE123C);color:#fff;box-shadow:0 4px 16px rgba(225,29,72,0.3)}.btn-danger:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(225,29,72,0.4)}.btn-sm{padding:8px 16px;font-size:.85rem}
+
+.dash-wrap{display:flex;min-height:100vh;padding-top:var(--nav-h)}
+
+.dash-sidebar{position:fixed;top:var(--nav-h);left:0;bottom:0;width:260px;background:var(--surface);border-right:1px solid var(--line);z-index:900;display:flex;flex-direction:column;transition:transform .3s var(--transition);overflow-y:auto}
+.dash-sidebar-inner{padding:24px 0;flex:1;display:flex;flex-direction:column}
+.dash-sidebar .sidebar-section{padding:0 16px;margin-bottom:8px}
+.dash-sidebar .sidebar-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);padding:8px 16px;margin-bottom:4px}
+.dash-nav-link{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:var(--radius-sm);font-size:.9rem;font-weight:500;color:var(--ink-soft);transition:all .2s var(--transition);cursor:pointer;text-decoration:none;margin:1px 16px}
+.dash-nav-link:hover{background:var(--primary-tint);color:var(--primary);font-weight:600}
+.dash-nav-link.active{background:var(--primary-tint);color:var(--primary);font-weight:600;position:relative}
+.dash-nav-link.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:24px;background:var(--primary);border-radius:0 4px 4px 0}
+.dash-nav-link .nav-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+
+.sidebar-partner-info{padding:16px;margin:0 16px 16px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--line)}
+.sidebar-partner-info .spi-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:4px}
+.sidebar-partner-info .spi-name{font-size:.95rem;font-weight:700;color:var(--ink);line-height:1.3}
+.sidebar-partner-info .spi-id{font-size:.8rem;color:var(--ink-faint);font-family:var(--font-mono)}
+
+.dash-main{flex:1;margin-left:260px;padding:32px;min-height:calc(100vh - var(--nav-h))}
+
+.dash-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.dash-topbar h1{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:var(--ink)}
+.dash-topbar .topbar-right{display:flex;align-items:center;gap:12px}
+.dash-topbar .partner-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:100px;font-size:.85rem;font-weight:600;color:var(--ink-soft)}
+.dash-topbar .partner-badge .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+.dash-loading{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity .3s var(--transition)}
+.dash-loading.hidden{opacity:0;pointer-events:none}
+.dash-spinner{width:40px;height:40px;border:3.5px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dash-loading p{font-size:.95rem;color:var(--ink-soft);font-weight:500}
+
+.dash-error{display:none;padding:20px;background:var(--rose-tint);border:1px solid var(--rose);border-radius:var(--radius);color:var(--rose);font-size:.92rem;font-weight:500;text-align:center;animation:shakeError .4s ease-out}
+@keyframes shakeError{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+.sidebar-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:1.2rem;color:var(--ink);transition:all .2s var(--transition)}
+.sidebar-toggle:hover{background:var(--surface-2)}
+
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:899;opacity:0;transition:opacity .3s var(--transition)}
+.sidebar-overlay.active{display:block;opacity:1}
+
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-bottom:28px}
+.stat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center;transition:all .2s var(--transition)}
+.stat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.stat-card .stat-icon{font-size:1.6rem;margin-bottom:8px}
+.stat-card .stat-value{font-family:var(--font-display);font-weight:800;font-size:1.5rem;color:var(--ink);line-height:1.2}
+.stat-card .stat-label{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-top:4px}
+.stat-card.stat-total .stat-value{color:var(--primary)}
+.stat-card.stat-open .stat-value{color:var(--primary)}
+.stat-card.stat-proposal .stat-value{color:var(--purple)}
+.stat-card.stat-negotiation .stat-value{color:var(--amber)}
+.stat-card.stat-won .stat-value{color:var(--green)}
+.stat-card.stat-lost .stat-value{color:var(--rose)}
+
+.filter-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.filter-bar .search-box{position:relative;flex:1;min-width:220px}
+.filter-bar .search-box input{width:100%;padding:10px 14px 10px 38px;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-size:.88rem;font-family:var(--font-body);color:var(--ink);background:var(--surface);transition:border-color .2s var(--transition)}
+.filter-bar .search-box input:focus{outline:none;border-color:var(--primary)}
+.filter-bar .search-box .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-size:.95rem}
+.filter-bar select{padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-size:.88rem;font-family:var(--font-body);color:var(--ink);background:var(--surface);cursor:pointer;min-width:160px}
+.filter-bar select:focus{outline:none;border-color:var(--primary)}
+
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.page-header h2{font-family:var(--font-display);font-weight:700;font-size:1.25rem}
+.table-wrapper{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--surface-2)}
+th{padding:14px 16px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:14px 16px;font-size:.88rem;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface-2)}
+.table-id{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-faint)}
+.table-name{font-weight:600;color:var(--ink)}
+.table-value{font-weight:600;color:var(--ink);white-space:nowrap}
+.table-date{font-size:.82rem;color:var(--ink-faint);white-space:nowrap}
+
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.status-badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.status-open{background:#EFF6FF;color:#1D4ED8}.status-open::before{background:#2563EB}
+.status-proposal{background:#F5F3FF;color:#6D28D9}.status-proposal::before{background:#7C3AED}
+.status-negotiation{background:#FFFBEB;color:#B45309}.status-negotiation::before{background:#F59E0B}
+.status-won{background:#ECFDF5;color:#047857}.status-won::before{background:#10B981}
+.status-lost{background:#FFF1F2;color:#BE123C}.status-lost::before{background:#E11D48}
+
+.empty-state{text-align:center;padding:60px 20px}
+.empty-state-icon{font-size:3rem;margin-bottom:16px;opacity:.4}
+.empty-state h3{font-size:1.1rem;margin-bottom:6px;color:var(--ink)}
+.empty-state p{font-size:.92rem;color:var(--ink-faint)}
+
+.loading-state{text-align:center;padding:60px 20px}
+.loading-spinner{width:40px;height:40px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+
+@media(max-width:1200px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){
+  .dash-sidebar{transform:translateX(-100%)}
+  .dash-sidebar.open{transform:translateX(0);box-shadow:var(--shadow-xl)}
+  .dash-main{margin-left:0;padding:24px 16px}
+  .sidebar-toggle{display:flex}
+  .sidebar-overlay.active{display:block}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .dash-topbar h1{font-size:1.3rem}
+  .page-header{flex-direction:column;align-items:stretch}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .filter-bar{flex-direction:column}
+  .filter-bar .search-box{min-width:100%}
+  .filter-bar select{width:100%}
+
+  table,thead,tbody,th,td,tr{display:block}
+  thead{display:none}
+  .table-wrapper{background:transparent;border:none}
+  .table-scroll{overflow:visible}
+  .table-wrapper tr{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+  .table-wrapper td{padding:6px 0;border:none;display:flex;justify-content:space-between;align-items:center;font-size:.85rem}
+  .table-wrapper td::before{content:attr(data-label);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);min-width:100px}
+}
+@media(max-width:480px){
+  .dash-topbar h1{font-size:1.15rem}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-card .stat-value{font-size:1.2rem}
+}</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+<script src="/partner/js/supabase-config.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var session = SupabaseClient.getSession();
+  if (!session || !session.access_token) {
+    window.location.href = '/partner/login/';
+    return;
+  }
+
+  var partnerProfile = null;
+  var allOpportunities = [];
+
+  fetchPartnerProfile(session.access_token)
+    .then(function(profile) {
+      if (!profile) {
+        showError('No partner profile found. Please contact support.');
+        return;
+      }
+      partnerProfile = profile;
+      renderSidebar(profile);
+      loadOpportunities(session.access_token, profile);
+    })
+    .catch(function() {
+      showError('Failed to load partner data. Please try again later.');
+    });
+
+  function fetchPartnerProfile(token) {
+    return SupabaseClient.select(
+      'partners',
+      'user_id,partner_id,partner_name,email,status,capability',
+      token
+    ).then(function(data) {
+      if (data && data.length > 0) {
+        return data[0];
+      }
+      return null;
+    });
+  }
+
+  function showError(msg) {
+    var el = document.getElementById('dash-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+    hideLoading();
+  }
+
+  function hideLoading() {
+    var el = document.getElementById('dash-loading');
+    el.classList.add('hidden');
+    setTimeout(function(){ el.style.display = 'none'; }, 300);
+  }
+
+  function renderSidebar(profile) {
+    document.getElementById('sidebar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('sidebar-partner-id').textContent = profile.partner_id || '';
+    document.getElementById('topbar-partner-name').textContent = profile.partner_name || 'Partner';
+    hideLoading();
+  }
+
+  function loadOpportunities(token, profile) {
+    var tbody = document.getElementById('oppBody');
+    var loading = document.getElementById('tableLoading');
+    var empty = document.getElementById('emptyState');
+
+    tbody.innerHTML = '';
+    loading.style.display = 'block';
+    empty.style.display = 'none';
+
+    SupabaseClient.from('opportunities')
+      .select('*')
+      .eq('partner_id', profile.partner_id)
+      .order('created_at', { ascending: false })
+      .then(function(result) {
+        loading.style.display = 'none';
+        if (result.error) {
+          showToast('Failed to load opportunities: ' + result.error.message, 'error');
+          return;
+        }
+
+        allOpportunities = result.data || [];
+        updateStats(allOpportunities);
+        renderTable(allOpportunities);
+      }).catch(function(err) {
+        loading.style.display = 'none';
+        showToast('Error loading opportunities', 'error');
+        console.error(err);
+      });
+  }
+
+  function updateStats(data) {
+    var total = data.length;
+    var open = 0, proposal = 0, negotiation = 0, won = 0, lost = 0;
+    for (var i = 0; i < data.length; i++) {
+      var s = (data[i].status || '').toUpperCase();
+      if (s === 'OPEN') open++;
+      else if (s === 'PROPOSAL') proposal++;
+      else if (s === 'NEGOTIATION') negotiation++;
+      else if (s === 'WON') won++;
+      else if (s === 'LOST') lost++;
+    }
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statOpen').textContent = open;
+    document.getElementById('statProposal').textContent = proposal;
+    document.getElementById('statNegotiation').textContent = negotiation;
+    document.getElementById('statWon').textContent = won;
+    document.getElementById('statLost').textContent = lost;
+  }
+
+  function renderTable(data) {
+    var tbody = document.getElementById('oppBody');
+    var empty = document.getElementById('emptyState');
+    tbody.innerHTML = '';
+
+    if (data.length === 0) {
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    for (var i = 0; i < data.length; i++) {
+      var opp = data[i];
+      var tr = document.createElement('tr');
+
+      var shortId = opp.opportunity_id ? opp.opportunity_id.substring(0, 8) : 'N/A';
+      var status = (opp.status || 'OPEN').toUpperCase();
+      var statusClass = getStatusClass(status);
+      var statusLabel = status.charAt(0) + status.slice(1).toLowerCase();
+      var date = opp.created_at ? new Date(opp.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
+      var customerName = opp.customer_name || 'N/A';
+      var product = opp.product || 'N/A';
+      var value = opp.estimated_value ? formatCurrency(opp.estimated_value) : 'N/A';
+
+      tr.innerHTML =
+        '<td data-label="Opportunity ID"><span class="table-id">' + escHtml(shortId) + '</span></td>' +
+        '<td data-label="Customer"><span class="table-name">' + escHtml(customerName) + '</span></td>' +
+        '<td data-label="Product"><span style="font-size:.85rem;">' + escHtml(product) + '</span></td>' +
+        '<td data-label="Value"><span class="table-value">' + value + '</span></td>' +
+        '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></td>' +
+        '<td data-label="Created"><span class="table-date">' + date + '</span></td>';
+
+      tbody.appendChild(tr);
+    }
+  }
+
+  function getStatusClass(status) {
+    var map = {
+      'OPEN': 'status-open',
+      'PROPOSAL': 'status-proposal',
+      'NEGOTIATION': 'status-negotiation',
+      'WON': 'status-won',
+      'LOST': 'status-lost'
+    };
+    return map[status] || 'status-open';
+  }
+
+  function formatCurrency(val) {
+    var num = parseFloat(val);
+    if (isNaN(num)) return val;
+    if (num >= 10000000) return '\u20B9' + (num / 10000000).toFixed(1) + ' Cr';
+    if (num >= 100000) return '\u20B9' + (num / 100000).toFixed(1) + ' L';
+    return '\u20B9' + num.toLocaleString('en-IN');
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function showToast(message, type) {
+    type = type || 'info';
+    var container = document.getElementById('toastContainer');
+    if (!container) return;
+    var toast = document.createElement('div');
+    toast.className = 'toast ' + type;
+    var icons = { success: '&#10003;', error: '&#10007;', info: '&#8505;' };
+    toast.innerHTML = '<span class="toast-icon">' + (icons[type] || icons.info) + '</span><span>' + message + '</span>';
+    container.appendChild(toast);
+    setTimeout(function() {
+      toast.classList.add('removing');
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 4000);
+  }
+
+  var searchInput = document.getElementById('searchInput');
+  var statusFilter = document.getElementById('statusFilter');
+
+  function applyFilters() {
+    var query = (searchInput.value || '').toLowerCase().trim();
+    var status = statusFilter.value.toUpperCase();
+    var filtered = [];
+
+    for (var i = 0; i < allOpportunities.length; i++) {
+      var opp = allOpportunities[i];
+      var matchSearch = !query || (opp.customer_name || '').toLowerCase().indexOf(query) !== -1;
+      var matchStatus = !status || (opp.status || '').toUpperCase() === status;
+      if (matchSearch && matchStatus) {
+        filtered.push(opp);
+      }
+    }
+
+    renderTable(filtered);
+    updateStats(filtered);
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+  statusFilter.addEventListener('change', applyFilters);
+
+  var sidebarToggle = document.getElementById('sidebar-toggle');
+  var sidebar = document.getElementById('dash-sidebar');
+  var overlay = document.getElementById('sidebar-overlay');
+
+  sidebarToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  });
+
+  overlay.addEventListener('click', function() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  });
+
+  document.getElementById('btn-logout').addEventListener('click', function(e) {
+    e.preventDefault();
+    SupabaseClient.clearSession();
+    window.location.href = '/partner/login/';
+  });
+
+  var currentPath = window.location.pathname;
+  document.querySelectorAll('.dash-nav-link').forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href && currentPath.indexOf(href) !== -1 && href !== '/partner/dashboard/') {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<div id="dash-loading" class="dash-loading">
+  <div class="dash-spinner"></div>
+  <p>Loading opportunities...</p>
+</div>
+
+<div id="dash-error" class="dash-error" style="position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:10001;max-width:500px;width:calc(100% - 40px);"></div>
+
+<div id="nav-placeholder"></div>
+
+<div class="dash-wrap">
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <aside id="dash-sidebar" class="dash-sidebar">
+    <div class="dash-sidebar-inner">
+      <div class="sidebar-partner-info">
+        <div class="spi-label">Logged in as</div>
+        <div id="sidebar-partner-name" class="spi-name">Loading...</div>
+        <div id="sidebar-partner-id" class="spi-id"></div>
+      </div>
+
+      <nav aria-label="Partner navigation">
+        <a href="/partner/dashboard/" class="dash-nav-link">
+          <span class="nav-icon">&#127968;</span>
+          Dashboard
+        </a>
+        <a href="/partner/profile/" class="dash-nav-link">
+          <span class="nav-icon">&#128100;</span>
+          My Profile
+        </a>
+        <a href="/partner/leads/new/" class="dash-nav-link">
+          <span class="nav-icon">&#128204;</span>
+          Register Lead
+        </a>
+        <a href="/partner/leads/" class="dash-nav-link">
+          <span class="nav-icon">&#128203;</span>
+          My Leads
+        </a>
+        <a href="/partner/opportunities/" class="dash-nav-link active">
+          <span class="nav-icon">&#128188;</span>
+          My Opportunities
+        </a>
+        <a href="/partner/commissions/" class="dash-nav-link">
+          <span class="nav-icon">&#128176;</span>
+          Commissions
+        </a>
+        <a href="/partner/renewals/" class="dash-nav-link">
+          <span class="nav-icon">&#128260;</span>
+          Renewals
+        </a>
+        <a href="/partner/agreement/" class="dash-nav-link">
+          <span class="nav-icon">&#128221;</span>
+          Agreement
+        </a>
+        <a href="/partner/resources/" class="dash-nav-link">
+          <span class="nav-icon">&#128218;</span>
+          Resources
+        </a>
+      </nav>
+
+      <div style="margin-top:auto;padding:16px;">
+        <a href="#" id="btn-logout" class="btn btn-danger btn-sm" style="width:100%;justify-content:center;font-size:.85rem;padding:10px 16px;">
+          &#128682; Logout
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main-content" class="dash-main">
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+          &#9776;
+        </button>
+        <h1>My Opportunities</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="partner-badge">
+          <span class="badge-dot"></span>
+          <span id="topbar-partner-name">Partner</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card stat-total">
+        <div class="stat-icon">&#128200;</div>
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stat-card stat-open">
+        <div class="stat-icon">&#128194;</div>
+        <div class="stat-value" id="statOpen">0</div>
+        <div class="stat-label">Open</div>
+      </div>
+      <div class="stat-card stat-proposal">
+        <div class="stat-icon">&#128196;</div>
+        <div class="stat-value" id="statProposal">0</div>
+        <div class="stat-label">Proposal</div>
+      </div>
+      <div class="stat-card stat-negotiation">
+        <div class="stat-icon">&#128172;</div>
+        <div class="stat-value" id="statNegotiation">0</div>
+        <div class="stat-label">Negotiation</div>
+      </div>
+      <div class="stat-card stat-won">
+        <div class="stat-icon">&#127942;</div>
+        <div class="stat-value" id="statWon">0</div>
+        <div class="stat-label">Won</div>
+      </div>
+      <div class="stat-card stat-lost">
+        <div class="stat-icon">&#128148;</div>
+        <div class="stat-value" id="statLost">0</div>
+        <div class="stat-label">Lost</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="search-box">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="searchInput" placeholder="Search by customer name...">
+      </div>
+      <select id="statusFilter">
+        <option value="">All Statuses</option>
+        <option value="OPEN">Open</option>
+        <option value="PROPOSAL">Proposal</option>
+        <option value="NEGOTIATION">Negotiation</option>
+        <option value="WON">Won</option>
+        <option value="LOST">Lost</option>
+      </select>
+    </div>
+
+    <div class="page-header">
+      <h2>All Opportunities</h2>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-scroll">
+        <table id="oppTable">
+          <thead>
+            <tr>
+              <th>Opportunity ID</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Value</th>
+              <th>Status</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody id="oppBody">
+          </tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-state" style="display:none">
+        <div class="empty-state-icon">&#128188;</div>
+        <h3>No opportunities yet</h3>
+        <p>Opportunities will appear here once your leads progress.</p>
+      </div>
+      <div id="tableLoading" class="loading-state" style="display:none">
+        <div class="loading-spinner"></div>
+        <p style="color:var(--ink-faint);font-size:.88rem;">Loading opportunities...</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<a href="https://wa.me/919999999999" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:999;transition:transform .2s var(--transition);text-decoration:none;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">&#128172;</a>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:90px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-md);display:none;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;z-index:999;transition:all .2s var(--transition);color:var(--ink);" onmouseover="this.style.background='var(--primary-tint)'" onmouseout="this.style.background='var(--surface)'">&#9650;</button>
+
+<div class="toast-container" id="toastContainer" style="position:fixed;top:80px;right:20px;z-index:3000;display:flex;flex-direction:column;gap:8px"></div>
+
+<style>
+.toast{padding:14px 20px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:500;animation:toastIn .3s var(--transition);max-width:380px}
+.toast.success{border-left:4px solid var(--green)}.toast.success .toast-icon{color:var(--green)}
+.toast.error{border-left:4px solid var(--rose)}.toast.error .toast-icon{color:var(--rose)}
+.toast.info{border-left:4px solid var(--primary)}.toast.info .toast-icon{color:var(--primary)}
+.toast-icon{font-size:1.2rem;flex-shrink:0}
+.toast.removing{animation:toastOut .3s var(--transition) forwards}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
+</style>
+
+<script>
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('backToTop');
+  if (window.scrollY > 400) {
+    btn.style.display = 'flex';
+  } else {
+    btn.style.display = 'none';
+  }
+});
+</script>
+
+</body>
+</html>

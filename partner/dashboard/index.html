@@ -212,9 +212,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function loadStats(token, profile) {
-    var userId = profile.user_id;
+    var partnerId = profile.partner_id;
 
-    SupabaseClient.select('partner_leads', 'id', token)
+    SupabaseClient.select('partner_leads', 'id&partner_id=eq.' + encodeURIComponent(partnerId), token)
       .then(function(data) {
         var count = data && !data.error ? data.length : 0;
         document.getElementById('stat-leads').textContent = count;
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     SupabaseClient.select(
       'opportunities',
-      'id',
+      'id,status&partner_id=eq.' + encodeURIComponent(partnerId),
       token
     ).then(function(data) {
       var active = 0, won = 0;
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('stat-won').textContent = '0';
     });
 
-    SupabaseClient.select('commissions', 'id,status', token)
+    SupabaseClient.select('commissions', 'id,status&partner_id=eq.' + encodeURIComponent(partnerId), token)
       .then(function(data) {
         var pending = 0, paid = 0;
         if (data && !data.error) {
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="nav-icon">&#128203;</span>
           My Leads
         </a>
-        <a href="/partner/dashboard/#opportunities" class="dash-nav-link">
+        <a href="/partner/opportunities/" class="dash-nav-link">
           <span class="nav-icon">&#128188;</span>
           Opportunities
         </a>
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <p>Submit a new customer lead or referral.</p>
         </div>
       </a>
-      <a href="/partner/dashboard/#opportunities" class="qa-card">
+      <a href="/partner/opportunities/" class="qa-card">
         <div class="qa-icon" style="background:var(--purple-tint);color:var(--purple);">&#128188;</div>
         <div class="qa-text">
           <h4>View Opportunities</h4>

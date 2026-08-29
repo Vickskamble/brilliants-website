@@ -12,6 +12,7 @@ Disallow: /partner/commissions/
 Disallow: /partner/renewals/
 Disallow: /partner/agreement/
 Disallow: /partner/resources/
+Disallow: /partner/opportunities/
 Disallow: /partner/register/success.html
 Disallow: /admin/
 
