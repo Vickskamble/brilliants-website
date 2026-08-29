@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Partner Dashboard — Brilliants</title>
+<meta name="description" content="Manage your partner account, track leads, opportunities, and commissions on the Brilliants Partner Dashboard.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}.btn-danger{background:linear-gradient(135deg,var(--rose),#BE123C);color:#fff;box-shadow:0 4px 16px rgba(225,29,72,0.3)}.btn-danger:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(225,29,72,0.4)}.btn-sm{padding:8px 16px;font-size:.85rem}
+
+/* Dashboard Layout */
+.dash-wrap{display:flex;min-height:100vh;padding-top:var(--nav-h)}
+
+/* Sidebar */
+.dash-sidebar{position:fixed;top:var(--nav-h);left:0;bottom:0;width:260px;background:var(--surface);border-right:1px solid var(--line);z-index:900;display:flex;flex-direction:column;transition:transform .3s var(--transition);overflow-y:auto}
+.dash-sidebar-inner{padding:24px 0;flex:1;display:flex;flex-direction:column}
+.dash-sidebar .sidebar-section{padding:0 16px;margin-bottom:8px}
+.dash-sidebar .sidebar-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);padding:8px 16px;margin-bottom:4px}
+.dash-nav-link{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:var(--radius-sm);font-size:.9rem;font-weight:500;color:var(--ink-soft);transition:all .2s var(--transition);cursor:pointer;text-decoration:none;margin:1px 16px}
+.dash-nav-link:hover{background:var(--primary-tint);color:var(--primary);font-weight:600}
+.dash-nav-link.active{background:var(--primary-tint);color:var(--primary);font-weight:600;position:relative}
+.dash-nav-link.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:24px;background:var(--primary);border-radius:0 4px 4px 0}
+.dash-nav-link .nav-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+
+/* Sidebar partner info */
+.sidebar-partner-info{padding:16px;margin:0 16px 16px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--line)}
+.sidebar-partner-info .spi-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:4px}
+.sidebar-partner-info .spi-name{font-size:.95rem;font-weight:700;color:var(--ink);line-height:1.3}
+.sidebar-partner-info .spi-id{font-size:.8rem;color:var(--ink-faint);font-family:var(--font-mono)}
+
+/* Main content */
+.dash-main{flex:1;margin-left:260px;padding:32px;min-height:calc(100vh - var(--nav-h))}
+
+/* Top bar */
+.dash-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.dash-topbar h1{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:var(--ink)}
+.dash-topbar .topbar-right{display:flex;align-items:center;gap:12px}
+.dash-topbar .partner-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:100px;font-size:.85rem;font-weight:600;color:var(--ink-soft)}
+.dash-topbar .partner-badge .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+/* Info Cards Grid */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px}
+.info-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:all .3s var(--transition);position:relative;overflow:hidden}
+.info-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;transition:height .4s var(--transition)}
+.info-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:transparent}
+.info-card:hover::before{height:100%}
+.info-card.c-blue::before{background:var(--primary)}
+.info-card.c-green::before{background:var(--green)}
+.info-card.c-purple::before{background:var(--purple)}
+.info-card.c-amber::before{background:var(--amber)}
+.info-card .ic-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px;transition:transform .3s var(--transition)}
+.info-card:hover .ic-icon{transform:scale(1.15) rotate(-5deg)}
+.info-card .ic-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:4px}
+.info-card .ic-value{font-family:var(--font-display);font-weight:800;font-size:1.15rem;color:var(--ink);line-height:1.3;word-break:break-all}
+.info-card .ic-value .status-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:.78rem;font-weight:700;background:var(--green-tint);color:var(--green)}
+
+/* Stats Cards Grid */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.stat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:24px;text-align:center;transition:all .3s var(--transition);position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:3px;border-radius:2px;opacity:0;transition:opacity .3s var(--transition)}
+.stat-card:hover::after{opacity:1}
+.stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
+.stat-card.s-blue::after{background:linear-gradient(90deg,var(--primary),#4F46E5)}
+.stat-card.s-blue:hover{border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-glow)}
+.stat-card.s-green::after{background:linear-gradient(90deg,var(--green),#059669)}
+.stat-card.s-green:hover{border-color:var(--green);box-shadow:0 0 0 4px rgba(16,185,129,0.15)}
+.stat-card.s-purple::after{background:linear-gradient(90deg,var(--purple),#6D28D9)}
+.stat-card.s-purple:hover{border-color:var(--purple);box-shadow:0 0 0 4px rgba(124,58,237,0.15)}
+.stat-card.s-amber::after{background:linear-gradient(90deg,var(--amber),#D97706)}
+.stat-card.s-amber:hover{border-color:var(--amber);box-shadow:0 0 0 4px rgba(245,158,11,0.15)}
+.stat-card.s-rose::after{background:linear-gradient(90deg,var(--rose),#BE123C)}
+.stat-card.s-rose:hover{border-color:var(--rose);box-shadow:0 0 0 4px rgba(225,29,72,0.15)}
+.stat-card .sc-emoji{font-size:2rem;margin-bottom:8px;display:block}
+.stat-card .sc-count{font-family:var(--font-display);font-weight:800;font-size:2.2rem;line-height:1;margin-bottom:4px}
+.stat-card .sc-label{font-size:.82rem;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em}
+
+/* Quick Actions */
+.quick-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px}
+.qa-card{display:flex;align-items:center;gap:16px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);transition:all .3s var(--transition);cursor:pointer;text-decoration:none}
+.qa-card:hover{transform:translateX(4px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+.qa-card .qa-icon{width:48px;height:48px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;transition:transform .3s var(--transition)}
+.qa-card:hover .qa-icon{transform:scale(1.15) rotate(-5deg)}
+.qa-card .qa-text h4{font-size:.95rem;margin-bottom:2px}
+.qa-card .qa-text p{font-size:.85rem;color:var(--ink-soft)}
+
+/* Loading overlay */
+.dash-loading{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity .3s var(--transition)}
+.dash-loading.hidden{opacity:0;pointer-events:none}
+.dash-spinner{width:40px;height:40px;border:3.5px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dash-loading p{font-size:.95rem;color:var(--ink-soft);font-weight:500}
+
+/* Error state */
+.dash-error{display:none;padding:20px;background:var(--rose-tint);border:1px solid var(--rose);border-radius:var(--radius);color:var(--rose);font-size:.92rem;font-weight:500;text-align:center;animation:shakeError .4s ease-out}
+@keyframes shakeError{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+/* Hamburger */
+.sidebar-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:1.2rem;color:var(--ink);transition:all .2s var(--transition)}
+.sidebar-toggle:hover{background:var(--surface-2)}
+
+/* Overlay */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:899;opacity:0;transition:opacity .3s var(--transition)}
+.sidebar-overlay.active{display:block;opacity:1}
+
+/* Responsive */
+@media(max-width:900px){
+  .dash-sidebar{transform:translateX(-100%)}
+  .dash-sidebar.open{transform:translateX(0);box-shadow:var(--shadow-xl)}
+  .dash-main{margin-left:0;padding:24px 16px}
+  .sidebar-toggle{display:flex}
+  .sidebar-overlay.active{display:block}
+  .stats-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+}
+@media(max-width:480px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .info-grid{grid-template-columns:1fr}
+  .dash-topbar h1{font-size:1.3rem}
+  .quick-actions{grid-template-columns:1fr}
+}
+</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+<script src="/partner/js/supabase-config.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var session = SupabaseClient.getSession();
+  if (!session || !session.access_token) {
+    window.location.href = '/partner/login/';
+    return;
+  }
+
+  var partnerProfile = null;
+
+  fetchPartnerProfile(session.access_token)
+    .then(function(profile) {
+      if (!profile) {
+        showError('No partner profile found. Please contact support.');
+        return;
+      }
+      partnerProfile = profile;
+      renderDashboard(profile);
+      loadStats(session.access_token, profile);
+    })
+    .catch(function() {
+      showError('Failed to load partner data. Please try again later.');
+    });
+
+  function fetchPartnerProfile(token) {
+    return SupabaseClient.select(
+      'partners',
+      'user_id,partner_id,partner_name,email,phone,company,status,capability,revenue_share',
+      token
+    ).then(function(data) {
+      if (data && data.length > 0) {
+        return data[0];
+      }
+      return null;
+    });
+  }
+
+  function showError(msg) {
+    var el = document.getElementById('dash-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+    hideLoading();
+  }
+
+  function hideLoading() {
+    var el = document.getElementById('dash-loading');
+    el.classList.add('hidden');
+    setTimeout(function(){ el.style.display = 'none'; }, 300);
+  }
+
+  function renderDashboard(profile) {
+    document.getElementById('welcome-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('topbar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('sidebar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('sidebar-partner-id').textContent = profile.partner_id || '';
+    document.getElementById('info-partner-id').textContent = profile.partner_id || 'N/A';
+
+    var statusEl = document.getElementById('info-status');
+    var status = (profile.status || 'ACTIVE').toUpperCase();
+    statusEl.textContent = status;
+    statusEl.style.background = status === 'ACTIVE' ? 'var(--green-tint)' : 'var(--amber-tint)';
+    statusEl.style.color = status === 'ACTIVE' ? 'var(--green)' : 'var(--amber-ink)';
+
+    document.getElementById('info-capability').textContent = profile.capability || 'REFER + SELL';
+    document.getElementById('info-revenue').textContent = profile.revenue_share || '10%';
+
+    hideLoading();
+  }
+
+  function loadStats(token, profile) {
+    var userId = profile.user_id;
+
+    SupabaseClient.select('partner_leads', 'id', token)
+      .then(function(data) {
+        var count = data && !data.error ? data.length : 0;
+        document.getElementById('stat-leads').textContent = count;
+      })
+      .catch(function(){ document.getElementById('stat-leads').textContent = '0'; });
+
+    SupabaseClient.select(
+      'opportunities',
+      'id',
+      token
+    ).then(function(data) {
+      var active = 0, won = 0;
+      if (data && !data.error) {
+        data.forEach(function(opp) {
+          var s = (opp.status || '').toUpperCase();
+          if (s !== 'WON' && s !== 'LOST') active++;
+          if (s === 'WON') won++;
+        });
+      }
+      document.getElementById('stat-opportunities').textContent = active;
+      document.getElementById('stat-won').textContent = won;
+    }).catch(function(){
+      document.getElementById('stat-opportunities').textContent = '0';
+      document.getElementById('stat-won').textContent = '0';
+    });
+
+    SupabaseClient.select('commissions', 'id,status', token)
+      .then(function(data) {
+        var pending = 0, paid = 0;
+        if (data && !data.error) {
+          data.forEach(function(c) {
+            var s = (c.status || '').toUpperCase();
+            if (s === 'PENDING') pending++;
+            if (s === 'PAID') paid++;
+          });
+        }
+        document.getElementById('stat-pending').textContent = pending;
+        document.getElementById('stat-paid').textContent = paid;
+      }).catch(function(){
+        document.getElementById('stat-pending').textContent = '0';
+        document.getElementById('stat-paid').textContent = '0';
+      });
+  }
+
+  /* Sidebar toggle */
+  var sidebarToggle = document.getElementById('sidebar-toggle');
+  var sidebar = document.getElementById('dash-sidebar');
+  var overlay = document.getElementById('sidebar-overlay');
+
+  sidebarToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  });
+
+  overlay.addEventListener('click', function() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  });
+
+  /* Logout */
+  document.getElementById('btn-logout').addEventListener('click', function(e) {
+    e.preventDefault();
+    SupabaseClient.clearSession();
+    window.location.href = '/partner/login/';
+  });
+
+  /* Highlight active nav link */
+  var currentPath = window.location.pathname;
+  document.querySelectorAll('.dash-nav-link').forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href && currentPath.indexOf(href) !== -1 && href !== '/partner/dashboard/') {
+      link.classList.add('active');
+    }
+  });
+  if (currentPath === '/partner/dashboard/' || currentPath === '/partner/dashboard') {
+    document.querySelector('.dash-nav-link[href="/partner/dashboard/"]').classList.add('active');
+  }
+});
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<!-- Loading -->
+<div id="dash-loading" class="dash-loading">
+  <div class="dash-spinner"></div>
+  <p>Loading dashboard...</p>
+</div>
+
+<!-- Error -->
+<div id="dash-error" class="dash-error" style="position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:10001;max-width:500px;width:calc(100% - 40px);"></div>
+
+<div id="nav-placeholder"></div>
+
+<div class="dash-wrap">
+  <!-- Sidebar Overlay (mobile) -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <!-- Sidebar -->
+  <aside id="dash-sidebar" class="dash-sidebar">
+    <div class="dash-sidebar-inner">
+      <div class="sidebar-partner-info">
+        <div class="spi-label">Logged in as</div>
+        <div id="sidebar-partner-name" class="spi-name">Loading...</div>
+        <div id="sidebar-partner-id" class="spi-id"></div>
+      </div>
+
+      <nav aria-label="Partner navigation">
+        <a href="/partner/dashboard/" class="dash-nav-link active">
+          <span class="nav-icon">&#127968;</span>
+          Dashboard
+        </a>
+        <a href="/partner/profile/" class="dash-nav-link">
+          <span class="nav-icon">&#128100;</span>
+          My Profile
+        </a>
+        <a href="/partner/leads/new/" class="dash-nav-link">
+          <span class="nav-icon">&#128204;</span>
+          Register Lead
+        </a>
+        <a href="/partner/leads/" class="dash-nav-link">
+          <span class="nav-icon">&#128203;</span>
+          My Leads
+        </a>
+        <a href="/partner/dashboard/#opportunities" class="dash-nav-link">
+          <span class="nav-icon">&#128188;</span>
+          Opportunities
+        </a>
+        <a href="/partner/commissions/" class="dash-nav-link">
+          <span class="nav-icon">&#128176;</span>
+          Commissions
+        </a>
+        <a href="/partner/renewals/" class="dash-nav-link">
+          <span class="nav-icon">&#128260;</span>
+          Renewals
+        </a>
+        <a href="/partner/agreement/" class="dash-nav-link">
+          <span class="nav-icon">&#128221;</span>
+          Agreement
+        </a>
+        <a href="/partner/resources/" class="dash-nav-link">
+          <span class="nav-icon">&#128218;</span>
+          Resources
+        </a>
+      </nav>
+
+      <div style="margin-top:auto;padding:16px;">
+        <a href="#" id="btn-logout" class="btn btn-danger btn-sm" style="width:100%;justify-content:center;font-size:.85rem;padding:10px 16px;">
+          &#128682; Logout
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main-content" class="dash-main">
+    <!-- Top Bar -->
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+          &#9776;
+        </button>
+        <h1 id="welcome-name">Welcome, Partner</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="partner-badge">
+          <span class="badge-dot"></span>
+          <span id="topbar-partner-name">Partner</span>
+        </div>
+        <a href="#" id="topbar-logout" class="btn btn-danger btn-sm" onclick="document.getElementById('btn-logout').click();return false;">
+          &#128682; Logout
+        </a>
+      </div>
+    </div>
+
+    <!-- Partner Info Cards -->
+    <div class="info-grid">
+      <div class="info-card c-blue">
+        <div class="ic-icon" style="background:var(--primary-tint);color:var(--primary);">&#128179;</div>
+        <div class="ic-label">Partner ID</div>
+        <div id="info-partner-id" class="ic-value">BRL-PT-XXXXX</div>
+      </div>
+      <div class="info-card c-green">
+        <div class="ic-icon" style="background:var(--green-tint);color:var(--green);">&#9989;</div>
+        <div class="ic-label">Status</div>
+        <div class="ic-value">
+          <span id="info-status" class="status-badge">ACTIVE</span>
+        </div>
+      </div>
+      <div class="info-card c-purple">
+        <div class="ic-icon" style="background:var(--purple-tint);color:var(--purple);">&#128736;&#65039;</div>
+        <div class="ic-label">Capability</div>
+        <div id="info-capability" class="ic-value">REFER + SELL</div>
+      </div>
+      <div class="info-card c-amber">
+        <div class="ic-icon" style="background:var(--amber-tint);color:var(--amber-ink);">&#128176;</div>
+        <div class="ic-label">Revenue Share</div>
+        <div id="info-revenue" class="ic-value">10%</div>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card s-blue">
+        <span class="sc-emoji">&#128204;</span>
+        <div id="stat-leads" class="sc-count" style="color:var(--primary);">0</div>
+        <div class="sc-label">My Leads</div>
+      </div>
+      <div class="stat-card s-purple">
+        <span class="sc-emoji">&#128188;</span>
+        <div id="stat-opportunities" class="sc-count" style="color:var(--purple);">0</div>
+        <div class="sc-label">Active Opportunities</div>
+      </div>
+      <div class="stat-card s-green">
+        <span class="sc-emoji">&#127942;</span>
+        <div id="stat-won" class="sc-count" style="color:var(--green);">0</div>
+        <div class="sc-label">Won Deals</div>
+      </div>
+      <div class="stat-card s-amber">
+        <span class="sc-emoji">&#8987;</span>
+        <div id="stat-pending" class="sc-count" style="color:var(--amber-ink);">0</div>
+        <div class="sc-label">Pending Commission</div>
+      </div>
+      <div class="stat-card s-rose">
+        <span class="sc-emoji">&#128176;</span>
+        <div id="stat-paid" class="sc-count" style="color:var(--rose);">0</div>
+        <div class="sc-label">Paid Commission</div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <h2 style="font-family:var(--font-display);font-weight:800;font-size:1.15rem;margin-bottom:16px;color:var(--ink);">Quick Actions</h2>
+    <div class="quick-actions">
+      <a href="/partner/leads/new/" class="qa-card">
+        <div class="qa-icon" style="background:var(--primary-tint);color:var(--primary);">&#128204;</div>
+        <div class="qa-text">
+          <h4>Register New Lead</h4>
+          <p>Submit a new customer lead or referral.</p>
+        </div>
+      </a>
+      <a href="/partner/dashboard/#opportunities" class="qa-card">
+        <div class="qa-icon" style="background:var(--purple-tint);color:var(--purple);">&#128188;</div>
+        <div class="qa-text">
+          <h4>View Opportunities</h4>
+          <p>Track your active sales opportunities.</p>
+        </div>
+      </a>
+      <a href="/partner/commissions/" class="qa-card">
+        <div class="qa-icon" style="background:var(--amber-tint);color:var(--amber-ink);">&#128176;</div>
+        <div class="qa-text">
+          <h4>Check Commissions</h4>
+          <p>View pending and paid commission earnings.</p>
+        </div>
+      </a>
+      <a href="/partner/profile/" class="qa-card">
+        <div class="qa-icon" style="background:var(--green-tint);color:var(--green);">&#128100;</div>
+        <div class="qa-text">
+          <h4>Update Profile</h4>
+          <p>Manage your partner profile details.</p>
+        </div>
+      </a>
+      <a href="/partner/renewals/" class="qa-card">
+        <div class="qa-icon" style="background:var(--rose-tint);color:var(--rose);">&#128260;</div>
+        <div class="qa-text">
+          <h4>Renewals</h4>
+          <p>Track customer subscription renewals.</p>
+        </div>
+      </a>
+      <a href="/partner/resources/" class="qa-card">
+        <div class="qa-icon" style="background:var(--primary-tint);color:var(--primary);">&#128218;</div>
+        <div class="qa-text">
+          <h4>Resources</h4>
+          <p>Access sales materials and documentation.</p>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

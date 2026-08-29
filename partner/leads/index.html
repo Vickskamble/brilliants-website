@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>My Leads — Brilliants Partner Portal</title>
+<meta name="description" content="View and manage your registered leads on the Brilliants Partner Portal.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}.btn-danger{background:linear-gradient(135deg,var(--rose),#BE123C);color:#fff;box-shadow:0 4px 16px rgba(225,29,72,0.3)}.btn-danger:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(225,29,72,0.4)}.btn-sm{padding:8px 16px;font-size:.85rem}
+
+/* Dashboard Layout */
+.dash-wrap{display:flex;min-height:100vh;padding-top:var(--nav-h)}
+
+/* Sidebar */
+.dash-sidebar{position:fixed;top:var(--nav-h);left:0;bottom:0;width:260px;background:var(--surface);border-right:1px solid var(--line);z-index:900;display:flex;flex-direction:column;transition:transform .3s var(--transition);overflow-y:auto}
+.dash-sidebar-inner{padding:24px 0;flex:1;display:flex;flex-direction:column}
+.dash-sidebar .sidebar-section{padding:0 16px;margin-bottom:8px}
+.dash-sidebar .sidebar-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);padding:8px 16px;margin-bottom:4px}
+.dash-nav-link{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:var(--radius-sm);font-size:.9rem;font-weight:500;color:var(--ink-soft);transition:all .2s var(--transition);cursor:pointer;text-decoration:none;margin:1px 16px}
+.dash-nav-link:hover{background:var(--primary-tint);color:var(--primary);font-weight:600}
+.dash-nav-link.active{background:var(--primary-tint);color:var(--primary);font-weight:600;position:relative}
+.dash-nav-link.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:24px;background:var(--primary);border-radius:0 4px 4px 0}
+.dash-nav-link .nav-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+
+/* Sidebar partner info */
+.sidebar-partner-info{padding:16px;margin:0 16px 16px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--line)}
+.sidebar-partner-info .spi-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-bottom:4px}
+.sidebar-partner-info .spi-name{font-size:.95rem;font-weight:700;color:var(--ink);line-height:1.3}
+.sidebar-partner-info .spi-id{font-size:.8rem;color:var(--ink-faint);font-family:var(--font-mono)}
+
+/* Main content */
+.dash-main{flex:1;margin-left:260px;padding:32px;min-height:calc(100vh - var(--nav-h))}
+
+/* Top bar */
+.dash-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.dash-topbar h1{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:var(--ink)}
+.dash-topbar .topbar-right{display:flex;align-items:center;gap:12px}
+.dash-topbar .partner-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:100px;font-size:.85rem;font-weight:600;color:var(--ink-soft)}
+.dash-topbar .partner-badge .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+/* Loading overlay */
+.dash-loading{position:fixed;inset:0;background:var(--bg);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity .3s var(--transition)}
+.dash-loading.hidden{opacity:0;pointer-events:none}
+.dash-spinner{width:40px;height:40px;border:3.5px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dash-loading p{font-size:.95rem;color:var(--ink-soft);font-weight:500}
+
+/* Error state */
+.dash-error{display:none;padding:20px;background:var(--rose-tint);border:1px solid var(--rose);border-radius:var(--radius);color:var(--rose);font-size:.92rem;font-weight:500;text-align:center;animation:shakeError .4s ease-out}
+@keyframes shakeError{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+/* Hamburger */
+.sidebar-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:1.2rem;color:var(--ink);transition:all .2s var(--transition)}
+.sidebar-toggle:hover{background:var(--surface-2)}
+
+/* Overlay */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:899;opacity:0;transition:opacity .3s var(--transition)}
+.sidebar-overlay.active{display:block;opacity:1}
+
+/* ====== LEADS TABLE ====== */
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.page-header h2{font-family:var(--font-display);font-weight:700;font-size:1.25rem}
+.table-wrapper{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--surface-2)}
+th{padding:14px 16px;text-align:left;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:14px 16px;font-size:.88rem;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface-2)}
+.table-id{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-faint)}
+.table-name{font-weight:600;color:var(--ink)}
+.table-email{font-size:.82rem;color:var(--ink-faint)}
+.table-date{font-size:.82rem;color:var(--ink-faint);white-space:nowrap}
+
+/* Status badges */
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.status-badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.status-pending{background:#FFFBEB;color:#B45309}.status-pending::before{background:#F59E0B}
+.status-accepted{background:#ECFDF5;color:#047857}.status-accepted::before{background:#10B981}
+.status-rejected{background:#FFF1F2;color:#BE123C}.status-rejected::before{background:#E11D48}
+.status-won{background:#ECFDF5;color:#047857}.status-won::before{background:#10B981}
+.status-lost{background:#F5F3FF;color:#6D28D9}.status-lost::before{background:#7C3AED}
+
+/* Empty state */
+.empty-state{text-align:center;padding:60px 20px}
+.empty-state-icon{font-size:3rem;margin-bottom:16px;opacity:.4}
+.empty-state h3{font-size:1.1rem;margin-bottom:6px;color:var(--ink)}
+.empty-state p{font-size:.92rem;color:var(--ink-faint)}
+
+/* Loading state */
+.loading-state{text-align:center;padding:60px 20px}
+.loading-spinner{width:40px;height:40px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:900px){
+  .dash-sidebar{transform:translateX(-100%)}
+  .dash-sidebar.open{transform:translateX(0);box-shadow:var(--shadow-xl)}
+  .dash-main{margin-left:0;padding:24px 16px}
+  .sidebar-toggle{display:flex}
+  .sidebar-overlay.active{display:block}
+}
+@media(max-width:768px){
+  .dash-topbar h1{font-size:1.3rem}
+  .page-header{flex-direction:column;align-items:stretch}
+  .page-header .btn{justify-content:center}
+
+  /* Table to cards */
+  table,thead,tbody,th,td,tr{display:block}
+  thead{display:none}
+  .table-wrapper{background:transparent;border:none}
+  .table-scroll{overflow:visible}
+  .table-wrapper tr{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+  .table-wrapper td{padding:6px 0;border:none;display:flex;justify-content:space-between;align-items:center;font-size:.85rem}
+  .table-wrapper td::before{content:attr(data-label);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);min-width:100px}
+}
+@media(max-width:480px){
+  .dash-topbar h1{font-size:1.15rem}
+}</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+<script src="/partner/js/supabase-config.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var session = SupabaseClient.getSession();
+  if (!session || !session.access_token) {
+    window.location.href = '/partner/login/';
+    return;
+  }
+
+  var partnerProfile = null;
+
+  fetchPartnerProfile(session.access_token)
+    .then(function(profile) {
+      if (!profile) {
+        showError('No partner profile found. Please contact support.');
+        return;
+      }
+      partnerProfile = profile;
+      renderSidebar(profile);
+      loadLeads(session.access_token, profile);
+    })
+    .catch(function() {
+      showError('Failed to load partner data. Please try again later.');
+    });
+
+  function fetchPartnerProfile(token) {
+    return SupabaseClient.select(
+      'partners',
+      'user_id,partner_id,partner_name,email,status',
+      token
+    ).then(function(data) {
+      if (data && data.length > 0) {
+        return data[0];
+      }
+      return null;
+    });
+  }
+
+  function showError(msg) {
+    var el = document.getElementById('dash-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+    hideLoading();
+  }
+
+  function hideLoading() {
+    var el = document.getElementById('dash-loading');
+    el.classList.add('hidden');
+    setTimeout(function(){ el.style.display = 'none'; }, 300);
+  }
+
+  function renderSidebar(profile) {
+    document.getElementById('sidebar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('sidebar-partner-id').textContent = profile.partner_id || '';
+    document.getElementById('topbar-partner-name').textContent = profile.partner_name || 'Partner';
+    hideLoading();
+  }
+
+  function loadLeads(token, profile) {
+    var tbody = document.getElementById('leadsBody');
+    var loading = document.getElementById('tableLoading');
+    var empty = document.getElementById('emptyState');
+
+    tbody.innerHTML = '';
+    loading.style.display = 'block';
+    empty.style.display = 'none';
+
+    SupabaseClient.from('partner_leads')
+      .select('*')
+      .eq('partner_id', profile.partner_id)
+      .order('created_at', { ascending: false })
+      .then(function(result) {
+        loading.style.display = 'none';
+        if (result.error) {
+          showToast('Failed to load leads: ' + result.error.message, 'error');
+          return;
+        }
+
+        var leads = result.data || [];
+        if (leads.length === 0) {
+          empty.style.display = 'block';
+          return;
+        }
+
+        for (var i = 0; i < leads.length; i++) {
+          var lead = leads[i];
+          var tr = document.createElement('tr');
+
+          var shortId = lead.id ? lead.id.substring(0, 8) : 'N/A';
+          var status = (lead.status || 'PENDING').toUpperCase();
+          var statusClass = getStatusClass(status);
+          var statusLabel = status.replace(/_/g, ' ');
+          var date = lead.created_at ? new Date(lead.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
+          var customerName = lead.customer_name || 'N/A';
+          var product = lead.product || lead.solution || 'N/A';
+
+          tr.innerHTML =
+            '<td data-label="Lead ID"><span class="table-id">' + escHtml(shortId) + '</span></td>' +
+            '<td data-label="Customer"><div><div class="table-name">' + escHtml(customerName) + '</div><div class="table-email">' + escHtml(lead.customer_email || '') + '</div></div></td>' +
+            '<td data-label="Product"><span style="font-size:.85rem;">' + escHtml(product) + '</span></td>' +
+            '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></td>' +
+            '<td data-label="Date"><span class="table-date">' + date + '</span></td>';
+
+          tbody.appendChild(tr);
+        }
+      }).catch(function(err) {
+        loading.style.display = 'none';
+        showToast('Error loading leads', 'error');
+        console.error(err);
+      });
+  }
+
+  function getStatusClass(status) {
+    var map = {
+      'PENDING': 'status-pending',
+      'ACCEPTED': 'status-accepted',
+      'REJECTED': 'status-rejected',
+      'WON': 'status-won',
+      'LOST': 'status-lost'
+    };
+    return map[status] || 'status-pending';
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function showToast(message, type) {
+    type = type || 'info';
+    var container = document.getElementById('toastContainer');
+    if (!container) return;
+    var toast = document.createElement('div');
+    toast.className = 'toast ' + type;
+    var icons = { success: '&#10003;', error: '&#10007;', info: '&#8505;' };
+    toast.innerHTML = '<span class="toast-icon">' + (icons[type] || icons.info) + '</span><span>' + message + '</span>';
+    container.appendChild(toast);
+    setTimeout(function() {
+      toast.classList.add('removing');
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 4000);
+  }
+
+  /* Sidebar toggle */
+  var sidebarToggle = document.getElementById('sidebar-toggle');
+  var sidebar = document.getElementById('dash-sidebar');
+  var overlay = document.getElementById('sidebar-overlay');
+
+  sidebarToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  });
+
+  overlay.addEventListener('click', function() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  });
+
+  /* Logout */
+  document.getElementById('btn-logout').addEventListener('click', function(e) {
+    e.preventDefault();
+    SupabaseClient.clearSession();
+    window.location.href = '/partner/login/';
+  });
+
+  /* Highlight active nav link */
+  var currentPath = window.location.pathname;
+  document.querySelectorAll('.dash-nav-link').forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href && currentPath.indexOf(href) !== -1 && href !== '/partner/dashboard/') {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<!-- Loading -->
+<div id="dash-loading" class="dash-loading">
+  <div class="dash-spinner"></div>
+  <p>Loading leads...</p>
+</div>
+
+<!-- Error -->
+<div id="dash-error" class="dash-error" style="position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:10001;max-width:500px;width:calc(100% - 40px);"></div>
+
+<div id="nav-placeholder"></div>
+
+<div class="dash-wrap">
+  <!-- Sidebar Overlay (mobile) -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <!-- Sidebar -->
+  <aside id="dash-sidebar" class="dash-sidebar">
+    <div class="dash-sidebar-inner">
+      <div class="sidebar-partner-info">
+        <div class="spi-label">Logged in as</div>
+        <div id="sidebar-partner-name" class="spi-name">Loading...</div>
+        <div id="sidebar-partner-id" class="spi-id"></div>
+      </div>
+
+      <nav aria-label="Partner navigation">
+        <a href="/partner/dashboard/" class="dash-nav-link">
+          <span class="nav-icon">&#127968;</span>
+          Dashboard
+        </a>
+        <a href="/partner/profile/" class="dash-nav-link">
+          <span class="nav-icon">&#128100;</span>
+          My Profile
+        </a>
+        <a href="/partner/leads/new/" class="dash-nav-link">
+          <span class="nav-icon">&#128204;</span>
+          Register Lead
+        </a>
+        <a href="/partner/leads/" class="dash-nav-link active">
+          <span class="nav-icon">&#128203;</span>
+          My Leads
+        </a>
+        <a href="/partner/dashboard/#opportunities" class="dash-nav-link">
+          <span class="nav-icon">&#128188;</span>
+          Opportunities
+        </a>
+        <a href="/partner/commissions/" class="dash-nav-link">
+          <span class="nav-icon">&#128176;</span>
+          Commissions
+        </a>
+        <a href="/partner/renewals/" class="dash-nav-link">
+          <span class="nav-icon">&#128260;</span>
+          Renewals
+        </a>
+        <a href="/partner/agreement/" class="dash-nav-link">
+          <span class="nav-icon">&#128221;</span>
+          Agreement
+        </a>
+        <a href="/partner/resources/" class="dash-nav-link">
+          <span class="nav-icon">&#128218;</span>
+          Resources
+        </a>
+      </nav>
+
+      <div style="margin-top:auto;padding:16px;">
+        <a href="#" id="btn-logout" class="btn btn-danger btn-sm" style="width:100%;justify-content:center;font-size:.85rem;padding:10px 16px;">
+          &#128682; Logout
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main-content" class="dash-main">
+    <!-- Top Bar -->
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+          &#9776;
+        </button>
+        <h1>My Leads</h1>
+      </div>
+      <div class="topbar-right">
+        <a href="/partner/leads/new/" class="btn btn-primary btn-sm">
+          &#128204; Register New Lead
+        </a>
+        <div class="partner-badge">
+          <span class="badge-dot"></span>
+          <span id="topbar-partner-name">Partner</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leads Table -->
+    <div class="page-header">
+      <h2>Your Registered Leads</h2>
+    </div>
+
+    <div class="table-wrapper">
+      <div class="table-scroll">
+        <table id="leadsTable">
+          <thead>
+            <tr>
+              <th>Lead ID</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="leadsBody">
+          </tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-state" style="display:none">
+        <div class="empty-state-icon">&#128203;</div>
+        <h3>No leads registered yet</h3>
+        <p>Start by registering your first lead to track it here.</p>
+        <a href="/partner/leads/new/" class="btn btn-primary" style="margin-top:16px;">&#128204; Register New Lead</a>
+      </div>
+      <div id="tableLoading" class="loading-state" style="display:none">
+        <div class="loading-spinner"></div>
+        <p style="color:var(--ink-faint);font-size:.88rem;">Loading your leads...</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer" style="position:fixed;top:80px;right:20px;z-index:3000;display:flex;flex-direction:column;gap:8px"></div>
+
+<style>
+.toast{padding:14px 20px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:500;animation:toastIn .3s var(--transition);max-width:380px}
+.toast.success{border-left:4px solid var(--green)}.toast.success .toast-icon{color:var(--green)}
+.toast.error{border-left:4px solid var(--rose)}.toast.error .toast-icon{color:var(--rose)}
+.toast.info{border-left:4px solid var(--primary)}.toast.info .toast-icon{color:var(--primary)}
+.toast-icon{font-size:1.2rem;flex-shrink:0}
+.toast.removing{animation:toastOut .3s var(--transition) forwards}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
+</style>
+
+</body>
+</html>

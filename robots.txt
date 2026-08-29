@@ -4,5 +4,15 @@ Allow: /
 Disallow: /assets/downloads/
 Disallow: /pay/
 Disallow: /pay/success/
+Disallow: /partner/login/
+Disallow: /partner/dashboard/
+Disallow: /partner/profile/
+Disallow: /partner/leads/
+Disallow: /partner/commissions/
+Disallow: /partner/renewals/
+Disallow: /partner/agreement/
+Disallow: /partner/resources/
+Disallow: /partner/register/success.html
+Disallow: /admin/
 
 Sitemap: https://www.brilliants.in/sitemap.xml

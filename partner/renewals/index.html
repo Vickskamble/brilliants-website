@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Renewals — Brilliants Partner Portal</title>
+<meta name="description" content="View customer renewals, renewal status, and revenue share eligibility in the Brilliants Partner Portal.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}
+
+/* Partner Dashboard Layout */
+.pd-layout{display:flex;min-height:calc(100vh - var(--nav-h));margin-top:var(--nav-h)}
+.pd-sidebar{width:260px;background:var(--surface);border-right:1px solid var(--line);padding:32px 0;position:fixed;top:var(--nav-h);left:0;bottom:0;overflow-y:auto;z-index:900;transition:transform .3s var(--transition)}
+.pd-sidebar-header{padding:0 24px 24px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.pd-sidebar-header h3{font-family:var(--font-display);font-weight:700;font-size:1.05rem;margin-bottom:2px}
+.pd-sidebar-header p{font-size:.82rem;color:var(--ink-faint)}
+.pd-nav{list-style:none;padding:0;margin:0}
+.pd-nav li{margin:2px 0}
+.pd-nav a{display:flex;align-items:center;gap:12px;padding:12px 24px;font-size:.92rem;font-weight:500;color:var(--ink-soft);transition:all .2s var(--transition);border-left:3px solid transparent}
+.pd-nav a:hover{background:var(--primary-tint);color:var(--primary);border-left-color:var(--primary)}
+.pd-nav a.active{background:var(--primary-tint);color:var(--primary);font-weight:600;border-left-color:var(--primary)}
+.pd-nav a .nav-icon{width:20px;text-align:center;font-size:1rem;flex-shrink:0}
+.pd-main{flex:1;margin-left:260px;padding:32px 40px 60px}
+.pd-mobile-toggle{display:none;position:fixed;bottom:24px;right:24px;z-index:1100;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;border:none;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,235,0.4);transition:all .3s var(--transition)}
+.pd-mobile-toggle:hover{transform:scale(1.1)}
+
+/* Page Header */
+.pd-page-head{margin-bottom:32px}
+.pd-page-head h1{font-family:var(--font-display);font-weight:800;font-size:1.75rem;margin-bottom:4px}
+.pd-page-head p{color:var(--ink-soft);font-size:.95rem}
+
+/* Table */
+.pd-table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden}
+.pd-table-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}
+.pd-table-head h2{font-family:var(--font-display);font-weight:700;font-size:1.1rem}
+.pd-table{width:100%;border-collapse:collapse}
+.pd-table thead th{padding:14px 20px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);background:var(--surface-2);border-bottom:1px solid var(--line)}
+.pd-table tbody td{padding:16px 20px;font-size:.92rem;border-bottom:1px solid var(--line);vertical-align:middle}
+.pd-table tbody tr{transition:background .15s var(--transition)}
+.pd-table tbody tr:hover{background:var(--surface-2)}
+.pd-table tbody tr:last-child td{border-bottom:none}
+
+/* Status badges */
+.pd-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.pd-badge.upcoming{background:var(--primary-tint);color:var(--primary)}
+.pd-badge.renewed{background:var(--green-tint);color:var(--green)}
+.pd-badge.expired{background:var(--surface-2);color:var(--ink-faint)}
+.pd-badge.cancelled{background:var(--rose-tint);color:var(--rose)}
+
+/* Eligible / Not Eligible */
+.pd-eligible{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:.82rem;font-weight:600}
+.pd-eligible.yes{background:var(--green-tint);color:var(--green)}
+.pd-eligible.no{background:var(--rose-tint);color:var(--rose)}
+
+/* Empty State */
+.pd-empty{text-align:center;padding:60px 24px}
+.pd-empty-icon{font-size:3rem;margin-bottom:16px;opacity:.6}
+.pd-empty h3{font-family:var(--font-display);font-weight:700;font-size:1.15rem;margin-bottom:8px}
+.pd-empty p{color:var(--ink-soft);font-size:.95rem;max-width:400px;margin:0 auto}
+
+/* Loading */
+.pd-loading{display:flex;align-items:center;justify-content:center;padding:60px 24px}
+.pd-spinner{width:36px;height:36px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Responsive */
+@media(max-width:1024px){
+  .pd-sidebar{transform:translateX(-100%)}
+  .pd-sidebar.open{transform:translateX(0);box-shadow:var(--shadow-xl)}
+  .pd-main{margin-left:0;padding:24px 20px 80px}
+  .pd-mobile-toggle{display:flex;align-items:center;justify-content:center}
+}
+@media(max-width:640px){
+  .pd-table-wrap .pd-table{display:block;overflow-x:auto}
+}
+
+/* Mobile card view */
+.pd-mobile-cards{display:none}
+@media(max-width:768px){
+  .pd-table-wrap .pd-table{display:none}
+  .pd-mobile-cards{display:flex;flex-direction:column;gap:12px}
+  .pd-mobile-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+  .pd-mobile-card .card-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:.88rem}
+  .pd-mobile-card .card-row:not(:last-child){border-bottom:1px solid var(--line)}
+  .pd-mobile-card .card-label{font-weight:600;color:var(--ink-faint);font-size:.82rem}
+  .pd-mobile-card .card-value{font-weight:500;color:var(--ink)}
+}
+</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+<script src="/partner/js/supabase-config.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var session = SupabaseClient.getSession();
+  if (!session || !session.access_token) {
+    window.location.href = '/partner/login/';
+    return;
+  }
+
+  var partnerId = null;
+  var renewals = [];
+
+  // Mobile sidebar toggle
+  var sidebar = document.getElementById('pd-sidebar');
+  var toggle = document.getElementById('pd-mobile-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      sidebar.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== toggle) {
+        sidebar.classList.remove('open');
+      }
+    });
+  }
+
+  // Load partner profile
+  SupabaseClient.getUser(session.access_token).then(function(user) {
+    if (!user || user.id) {
+      return SupabaseClient.select('partners', 'user_id=eq.' + (user ? user.id : '') + '&select=partner_id,full_name,business_email,status', session.access_token);
+    }
+    return null;
+  }).then(function(data) {
+    if (data && data.length) {
+      var partnerData = data[0];
+      partnerId = partnerData.partner_id;
+      document.getElementById('sidebar-partner-name').textContent = partnerData.full_name || 'Partner';
+      document.getElementById('sidebar-partner-id').textContent = partnerId;
+      loadRenewals();
+    } else {
+      window.location.href = '/partner/login/';
+    }
+  }).catch(function() {
+    window.location.href = '/partner/login/';
+  });
+
+  function loadRenewals() {
+    if (!partnerId) return;
+    SupabaseClient.select('renewals', 'partner_id=eq.' + partnerId + '&order=renewal_date.desc', session.access_token)
+      .then(function(data) {
+        renewals = Array.isArray(data) ? data : [];
+        renderRenewals();
+      })
+      .catch(function() {
+        renewals = [];
+        renderRenewals();
+      });
+  }
+
+  function formatDate(d) {
+    if (!d) return '-';
+    var dt = new Date(d);
+    return dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
+  }
+
+  function renderRenewals() {
+    var tbody = document.getElementById('renewals-tbody');
+    var mobileCards = document.getElementById('renewals-mobile');
+    var loading = document.getElementById('renewals-loading');
+    var empty = document.getElementById('renewals-empty');
+
+    if (loading) loading.style.display = 'none';
+
+    if (!renewals.length) {
+      if (empty) empty.style.display = 'block';
+      tbody.innerHTML = '';
+      mobileCards.innerHTML = '';
+      return;
+    }
+
+    if (empty) empty.style.display = 'none';
+
+    var html = '';
+    var mhtml = '';
+    renewals.forEach(function(r) {
+      var st = (r.status || 'UPCOMING').toUpperCase();
+      var badgeClass = 'upcoming';
+      if (st === 'RENEWED') badgeClass = 'renewed';
+      if (st === 'EXPIRED') badgeClass = 'expired';
+      if (st === 'CANCELLED') badgeClass = 'cancelled';
+
+      var eligible = r.partner_eligible !== false;
+      var eligibleClass = eligible ? 'yes' : 'no';
+      var eligibleText = eligible ? 'Yes' : 'No';
+
+      var rate = r.commission_rate != null ? r.commission_rate + '%' : '-';
+
+      html += '<tr>';
+      html += '<td>' + (r.customer_name || '-') + '</td>';
+      html += '<td>' + (r.product || '-') + '</td>';
+      html += '<td>' + (r.subscription_period || '-') + '</td>';
+      html += '<td>' + formatDate(r.renewal_date) + '</td>';
+      html += '<td><span class="pd-badge ' + badgeClass + '">' + st + '</span></td>';
+      html += '<td><span class="pd-eligible ' + eligibleClass + '">' + eligibleText + '</span></td>';
+      html += '<td>' + rate + '</td>';
+      html += '</tr>';
+
+      mhtml += '<div class="pd-mobile-card">';
+      mhtml += '<div class="card-row"><span class="card-label">Customer</span><span class="card-value">' + (r.customer_name || '-') + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Product</span><span class="card-value">' + (r.product || '-') + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Period</span><span class="card-value">' + (r.subscription_period || '-') + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Renewal Date</span><span class="card-value">' + formatDate(r.renewal_date) + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="pd-badge ' + badgeClass + '">' + st + '</span></span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Partner Eligible</span><span class="card-value"><span class="pd-eligible ' + eligibleClass + '">' + eligibleText + '</span></span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Revenue Share</span><span class="card-value">' + rate + '</span></div>';
+      mhtml += '</div>';
+    });
+
+    tbody.innerHTML = html;
+    mobileCards.innerHTML = mhtml;
+  }
+});
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<div id="nav-placeholder"></div>
+
+<div class="pd-layout">
+  <!-- Sidebar -->
+  <aside class="pd-sidebar" id="pd-sidebar">
+    <div class="pd-sidebar-header">
+      <h3 id="sidebar-partner-name">Partner</h3>
+      <p id="sidebar-partner-id">Loading...</p>
+    </div>
+    <ul class="pd-nav">
+      <li><a href="/partner/dashboard/"><span class="nav-icon">&#128202;</span> Dashboard</a></li>
+      <li><a href="/partner/profile/"><span class="nav-icon">&#128100;</span> My Profile</a></li>
+      <li><a href="/partner/leads/new/"><span class="nav-icon">&#128221;</span> Register Lead</a></li>
+      <li><a href="/partner/leads/"><span class="nav-icon">&#128203;</span> My Leads</a></li>
+      <li><a href="/partner/opportunities/"><span class="nav-icon">&#128188;</span> Opportunities</a></li>
+      <li><a href="/partner/commissions/"><span class="nav-icon">&#128176;</span> Commissions</a></li>
+      <li><a href="/partner/renewals/" class="active"><span class="nav-icon">&#128260;</span> Renewals</a></li>
+      <li><a href="/partner/agreement/"><span class="nav-icon">&#128221;</span> Agreement</a></li>
+      <li><a href="/partner/resources/"><span class="nav-icon">&#128194;</span> Resources</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="pd-main" id="main-content">
+    <div class="pd-page-head">
+      <h1>Renewals</h1>
+      <p>Track customer renewal dates, status, and your revenue share eligibility.</p>
+    </div>
+
+    <!-- Renewals Table -->
+    <div class="pd-table-wrap">
+      <div class="pd-table-head">
+        <h2>Renewal Records</h2>
+      </div>
+
+      <!-- Loading -->
+      <div class="pd-loading" id="renewals-loading">
+        <div class="pd-spinner"></div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="pd-empty" id="renewals-empty" style="display:none">
+        <div class="pd-empty-icon">&#128260;</div>
+        <h3>No Renewals Yet</h3>
+        <p>When your referred customers' subscriptions come up for renewal, those records will appear here.</p>
+      </div>
+
+      <!-- Desktop Table -->
+      <table class="pd-table">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Period</th>
+            <th>Renewal Date</th>
+            <th>Status</th>
+            <th>Partner Eligible</th>
+            <th>Revenue Share</th>
+          </tr>
+        </thead>
+        <tbody id="renewals-tbody">
+        </tbody>
+      </table>
+
+      <!-- Mobile Cards -->
+      <div class="pd-mobile-cards" id="renewals-mobile" style="display:none">
+      </div>
+    </div>
+  </main>
+</div>
+
+<button class="pd-mobile-toggle" id="pd-mobile-toggle" aria-label="Toggle sidebar">&#9776;</button>
+
+<div id="footer-placeholder"></div>
+
+<a href="https://wa.me/919146121280" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <div class="pulse-ring"></div>&#128172;
+</a>
+<a href="#" class="back-to-top" aria-label="Back to top">&#8593;</a>
+
+</body>
+</html>

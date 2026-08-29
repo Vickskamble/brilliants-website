@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Partner Resources — Brilliants Partner</title>
+<meta name="description" content="Access brochures, demo links, sales guides and other resources for Brilliants partners.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.container{max-width:1200px;margin:0 auto;padding:0 24px}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--primary-tint);color:var(--primary)}.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:dotPulse 2s ease-in-out infinite}@keyframes dotPulse{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}.h2-grad{background:linear-gradient(135deg,var(--primary),#7C3AED,var(--amber));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.section{padding:72px 0}.section.alt{background:var(--surface-2)}.section-head{text-align:center;margin-bottom:48px}.section-head h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;line-height:1.15;margin-top:12px}.section-head p{font-size:1.05rem;color:var(--ink-soft);max-width:600px;margin:8px auto 0}
+
+/* ====== RESOURCES PAGE ====== */
+.res-hero{padding:120px 0 48px;background:linear-gradient(135deg,var(--primary-tint) 0%,var(--bg) 50%,var(--amber-tint) 100%);text-align:center;position:relative;overflow:hidden}
+.res-hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%);animation:heroPulse 8s ease-in-out infinite}
+.res-hero::after{content:'';position:absolute;bottom:-150px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(245,158,11,0.08) 0%,transparent 70%);animation:heroPulse 10s ease-in-out infinite 2s}
+@keyframes heroPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+.res-hero h1{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:12px;position:relative;z-index:2}
+.res-hero p{font-size:1.1rem;color:var(--ink-soft);max-width:560px;margin:0 auto;position:relative;z-index:2}
+
+.res-container{max-width:1100px;margin:0 auto;padding:0 24px 72px}
+
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:-24px;position:relative;z-index:2}
+@media(max-width:700px){.res-grid{grid-template-columns:1fr}}
+
+.res-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:28px;position:relative;overflow:hidden;transition:all .4s var(--transition);animation:cardSlide .5s var(--transition) both}
+.res-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;transition:height .4s var(--transition)}
+.res-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
+.res-card:hover::before{height:100%}
+.res-card:nth-child(6n+1)::before{background:var(--primary)}
+.res-card:nth-child(6n+2)::before{background:var(--amber)}
+.res-card:nth-child(6n+3)::before{background:var(--green)}
+.res-card:nth-child(6n+4)::before{background:var(--purple)}
+.res-card:nth-child(6n+5)::before{background:var(--rose)}
+.res-card:nth-child(6n+6)::before{background:var(--ink-soft)}
+@keyframes cardSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.res-card-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.res-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.res-badge.type{background:var(--primary-tint);color:var(--primary)}
+.res-badge.product{background:var(--amber-tint);color:var(--amber-ink)}
+.res-badge.type.brochure{background:var(--primary-tint);color:var(--primary)}
+.res-badge.type.demo{background:var(--green-tint);color:var(--green)}
+.res-badge.type.guide{background:var(--purple-tint);color:var(--purple)}
+.res-badge.type.video{background:var(--rose-tint);color:var(--rose)}
+.res-badge.type.other{background:var(--surface-2);color:var(--ink-soft)}
+
+.res-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--ink);line-height:1.4}
+.res-card p{font-size:.92rem;color:var(--ink-soft);line-height:1.6;margin-bottom:16px}
+
+.res-card-link{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius-sm);font-weight:600;font-size:.88rem;color:#fff;background:linear-gradient(135deg,var(--primary),#4F46E5);transition:all .3s var(--transition);text-decoration:none}
+.res-card-link:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,99,235,0.3)}
+
+/* Loading */
+.res-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:16px;margin-top:-24px;position:relative;z-index:2}
+.res-loading .loader{width:40px;height:40px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
+.res-loading p{color:var(--ink-soft);font-size:.95rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Empty state */
+.res-empty{text-align:center;padding:80px 32px;margin-top:-24px;position:relative;z-index:2}
+.res-empty .empty-icon{width:100px;height:100px;border-radius:50%;background:var(--surface-2);color:var(--ink-faint);display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin:0 auto 20px;animation:emptyFloat 3s ease-in-out infinite}
+@keyframes emptyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.res-empty h3{font-family:var(--font-display);font-weight:700;font-size:1.3rem;margin-bottom:8px;color:var(--ink)}
+.res-empty p{font-size:1rem;color:var(--ink-soft);max-width:400px;margin:0 auto}
+
+/* Filter pills */
+.res-filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px;margin-top:-16px;position:relative;z-index:2}
+.res-filter-pill{padding:10px 20px;border-radius:100px;font-size:.88rem;font-weight:600;border:1.5px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer;transition:all .25s var(--transition)}
+.res-filter-pill:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-tint)}
+.res-filter-pill.active{border-color:var(--primary);color:#fff;background:var(--primary);box-shadow:0 4px 16px rgba(37,99,235,0.3)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s var(--transition)}.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  }
+
+  var session = SupabaseClient.getSession();
+  if (!session || !session.access_token) {
+    window.location.href = '/partner/login/';
+    return;
+  }
+
+  var allResources = [];
+  var currentFilter = 'all';
+
+  SupabaseClient.select('partner_resources', 'order=type,order=created_at.desc', session.access_token).then(function(resources) {
+    var loader = document.getElementById('res-loader');
+    var grid = document.getElementById('res-grid');
+    var emptyState = document.getElementById('res-empty');
+    var filtersContainer = document.getElementById('res-filters');
+
+    if (loader) loader.style.display = 'none';
+
+    if (!resources || resources.error || !resources.length) {
+      if (emptyState) emptyState.style.display = 'block';
+      if (filtersContainer) filtersContainer.style.display = 'none';
+      return;
+    }
+
+    allResources = resources;
+
+    var types = [];
+    resources.forEach(function(r) {
+      if (r.type && types.indexOf(r.type) === -1) types.push(r.type);
+    });
+
+    if (types.length > 0 && filtersContainer) {
+      filtersContainer.style.display = 'flex';
+      var allBtn = document.createElement('button');
+      allBtn.className = 'res-filter-pill active';
+      allBtn.textContent = 'All';
+      allBtn.setAttribute('data-filter', 'all');
+      allBtn.addEventListener('click', function() { filterResources('all'); });
+      filtersContainer.appendChild(allBtn);
+
+      types.forEach(function(type) {
+        var btn = document.createElement('button');
+        btn.className = 'res-filter-pill';
+        btn.textContent = type;
+        btn.setAttribute('data-filter', type);
+        btn.addEventListener('click', function() { filterResources(type); });
+        filtersContainer.appendChild(btn);
+      });
+    } else if (filtersContainer) {
+      filtersContainer.style.display = 'none';
+    }
+
+    renderResources(resources);
+  });
+
+  function filterResources(type) {
+    currentFilter = type;
+    document.querySelectorAll('.res-filter-pill').forEach(function(pill) {
+      pill.classList.remove('active');
+      if (pill.getAttribute('data-filter') === type) pill.classList.add('active');
+    });
+
+    var filtered = type === 'all' ? allResources : allResources.filter(function(r) { return r.type === type; });
+    renderResources(filtered);
+  }
+
+  function renderResources(resources) {
+    var grid = document.getElementById('res-grid');
+    var emptyState = document.getElementById('res-empty');
+
+    grid.innerHTML = '';
+
+    if (!resources || resources.length === 0) {
+      emptyState.style.display = 'block';
+      grid.style.display = 'none';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+    grid.style.display = 'grid';
+
+    resources.forEach(function(resource, i) {
+      var card = document.createElement('div');
+      card.className = 'res-card';
+      card.style.animationDelay = (i * 0.08) + 's';
+
+      var typeClass = 'other';
+      var typeLower = (resource.type || '').toLowerCase();
+      if (typeLower.indexOf('brochure') !== -1) typeClass = 'brochure';
+      else if (typeLower.indexOf('demo') !== -1) typeClass = 'demo';
+      else if (typeLower.indexOf('guide') !== -1 || typeLower.indexOf('sales') !== -1) typeClass = 'guide';
+      else if (typeLower.indexOf('video') !== -1) typeClass = 'video';
+
+      var badges = '';
+      if (resource.type) {
+        badges += '<span class="res-badge type ' + typeClass + '">' + escapeHtml(resource.type) + '</span>';
+      }
+      if (resource.product) {
+        badges += '<span class="res-badge product">' + escapeHtml(resource.product) + '</span>';
+      }
+
+      var linkHtml = '';
+      if (resource.link_url) {
+        linkHtml = '<a href="' + escapeHtml(resource.link_url) + '" target="_blank" rel="noopener" class="res-card-link">View Resource &#10141;</a>';
+      }
+
+      card.innerHTML =
+        '<div class="res-card-badges">' + badges + '</div>' +
+        '<h3>' + escapeHtml(resource.title || 'Untitled Resource') + '</h3>' +
+        (resource.description ? '<p>' + escapeHtml(resource.description) + '</p>' : '') +
+        linkHtml;
+
+      grid.appendChild(card);
+    });
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(text || ''));
+    return div.innerHTML;
+  }
+});
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<div id="nav-placeholder"></div>
+
+<section id="main-content" class="res-hero" aria-label="Partner Resources Hero">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>Partner Resources</span>
+      <h1>Your Partner<br><span class="h2-grad">Resource Library</span></h1>
+      <p>Access brochures, demo links, sales guides and everything you need to sell and implement Brilliants solutions.</p>
+    </div>
+  </div>
+</section>
+
+<div class="res-container">
+
+  <div id="res-filters" class="res-filters" style="display:none;"></div>
+
+  <div id="res-loader" class="res-loading">
+    <div class="loader"></div>
+    <p>Loading resources...</p>
+  </div>
+
+  <div id="res-grid" class="res-grid" style="display:none;"></div>
+
+  <div id="res-empty" class="res-empty" style="display:none;">
+    <div class="empty-icon">&#128218;</div>
+    <h3>No Resources Available Yet</h3>
+    <p>Resources will appear here once our team uploads brochures, demo links, and sales guides for you.</p>
+  </div>
+
+</div>
+
+<div id="footer-placeholder"></div>
+
+<a href="https://wa.me/919146121280" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <div class="pulse-ring"></div>&#128172;
+</a>
+<a href="#" class="back-to-top" aria-label="Back to top">&#8593;</a>
+
+<script src="/partner/js/supabase-config.js"></script>
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+
+</body>
+</html>

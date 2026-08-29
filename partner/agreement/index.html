@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Partner Agreement — Brilliants</title>
+<meta name="description" content="Review and sign the Brilliants Partner Agreement to formalize your partnership.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.container{max-width:1200px;margin:0 auto;padding:0 24px}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--primary-tint);color:var(--primary)}.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:dotPulse 2s ease-in-out infinite}@keyframes dotPulse{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}.h2-grad{background:linear-gradient(135deg,var(--primary),#7C3AED,var(--amber));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.section{padding:72px 0}.section.alt{background:var(--surface-2)}.section-head{text-align:center;margin-bottom:48px}.section-head h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;line-height:1.15;margin-top:12px}.section-head p{font-size:1.05rem;color:var(--ink-soft);max-width:600px;margin:8px auto 0}
+
+/* ====== AGREEMENT PAGE ====== */
+.agree-hero{padding:120px 0 48px;background:linear-gradient(135deg,var(--primary-tint) 0%,var(--bg) 50%,var(--amber-tint) 100%);text-align:center;position:relative;overflow:hidden}
+.agree-hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%);animation:heroPulse 8s ease-in-out infinite}
+.agree-hero::after{content:'';position:absolute;bottom:-150px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(245,158,11,0.08) 0%,transparent 70%);animation:heroPulse 10s ease-in-out infinite 2s}
+@keyframes heroPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+.agree-hero h1{font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:12px;position:relative;z-index:2}
+.agree-hero p{font-size:1.1rem;color:var(--ink-soft);max-width:560px;margin:0 auto;position:relative;z-index:2}
+
+.agree-container{max-width:900px;margin:0 auto;padding:0 24px 72px}
+
+.agree-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:40px;margin-top:-32px;position:relative;z-index:2;box-shadow:var(--shadow-lg);animation:cardSlide .6s var(--transition) both}
+@keyframes cardSlide{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.agree-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),#7C3AED,var(--amber));border-radius:var(--radius-xl) var(--radius-xl) 0 0}
+
+.agree-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+@media(max-width:600px){.agree-meta{grid-template-columns:1fr}}
+.agree-meta-item{display:flex;flex-direction:column;gap:4px}
+.agree-meta-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint)}
+.agree-meta-value{font-size:1rem;font-weight:600;color:var(--ink)}
+
+.agree-section-title{font-family:var(--font-display);font-weight:700;font-size:1.05rem;margin-top:24px;margin-bottom:8px;color:var(--primary);display:flex;align-items:center;gap:8px}
+.agree-section-title .sec-num{width:28px;height:28px;border-radius:50%;background:var(--primary-tint);color:var(--primary);display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0}
+.agree-text{font-size:.95rem;color:var(--ink-soft);line-height:1.7;margin-bottom:8px}
+
+/* Signing form */
+.agree-sign{margin-top:32px;padding-top:28px;border-top:2px solid var(--line)}
+.agree-sign h3{font-family:var(--font-display);font-weight:700;font-size:1.2rem;margin-bottom:20px}
+
+.agree-field{margin-bottom:16px}
+.agree-field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px;color:var(--ink)}
+.agree-field input{width:100%;padding:12px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--line-strong);font-family:var(--font-body);font-size:.95rem;background:var(--bg);color:var(--ink);transition:all .2s var(--transition);outline:none}
+.agree-field input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+.agree-field input::placeholder{color:var(--ink-faint)}
+.agree-field.error input{border-color:var(--rose);box-shadow:0 0 0 3px rgba(225,29,72,0.1)}
+.agree-field .field-error{font-size:.8rem;color:var(--rose);display:none;margin-top:4px}
+.agree-field.error .field-error{display:block}
+
+.agree-checkbox{display:flex;align-items:flex-start;gap:12px;padding:16px 20px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:20px;cursor:pointer;transition:all .2s var(--transition)}
+.agree-checkbox:hover{border-color:var(--primary);background:var(--primary-tint)}
+.agree-checkbox.checked{border-color:var(--primary);background:var(--primary-tint)}
+.agree-checkbox input[type="checkbox"]{width:18px;height:18px;accent-color:var(--primary);cursor:pointer;margin-top:2px;flex-shrink:0}
+.agree-checkbox label{font-size:.92rem;color:var(--ink-soft);cursor:pointer}
+.agree-checkbox label a{color:var(--primary);font-weight:600;text-decoration:underline}
+
+.agree-submit{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;border-radius:var(--radius);font-weight:700;font-size:1rem;font-family:var(--font-body);color:#fff;background:linear-gradient(135deg,var(--primary),#4F46E5);border:none;cursor:pointer;transition:all .3s var(--transition);box-shadow:0 4px 20px rgba(37,99,235,0.3);position:relative;overflow:hidden;width:100%;justify-content:center}
+.agree-submit::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left .5s var(--transition)}
+.agree-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,99,235,0.45)}
+.agree-submit:hover::after{left:100%}
+.agree-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.agree-submit .spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+.agree-submit.loading .spinner{display:block}
+.agree-submit.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.agree-error{margin-top:16px;padding:14px 18px;background:var(--rose-tint);border:1px solid var(--rose);border-radius:var(--radius-sm);color:var(--rose);font-size:.92rem;font-weight:500;display:none;text-align:center}
+.agree-error.show{display:block}
+
+/* Success state */
+.agree-success{text-align:center;padding:48px 32px}
+.agree-success .success-icon{width:80px;height:80px;border-radius:50%;background:var(--green-tint);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 20px;animation:successPop .5s var(--transition)}
+@keyframes successPop{0%{transform:scale(0)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+.agree-success h3{font-family:var(--font-display);font-weight:800;font-size:1.4rem;margin-bottom:8px;color:var(--ink)}
+.agree-success p{font-size:1rem;color:var(--ink-soft);margin-bottom:24px}
+.agree-success .signed-details{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:left;margin-bottom:24px}
+.agree-success .signed-details .detail-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.agree-success .signed-details .detail-row:last-child{border-bottom:none}
+.agree-success .detail-label{color:var(--ink-faint);font-weight:500}
+.agree-success .detail-value{color:var(--ink);font-weight:600}
+
+/* Already signed */
+.agree-signed-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;background:var(--green-tint);color:var(--green);font-weight:700;font-size:.88rem;margin-bottom:24px;animation:badgePulse 3s ease-in-out infinite}
+@keyframes badgePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+/* Loading */
+.agree-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:16px}
+.agree-loading .loader{width:40px;height:40px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
+.agree-loading p{color:var(--ink-soft);font-size:.95rem}
+
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s var(--transition)}.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  }
+
+  var session = SupabaseClient.getSession();
+  if (!session || !session.access_token) {
+    window.location.href = '/partner/login/';
+    return;
+  }
+
+  var userId = session.user ? session.user.id : null;
+  if (!userId && session.access_token) {
+    SupabaseClient.getUser(session.access_token).then(function(u) {
+      if (u && u.id) {
+        userId = u.id;
+        loadAgreement(userId, session.access_token);
+      }
+    });
+  } else if (userId) {
+    loadAgreement(userId, session.access_token);
+  }
+});
+
+function loadAgreement(userId, token) {
+  SupabaseClient.select('partner_profiles', 'user_id=eq.' + userId, token).then(function(profiles) {
+    if (profiles && profiles.length > 0) {
+      var profile = profiles[0];
+      document.getElementById('partner-name-display').textContent = profile.full_name || 'Not set';
+      document.getElementById('partner-company-display').textContent = profile.company_name || 'Not set';
+      document.getElementById('partner-capability-display').textContent = profile.capability || 'Not set';
+      var revShare = profile.capability === 'Refer + Sell + Implement' ? 'Up to 20%' : '10%';
+      document.getElementById('partner-revenue-display').textContent = revShare;
+    }
+  });
+
+  SupabaseClient.select('partner_agreements', 'user_id=eq.' + userId, token).then(function(agreements) {
+    var loader = document.getElementById('agree-loader');
+    var content = document.getElementById('agree-content');
+    var signedView = document.getElementById('agree-signed-view');
+    var formView = document.getElementById('agree-form-view');
+
+    if (loader) loader.style.display = 'none';
+
+    if (agreements && agreements.length > 0) {
+      var agreement = agreements[0];
+      if (agreement.status === 'signed' || agreement.signed_at) {
+        document.getElementById('signed-name').textContent = agreement.full_name || '';
+        document.getElementById('signed-email').textContent = agreement.email || '';
+        document.getElementById('signed-date').textContent = agreement.signed_at ? new Date(agreement.signed_at).toLocaleDateString('en-IN', {day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'}) : '';
+        document.getElementById('signed-version').textContent = agreement.agreement_version || 'v1.0';
+        if (content) content.style.display = 'block';
+        if (formView) formView.style.display = 'none';
+        if (signedView) signedView.style.display = 'block';
+        return;
+      }
+    }
+
+    if (content) content.style.display = 'block';
+    if (formView) formView.style.display = 'block';
+    if (signedView) signedView.style.display = 'none';
+
+    document.getElementById('agree-checkbox').addEventListener('change', function() {
+      var item = this.closest('.agree-checkbox');
+      if (this.checked) item.classList.add('checked');
+      else item.classList.remove('checked');
+    });
+
+    document.getElementById('agree-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var btn = document.getElementById('agree-submit-btn');
+      var errorMsg = document.getElementById('agree-error');
+      errorMsg.classList.remove('show');
+
+      var agreeCb = document.getElementById('agree-agree-cb');
+      if (!agreeCb.checked) {
+        errorMsg.textContent = 'You must agree to the Partner Agreement to proceed.';
+        errorMsg.classList.add('show');
+        return;
+      }
+
+      var fullName = form.sign_fullname.value.trim();
+      var email = form.sign_email.value.trim();
+
+      if (!fullName || !email) {
+        errorMsg.textContent = 'Please enter your full name and email.';
+        errorMsg.classList.add('show');
+        return;
+      }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      var agreementData = {
+        user_id: userId,
+        partner_profile_id: null,
+        agreement_version: 'v1.0',
+        full_name: fullName,
+        email: email,
+        status: 'signed',
+        signed_at: new Date().toISOString(),
+        ip_address: null,
+        created_at: new Date().toISOString()
+      };
+
+      SupabaseClient.select('partner_profiles', 'user_id=eq.' + userId, token).then(function(profiles) {
+        if (profiles && profiles.length > 0) {
+          agreementData.partner_profile_id = profiles[0].id;
+        }
+
+        return SupabaseClient.insert('partner_agreements', agreementData, token);
+      }).then(function(result) {
+        if (result && result.error) {
+          throw new Error(result.error.message || 'Failed to save agreement');
+        }
+
+        return SupabaseClient.update('partner_profiles', 'user_id=eq.' + userId, { agreement_signed: true, agreement_signed_at: new Date().toISOString() }, token);
+      }).then(function() {
+        var formView = document.getElementById('agree-form-view');
+        var signedView = document.getElementById('agree-signed-view');
+
+        document.getElementById('signed-name').textContent = fullName;
+        document.getElementById('signed-email').textContent = email;
+        document.getElementById('signed-date').textContent = new Date().toLocaleDateString('en-IN', {day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'});
+        document.getElementById('signed-version').textContent = 'v1.0';
+
+        if (formView) formView.style.display = 'none';
+        if (signedView) signedView.style.display = 'block';
+      }).catch(function(err) {
+        errorMsg.textContent = 'Something went wrong. Please try again.';
+        errorMsg.classList.add('show');
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      });
+    });
+  });
+}
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<div id="nav-placeholder"></div>
+
+<section id="main-content" class="agree-hero" aria-label="Partner Agreement Hero">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span>Partner Agreement</span>
+      <h1>BRILLIANTS<br>PARTNER AGREEMENT</h1>
+      <p>Review and sign the agreement to formalize your partnership with Brilliants Technology.</p>
+    </div>
+  </div>
+</section>
+
+<div class="agree-container">
+  <div class="agree-card">
+
+    <div id="agree-loader" class="agree-loading">
+      <div class="loader"></div>
+      <p>Loading agreement...</p>
+    </div>
+
+    <div id="agree-content" style="display:none;">
+
+      <div id="agree-form-view">
+        <div class="agree-meta">
+          <div class="agree-meta-item">
+            <span class="agree-meta-label">Agreement Version</span>
+            <span class="agree-meta-value">v1.0</span>
+          </div>
+          <div class="agree-meta-item">
+            <span class="agree-meta-label">Date</span>
+            <span class="agree-meta-value" id="agree-date-display"></span>
+          </div>
+          <div class="agree-meta-item">
+            <span class="agree-meta-label">Partner Name</span>
+            <span class="agree-meta-value" id="partner-name-display">Loading...</span>
+          </div>
+          <div class="agree-meta-item">
+            <span class="agree-meta-label">Company</span>
+            <span class="agree-meta-value" id="partner-company-display">Loading...</span>
+          </div>
+          <div class="agree-meta-item">
+            <span class="agree-meta-label">Partner Capability</span>
+            <span class="agree-meta-value" id="partner-capability-display">Loading...</span>
+          </div>
+          <div class="agree-meta-item">
+            <span class="agree-meta-label">Revenue Share</span>
+            <span class="agree-meta-value" id="partner-revenue-display">Loading...</span>
+          </div>
+        </div>
+
+        <script>
+        document.getElementById('agree-date-display').textContent = new Date().toLocaleDateString('en-IN', {day:'numeric', month:'long', year:'numeric'});
+        </script>
+
+        <div class="agree-section-title"><span class="sec-num">1</span> Parties</div>
+        <div class="agree-text">This Partner Agreement ("Agreement") is entered into between Brilliants Technology ("Company," "we," "us," or "our"), having its registered office at Hinganghat, Maharashtra 442301, India, and the partner entity or individual ("Partner," "you," or "your") identified in the partner profile submitted through the Brilliants Partner Program registration process.</div>
+
+        <div class="agree-section-title"><span class="sec-num">2</span> Purpose</div>
+        <div class="agree-text">The purpose of this Agreement is to establish the terms and conditions under which the Partner may participate in the Brilliants Partner Program to refer, sell, and/or implement Brilliants Technology solutions including but not limited to Power EmS, IronBook, Business Software, AI & Automation, and IoT Solutions to prospective customers.</div>
+
+        <div class="agree-section-title"><span class="sec-num">3</span> Partner Role</div>
+        <div class="agree-text">The Partner's role and level of participation under this Agreement shall be determined by the capability selected during the registration process: (a) Refer + Sell (Sales Partner) or (b) Refer + Sell + Implement (Solution Partner). The Partner's capability level determines the revenue share structure, responsibilities, and obligations as outlined in this Agreement.</div>
+
+        <div class="agree-section-title"><span class="sec-num">4</span> Refer + Sell Responsibilities</div>
+        <div class="agree-text">Partners operating at the Refer + Sell (Sales Partner) level agree to: (a) Identify and qualify prospective customers who may benefit from Brilliants Technology solutions; (b) Introduce Brilliants solutions to qualified prospects; (c) Participate in product demonstrations and presentations as needed; (d) Support the sales process through to customer closure; (e) Coordinate with Brilliants team members throughout the sales cycle; (f) Provide accurate and timely information about prospective customers and market conditions.</div>
+
+        <div class="agree-section-title"><span class="sec-num">5</span> Refer + Sell + Implement Responsibilities</div>
+        <div class="agree-text">Partners operating at the Refer + Sell + Implement (Solution Partner) level agree to all responsibilities outlined for Sales Partners, plus: (a) Handle customer implementation and deployment of Brilliants solutions; (b) Provide agreed-upon technical support to customers during and after implementation; (c) Coordinate with Brilliants technical team for complex deployments; (d) Ensure customer satisfaction throughout the implementation process; (e) Maintain technical competency through Brilliants-provided training and resources; (f) Comply with Brilliants implementation standards and best practices.</div>
+
+        <div class="agree-section-title"><span class="sec-num">6</span> Revenue Share</div>
+        <div class="agree-text">Revenue share is determined by the Partner's capability level: (a) Sales Partner (Refer + Sell): 10% revenue share on qualifying customer subscriptions; (b) Solution Partner (Refer + Sell + Implement): Up to 20% revenue share on qualifying customer subscriptions. The exact revenue share percentage within the "up to 20%" range for Solution Partners shall be determined based on factors including implementation complexity, customer lifecycle value, and individual partner performance, as mutually agreed upon between Brilliants and the Partner. Revenue share applies only to qualifying subscriptions as defined by Brilliants from time to time.</div>
+
+        <div class="agree-section-title"><span class="sec-num">7</span> Recurring Revenue</div>
+        <div class="agree-text">When a customer introduced by the Partner continues with an eligible Brilliants subscription and renews, the Partner may continue to earn revenue share on eligible renewals, subject to: (a) The Partner maintaining active partner status under this Agreement; (b) The customer subscription remaining in good standing; (c) Compliance with all applicable partner terms and conditions; (d) Revenue share on renewals is contingent upon the Partner's continued participation in the Partner Program and adherence to all applicable terms.</div>
+
+        <div class="agree-section-title"><span class="sec-num">8</span> Lead Registration</div>
+        <div class="agree-text">Partners must register prospective customer leads through the Brilliants Partner Dashboard using the designated lead registration form. All required fields must be completed accurately. Partners are responsible for ensuring that lead information is current, accurate, and obtained with appropriate consent from the prospective customer. Brilliants reserves the right to verify lead information and may reject leads that do not meet qualification criteria or are found to contain inaccurate information.</div>
+
+        <div class="agree-section-title"><span class="sec-num">9</span> Lead Protection</div>
+        <div class="agree-text">Once a lead is registered by a Partner in the system, that lead is protected for the registering Partner for a period as determined by Brilliants. Lead protection means that other Partners or Brilliants direct sales will not override a legitimately registered lead during the protection period, provided the Partner is actively working the opportunity in good faith. Lead protection is forfeited if: (a) The Partner fails to actively progress the opportunity; (b) The lead information is found to be inaccurate or misleading; (c) The protection period expires without meaningful sales activity; (d) The lead was already registered by another Partner or exists in Brilliants' direct sales pipeline.</div>
+
+        <div class="agree-section-title"><span class="sec-num">10</span> Customer Relationship</div>
+        <div class="agree-text">The Partner acknowledges that the end customer relationship is primarily between Brilliants and the customer. While the Partner may facilitate introductions and support the sales and implementation process, Brilliants retains ultimate responsibility for customer relationship management, product delivery, billing, and support. Partners shall not make representations, warranties, or commitments on behalf of Brilliants without prior written authorization.</div>
+
+        <div class="agree-section-title"><span class="sec-num">11</span> Payment / Commission</div>
+        <div class="agree-text">Revenue share payments ("Commissions") will be calculated and paid on a monthly or quarterly basis as determined by Brilliants. Commissions are based on qualifying customer subscription revenue actually received by Brilliants. Payments are made via bank transfer or other agreed-upon method. Partners are responsible for providing accurate payment details and maintaining current banking information. Brilliants will provide commission statements detailing the calculation basis. Partners are responsible for all applicable taxes on commission payments.</div>
+
+        <div class="agree-section-title"><span class="sec-num">12</span> Implementation Responsibilities</div>
+        <div class="agree-text">Solution Partners who handle customer implementation agree to: (a) Complete required Brilliants training and certification before undertaking implementations; (b) Follow Brilliants implementation methodologies and best practices; (c) Provide implementation timelines and project plans to customers and Brilliants; (d) Escalate technical issues to Brilliants support as appropriate; (e) Ensure customer systems meet minimum requirements for Brilliants solutions; (f) Maintain appropriate technical skills and resources to deliver quality implementations; (g) Comply with all Brilliants quality standards and customer satisfaction requirements.</div>
+
+        <div class="agree-section-title"><span class="sec-num">13</span> Support</div>
+        <div class="agree-text">Partners are expected to provide first-level support to their customers for issues related to implementations they have delivered. Brilliants will provide partner-level technical support, documentation, training resources, and escalation paths for issues that require Brilliants engineering involvement. Support levels and response times will be as defined in the Partner Support documentation provided by Brilliants.</div>
+
+        <div class="agree-section-title"><span class="sec-num">14</span> Confidentiality</div>
+        <div class="agree-text">The Partner agrees to maintain the confidentiality of all non-public information disclosed by Brilliants, including but not limited to product roadmaps, pricing strategies, customer data, business plans, technical specifications, and proprietary processes. This confidentiality obligation survives the termination of this Agreement for a period of two (2) years. The Partner shall not disclose confidential information to any third party without prior written consent from Brilliants.</div>
+
+        <div class="agree-section-title"><span class="sec-num">15</span> Data Protection</div>
+        <div class="agree-text">The Partner shall comply with all applicable data protection laws and regulations, including but not limited to India's Digital Personal Data Protection Act (DPDPA) and any other applicable data protection legislation. The Partner shall: (a) Handle customer data in accordance with applicable data protection requirements; (b) Obtain necessary consents before collecting or processing personal data; (c) Implement appropriate security measures to protect personal data; (d) Report any data breaches to Brilliants promptly; (e) Cooperate with Brilliants on data subject requests and data protection inquiries.</div>
+
+        <div class="agree-section-title"><span class="sec-num">16</span> Intellectual Property</div>
+        <div class="agree-text">All intellectual property rights in Brilliants products, technology, trademarks, trade names, logos, and marketing materials remain the exclusive property of Brilliants. The Partner is granted a limited, non-exclusive, non-transferable, revocable license to use Brilliants brand materials solely for the purpose of marketing and selling Brilliants solutions under this Agreement. The Partner shall not alter, modify, or create derivative works of Brilliants intellectual property without prior written consent.</div>
+
+        <div class="agree-section-title"><span class="sec-num">17</span> Brand Usage</div>
+        <div class="agree-text">The Partner may use Brilliants brand name, logos, and trademarks solely in connection with marketing and promoting Brilliants solutions under this Agreement. All brand usage must comply with Brilliants brand guidelines as provided from time to time. The Partner shall not use Brilliants brand in any manner that could create confusion, imply unauthorized endorsement, or damage Brilliants' reputation. Upon termination of this Agreement, the Partner must immediately cease all use of Brilliants brand materials.</div>
+
+        <div class="agree-section-title"><span class="sec-num">18</span> Marketing Rules</div>
+        <div class="agree-text">All marketing activities conducted by the Partner on behalf of or in connection with Brilliants solutions must be pre-approved by Brilliants. The Partner shall not make any false, misleading, or exaggerated claims about Brilliants products or services. Digital advertising, email campaigns, and social media posts referencing Brilliants must comply with applicable advertising standards and be submitted for review before publication. The Partner is responsible for ensuring compliance with all applicable marketing and advertising regulations.</div>
+
+        <div class="agree-section-title"><span class="sec-num">19</span> Termination</div>
+        <div class="agree-text">Either party may terminate this Agreement by providing thirty (30) days' written notice to the other party. Brilliants may terminate this Agreement immediately if the Partner: (a) Breaches any material term of this Agreement and fails to cure within fifteen (15) days of written notice; (b) Engages in fraudulent, deceptive, or unethical business practices; (c) Becomes insolvent or files for bankruptcy; (d) Violates applicable laws or regulations. Upon termination, the Partner must cease all marketing and sales activities related to Brilliants solutions and return all confidential materials and brand assets.</div>
+
+        <div class="agree-section-title"><span class="sec-num">20</span> Dispute / Governing Law</div>
+        <div class="agree-text">This Agreement shall be governed by and construed in accordance with the laws of India. Any dispute arising out of or in connection with this Agreement shall first be attempted to be resolved through good-faith negotiation between the parties. If negotiation fails, the dispute shall be referred to and finally resolved by arbitration in accordance with the Arbitration and Conciliation Act, 1996 of India, with the seat of arbitration being Maharashtra, India. The language of arbitration shall be English.</div>
+
+        <div class="agree-section-title"><span class="sec-num">21</span> Agreement Duration</div>
+        <div class="agree-text">This Agreement shall commence on the date of signing and shall remain in effect until terminated by either party in accordance with Section 19 (Termination). The Agreement may be renewed automatically for successive periods unless either party provides notice of non-renewal at least thirty (30) days before the end of the current term.</div>
+
+        <div class="agree-section-title"><span class="sec-num">22</span> Amendments</div>
+        <div class="agree-text">Brilliants reserves the right to amend this Agreement from time to time. Material changes will be communicated to Partners via email or through the Partner Dashboard with at least thirty (30) days' advance notice. The Partner's continued participation in the Partner Program after the effective date of any amendments constitutes acceptance of the amended terms. If the Partner does not agree to the amended terms, the Partner may terminate this Agreement before the amendments take effect.</div>
+
+        <div class="agree-section-title"><span class="sec-num">23</span> Applicable Terms</div>
+        <div class="agree-text">This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior and contemporaneous agreements, understandings, negotiations, and discussions, whether oral or written. If any provision of this Agreement is found to be invalid or unenforceable, the remaining provisions shall continue in full force and effect. The failure of either party to enforce any right or provision of this Agreement shall not constitute a waiver of such right or provision. This Agreement may be executed in counterparts, each of which shall be deemed an original, and all of which together shall constitute one and the same instrument.</div>
+
+        <div class="agree-sign">
+          <h3>&#9997; Sign the Agreement</h3>
+          <form id="agree-form" novalidate>
+            <div id="agree-checkbox" class="agree-checkbox">
+              <input type="checkbox" id="agree-agree-cb">
+              <label for="agree-agree-cb">I have read and agree to the Brilliants Partner Agreement. I understand that by signing this agreement, I am entering into a legally binding partnership with Brilliants Technology.</label>
+            </div>
+            <div class="agree-field">
+              <label for="agree-fullname">Full Name <span style="color:var(--rose);">*</span></label>
+              <input type="text" id="agree-fullname" name="sign_fullname" placeholder="Enter your full legal name" required>
+              <span class="field-error">Full name is required</span>
+            </div>
+            <div class="agree-field">
+              <label for="agree-email">Email Address <span style="color:var(--rose);">*</span></label>
+              <input type="email" id="agree-email" name="sign_email" placeholder="you@company.com" required>
+              <span class="field-error">Valid email is required</span>
+            </div>
+            <button type="submit" id="agree-submit-btn" class="agree-submit">
+              <span class="btn-text">ACCEPT & SIGN AGREEMENT</span>
+              <span class="spinner"></span>
+            </button>
+            <div id="agree-error" class="agree-error"></div>
+          </form>
+        </div>
+      </div>
+
+      <div id="agree-signed-view" style="display:none;">
+        <div class="agree-success">
+          <div class="signed-badge agree-signed-badge">&#10003; Agreement Signed</div>
+          <div class="success-icon">&#9989;</div>
+          <h3>Agreement Successfully Signed</h3>
+          <p>You have accepted and signed the Brilliants Partner Agreement. Your partnership is now formally active.</p>
+          <div class="signed-details">
+            <div class="detail-row">
+              <span class="detail-label">Agreement Version</span>
+              <span class="detail-value" id="signed-version">v1.0</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Partner Name</span>
+              <span class="detail-value" id="signed-name"></span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Email</span>
+              <span class="detail-value" id="signed-email"></span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Signed On</span>
+              <span class="detail-value" id="signed-date"></span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Status</span>
+              <span class="detail-value" style="color:var(--green);">&#10003; Signed & Active</span>
+            </div>
+          </div>
+          <a href="/partner/dashboard/" class="btn btn-primary">Go to Dashboard &#10141;</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<a href="https://wa.me/919146121280" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <div class="pulse-ring"></div>&#128172;
+</a>
+<a href="#" class="back-to-top" aria-label="Back to top">&#8593;</a>
+
+<script src="/partner/js/supabase-config.js"></script>
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+
+</body>
+</html>
