@@ -476,38 +476,36 @@ tr:hover td{background:var(--surface-2)}
       return;
     }
 
-    SupabaseClient.getSession().then(function(result) {
-      var session = result.data && result.data.session;
-      if (!session) {
-        window.location.href = '/partner/login/';
-        return;
-      }
+    var session = SupabaseClient.getSession();
+    if (!session || !session.access_token) {
+      window.location.href = '/partner/login/';
+      return;
+    }
 
-      return SupabaseClient.getUser();
-    }).then(function(result) {
-      if (!result) return;
-      var user = result.data && result.data.user;
-      if (!user) {
-        window.location.href = '/partner/login/';
-        return;
-      }
+    SupabaseClient.getUser(session.access_token)
+      .then(function(result) {
+        var user = result;
+        if (!user || !user.id) {
+          window.location.href = '/partner/login/';
+          return;
+        }
 
-      var role = user.user_metadata && user.user_metadata.role;
-      if (role !== 'admin') {
+        var role = user.user_metadata && user.user_metadata.role;
+        if (role !== 'admin') {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('accessDenied').style.display = 'block';
+          return;
+        }
+
+        document.getElementById('adminEmail').textContent = user.email || '';
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'flex';
+        loadApplications();
+      }).catch(function(err) {
+        console.error('Auth check failed:', err);
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('accessDenied').style.display = 'block';
-        return;
-      }
-
-      document.getElementById('adminEmail').textContent = user.email || '';
-      document.getElementById('loadingScreen').style.display = 'none';
-      document.getElementById('adminDashboard').style.display = 'flex';
-      loadApplications();
-    }).catch(function(err) {
-      console.error('Auth check failed:', err);
-      document.getElementById('loadingScreen').style.display = 'none';
-      document.getElementById('accessDenied').style.display = 'block';
-    });
+      });
   }
 
   /* ====== LOAD APPLICATIONS ====== */
@@ -565,9 +563,10 @@ tr:hover td{background:var(--surface-2)}
 
     filteredApplications = currentApplications.filter(function(app) {
       var matchesSearch = !search ||
-        (app.name && app.name.toLowerCase().indexOf(search) !== -1) ||
-        (app.email && app.email.toLowerCase().indexOf(search) !== -1) ||
-        (app.company && app.company.toLowerCase().indexOf(search) !== -1);
+        (app.full_name && app.full_name.toLowerCase().indexOf(search) !== -1) ||
+        (app.business_email && app.business_email.toLowerCase().indexOf(search) !== -1) ||
+        (app.company_name && app.company_name.toLowerCase().indexOf(search) !== -1) ||
+        (app.application_id && app.application_id.toLowerCase().indexOf(search) !== -1);
 
       var matchesStatus = !statusFilter || app.status === statusFilter;
 
@@ -595,17 +594,17 @@ tr:hover td{background:var(--surface-2)}
       var app = filteredApplications[i];
       var tr = document.createElement('tr');
 
-      var shortId = app.id ? app.id.substring(0, 8) : 'N/A';
+      var appId = app.application_id || 'N/A';
       var statusClass = getStatusClass(app.status);
       var statusLabel = (app.status || 'NEW').replace(/_/g, ' ');
       var date = app.created_at ? new Date(app.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
-      var capability = app.partner_type || app.capability || 'N/A';
-      var solutions = app.solutions || app.areas_of_interest || 'N/A';
+      var capability = app.partner_capability || app.partner_type || 'N/A';
+      var solutions = Array.isArray(app.interested_solutions) ? app.interested_solutions.join(', ') : (app.solutions || 'N/A');
 
       tr.innerHTML =
-        '<td data-label="ID"><span class="table-id">' + shortId + '</span></td>' +
-        '<td data-label="Applicant"><div><div class="table-name">' + escHtml(app.name || 'N/A') + '</div><div class="table-email">' + escHtml(app.email || '') + '</div></div></td>' +
-        '<td data-label="Company"><span class="table-company">' + escHtml(app.company || 'N/A') + '</span></td>' +
+        '<td data-label="ID"><span class="table-id">' + escHtml(appId) + '</span></td>' +
+        '<td data-label="Applicant"><div><div class="table-name">' + escHtml(app.full_name || 'N/A') + '</div><div class="table-email">' + escHtml(app.business_email || '') + '</div></div></td>' +
+        '<td data-label="Company"><span class="table-company">' + escHtml(app.company_name || 'N/A') + '</span></td>' +
         '<td data-label="Capability"><span style="font-size:.85rem;">' + escHtml(capability) + '</span></td>' +
         '<td data-label="Solutions"><span style="font-size:.85rem;max-width:160px;display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escHtml(solutions) + '</span></td>' +
         '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></td>' +
@@ -657,17 +656,21 @@ tr:hover td{background:var(--surface-2)}
     var statusLabel = (app.status || 'NEW').replace(/_/g, ' ');
 
     var html = '<div class="detail-grid">' +
-      '<div class="detail-item"><div class="detail-label">Application ID</div><div class="detail-value mono">' + escHtml(app.id || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Application ID</div><div class="detail-value mono">' + escHtml(app.application_id || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Status</div><div class="detail-value"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></div></div>' +
-      '<div class="detail-item"><div class="detail-label">Full Name</div><div class="detail-value">' + escHtml(app.name || 'N/A') + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">' + escHtml(app.email || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Full Name</div><div class="detail-value">' + escHtml(app.full_name || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">' + escHtml(app.business_email || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Phone</div><div class="detail-value">' + escHtml(app.phone || 'N/A') + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">Company</div><div class="detail-value">' + escHtml(app.company || 'N/A') + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">Partner Type / Capability</div><div class="detail-value">' + escHtml(app.partner_type || app.capability || 'N/A') + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">Areas of Interest / Solutions</div><div class="detail-value">' + escHtml(app.areas_of_interest || app.solutions || 'N/A') + '</div></div>' +
-      '<div class="detail-item full"><div class="detail-label">Business Network / Message</div><div class="detail-value">' + escHtml(app.message || app.business_network || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">City</div><div class="detail-value">' + escHtml(app.city || 'N/A') + ', ' + escHtml(app.state || '') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Company</div><div class="detail-value">' + escHtml(app.company_name || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Business Type</div><div class="detail-value">' + escHtml(app.business_type || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Partner Capability</div><div class="detail-value">' + escHtml(app.partner_capability || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Interested Solutions</div><div class="detail-value">' + escHtml(Array.isArray(app.interested_solutions) ? app.interested_solutions.join(', ') : (app.interested_solutions || 'N/A')) + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Industries Served</div><div class="detail-value">' + escHtml(app.industries_served || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Customer Base</div><div class="detail-value">' + escHtml(app.customer_base || 'N/A') + '</div></div>' +
+      '<div class="detail-item full"><div class="detail-label">Business Profile</div><div class="detail-value">' + escHtml(app.business_profile || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Submitted On</div><div class="detail-value">' + date + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">User ID</div><div class="detail-value mono">' + escHtml(app.user_id || 'N/A') + '</div></div>';
+      '<div class="detail-item"><div class="detail-label">Application UUID</div><div class="detail-value mono" style="font-size:.75rem;">' + escHtml(app.id || 'N/A') + '</div></div>';
 
     if (app.rejection_reason) {
       html += '<div class="detail-item full"><div class="detail-label">Rejection Reason</div><div class="detail-value" style="color:var(--rose);">' + escHtml(app.rejection_reason) + '</div></div>';
@@ -711,37 +714,44 @@ tr:hover td{background:var(--surface-2)}
     confirmBtn.disabled = true;
     confirmBtn.textContent = 'Processing...';
 
+    // Step 1: Update application status to AGREEMENT_PENDING
     SupabaseClient.from('partner_applications')
-      .update({ status: 'APPROVED' })
+      .update({ status: 'AGREEMENT_PENDING', reviewed_at: new Date().toISOString() })
       .eq('id', id)
       .then(function(result) {
         if (result.error) throw result.error;
 
-        return SupabaseClient.from('partner_applications')
-          .update({ status: 'AGREEMENT_PENDING' })
-          .eq('id', id);
-      })
-      .then(function(result) {
-        if (result.error) throw result.error;
+        // Step 2: Create partner record with correct field names
+        var solutions = app.interested_solutions || app.solutions || [];
+        if (typeof solutions === 'string') solutions = solutions.split(',').map(function(s) { return s.trim(); });
 
         var partnerData = {
-          application_id: id,
-          name: app.name,
-          email: app.email,
+          application_id: app.application_id || '',
+          full_name: app.full_name || app.name || '',
+          business_email: app.business_email || app.email || '',
           phone: app.phone || '',
-          company: app.company || '',
-          partner_type: app.partner_type || app.capability || '',
-          status: 'PENDING_AGREEMENT',
-          created_at: new Date().toISOString()
+          city: app.city || '',
+          state: app.state || '',
+          country: app.country || 'India',
+          linkedin: app.linkedin || '',
+          company_name: app.company_name || app.company || '',
+          company_website: app.company_website || '',
+          business_type: app.business_type || '',
+          years_in_business: app.years_in_business || '',
+          industries_served: app.industries_served || '',
+          customer_base: app.customer_base || '',
+          partner_capability: app.partner_capability || app.partner_type || app.capability || 'refer_sell',
+          interested_solutions: solutions,
+          status: 'ACTIVE'
         };
 
-        return SupabaseClient.from('partners').insert([partnerData]);
+        return SupabaseClient.from('partners').insert(partnerData);
       })
       .then(function(result) {
         if (result.error) throw result.error;
 
         closeApproveModal();
-        showToast('Application approved successfully! Partner record created.', 'success');
+        showToast('Application approved! Partner can now create their login account.', 'success');
         loadApplications();
       }).catch(function(err) {
         console.error('Approve error:', err);
@@ -780,7 +790,7 @@ tr:hover td{background:var(--surface-2)}
     confirmBtn.textContent = 'Rejecting...';
 
     SupabaseClient.from('partner_applications')
-      .update({ status: 'REJECTED', rejection_reason: reason })
+      .update({ status: 'REJECTED', rejection_reason: reason, reviewed_at: new Date().toISOString() })
       .eq('id', id)
       .then(function(result) {
         if (result.error) throw result.error;

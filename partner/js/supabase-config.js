@@ -80,7 +80,7 @@ var SupabaseClient = (function() {
     return Promise.resolve();
   }
 
-  // REST: Select
+  // REST: Select (flat API)
   function select(table, query, authToken) {
     var url = config.URL + '/rest/v1/' + table + '?' + query;
     return fetch(url, {
@@ -89,7 +89,7 @@ var SupabaseClient = (function() {
     }).then(function(r) { return r.json(); });
   }
 
-  // REST: Insert
+  // REST: Insert (flat API)
   function insert(table, data, authToken) {
     return fetch(config.URL + '/rest/v1/' + table, {
       method: 'POST',
@@ -98,7 +98,7 @@ var SupabaseClient = (function() {
     }).then(function(r) { return r.json(); });
   }
 
-  // REST: Update
+  // REST: Update (flat API)
   function update(table, query, data, authToken) {
     return fetch(config.URL + '/rest/v1/' + table + '?' + query, {
       method: 'PATCH',
@@ -116,6 +116,78 @@ var SupabaseClient = (function() {
     }).then(function(r) { return r.json(); });
   }
 
+  // Chainable query builder (for admin pages)
+  function from(table) {
+    var _table = table;
+    var _selectCols = '*';
+    var _orderCol = null;
+    var _orderAsc = true;
+    var _filters = [];
+    var _token = getToken();
+
+    var builder = {
+      select: function(cols) { _selectCols = cols || '*'; return builder; },
+      order: function(col, opts) { _orderCol = col; _orderAsc = opts && opts.ascending !== undefined ? opts.ascending : true; return builder; },
+      eq: function(col, val) { _filters.push(col + '=eq.' + encodeURIComponent(val)); return builder; },
+      neq: function(col, val) { _filters.push(col + '=neq.' + encodeURIComponent(val)); return builder; },
+      in: function(col, vals) { _filters.push(col + '=in.(' + vals.map(encodeURIComponent).join(',') + ')'); return builder; },
+      gte: function(col, val) { _filters.push(col + '=gte.' + encodeURIComponent(val)); return builder; },
+      lte: function(col, val) { _filters.push(col + '=lte.' + encodeURIComponent(val)); return builder; },
+      single: function() { builder._single = true; return builder; },
+
+      insert: function(data) {
+        var arr = Array.isArray(data) ? data : [data];
+        return fetch(config.URL + '/rest/v1/' + _table, {
+          method: 'POST',
+          headers: headers(_token),
+          body: JSON.stringify(arr.length === 1 ? arr[0] : arr)
+        }).then(function(r) { return r.json().then(function(d) { return { data: Array.isArray(d) ? d : [d], error: null }; }); })
+          .catch(function(e) { return { data: null, error: { message: e.message } }; });
+      },
+
+      update: function(data) {
+        var qs = _filters.length ? '?' + _filters.join('&') : '';
+        return fetch(config.URL + '/rest/v1/' + _table + qs, {
+          method: 'PATCH',
+          headers: headers(_token),
+          body: JSON.stringify(data)
+        }).then(function(r) { return r.json().then(function(d) { return { data: d, error: null }; }); })
+          .catch(function(e) { return { data: null, error: { message: e.message } }; });
+      },
+
+      delete: function() {
+        var qs = _filters.length ? '?' + _filters.join('&') : '';
+        return fetch(config.URL + '/rest/v1/' + _table + qs, {
+          method: 'DELETE',
+          headers: headers(_token)
+        }).then(function(r) { return r.json().then(function(d) { return { data: d, error: null }; }); })
+          .catch(function(e) { return { data: null, error: { message: e.message } }; });
+      },
+
+      then: function(resolve, reject) {
+        var qs = [];
+        qs.push('select=' + encodeURIComponent(_selectCols));
+        if (_orderCol) qs.push('order=' + _orderCol + (_orderAsc ? '.asc' : '.desc'));
+        _filters.forEach(function(f) { qs.push(f); });
+
+        var url = config.URL + '/rest/v1/' + _table + '?' + qs.join('&');
+        var p = fetch(url, {
+          method: 'GET',
+          headers: headers(_token)
+        }).then(function(r) { return r.json(); })
+          .then(function(data) {
+            if (builder._single && Array.isArray(data) && data.length > 0) data = data[0];
+            return { data: data, error: null };
+          })
+          .catch(function(e) { return { data: null, error: { message: e.message } }; });
+
+        return p.then(resolve, reject);
+      }
+    };
+
+    return builder;
+  }
+
   return {
     config: config,
     getToken: getToken,
@@ -129,6 +201,7 @@ var SupabaseClient = (function() {
     select: select,
     insert: insert,
     update: update,
-    rpc: rpc
+    rpc: rpc,
+    from: from
   };
 })();

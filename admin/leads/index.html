@@ -492,18 +492,18 @@ tr:hover td{background:var(--surface-2)}
     }
 
     SupabaseClient.getSession().then(function(result) {
-      var session = result.data && result.data.session;
-      if (!session) {
+      var session = result;
+      if (!session || !session.access_token) {
         window.location.href = '/partner/login/';
         return;
       }
       authToken = session.access_token;
 
-      return SupabaseClient.getUser();
+      return SupabaseClient.getUser(authToken);
     }).then(function(result) {
       if (!result) return;
-      var user = result.data && result.data.user;
-      if (!user) {
+      var user = result;
+      if (!user || !user.id) {
         window.location.href = '/partner/login/';
         return;
       }

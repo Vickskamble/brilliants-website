@@ -134,6 +134,87 @@ document.addEventListener('DOMContentLoaded', function() {
     errorBox.offsetHeight;
     errorBox.style.animation = 'shakeError .4s ease-out';
   }
+
+  // Toggle Create Account form
+  document.getElementById('show-create-account').addEventListener('click', function(e) {
+    e.preventDefault();
+    form.style.display = 'none';
+    document.querySelector('.login-links').style.display = 'none';
+    document.querySelector('.login-footer').style.display = 'none';
+    document.getElementById('create-account-section').style.display = 'block';
+  });
+
+  document.getElementById('show-login').addEventListener('click', function(e) {
+    e.preventDefault();
+    form.style.display = 'block';
+    document.querySelector('.login-links').style.display = 'flex';
+    document.querySelector('.login-footer').style.display = 'block';
+    document.getElementById('create-account-section').style.display = 'none';
+  });
+
+  // Create Account form
+  document.getElementById('create-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = document.getElementById('create-email').value.trim();
+    var pass = document.getElementById('create-password').value;
+    var pass2 = document.getElementById('create-password2').value;
+    var errBox = document.getElementById('create-error');
+    var successBox = document.getElementById('create-success');
+    var btn = document.getElementById('create-btn');
+
+    errBox.style.display = 'none';
+    successBox.style.display = 'none';
+
+    if (!email || !pass) { errBox.textContent = 'Please fill all fields.'; errBox.style.display = 'block'; return; }
+    if (pass.length < 6) { errBox.textContent = 'Password must be at least 6 characters.'; errBox.style.display = 'block'; return; }
+    if (pass !== pass2) { errBox.textContent = 'Passwords do not match.'; errBox.style.display = 'block'; return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Creating...';
+
+    // First, check if partner record exists for this email
+    SupabaseClient.select('partners', 'select=*&business_email=eq.' + encodeURIComponent(email))
+      .then(function(result) {
+        var partners = result;
+        if (!partners || partners.length === 0) {
+          throw new Error('No approved partner found with this email. Please register first or contact us.');
+        }
+
+        var partner = partners[0];
+
+        // Create auth account
+        return SupabaseClient.signUp(email, pass, {
+          role: 'partner',
+          partner_id: partner.partner_id,
+          full_name: partner.full_name
+        }).then(function(authResult) {
+          if (authResult.error) throw new Error(authResult.error.message || authResult.error_description || 'Account creation failed');
+
+          var userId = authResult.user && authResult.user.id;
+          if (!userId) throw new Error('No user ID returned');
+
+          // Link user_id to partner record
+          return SupabaseClient.update('partners', 'partner_id=eq.' + partner.partner_id, { user_id: userId })
+            .then(function() {
+              return { partnerId: partner.partner_id, userId: userId };
+            });
+        });
+      })
+      .then(function(result) {
+        successBox.textContent = 'Account created! You can now sign in with your email and password.';
+        successBox.style.display = 'block';
+        errBox.style.display = 'none';
+        document.getElementById('create-form').reset();
+      })
+      .catch(function(err) {
+        errBox.textContent = err.message || 'Something went wrong. Please try again.';
+        errBox.style.display = 'block';
+      })
+      .finally(function() {
+        btn.disabled = false;
+        btn.textContent = 'Create Account';
+      });
+  });
 });
 </script>
 </head>
@@ -168,12 +249,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="login-links">
         <a href="#" id="forgot-password-link">Forgot password?</a>
-        <a href="/partner/register/">New partner? Register</a>
+        <a href="#" id="show-create-account">Create Account</a>
       </div>
 
       <p class="login-footer">
         Don't have an account yet? <a href="/partner/register/">Apply to become a partner</a>
       </p>
+
+      <!-- Create Account Form (hidden by default) -->
+      <div id="create-account-section" style="display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line);">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:4px;">Create Partner Account</h3>
+        <p style="font-size:.85rem;color:var(--ink-faint);margin-bottom:16px;">Already approved? Create your login credentials.</p>
+        <div id="create-error" class="login-error"></div>
+        <div id="create-success" style="display:none;padding:12px 16px;background:var(--green-tint);border:1px solid var(--green);border-radius:var(--radius-sm);color:var(--green);font-size:.88rem;font-weight:500;margin-bottom:18px;"></div>
+        <form id="create-form" class="login-form">
+          <div class="fg">
+            <label for="create-email">Email (used in registration)</label>
+            <input type="email" id="create-email" placeholder="you@company.com" required autocomplete="email">
+          </div>
+          <div class="fg">
+            <label for="create-password">Create Password</label>
+            <input type="password" id="create-password" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password">
+          </div>
+          <div class="fg">
+            <label for="create-password2">Confirm Password</label>
+            <input type="password" id="create-password2" placeholder="Re-enter password" required minlength="6" autocomplete="new-password">
+          </div>
+          <button type="submit" id="create-btn" class="btn btn-primary">Create Account</button>
+        </form>
+        <p style="margin-top:16px;font-size:.85rem;text-align:center;"><a href="#" id="show-login" style="color:var(--primary);font-weight:600;">&#8592; Back to Login</a></p>
+      </div>
     </div>
   </div>
 </main>
