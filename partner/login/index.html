@@ -135,6 +135,28 @@ document.addEventListener('DOMContentLoaded', function() {
     errorBox.style.animation = 'shakeError .4s ease-out';
   }
 
+  // Forgot password - send reset email via Supabase
+  document.getElementById('forgot-password-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    var email = emailInput.value.trim();
+    if (!email) {
+      showError('Enter your email above, then click Forgot Password.');
+      emailInput.focus();
+      return;
+    }
+    fetch(BRILLIANTS_SUPABASE.URL + '/auth/v1/recover', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': BRILLIANTS_SUPABASE.ANON_KEY },
+      body: JSON.stringify({ email: email })
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      if (data.error) throw new Error(data.error_description || data.msg || 'Failed');
+      errorBox.style.display = 'none';
+      alert('Password reset email sent to ' + email + '. Check your inbox.');
+    }).catch(function() {
+      showError('Could not send reset email. Please try again or contact support.');
+    });
+  });
+
   // Toggle Create Account form
   document.getElementById('show-create-account').addEventListener('click', function(e) {
     e.preventDefault();
@@ -233,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <h1 class="login-heading">Partner Login</h1>
       <p class="login-subtext">Access your partner dashboard and manage your referrals.</p>
 
-      <div id="login-error" class="login-error"></div>
+      <div id="login-error" class="login-error" role="alert" aria-live="assertive"></div>
 
       <form id="login-form" class="login-form" autocomplete="on">
         <div class="fg">
@@ -260,8 +282,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <div id="create-account-section" style="display:none;margin-top:20px;padding-top:20px;border-top:1px solid var(--line);">
         <h3 style="font-size:1rem;font-weight:700;margin-bottom:4px;">Create Partner Account</h3>
         <p style="font-size:.85rem;color:var(--ink-faint);margin-bottom:16px;">Already approved? Create your login credentials.</p>
-        <div id="create-error" class="login-error"></div>
-        <div id="create-success" style="display:none;padding:12px 16px;background:var(--green-tint);border:1px solid var(--green);border-radius:var(--radius-sm);color:var(--green);font-size:.88rem;font-weight:500;margin-bottom:18px;"></div>
+        <div id="create-error" class="login-error" role="alert" aria-live="assertive"></div>
+        <div id="create-success" style="display:none;padding:12px 16px;background:var(--green-tint);border:1px solid var(--green);border-radius:var(--radius-sm);color:var(--green);font-size:.88rem;font-weight:500;margin-bottom:18px;" role="status" aria-live="polite"></div>
         <form id="create-form" class="login-form">
           <div class="fg">
             <label for="create-email">Email (used in registration)</label>
