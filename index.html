@@ -224,10 +224,16 @@
 </section>
 
 <!-- 2.5 VIDEO INTRO -->
-<section class="section" style="padding:0 0 24px;" aria-label="Introduction video">
-  <div class="container" style="max-width:800px;">
+<section class="section" style="padding:0 0 48px;" aria-label="Introduction video">
+  <div class="container" style="max-width:860px;">
+    <div class="section-head center reveal" style="margin-bottom:32px;">
+      <span class="eyebrow"><span class="dot"></span>See who we are</span>
+      <h2>BRILLIANTS <span class="h2-grad">In Action</span></h2>
+      <p>From gym floors to factory shop fronts &mdash; see how our products solve real business problems every day.</p>
+    </div>
+
     <div class="video-wrapper reveal" style="position:relative;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl);aspect-ratio:16/9;background:#000;">
-      <video id="intro-video" preload="none" loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;" poster="" onclick="this.paused?this.play():this.pause();this.muted=false;">
+      <video id="intro-video" preload="none" loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;" onclick="this.paused?this.play():this.pause();this.muted=false;">
         <source src="/assets/video/hero-intro.mp4" type="video/mp4">
       </video>
       <button id="video-play-btn" aria-label="Play video" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:none;background:rgba(37,99,235,0.85);backdrop-filter:blur(8px);cursor:pointer;transition:all .3s;z-index:2;box-shadow:0 4px 24px rgba(37,99,235,0.4);">
@@ -251,6 +257,44 @@
       })();
       </script>
     </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;" class="reveal">
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center;">
+        <span style="font-size:1.6rem;display:block;margin-bottom:6px;">&#9889;</span>
+        <h4 style="font-size:0.92rem;margin-bottom:4px;">IronBook</h4>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">AI gym operating system &mdash; memberships, billing, attendance, all from one app.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center;">
+        <span style="font-size:1.6rem;display:block;margin-bottom:6px;">&#128161;</span>
+        <h4 style="font-size:0.92rem;margin-bottom:4px;">Power EmS</h4>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Smart energy monitoring &mdash; real-time dashboards, bill checks, anomaly alerts.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center;">
+        <span style="font-size:1.6rem;display:block;margin-bottom:6px;">&#129302;</span>
+        <h4 style="font-size:0.92rem;margin-bottom:4px;">Custom Solutions</h4>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Automation, software, AI &amp; IoT built around your unique business process.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;" class="reveal">
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center;">
+        <span style="font-size:1.6rem;display:block;margin-bottom:6px;">&#127919;</span>
+        <h4 style="font-size:0.92rem;margin-bottom:4px;">Starts Free</h4>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">IronBook free for up to 25 members. No credit card, no commitment.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center;">
+        <span style="font-size:1.6rem;display:block;margin-bottom:6px;">&#128172;</span>
+        <h4 style="font-size:0.92rem;margin-bottom:4px;">WhatsApp Support</h4>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Real humans, real answers. We respond within 24 hours, usually faster.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center;">
+        <span style="font-size:1.6rem;display:block;margin-bottom:6px;">&#127470;&#127475;</span>
+        <h4 style="font-size:0.92rem;margin-bottom:4px;">Built for India</h4>
+        <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Indian tariffs, GST, UPI &amp; local billing formats &mdash; designed for MSMEs.</p>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:24px;font-size:0.85rem;color:var(--ink-faint);">Built in Hinganghat, Maharashtra &mdash; running across India</p>
   </div>
 </section>
 
