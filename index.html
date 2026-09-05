@@ -223,6 +223,37 @@
   </div>
 </section>
 
+<!-- 2.5 VIDEO INTRO -->
+<section class="section" style="padding:0 0 24px;" aria-label="Introduction video">
+  <div class="container" style="max-width:800px;">
+    <div class="video-wrapper reveal" style="position:relative;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl);aspect-ratio:16/9;background:#000;">
+      <video id="intro-video" preload="none" loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;" poster="" onclick="this.paused?this.play():this.pause();this.muted=false;">
+        <source src="/assets/video/hero-intro.mp4" type="video/mp4">
+      </video>
+      <button id="video-play-btn" aria-label="Play video" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:none;background:rgba(37,99,235,0.85);backdrop-filter:blur(8px);cursor:pointer;transition:all .3s;z-index:2;box-shadow:0 4px 24px rgba(37,99,235,0.4);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><polygon points="5,3 19,12 5,21"></polygon></svg>
+      </button>
+      <style>
+        #intro-video:hover{filter:brightness(1.05)}
+        #video-play-btn{transition:opacity .4s,transform .3s}
+        #video-play-btn.hidden{opacity:0;transform:translate(-50%,-50%) scale(0.7);pointer-events:none}
+      </style>
+      <script>
+      (function(){
+        var v=document.getElementById('intro-video'),b=document.getElementById('video-play-btn');
+        if(!v||!b)return;
+        b.addEventListener('click',function(){v.play();v.muted=false;b.classList.add('hidden');});
+        v.addEventListener('click',function(){
+          if(v.paused){v.play();v.muted=false;b.classList.add('hidden');}
+          else{v.pause();b.classList.remove('hidden');}
+        });
+        v.addEventListener('ended',function(){b.classList.remove('hidden');});
+      })();
+      </script>
+    </div>
+  </div>
+</section>
+
 <!-- 3. PROBLEMS -->
 <section class="section" id="problems" aria-label="Business Problems">
   <div class="container">
