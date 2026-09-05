@@ -389,31 +389,31 @@
       <p>A clear five-step path &mdash; no jargon, no surprises, no unnecessary software.</p>
     </div>
     <div class="process-grid">
-      <div class="process-step reveal">
+      <div class="process-step reveal" style="--i:0">
         <span class="ps-num">01</span>
         <span class="ps-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="search"></span>
         <h3>Understand</h3>
         <p>We sit with you and understand your business, workflow and pain points &mdash; how work actually happens today.</p>
       </div>
-      <div class="process-step reveal">
+      <div class="process-step reveal" style="--i:1">
         <span class="ps-num">02</span>
         <span class="ps-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="chart"></span>
         <h3>Analyze</h3>
         <p>We identify inefficiencies, repetitive work and the processes with the highest automation potential.</p>
       </div>
-      <div class="process-step reveal">
+      <div class="process-step reveal" style="--i:2">
         <span class="ps-num">03</span>
         <span class="ps-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="settings"></span>
         <h3>Design</h3>
         <p>We define the right solution, the architecture, and a practical implementation roadmap for your budget.</p>
       </div>
-      <div class="process-step reveal">
+      <div class="process-step reveal" style="--i:3">
         <span class="ps-num">04</span>
         <span class="ps-icon" style="background:var(--green-tint);color:var(--green);" data-icon="repeat"></span>
         <h3>Build &amp; Implement</h3>
         <p>We develop, integrate, test and deploy &mdash; with your team involved at every step, not a black box.</p>
       </div>
-      <div class="process-step reveal">
+      <div class="process-step reveal" style="--i:4">
         <span class="ps-num">05</span>
         <span class="ps-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="trending"></span>
         <h3>Improve &amp; Scale</h3>
@@ -981,6 +981,45 @@
 <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
   <span id="themeToggleIcon">&#9789;</span> <span id="themeToggleLabel">Dark mode</span>
 </button>
+
+<style>
+/* ====== PROCESS STEP ANIMATIONS ====== */
+.process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:step}
+@media(max-width:900px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.process-grid{grid-template-columns:1fr}}
+
+.process-step{opacity:0;transform:translateY(40px);transition:opacity .6s var(--transition),transform .6s var(--transition),box-shadow .3s var(--transition),border-color .3s var(--transition)}
+.process-step.in{opacity:1;transform:translateY(0);transition-delay:calc(var(--i,0) * .12s)}
+
+.process-step:hover{box-shadow:0 8px 32px rgba(37,99,235,0.15);transform:translateY(-6px) !important;border-color:var(--primary) !important}
+
+.process-step .ps-num{transition:color .3s,transform .3s;display:inline-block}
+.process-step:hover .ps-num{color:var(--primary);transform:scale(1.15)}
+
+.process-step .ps-icon{transition:transform .3s var(--transition),box-shadow .3s var(--transition)}
+.process-step:hover .ps-icon{transform:scale(1.12) rotate(-5deg);box-shadow:0 4px 20px rgba(37,99,235,0.2)}
+
+.process-step:nth-child(1) .ps-icon{transition-delay:.05s}
+.process-step:nth-child(2) .ps-icon{transition-delay:.1s}
+.process-step:nth-child(3) .ps-icon{transition-delay:.15s}
+.process-step:nth-child(4) .ps-icon{transition-delay:.2s}
+.process-step:nth-child(5) .ps-icon{transition-delay:.25s}
+
+.process-step h3{transition:color .3s}
+.process-step:hover h3{color:var(--primary)}
+
+.process-step::after{content:'';position:absolute;top:50%;right:-8px;width:16px;height:2px;background:var(--line-strong);opacity:0;transition:opacity .3s}
+.process-step:not(:last-child)::after{opacity:1}
+.process-step:hover::after{background:var(--primary);opacity:1}
+
+.process-step .ps-num::before{counter-increment:step;content:''}
+
+@media(prefers-reduced-motion:reduce){
+  .process-step{opacity:1;transform:none;transition:none}
+  .process-step:hover{transform:translateY(-3px) !important}
+}
+</style>
+
 <script>
 (function () {
   var root = document.documentElement;
