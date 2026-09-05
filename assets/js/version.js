@@ -1,0 +1,2 @@
+var POWER_EMS_VERSION = 'v1.2.7';
+var IRONBOOK_VERSION = 'v1.0.0';
