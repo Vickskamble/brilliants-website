@@ -301,72 +301,121 @@
 <!-- 2.6 PRODUCT SCREENSHOTS -->
 <section class="section alt" style="padding:32px 0 48px;" aria-label="Product screenshots">
   <div class="container">
-    <div class="section-head center reveal" style="margin-bottom:28px;">
+    <div class="section-head center reveal" style="margin-bottom:36px;">
       <span class="eyebrow"><span class="dot"></span>Live products, real screenshots</span>
       <h2>See What <span class="h2-grad">Actually Runs</span></h2>
       <p>Not mockups. Not stock photos. These are the actual dashboards our users see every day.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;" class="reveal">
-      <a href="/ironbook/" style="display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .3s var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="aspect-ratio:4/3;overflow:hidden;">
+
+    <style>
+      .showcase-card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .35s var(--transition);position:relative}
+      .showcase-card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.1);transform:translateY(-6px);border-color:var(--line-strong)}
+      .showcase-card .sc-img{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--surface-2)}
+      .showcase-card .sc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--transition)}
+      .showcase-card:hover .sc-img img{transform:scale(1.04)}
+      .showcase-card .sc-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,var(--surface),transparent);pointer-events:none}
+      .showcase-card .sc-body{padding:20px 24px 22px;flex:1;display:flex;flex-direction:column}
+      .showcase-card .sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+      .showcase-card .sc-name{font-family:var(--font-display);font-weight:700;font-size:1.05rem}
+      .showcase-card .sc-badge{font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.02em}
+      .sc-badge.live{background:var(--green-tint);color:var(--green)}
+      .sc-badge.early{background:var(--amber-tint);color:var(--amber-ink)}
+      .showcase-card .sc-desc{font-size:0.88rem;color:var(--ink-soft);line-height:1.55;margin-bottom:14px;flex:1}
+      .showcase-card .sc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+      .showcase-card .sc-tag{font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;background:var(--surface-2);color:var(--ink-faint);border:1px solid var(--line)}
+      .showcase-card .sc-link{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--primary);transition:gap .2s}
+      .showcase-card:hover .sc-link{gap:10px;color:#4F46E5}
+      .showcase-card .sc-link svg{width:14px;height:14px;transition:transform .2s}
+      .showcase-card:hover .sc-link svg{transform:translateX(2px)}
+      .sc-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+    </style>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" class="reveal">
+
+      <a href="/ironbook/" class="showcase-card">
+        <div class="sc-img">
           <picture>
             <source srcset="/assets/images/products/ironbook-ss-1.webp" type="image/webp">
-            <img src="/assets/images/products/ironbook-ss-1.jpg" alt="IronBook gym dashboard showing member count, revenue and alerts" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="/assets/images/products/ironbook-ss-1.jpg" alt="IronBook gym dashboard showing member count, revenue and alerts" loading="lazy">
           </picture>
         </div>
-        <div style="padding:16px 20px;">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-            <h4 style="font-size:0.95rem;">IronBook</h4>
-            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--green-tint);color:var(--green);">Live</span>
+        <div class="sc-body">
+          <div class="sc-top">
+            <span class="sc-name">IronBook</span>
+            <span class="sc-badge live">Live</span>
           </div>
-          <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Members, billing, attendance, AI insights &mdash; one gym dashboard.</p>
+          <p class="sc-desc">AI gym operating system &mdash; memberships, billing, attendance, staff and AI insights.</p>
+          <div class="sc-tags">
+            <span class="sc-tag">Face Recognition</span>
+            <span class="sc-tag">Auto Billing</span>
+            <span class="sc-tag">AI Insights</span>
+          </div>
+          <span class="sc-link">Explore IronBook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
-      <a href="/power-ems/" style="display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .3s var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="aspect-ratio:4/3;overflow:hidden;">
+
+      <a href="/power-ems/" class="showcase-card">
+        <div class="sc-img">
           <picture>
             <source srcset="/assets/images/ems/dashboard.webp" type="image/webp">
-            <img src="/assets/images/ems/dashboard.jpg" alt="Power EmS live energy dashboard showing bill estimate, consumption and power factor" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            <img src="/assets/images/ems/dashboard.jpg" alt="Power EmS live energy dashboard showing bill estimate, consumption and power factor" loading="lazy">
           </picture>
         </div>
-        <div style="padding:16px 20px;">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-            <h4 style="font-size:0.95rem;">Power EmS</h4>
-            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--green-tint);color:var(--green);">Live</span>
+        <div class="sc-body">
+          <div class="sc-top">
+            <span class="sc-name">Power EmS</span>
+            <span class="sc-badge live">Live</span>
           </div>
-          <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Energy dashboards, bill checks, anomaly detection &amp; alerts.</p>
+          <p class="sc-desc">Smart energy management &mdash; live dashboards, bill checks, anomaly detection.</p>
+          <div class="sc-tags">
+            <span class="sc-tag">Real-time</span>
+            <span class="sc-tag">Bill Check</span>
+            <span class="sc-tag">Anomaly AI</span>
+          </div>
+          <span class="sc-link">Explore Power EmS <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
-      <a href="/crm/" style="display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .3s var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,var(--primary-tint),var(--green-tint));display:flex;align-items:center;justify-content:center;">
-          <div style="text-align:center;padding:24px;">
-            <span style="font-size:2rem;display:block;margin-bottom:8px;font-weight:800;color:var(--primary);letter-spacing:1px;">CRM</span>
-            <span style="font-size:0.78rem;color:var(--ink-faint);display:block;">Sales &middot; Support &middot; Marketing</span>
-          </div>
+
+      <a href="/crm/" class="showcase-card">
+        <div class="sc-img sc-placeholder" style="background:linear-gradient(135deg,var(--primary-tint) 0%,#E0E7FF 50%,var(--green-tint) 100%);">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="sc-badge live" style="position:relative;z-index:1;">Live</span>
         </div>
-        <div style="padding:16px 20px;">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-            <h4 style="font-size:0.95rem;">Brilliants CRM</h4>
-            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--green-tint);color:var(--green);">Live</span>
+        <div class="sc-body">
+          <div class="sc-top">
+            <span class="sc-name">Brilliants CRM</span>
+            <span class="sc-badge live">Live</span>
           </div>
-          <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Contacts, pipeline, tickets &amp; campaigns &mdash; with automatic follow-ups.</p>
-        </div>
-      </a>
-      <a href="/smart-hrms/" style="display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .3s var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,var(--primary-tint),var(--amber-tint));display:flex;align-items:center;justify-content:center;">
-          <div style="text-align:center;padding:24px;">
-            <span style="font-size:2.5rem;display:block;margin-bottom:8px;">&#129302;</span>
-            <span style="font-size:0.82rem;font-weight:700;padding:4px 12px;border-radius:100px;background:var(--amber-tint);color:var(--amber-ink);">Early Access</span>
+          <p class="sc-desc">Contacts, sales pipeline, support tickets and marketing campaigns with auto follow-ups.</p>
+          <div class="sc-tags">
+            <span class="sc-tag">Pipeline</span>
+            <span class="sc-tag">Tickets</span>
+            <span class="sc-tag">Campaigns</span>
           </div>
-        </div>
-        <div style="padding:16px 20px;">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-            <h4 style="font-size:0.95rem;">Smart HRMS</h4>
-            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--amber-tint);color:var(--amber-ink);">Early Access</span>
-          </div>
-          <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Face recognition attendance, payroll, leave &amp; employee portal.</p>
+          <span class="sc-link">Explore CRM <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
+
+      <a href="/smart-hrms/" class="showcase-card">
+        <div class="sc-img sc-placeholder" style="background:linear-gradient(135deg,var(--primary-tint) 0%,#E0E7FF 50%,var(--amber-tint) 100%);">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="sc-badge early" style="position:relative;z-index:1;">Early Access</span>
+        </div>
+        <div class="sc-body">
+          <div class="sc-top">
+            <span class="sc-name">Smart HRMS</span>
+            <span class="sc-badge early">Early Access</span>
+          </div>
+          <p class="sc-desc">Face recognition attendance, automated payroll, leave and employee self-service.</p>
+          <div class="sc-tags">
+            <span class="sc-tag">Face ID</span>
+            <span class="sc-tag">Auto Payroll</span>
+            <span class="sc-tag">Self-Service</span>
+          </div>
+          <span class="sc-link">Join Early Access <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
