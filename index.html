@@ -145,7 +145,7 @@
       <div class="hero-trust">
         <span class="ht-chip"><span data-icon="check" data-size="14" data-color="var(--green)"></span> <strong>IronBook</strong> is live in real businesses</span>
         <span class="ht-chip"><span data-icon="rupee" data-size="14" data-color="var(--amber-ink)"></span> Founded <strong>2025</strong> &middot; Hinganghat, Maharashtra</span>
-        <span class="ht-chip"><span data-icon="users" data-size="14" data-color="var(--primary)"></span> <strong>3 products</strong> &middot; one partner</span>
+        <span class="ht-chip"><span data-icon="users" data-size="14" data-color="var(--primary)"></span> <strong>4 products</strong> &middot; one partner</span>
       </div>
     </div>
 
@@ -306,7 +306,7 @@
       <h2>See What <span class="h2-grad">Actually Runs</span></h2>
       <p>Not mockups. Not stock photos. These are the actual dashboards our users see every day.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="reveal">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;" class="reveal">
       <a href="/ironbook/" style="display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .3s var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
         <div style="aspect-ratio:4/3;overflow:hidden;">
           <picture>
@@ -335,6 +335,21 @@
             <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--green-tint);color:var(--green);">Live</span>
           </div>
           <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Energy dashboards, bill checks, anomaly detection &amp; alerts.</p>
+        </div>
+      </a>
+      <a href="/crm/" style="display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .3s var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div style="aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,var(--primary-tint),var(--green-tint));display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;padding:24px;">
+            <span style="font-size:2rem;display:block;margin-bottom:8px;font-weight:800;color:var(--primary);letter-spacing:1px;">CRM</span>
+            <span style="font-size:0.78rem;color:var(--ink-faint);display:block;">Sales &middot; Support &middot; Marketing</span>
+          </div>
+        </div>
+        <div style="padding:16px 20px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <h4 style="font-size:0.95rem;">Brilliants CRM</h4>
+            <span style="font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--green-tint);color:var(--green);">Live</span>
+          </div>
+          <p style="font-size:0.82rem;color:var(--ink-faint);margin:0;">Contacts, pipeline, tickets &amp; campaigns &mdash; with automatic follow-ups.</p>
         </div>
       </a>
       <a href="/smart-hrms/" style="display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;transition:all .3s var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)';this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
@@ -731,12 +746,12 @@
         <h3>Maintenance Management Automation</h3>
         <p>Preventive maintenance reminders, breakdown logs and a maintenance dashboard for manufacturing units.</p>
       </div>
-      <div class="proof-card reveal">
-        <span class="pc-icon" style="background:var(--green-tint);color:var(--green);" data-icon="phone"></span>
-        <span class="pc-tag">Concept &middot; In development</span>
-        <h3>CRM + WhatsApp Lead Automation</h3>
-        <p>Lead capture, automatic WhatsApp follow-ups and conversion tracking for service businesses.</p>
-      </div>
+      <a href="/crm/" class="proof-card reveal" style="display:block;">
+        <span class="pc-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="target"></span>
+        <span class="pc-tag live">Live &middot; crm.brilliants.in</span>
+        <h3>Brilliants CRM &mdash; Lead &amp; Follow-up Automation</h3>
+        <p>Lead capture, pipeline tracking, support tickets and automatic follow-up emails &mdash; for service businesses.</p>
+      </a>
       <a href="/power-ems/" class="proof-card reveal" style="display:block;">
         <span class="pc-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="activity"></span>
         <span class="pc-tag live">Live &middot; v1.2.7</span>
@@ -791,6 +806,12 @@
         <span class="at-name">Power EmS</span>
         <span class="at-tag live">Live</span>
         <span class="at-desc">Energy monitoring &amp; IoT</span>
+      </a>
+      <a href="/crm/" class="app-tile">
+        <span class="at-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="target"></span>
+        <span class="at-name">Brilliants CRM</span>
+        <span class="at-tag live">Live</span>
+        <span class="at-desc">Sales, support &amp; marketing</span>
       </a>
       <a href="/downloads/" class="app-tile">
         <span class="at-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="download"></span>
