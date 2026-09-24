@@ -16,10 +16,10 @@
 </script>
 <meta name="robots" content="index, follow">
 <title>Partner Program — Become a Brilliants Technology Partner</title>
-<meta name="description" content="Partner with Brilliants to introduce Software, AI, Automation & IoT solutions to businesses. Earn recurring revenue with Sales Partner (10%) or Solution Partner (up to 20%) revenue share.">
-<meta name="keywords" content="Brilliants partner program, technology partner, reseller partner, sales partner, solution partner, MSME technology, business automation partner, revenue share">
+<meta name="description" content="Partner with Brilliants to introduce Software, AI, Automation & IoT solutions to businesses. Earn up to 25% revenue share across Sales, Solution, Silver and Gold partner tiers.">
+<meta name="keywords" content="Brilliants partner program, technology partner, reseller partner, sales partner, solution partner, silver partner, gold partner, MSME technology, business automation partner, revenue share">
 <meta property="og:title" content="Partner Program — Become a Brilliants Technology Partner">
-<meta property="og:description" content="Turn your business network into a new revenue opportunity. Earn recurring revenue by introducing Brilliants technology solutions.">
+<meta property="og:description" content="Turn your business network into a new revenue opportunity. Earn up to 25% recurring revenue with four partner tiers.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.brilliants.in/partner/">
 <meta property="og:image" content="https://www.brilliants.in/assets/images/logo/brilliants-logo-full.png">
@@ -208,7 +208,90 @@
 /* Confetti */
 .pp-confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden}
 .pp-confetti span{position:absolute;width:10px;height:10px;border-radius:2px;animation:confettiFall linear forwards;opacity:0}
-@keyframes confettiFall{0%{opacity:1;transform:translateY(-10vh) rotate(0deg)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}</style>
+@keyframes confettiFall{0%{opacity:1;transform:translateY(-10vh) rotate(0deg)}100%{opacity:0;transform:translateY(110vh) rotate(720deg)}}
+
+/* ====== PARTNER BENEFITS ====== */
+.pp-benefit{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:24px;transition:all .3s var(--transition);overflow:hidden}
+.pp-benefit::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;transition:height .4s var(--transition)}
+.pp-benefit:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:transparent}
+.pp-benefit:hover::before{height:100%}
+.pp-benefit.b-blue::before{background:var(--primary)}
+.pp-benefit.b-amber::before{background:var(--amber)}
+.pp-benefit.b-green::before{background:var(--green)}
+.pp-benefit.b-purple::before{background:var(--purple)}
+.pp-benefit.b-rose::before{background:var(--rose)}
+.pp-benefit-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:12px;transition:transform .3s var(--transition)}
+.pp-benefit:hover .pp-benefit-icon{transform:scale(1.12) rotate(-5deg)}
+.pp-benefit h3{font-size:0.98rem;margin-bottom:4px}
+.pp-benefit p{font-size:0.85rem;color:var(--ink-soft)}
+
+/* ====== ROADMAP ====== */
+.pp-roadmap{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1000px;margin:0 auto}
+@media(max-width:900px){.pp-roadmap{grid-template-columns:1fr}}
+.pp-road-step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:24px 18px;text-align:center;transition:all .3s var(--transition)}
+.pp-road-step:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.pp-road-num{width:42px;height:42px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:1rem;color:#fff}
+.pp-road-step:nth-child(1) .pp-road-num{background:linear-gradient(135deg,var(--primary),#4F46E5)}
+.pp-road-step:nth-child(2) .pp-road-num{background:linear-gradient(135deg,var(--amber),#F97316)}
+.pp-road-step:nth-child(3) .pp-road-num{background:linear-gradient(135deg,var(--purple),#9333EA)}
+.pp-road-step:nth-child(4) .pp-road-num{background:linear-gradient(135deg,var(--green),#059669)}
+.pp-road-step:nth-child(5) .pp-road-num{background:linear-gradient(135deg,var(--rose),#BE123C)}
+.pp-road-step h4{font-size:0.9rem;margin-bottom:4px}
+.pp-road-step p{font-size:0.82rem;color:var(--ink-soft)}
+
+/* ====== TIER CARD FOOT ====== */
+.pp-tier-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.pp-tier-price{font-family:var(--font-display);font-weight:800;font-size:1.3rem;color:var(--ink);display:block;line-height:1.2}
+.pp-tier-price span{font-size:0.8rem;font-weight:600;color:var(--ink-faint)}
+.pp-tier-footnote{font-size:0.8rem;color:var(--ink-faint);display:block;margin-top:2px}
+
+/* ====== COMPARISON TABLE ====== */
+.pp-compare-wrap{overflow-x:auto;border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
+.pp-compare{width:100%;min-width:820px;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;background:var(--surface);font-size:0.88rem}
+.pp-compare th{background:var(--surface-2);padding:16px 14px;font-family:var(--font-display);font-weight:700;font-size:0.95rem;text-align:left;border-bottom:1px solid var(--line);color:var(--ink)}
+.pp-compare td{padding:13px 14px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.pp-compare tr:last-child td{border-bottom:none}
+.pp-compare td.ppc-label{font-weight:600;color:var(--ink);background:var(--surface-2);min-width:200px}
+.pp-compare th.ppc-head{text-align:center;border-left:1px solid var(--line)}
+.pp-compare td.ppc-val{text-align:center;border-left:1px solid var(--line)}
+.pp-compare th.ppc-featured{background:linear-gradient(135deg,var(--primary),#7C3AED);color:#fff}
+.pp-compare td.ppc-featured{background:var(--primary-tint);color:var(--ink)}
+.pp-compare .ppc-yes{color:var(--green);font-weight:700}
+.pp-compare .ppc-no{color:var(--ink-faint)}
+.pp-compare .ppc-fee{font-weight:800;font-family:var(--font-display);color:var(--ink);white-space:nowrap}
+.pp-compare .ppc-fee span{font-weight:600;font-size:.78rem;color:var(--ink-faint)}
+
+/* ====== ROLE / EXCLUSIVE ====== */
+.pp-role-wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;max-width:1000px;margin:0 auto}
+@media(max-width:900px){.pp-role-wrap{grid-template-columns:1fr}}
+.pp-exclusive{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:24px}
+.pp-exclusive-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.pp-exclusive-item:last-child{border-bottom:none}
+.pp-ex-icon{width:42px;height:42px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:transform .3s var(--transition)}
+.pp-exclusive-item:hover .pp-ex-icon{transform:scale(1.12) rotate(-5deg)}
+.pp-exclusive-item h4{font-size:0.95rem;margin-bottom:2px}
+.pp-exclusive-item p{font-size:0.85rem;color:var(--ink-soft)}
+.pp-role-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.pp-role-item{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);transition:all .3s var(--transition);font-size:0.92rem;font-weight:600}
+.pp-role-item:hover{transform:translateX(4px);border-color:var(--primary);box-shadow:var(--shadow-sm)}
+.pp-role-item .pp-role-emoji{font-size:1.2rem}
+
+/* ====== TERMS / COMMITMENT ====== */
+.pp-term-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.pp-term-grid{grid-template-columns:1fr}}
+.pp-term-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:24px;transition:all .3s var(--transition);position:relative;overflow:hidden}
+.pp-term-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.pp-term-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--purple));opacity:0;transition:opacity .3s var(--transition)}
+.pp-term-card:hover::before{opacity:1}
+.pp-term-card h4{font-size:0.98rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.pp-term-card p{font-size:0.85rem;color:var(--ink-soft);margin-bottom:12px}
+.pp-term-tag{display:inline-block;padding:4px 12px;border-radius:100px;font-size:0.74rem;font-weight:700}
+.pp-commit{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;transition:all .3s var(--transition);font-size:0.9rem}
+.pp-commit:hover{transform:translateX(4px);border-color:var(--primary)}
+.pp-commit .pp-commit-check{color:var(--green);font-weight:700;flex-shrink:0}
+.pp-rev-row.r3{background:var(--amber-tint);border:2px solid var(--amber)}
+.pp-rev-pill.p2.pl-blue{background:var(--purple-tint);border:2px solid var(--purple)}
+.pp-rev-pill.p2.pl-gold{background:var(--amber-tint);border:2px solid var(--amber)}</style>
 <link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
@@ -361,9 +444,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <a href="/partner/login/" class="btn btn-ghost" style="padding:16px 32px;font-size:1.05rem;border:1.5px solid var(--primary);color:var(--primary);font-weight:700;">&#128274; Partner Login</a>
       </div>
       <div class="pp-hero-stats">
-        <div class="pp-stat-badge"><span class="badge-emoji">&#128176;</span> Up to 20% Revenue Share</div>
+        <div class="pp-stat-badge"><span class="badge-emoji">&#128176;</span> Up to 25% Revenue Share</div>
         <div class="pp-stat-badge"><span class="badge-emoji">&#128260;</span> Recurring Revenue</div>
-        <div class="pp-stat-badge"><span class="badge-emoji">&#128640;</span> Growing Product Suite</div>
+        <div class="pp-stat-badge"><span class="badge-emoji">&#127891;</span> Certified Partner Tiers</div>
       </div>
     </div>
   </div>
@@ -397,6 +480,64 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pp-why-icon" style="background:var(--purple-tint);color:var(--purple);">&#128736;&#65039;</div>
         <h3>Add Implementation Revenue</h3>
         <p>Partners who handle implementation can unlock additional earning potential.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PARTNER BENEFITS ==================== -->
+<section class="section alt" id="partner-benefits" style="padding:72px 0;">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow"><span class="dot"></span>Your Benefits</span>
+      <h2>What's in It<br><span class="h2-grad">For You?</span></h2>
+      <p style="max-width:620px;margin:8px auto 0;">We grow only when our partners grow. That's why every partner gets real, working benefits — not just a revenue number.</p>
+    </div>
+    <div class="grid grid-3 pp-stagger" style="gap:18px;">
+      <div class="pp-benefit b-blue">
+        <div class="pp-benefit-icon" style="background:var(--primary-tint);color:var(--primary);">&#128176;</div>
+        <h3>Up to 25% Revenue Share</h3>
+        <p>Commission scales with your tier and volume. Higher tiers, higher rates — automatically.</p>
+      </div>
+      <div class="pp-benefit b-green">
+        <div class="pp-benefit-icon" style="background:var(--green-tint);color:var(--green);">&#128260;</div>
+        <h3>Recurring Revenue on Renewals</h3>
+        <p>Eligible customer renewals keep paying you, subject to active partner status and retention targets.</p>
+      </div>
+      <div class="pp-benefit b-purple">
+        <div class="pp-benefit-icon" style="background:var(--purple-tint);color:var(--purple);">&#127891;</div>
+        <h3>Training &amp; Certification</h3>
+        <p>Product training library, live webinars and a Brilliants Certification that adds weight to your badge.</p>
+      </div>
+      <div class="pp-benefit b-amber">
+        <div class="pp-benefit-icon" style="background:var(--amber-tint);color:var(--amber-ink);">&#128421;&#65039;</div>
+        <h3>Demo / Sandbox Environment</h3>
+        <p>A safe environment to explore, demo and configure our products before you present them to customers.</p>
+      </div>
+      <div class="pp-benefit b-blue">
+        <div class="pp-benefit-icon" style="background:var(--primary-tint);color:var(--primary);">&#128279;</div>
+        <h3>Visibility on Our Website</h3>
+        <p>Approved partners get listed in the Brilliants Partner Directory with their tier badge.</p>
+      </div>
+      <div class="pp-benefit b-green">
+        <div class="pp-benefit-icon" style="background:var(--green-tint);color:var(--green);">&#129309;</div>
+        <h3>Commercial &amp; Marketing Support</h3>
+        <p>Co-branded marketing kit, ready sales materials and commercial backup on larger deals.</p>
+      </div>
+      <div class="pp-benefit b-purple">
+        <div class="pp-benefit-icon" style="background:var(--purple-tint);color:var(--purple);">&#127881;</div>
+        <h3>Co-Sponsor Events</h3>
+        <p>Gold partners can co-host events with Brilliants to reach more customers in their region.</p>
+      </div>
+      <div class="pp-benefit b-rose">
+        <div class="pp-benefit-icon" style="background:var(--rose-tint);color:var(--rose);">&#128202;</div>
+        <h3>Lead Support &amp; Success Stories</h3>
+        <p>Gold partners get priority on region leads and their customer wins featured on our site.</p>
+      </div>
+      <div class="pp-benefit b-amber">
+        <div class="pp-benefit-icon" style="background:var(--amber-tint);color:var(--amber-ink);">&#128295;&#65039;</div>
+        <h3>100% of Your Service Fees</h3>
+        <p>Brilliants takes 0% of your implementation &amp; consulting fees. You set the price, you keep the value.</p>
       </div>
     </div>
   </div>
@@ -459,6 +600,44 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </section>
 
+<!-- ==================== PARTNER ROADMAP ==================== -->
+<section class="section" style="padding:72px 0;">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow"><span class="dot"></span>Your Roadmap</span>
+      <h2>Build Your Success<br><span class="h2-grad">With Us</span></h2>
+      <p style="max-width:620px;margin:8px auto 0;">A structured path from your first lead to a growing, certified partner business.</p>
+    </div>
+    <div class="pp-roadmap reveal">
+      <div class="pp-road-step">
+        <div class="pp-road-num">1</div>
+        <h4>Connect</h4>
+        <p>Meet your partnerships manager and set your goals.</p>
+      </div>
+      <div class="pp-road-step">
+        <div class="pp-road-num">2</div>
+        <h4>Learn &amp; Get Certified</h4>
+        <p>Complete product training and clear the Brilliants Certification.</p>
+      </div>
+      <div class="pp-road-step">
+        <div class="pp-road-num">3</div>
+        <h4>Build Your Brand</h4>
+        <p>Use your partner kit, directory listing and sandbox to sell confidently.</p>
+      </div>
+      <div class="pp-road-step">
+        <div class="pp-road-num">4</div>
+        <h4>Win &amp; Implement</h4>
+        <p>Close projects with our commercial and technical support.</p>
+      </div>
+      <div class="pp-road-step">
+        <div class="pp-road-num">5</div>
+        <h4>Grow Your Tier</h4>
+        <p>Meet volume &amp; retention targets to unlock higher commission tiers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== PARTNER TIERS ==================== -->
 <section class="section" style="padding:72px 0;">
   <div class="container">
@@ -466,8 +645,9 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="eyebrow"><span class="dot"></span>Partner Levels</span>
       <h2>Choose How You Want to<br><span class="h2-grad">Grow With Us</span></h2>
     </div>
+    <p class="reveal" style="text-align:center;max-width:640px;margin:0 auto 32px;color:var(--ink-soft);font-size:0.95rem;">Start wherever you are today. Meet simple, transparent criteria and move up as you grow.</p>
 
-    <div class="grid grid-2" style="max-width:900px;margin:0 auto;gap:28px;">
+    <div class="grid grid-2" style="max-width:1000px;margin:0 auto;gap:24px;">
 
       <!-- Sales Partner -->
       <div class="pp-tier reveal-left">
@@ -483,25 +663,214 @@ document.addEventListener('DOMContentLoaded', function() {
             <li><span class="check">&#10003;</span> Support the sales process</li>
             <li><span class="check">&#10003;</span> Coordinate with Brilliants team</li>
           </ul>
+          <div class="pp-tier-foot">
+            <span class="pp-tier-price">Free to start</span>
+            <span class="pp-tier-footnote">No entry fee</span>
+            <a href="/partner/register/" class="btn btn-primary" style="margin-top:12px;justify-content:center;">Apply Now</a>
+          </div>
         </div>
       </div>
 
       <!-- Solution Partner -->
       <div class="pp-tier featured reveal-right">
         <div class="pp-tier-inner">
-          <div class="rec-badge">&#11088; Recommended</div>
+          <div class="rec-badge">&#11088; Recommended to Start</div>
           <div class="pp-tier-badge" style="background:var(--green-tint);color:var(--green);">&#128736;&#65039; Solution Partner</div>
           <div class="pp-tier-pct" style="color:var(--green);"><span class="pp-count" data-target="20" data-suffix="%" data-prefix="Up to ">0%</span></div>
           <div class="pp-tier-sub">Revenue Share</div>
           <div class="pp-tier-type">Refer + Sell + Implement</div>
           <ul>
-            <li><span class="check">&#10003;</span> Identify qualified customers</li>
-            <li><span class="check">&#10003;</span> Participate in sales and demo</li>
-            <li><span class="check">&#10003;</span> Handle implementation/deployment</li>
+            <li><span class="check">&#10003;</span> Everything in Sales Partner</li>
+            <li><span class="check">&#10003;</span> Handle implementation &amp; deployment</li>
             <li><span class="check">&#10003;</span> Provide agreed customer support</li>
-            <li><span class="check">&#10003;</span> Coordinate with Brilliants technical team</li>
+            <li><span class="check">&#10003;</span> Demo / sandbox environment included</li>
+            <li><span class="check">&#10003;</span> 100% of your implementation fees</li>
           </ul>
+          <div class="pp-tier-foot">
+            <span class="pp-tier-price">Free to start</span>
+            <span class="pp-tier-footnote">Sandbox + directory listing included</span>
+            <a href="/partner/register/" class="btn btn-primary" style="margin-top:12px;justify-content:center;">Apply Now</a>
+          </div>
         </div>
+      </div>
+
+      <!-- Silver Partner -->
+      <div class="pp-tier reveal-left">
+        <div class="pp-tier-inner">
+          <div class="pp-tier-badge" style="background:var(--purple-tint);color:var(--purple);">&#129352; Silver Partner</div>
+          <div class="pp-tier-pct" style="color:var(--purple);"><span class="pp-count" data-target="22" data-suffix="%" data-prefix="Up to ">0%</span></div>
+          <div class="pp-tier-sub">Revenue Share + Hosting</div>
+          <div class="pp-tier-type">Solution + Certified</div>
+          <ul>
+            <li><span class="check">&#10003;</span> Brilliants Certification (1 person)</li>
+            <li><span class="check">&#10003;</span> Minimum 6 customers / year</li>
+            <li><span class="check">&#10003;</span> 70% minimum retention rate</li>
+            <li><span class="check">&#10003;</span> 22% + hosted subscription commission</li>
+            <li><span class="check">&#10003;</span> Co-branded marketing kit</li>
+          </ul>
+          <div class="pp-tier-foot">
+            <span class="pp-tier-price">&#8377;4,999<span>/year</span></span>
+            <span class="pp-tier-footnote">Directory + commercial support included</span>
+            <a href="/partner/register/" class="btn btn-ghost" style="margin-top:12px;justify-content:center;">Apply to Silver</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gold Partner -->
+      <div class="pp-tier reveal-right">
+        <div class="pp-tier-inner">
+          <div class="pp-tier-badge" style="background:var(--amber-tint);color:var(--amber-ink);">&#129351; Gold Partner</div>
+          <div class="pp-tier-pct" style="color:var(--amber-ink);"><span class="pp-count" data-target="25" data-suffix="%" data-prefix="Up to ">0%</span></div>
+          <div class="pp-tier-sub">Revenue Share + Hosting</div>
+          <div class="pp-tier-type">Solution + Certified Team</div>
+          <ul>
+            <li><span class="check">&#10003;</span> 3 certified resources</li>
+            <li><span class="check">&#10003;</span> Minimum 10 customers / year</li>
+            <li><span class="check">&#10003;</span> 80% minimum retention rate</li>
+            <li><span class="check">&#10003;</span> 25% + hosted subscription commission</li>
+            <li><span class="check">&#10003;</span> Featured directory + lead priority + co-sponsored events</li>
+          </ul>
+          <div class="pp-tier-foot">
+            <span class="pp-tier-price">&#8377;9,999<span>/year</span></span>
+            <span class="pp-tier-footnote">Dedicated partnerships manager included</span>
+            <a href="/partner/register/" class="btn btn-ghost" style="margin-top:12px;justify-content:center;">Apply to Gold</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full comparison table -->
+    <div class="reveal" style="margin-top:44px;" id="compare-table">
+      <div style="text-align:center;margin-bottom:20px;">
+        <span class="eyebrow"><span class="dot"></span>Compare Tiers</span>
+        <h3 style="font-family:var(--font-display);font-weight:800;font-size:1.4rem;margin-top:8px;">Every Tier, Every Requirement — Side by Side</h3>
+      </div>
+      <div class="pp-compare-wrap">
+        <table class="pp-compare" aria-label="Partner tier comparison">
+          <thead>
+            <tr>
+              <th>Program Details</th>
+              <th class="ppc-head">Sales</th>
+              <th class="ppc-head ppc-featured">Solution</th>
+              <th class="ppc-head">Silver</th>
+              <th class="ppc-head ppc-featured">Gold</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ppc-label">Entry fee</td>
+              <td class="ppc-val"><span class="ppc-fee">Free</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-fee">Free</span></td>
+              <td class="ppc-val"><span class="ppc-fee">&#8377;4,999<span>/yr</span></span></td>
+              <td class="ppc-val"><span class="ppc-fee">&#8377;9,999<span>/yr</span></span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Participation</td>
+              <td class="ppc-val">Refer + Sell</td>
+              <td class="ppc-val ppc-featured">Refer + Sell + Implement</td>
+              <td class="ppc-val">Solution + Certified</td>
+              <td class="ppc-val">Solution + Certified Team</td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Base revenue share</td>
+              <td class="ppc-val">10%</td>
+              <td class="ppc-val ppc-featured">Up to 20%</td>
+              <td class="ppc-val">Up to 22%</td>
+              <td class="ppc-val">Up to 25%</td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Implementation &amp; consulting fees</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-yes">100% yours</span></td>
+              <td class="ppc-val"><span class="ppc-yes">100% yours</span></td>
+              <td class="ppc-val"><span class="ppc-yes">100% yours</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Hosted subscription commission</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">Included</span></td>
+              <td class="ppc-val"><span class="ppc-yes">Included</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Certification required</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val">1 certified resource</td>
+              <td class="ppc-val">3 certified resources</td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Minimum customers / year</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val">6 customers</td>
+              <td class="ppc-val">10 customers</td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Minimum retention rate</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val">70%</td>
+              <td class="ppc-val">80%</td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Partner dashboard &amp; CRM</td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Training &amp; product library</td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Demo / sandbox environment</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Partner directory listing</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Co-branded marketing kit</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Commercial support</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">Priority</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Co-sponsor events &amp; lead priority</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+            </tr>
+            <tr>
+              <td class="ppc-label">Dedicated partnerships manager</td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val ppc-featured"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val"><span class="ppc-no">&#8212;</span></td>
+              <td class="ppc-val"><span class="ppc-yes">&#10003;</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -510,8 +879,12 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="pp-rev-pill p1"><span>&#128270;</span> <span style="color:var(--ink-faint);">REFER + SELL</span> <span style="color:var(--primary);">= 10%</span></div>
       <div class="pp-rev-divider">|</div>
       <div class="pp-rev-pill p2"><span>&#128736;&#65039;</span> <span style="color:var(--ink);">REFER + SELL + IMPLEMENT</span> <span style="color:var(--green);">= 20%</span></div>
+      <div class="pp-rev-divider">|</div>
+      <div class="pp-rev-pill p2 pl-blue"><span>&#127891;</span> <span style="color:var(--ink);">CERTIFIED</span> <span style="color:var(--purple);">= 22%</span></div>
+      <div class="pp-rev-divider">|</div>
+      <div class="pp-rev-pill p2 pl-gold"><span>&#127941;</span> <span style="color:var(--ink);">TEAM CERTIFIED</span> <span style="color:var(--amber-ink);">= 25%</span></div>
     </div>
-    <p class="reveal" style="text-align:center;font-size:0.88rem;color:var(--ink-faint);max-width:700px;margin:16px auto 0;">Referral-only participation does not qualify for the standard partner revenue share. Refer + Sell is the minimum partner participation requirement.</p>
+    <p class="reveal" style="text-align:center;font-size:0.88rem;color:var(--ink-faint);max-width:760px;margin:16px auto 0;">Referral-only participation does not qualify for the standard partner revenue share. Refer + Sell is the minimum requirement. Higher tiers unlock higher rates subject to certification, volume and retention criteria.</p>
   </div>
 </section>
 
@@ -560,8 +933,96 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="rr-pct" style="color:var(--green);">&#8377;<span class="pp-count" data-target="12000" data-suffix="">0</span></div>
         </div>
+        <div class="pp-rev-row r3">
+          <div>
+            <div class="rr-label" style="font-weight:600;color:var(--ink);">&#128295;&#65039; Implementation &amp; Consulting Fees</div>
+            <div class="rr-sub">You set the price — 100% yours</div>
+          </div>
+          <div class="rr-pct" style="color:var(--amber-ink);">100%</div>
+        </div>
       </div>
-      <p style="text-align:center;font-size:0.92rem;color:var(--ink-soft);margin-top:20px;">&#128640; If the customer renews, eligible recurring partner revenue can continue.</p>
+      <p style="text-align:center;font-size:0.92rem;color:var(--ink-soft);margin-top:20px;">&#128640; If the customer renews, eligible recurring partner revenue can continue. The higher your tier, the higher your rate (up to 25%).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== YOUR ROLE / EXCLUSIVE OPPORTUNITIES ==================== -->
+<section class="section alt" style="padding:72px 0;">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow"><span class="dot"></span>Your Role</span>
+      <h2>Make Businesses<br><span class="h2-grad">Thrive</span></h2>
+      <p style="max-width:620px;margin:8px auto 0;">Help your customers solve real business problems with Brilliants — and keep the value you create.</p>
+    </div>
+    <div class="pp-role-wrap reveal">
+      <div>
+        <div class="pp-exclusive">
+          <h4 style="margin-bottom:8px;font-size:1rem;">&#11088; Exclusive Opportunities</h4>
+          <div class="pp-exclusive-item">
+            <div class="pp-ex-icon" style="background:var(--primary-tint);color:var(--primary);">&#128176;</div>
+            <div><h4>We Take 0% of Your Service Fees</h4><p>Brilliants keeps nothing from your implementation, consulting, training or hosting services.</p></div>
+          </div>
+          <div class="pp-exclusive-item">
+            <div class="pp-ex-icon" style="background:var(--amber-tint);color:var(--amber-ink);">&#128200;</div>
+            <div><h4>You Set Your Own Service Fees</h4><p>Full freedom to price and package your services the way your market demands.</p></div>
+          </div>
+          <div class="pp-exclusive-item">
+            <div class="pp-ex-icon" style="background:var(--green-tint);color:var(--green);">&#128260;</div>
+            <div><h4>Recurring Revenue</h4><p>Subscription renewals keep paying you — that's your long-term compounding income.</p></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-bottom:12px;">What you'll do</h4>
+        <ul class="pp-role-list">
+          <li class="pp-role-item"><span class="pp-role-emoji">&#128269;</span> Identify &amp; refer qualified customers</li>
+          <li class="pp-role-item"><span class="pp-role-emoji">&#128250;</span> Present solutions &amp; run demos</li>
+          <li class="pp-role-item"><span class="pp-role-emoji">&#128736;&#65039;</span> Configure &amp; deploy (Solution level and above)</li>
+          <li class="pp-role-item"><span class="pp-role-emoji">&#128172;</span> First-level support for your clients</li>
+          <li class="pp-role-item"><span class="pp-role-emoji">&#127891;</span> Train end users on the solution</li>
+          <li class="pp-role-item"><span class="pp-role-emoji">&#128202;</span> Track everything in your partner dashboard</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROGRAM TERMS & COMMITMENT ==================== -->
+<section class="section" style="padding:72px 0;">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow"><span class="dot"></span>Program Terms</span>
+      <h2>Fair Terms.<br><span class="h2-grad">Healthy Program.</span></h2>
+      <p style="max-width:620px;margin:8px auto 0;">Clear rules protect committed partners and keep the program profitable for everyone.</p>
+    </div>
+
+    <div class="pp-term-grid reveal">
+      <div class="pp-term-card">
+        <h4>&#128273; Retention Requirement</h4>
+        <p>Recurring commission on renewals requires maintaining your tier's minimum retention of referred customers (70% Silver, 80% Gold). High churn pauses renewal commissions.</p>
+        <span class="pp-term-tag" style="background:var(--amber-tint);color:var(--amber-ink);">Protects recurring income</span>
+      </div>
+      <div class="pp-term-card">
+        <h4>&#128200; Commission Escalation</h4>
+        <p>Earn more as you grow. Volume milestones and certification unlock higher rates automatically — from 10% up to 25%, plus hosted subscription commission on Silver &amp; Gold.</p>
+        <span class="pp-term-tag" style="background:var(--green-tint);color:var(--green);">Rewards growth</span>
+      </div>
+      <div class="pp-term-card">
+        <h4>&#128202; Qualified Revenue Only</h4>
+        <p>Commissions are based on qualifying subscription revenue actually received by Brilliants, paid monthly/quarterly while the customer stays in good standing.</p>
+        <span class="pp-term-tag" style="background:var(--primary-tint);color:var(--primary);">Transparent basis</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="max-width:720px;margin:36px auto 0;">
+      <div style="text-align:center;margin-bottom:18px;">
+        <span class="eyebrow"><span class="dot"></span>Our Mutual Commitment</span>
+      </div>
+      <div class="pp-commit"><span class="pp-commit-check">&#10003;</span> <span><strong>Get certified</strong> — clear the Brilliants Certification for your tier.</span></div>
+      <div class="pp-commit"><span class="pp-commit-check">&#10003;</span> <span><strong>Meet your partnerships manager</strong> — regular check-ins keep us aligned.</span></div>
+      <div class="pp-commit"><span class="pp-commit-check">&#10003;</span> <span><strong>Assign dedicated resources</strong> — trained people focused on Brilliants projects.</span></div>
+      <div class="pp-commit"><span class="pp-commit-check">&#10003;</span> <span><strong>Be first-level support</strong> — for your own customers, with our backup.</span></div>
+      <div class="pp-commit"><span class="pp-commit-check">&#10003;</span> <span><strong>Promote Brilliants in your region</strong> — and we promote you.</span></div>
     </div>
   </div>
 </section>
@@ -602,7 +1063,9 @@ document.addEventListener('DOMContentLoaded', function() {
               <select id="partner-type" name="partner_type" required aria-label="Partner type">
                 <option value="">Select partner type</option>
                 <option>&#128188; Sales Partner — Refer + Sell (10%)</option>
-                <option>&#128736;&#65039; Solution Partner — Refer + Sell + Implement (20%)</option>
+                <option>&#128736;&#65039; Solution Partner — Refer + Sell + Implement (up to 20%)</option>
+                <option>&#129352; Silver Partner — Certified (up to 22%)</option>
+                <option>&#129351; Gold Partner — Team Certified (up to 25%)</option>
               </select>
             </div>
             <div class="fg">
