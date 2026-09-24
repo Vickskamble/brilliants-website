@@ -88,6 +88,11 @@
 .agree-success .signed-details .detail-row:last-child{border-bottom:none}
 .agree-success .detail-label{color:var(--ink-faint);font-weight:500}
 .agree-success .detail-value{color:var(--ink);font-weight:600}
+.agree-success .fee-cta{background:var(--amber-tint);border:1px dashed var(--amber);border-radius:var(--radius);padding:20px;margin-bottom:24px;text-align:left}
+.agree-success .fee-cta.fee-paid{background:var(--green-tint);border-color:var(--green)}
+.agree-success .fee-cta .fee-title{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:6px}
+.agree-success .fee-cta .fee-detail{font-size:.92rem;color:var(--ink-soft);margin-bottom:14px}
+.agree-success .fee-cta .btn{flex-wrap:nowrap}
 
 /* Already signed */
 .agree-signed-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;background:var(--green-tint);color:var(--green);font-weight:700;font-size:.88rem;margin-bottom:24px;animation:badgePulse 3s ease-in-out infinite}
@@ -138,15 +143,61 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+var signedTier = null;
+var signedFeePaid = false;
+
+function applySignedFeeCta() {
+  var cta = document.getElementById('signed-fee-cta');
+  if (!cta) return;
+
+  var feeMeta = signedTier === 'silver' ? { fee: '\u20B94,999', label: 'Silver Partner' } :
+                signedTier === 'gold'   ? { fee: '\u20B99,999', label: 'Gold Partner' } :
+                null;
+
+  if (!feeMeta) {
+    cta.style.display = 'none';
+    return;
+  }
+
+  cta.style.display = 'block';
+  var title = document.getElementById('signed-fee-title');
+  var msg = document.getElementById('signed-fee-msg');
+  var btn = document.getElementById('signed-fee-btn');
+
+  if (signedFeePaid) {
+    cta.classList.add('fee-paid');
+    title.textContent = '\u2713 Entry Fee Paid';
+    msg.textContent = feeMeta.label + ' tier is active. Your annual entry fee (' + feeMeta.fee + ') has been confirmed.';
+    if (btn) btn.style.display = 'none';
+  } else {
+    cta.classList.remove('fee-paid');
+    title.textContent = 'Pay Your Entry Fee';
+    msg.textContent = 'Your ' + feeMeta.label + ' subscription requires an annual entry fee of ' + feeMeta.fee + '. Your tier activates once the fee is confirmed by Brilliants.';
+    if (btn) btn.style.display = 'inline-flex';
+  }
+}
+
 function loadAgreement(userId, token) {
   SupabaseClient.select('partner_profiles', 'user_id=eq.' + userId, token).then(function(profiles) {
     if (profiles && profiles.length > 0) {
       var profile = profiles[0];
       document.getElementById('partner-name-display').textContent = profile.full_name || 'Not set';
       document.getElementById('partner-company-display').textContent = profile.company_name || 'Not set';
-      document.getElementById('partner-capability-display').textContent = profile.capability || 'Not set';
-      var revShare = profile.capability === 'Refer + Sell + Implement' ? 'Up to 20%' : '10%';
-      document.getElementById('partner-revenue-display').textContent = revShare;
+      signedTier = profile.tier || null;
+      signedFeePaid = !!profile.fee_paid;
+
+      var tierMap = {
+        'sales':     { label: 'Sales Partner',        rate: '10%' },
+        'solution':  { label: 'Solution Partner',     rate: 'Up to 20%' },
+        'silver':    { label: 'Silver Partner',       rate: 'Up to 22%' },
+        'gold':      { label: 'Gold Partner',         rate: 'Up to 25%' }
+      };
+      var meta = tierMap[profile.tier] ||
+        (profile.capability === 'Refer + Sell + Implement' ? tierMap.solution : tierMap.sales);
+
+      document.getElementById('partner-capability-display').textContent = meta.label;
+      document.getElementById('partner-revenue-display').textContent = meta.rate;
+      applySignedFeeCta();
     }
   });
 
@@ -168,6 +219,7 @@ function loadAgreement(userId, token) {
         if (content) content.style.display = 'block';
         if (formView) formView.style.display = 'none';
         if (signedView) signedView.style.display = 'block';
+        applySignedFeeCta();
         return;
       }
     }
@@ -211,7 +263,7 @@ function loadAgreement(userId, token) {
       var agreementData = {
         user_id: userId,
         partner_profile_id: null,
-        agreement_version: 'v1.0',
+        agreement_version: 'v2.0',
         full_name: fullName,
         email: email,
         status: 'signed',
@@ -223,6 +275,8 @@ function loadAgreement(userId, token) {
       SupabaseClient.select('partner_profiles', 'user_id=eq.' + userId, token).then(function(profiles) {
         if (profiles && profiles.length > 0) {
           agreementData.partner_profile_id = profiles[0].id;
+          signedTier = profiles[0].tier || null;
+          signedFeePaid = !!profiles[0].fee_paid;
         }
 
         return SupabaseClient.insert('partner_agreements', agreementData, token);
@@ -239,10 +293,11 @@ function loadAgreement(userId, token) {
         document.getElementById('signed-name').textContent = fullName;
         document.getElementById('signed-email').textContent = email;
         document.getElementById('signed-date').textContent = new Date().toLocaleDateString('en-IN', {day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'});
-        document.getElementById('signed-version').textContent = 'v1.0';
+        document.getElementById('signed-version').textContent = 'v2.0';
 
         if (formView) formView.style.display = 'none';
         if (signedView) signedView.style.display = 'block';
+        applySignedFeeCta();
       }).catch(function(err) {
         errorMsg.textContent = 'Something went wrong. Please try again.';
         errorMsg.classList.add('show');
@@ -283,7 +338,7 @@ function loadAgreement(userId, token) {
         <div class="agree-meta">
           <div class="agree-meta-item">
             <span class="agree-meta-label">Agreement Version</span>
-            <span class="agree-meta-value">v1.0</span>
+            <span class="agree-meta-value">v2.0</span>
           </div>
           <div class="agree-meta-item">
             <span class="agree-meta-label">Date</span>
@@ -318,7 +373,7 @@ function loadAgreement(userId, token) {
         <div class="agree-text">The purpose of this Agreement is to establish the terms and conditions under which the Partner may participate in the Brilliants Partner Program to refer, sell, and/or implement Brilliants Technology solutions including but not limited to Power EmS, IronBook, Business Software, AI & Automation, and IoT Solutions to prospective customers.</div>
 
         <div class="agree-section-title"><span class="sec-num">3</span> Partner Role</div>
-        <div class="agree-text">The Partner's role and level of participation under this Agreement shall be determined by the capability selected during the registration process: (a) Refer + Sell (Sales Partner) or (b) Refer + Sell + Implement (Solution Partner). The Partner's capability level determines the revenue share structure, responsibilities, and obligations as outlined in this Agreement.</div>
+        <div class="agree-text">The Partner's role and level of participation under this Agreement shall be determined by the tier selected during the registration process, as updated from time to time: (a) Sales Partner - Refer + Sell; (b) Solution Partner - Refer + Sell + Implement; (c) Silver Partner - Refer + Sell + Implement with certified resources; (d) Gold Partner - Refer + Sell + Implement with a certified team. The Partner's tier determines the revenue share structure, responsibilities, obligations, and eligibility for benefits as outlined in this Agreement.</div>
 
         <div class="agree-section-title"><span class="sec-num">4</span> Refer + Sell Responsibilities</div>
         <div class="agree-text">Partners operating at the Refer + Sell (Sales Partner) level agree to: (a) Identify and qualify prospective customers who may benefit from Brilliants Technology solutions; (b) Introduce Brilliants solutions to qualified prospects; (c) Participate in product demonstrations and presentations as needed; (d) Support the sales process through to customer closure; (e) Coordinate with Brilliants team members throughout the sales cycle; (f) Provide accurate and timely information about prospective customers and market conditions.</div>
@@ -327,7 +382,7 @@ function loadAgreement(userId, token) {
         <div class="agree-text">Partners operating at the Refer + Sell + Implement (Solution Partner) level agree to all responsibilities outlined for Sales Partners, plus: (a) Handle customer implementation and deployment of Brilliants solutions; (b) Provide agreed-upon technical support to customers during and after implementation; (c) Coordinate with Brilliants technical team for complex deployments; (d) Ensure customer satisfaction throughout the implementation process; (e) Maintain technical competency through Brilliants-provided training and resources; (f) Comply with Brilliants implementation standards and best practices.</div>
 
         <div class="agree-section-title"><span class="sec-num">6</span> Revenue Share</div>
-        <div class="agree-text">Revenue share is determined by the Partner's capability level: (a) Sales Partner (Refer + Sell): 10% revenue share on qualifying customer subscriptions; (b) Solution Partner (Refer + Sell + Implement): Up to 20% revenue share on qualifying customer subscriptions. The exact revenue share percentage within the "up to 20%" range for Solution Partners shall be determined based on factors including implementation complexity, customer lifecycle value, and individual partner performance, as mutually agreed upon between Brilliants and the Partner. Revenue share applies only to qualifying subscriptions as defined by Brilliants from time to time.</div>
+        <div class="agree-text">Revenue share is determined by the Partner's tier level: (a) Sales Partner (Refer + Sell): 10% revenue share on qualifying customer subscriptions; (b) Solution Partner (Refer + Sell + Implement): up to 20% revenue share on qualifying customer subscriptions; (c) Silver Partner: up to 22% revenue share on qualifying customer subscriptions; (d) Gold Partner: up to 25% revenue share on qualifying customer subscriptions. The exact revenue share percentage within the applicable tier range shall be determined based on factors including implementation complexity, customer lifecycle value, and individual partner performance, as mutually agreed upon between Brilliants and the Partner. Partners qualifying for Silver or Gold may earn additional commission on hosted (Brilliants-delivered) subscriptions as determined by Brilliants from time to time. Revenue share applies only to qualifying subscriptions as defined by Brilliants from time to time.</div>
 
         <div class="agree-section-title"><span class="sec-num">7</span> Recurring Revenue</div>
         <div class="agree-text">When a customer introduced by the Partner continues with an eligible Brilliants subscription and renews, the Partner may continue to earn revenue share on eligible renewals, subject to: (a) The Partner maintaining active partner status under this Agreement; (b) The customer subscription remaining in good standing; (c) Compliance with all applicable partner terms and conditions; (d) Revenue share on renewals is contingent upon the Partner's continued participation in the Partner Program and adherence to all applicable terms.</div>
@@ -341,43 +396,55 @@ function loadAgreement(userId, token) {
         <div class="agree-section-title"><span class="sec-num">10</span> Customer Relationship</div>
         <div class="agree-text">The Partner acknowledges that the end customer relationship is primarily between Brilliants and the customer. While the Partner may facilitate introductions and support the sales and implementation process, Brilliants retains ultimate responsibility for customer relationship management, product delivery, billing, and support. Partners shall not make representations, warranties, or commitments on behalf of Brilliants without prior written authorization.</div>
 
-        <div class="agree-section-title"><span class="sec-num">11</span> Payment / Commission</div>
+        <div class="agree-section-title"><span class="sec-num">11</span> Partner Tiers &amp; Requirements</div>
+        <div class="agree-text">The Brilliants Partner Program consists of four tiers: (a) Sales Partner - free to join, 10% revenue share, Refer + Sell; (b) Solution Partner - free to join, up to 20% revenue share, Refer + Sell + Implement; (c) Silver Partner - requires an annual entry fee of INR 4,999, up to 22% revenue share, at least one (1) certified resource, minimum six (6) new customers each program year and a seventy percent (70%) customer retention rate; (d) Gold Partner - requires an annual entry fee of INR 9,999, up to 25% revenue share, at least three (3) certified resources, minimum ten (10) new customers each program year and an eighty percent (80%) customer retention rate. Tier requirements, fees and benefits may be revised by Brilliants from time to time with notice as provided in Section 26 (Amendments).</div>
+
+        <div class="agree-section-title"><span class="sec-num">12</span> Certification</div>
+        <div class="agree-text">Silver and Gold Partners must maintain the required number of certified resources at all times. Certification is granted after the Partner's team members successfully complete Brilliants-approved training and assessments. Certifications are valid for the period specified by Brilliants and may require periodic renewal, re-examination, or continuing education. Failure to maintain the required certified resources may result in reassignment of the Partner's tier and a corresponding adjustment of the revenue share rate. Certifications are non-transferable between organizations.</div>
+
+        <div class="agree-section-title"><span class="sec-num">13</span> Retention Requirement</div>
+        <div class="agree-text">Silver and Gold Partners must maintain the minimum customer retention rate applicable to their tier as set out in Section 11. Retention rate is calculated based on the proportion of the Partner's introduced customers that renew their Brilliants subscription within each program year. Partners who fail to meet the retention requirement may be reviewed for tier adjustment, including a reduced revenue share rate for future commissions, upon written notice from Brilliants.</div>
+
+        <div class="agree-section-title"><span class="sec-num">14</span> Entry Fee &amp; Tier Activation</div>
+        <div class="agree-text">Silver and Gold Partners agree to pay the applicable annual entry fee set out in Section 11. The fee is payable after this Agreement is signed and before tier activation. The Silver or Gold tier becomes effective once Brilliants confirms receipt of the entry fee. Entry fees are non-refundable except where tier activation is declined by Brilliants in writing. Failure to pay the annual entry fee when due may result in the Partner being reassigned to the Solution Partner tier.</div>
+
+        <div class="agree-section-title"><span class="sec-num">15</span> Payment / Commission</div>
         <div class="agree-text">Revenue share payments ("Commissions") will be calculated and paid on a monthly or quarterly basis as determined by Brilliants. Commissions are based on qualifying customer subscription revenue actually received by Brilliants. Payments are made via bank transfer or other agreed-upon method. Partners are responsible for providing accurate payment details and maintaining current banking information. Brilliants will provide commission statements detailing the calculation basis. Partners are responsible for all applicable taxes on commission payments.</div>
 
-        <div class="agree-section-title"><span class="sec-num">12</span> Implementation Responsibilities</div>
+        <div class="agree-section-title"><span class="sec-num">16</span> Implementation Responsibilities</div>
         <div class="agree-text">Solution Partners who handle customer implementation agree to: (a) Complete required Brilliants training and certification before undertaking implementations; (b) Follow Brilliants implementation methodologies and best practices; (c) Provide implementation timelines and project plans to customers and Brilliants; (d) Escalate technical issues to Brilliants support as appropriate; (e) Ensure customer systems meet minimum requirements for Brilliants solutions; (f) Maintain appropriate technical skills and resources to deliver quality implementations; (g) Comply with all Brilliants quality standards and customer satisfaction requirements.</div>
 
-        <div class="agree-section-title"><span class="sec-num">13</span> Support</div>
+        <div class="agree-section-title"><span class="sec-num">17</span> Support</div>
         <div class="agree-text">Partners are expected to provide first-level support to their customers for issues related to implementations they have delivered. Brilliants will provide partner-level technical support, documentation, training resources, and escalation paths for issues that require Brilliants engineering involvement. Support levels and response times will be as defined in the Partner Support documentation provided by Brilliants.</div>
 
-        <div class="agree-section-title"><span class="sec-num">14</span> Confidentiality</div>
+        <div class="agree-section-title"><span class="sec-num">18</span> Confidentiality</div>
         <div class="agree-text">The Partner agrees to maintain the confidentiality of all non-public information disclosed by Brilliants, including but not limited to product roadmaps, pricing strategies, customer data, business plans, technical specifications, and proprietary processes. This confidentiality obligation survives the termination of this Agreement for a period of two (2) years. The Partner shall not disclose confidential information to any third party without prior written consent from Brilliants.</div>
 
-        <div class="agree-section-title"><span class="sec-num">15</span> Data Protection</div>
+        <div class="agree-section-title"><span class="sec-num">19</span> Data Protection</div>
         <div class="agree-text">The Partner shall comply with all applicable data protection laws and regulations, including but not limited to India's Digital Personal Data Protection Act (DPDPA) and any other applicable data protection legislation. The Partner shall: (a) Handle customer data in accordance with applicable data protection requirements; (b) Obtain necessary consents before collecting or processing personal data; (c) Implement appropriate security measures to protect personal data; (d) Report any data breaches to Brilliants promptly; (e) Cooperate with Brilliants on data subject requests and data protection inquiries.</div>
 
-        <div class="agree-section-title"><span class="sec-num">16</span> Intellectual Property</div>
+        <div class="agree-section-title"><span class="sec-num">20</span> Intellectual Property</div>
         <div class="agree-text">All intellectual property rights in Brilliants products, technology, trademarks, trade names, logos, and marketing materials remain the exclusive property of Brilliants. The Partner is granted a limited, non-exclusive, non-transferable, revocable license to use Brilliants brand materials solely for the purpose of marketing and selling Brilliants solutions under this Agreement. The Partner shall not alter, modify, or create derivative works of Brilliants intellectual property without prior written consent.</div>
 
-        <div class="agree-section-title"><span class="sec-num">17</span> Brand Usage</div>
+        <div class="agree-section-title"><span class="sec-num">21</span> Brand Usage</div>
         <div class="agree-text">The Partner may use Brilliants brand name, logos, and trademarks solely in connection with marketing and promoting Brilliants solutions under this Agreement. All brand usage must comply with Brilliants brand guidelines as provided from time to time. The Partner shall not use Brilliants brand in any manner that could create confusion, imply unauthorized endorsement, or damage Brilliants' reputation. Upon termination of this Agreement, the Partner must immediately cease all use of Brilliants brand materials.</div>
 
-        <div class="agree-section-title"><span class="sec-num">18</span> Marketing Rules</div>
+        <div class="agree-section-title"><span class="sec-num">22</span> Marketing Rules</div>
         <div class="agree-text">All marketing activities conducted by the Partner on behalf of or in connection with Brilliants solutions must be pre-approved by Brilliants. The Partner shall not make any false, misleading, or exaggerated claims about Brilliants products or services. Digital advertising, email campaigns, and social media posts referencing Brilliants must comply with applicable advertising standards and be submitted for review before publication. The Partner is responsible for ensuring compliance with all applicable marketing and advertising regulations.</div>
 
-        <div class="agree-section-title"><span class="sec-num">19</span> Termination</div>
+        <div class="agree-section-title"><span class="sec-num">23</span> Termination</div>
         <div class="agree-text">Either party may terminate this Agreement by providing thirty (30) days' written notice to the other party. Brilliants may terminate this Agreement immediately if the Partner: (a) Breaches any material term of this Agreement and fails to cure within fifteen (15) days of written notice; (b) Engages in fraudulent, deceptive, or unethical business practices; (c) Becomes insolvent or files for bankruptcy; (d) Violates applicable laws or regulations. Upon termination, the Partner must cease all marketing and sales activities related to Brilliants solutions and return all confidential materials and brand assets.</div>
 
-        <div class="agree-section-title"><span class="sec-num">20</span> Dispute / Governing Law</div>
+        <div class="agree-section-title"><span class="sec-num">24</span> Dispute / Governing Law</div>
         <div class="agree-text">This Agreement shall be governed by and construed in accordance with the laws of India. Any dispute arising out of or in connection with this Agreement shall first be attempted to be resolved through good-faith negotiation between the parties. If negotiation fails, the dispute shall be referred to and finally resolved by arbitration in accordance with the Arbitration and Conciliation Act, 1996 of India, with the seat of arbitration being Maharashtra, India. The language of arbitration shall be English.</div>
 
-        <div class="agree-section-title"><span class="sec-num">21</span> Agreement Duration</div>
-        <div class="agree-text">This Agreement shall commence on the date of signing and shall remain in effect until terminated by either party in accordance with Section 19 (Termination). The Agreement may be renewed automatically for successive periods unless either party provides notice of non-renewal at least thirty (30) days before the end of the current term.</div>
+        <div class="agree-section-title"><span class="sec-num">25</span> Agreement Duration</div>
+        <div class="agree-text">This Agreement shall commence on the date of signing and shall remain in effect until terminated by either party in accordance with Section 23 (Termination). The Agreement may be renewed automatically for successive periods unless either party provides notice of non-renewal at least thirty (30) days before the end of the current term.</div>
 
-        <div class="agree-section-title"><span class="sec-num">22</span> Amendments</div>
+        <div class="agree-section-title"><span class="sec-num">26</span> Amendments</div>
         <div class="agree-text">Brilliants reserves the right to amend this Agreement from time to time. Material changes will be communicated to Partners via email or through the Partner Dashboard with at least thirty (30) days' advance notice. The Partner's continued participation in the Partner Program after the effective date of any amendments constitutes acceptance of the amended terms. If the Partner does not agree to the amended terms, the Partner may terminate this Agreement before the amendments take effect.</div>
 
-        <div class="agree-section-title"><span class="sec-num">23</span> Applicable Terms</div>
+        <div class="agree-section-title"><span class="sec-num">27</span> Applicable Terms</div>
         <div class="agree-text">This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior and contemporaneous agreements, understandings, negotiations, and discussions, whether oral or written. If any provision of this Agreement is found to be invalid or unenforceable, the remaining provisions shall continue in full force and effect. The failure of either party to enforce any right or provision of this Agreement shall not constitute a waiver of such right or provision. This Agreement may be executed in counterparts, each of which shall be deemed an original, and all of which together shall constitute one and the same instrument.</div>
 
         <div class="agree-sign">
@@ -415,7 +482,7 @@ function loadAgreement(userId, token) {
           <div class="signed-details">
             <div class="detail-row">
               <span class="detail-label">Agreement Version</span>
-              <span class="detail-value" id="signed-version">v1.0</span>
+              <span class="detail-value" id="signed-version">v2.0</span>
             </div>
             <div class="detail-row">
               <span class="detail-label">Partner Name</span>
@@ -433,6 +500,11 @@ function loadAgreement(userId, token) {
               <span class="detail-label">Status</span>
               <span class="detail-value" style="color:var(--green);">&#10003; Signed & Active</span>
             </div>
+          </div>
+          <div id="signed-fee-cta" class="fee-cta" style="display:none;">
+            <div class="fee-title" id="signed-fee-title"></div>
+            <div class="fee-detail" id="signed-fee-msg"></div>
+            <a href="/partner/payments/" class="btn btn-primary" id="signed-fee-btn">Pay Entry Fee Now &#10141;</a>
           </div>
           <a href="/partner/dashboard/" class="btn btn-primary">Go to Dashboard &#10141;</a>
         </div>

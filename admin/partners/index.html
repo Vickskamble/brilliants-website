@@ -90,6 +90,10 @@
         <span>Leads</span>
       </a>
       <div class="admin-nav-section">Finance</div>
+      <a href="/admin/payments/" class="admin-nav-item">
+        <span class="nav-icon">&#128179;</span>
+        <span>Payments</span>
+      </a>
       <a href="/admin/commission/" class="admin-nav-item">
         <span class="nav-icon">&#128176;</span>
         <span>Commission</span>
@@ -182,7 +186,7 @@
                 <th>Application ID</th>
                 <th>Applicant</th>
                 <th>Company</th>
-                <th>Capability</th>
+                <th>Tier / Capability</th>
                 <th>Solutions</th>
                 <th>Status</th>
                 <th>Date</th>
@@ -414,13 +418,19 @@
       var statusLabel = (app.status || 'NEW').replace(/_/g, ' ');
       var date = app.created_at ? new Date(app.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
       var capability = app.partner_capability || app.partner_type || 'N/A';
+      var tier = app.tier || '';
+      var tierBadge = tier
+        ? '<span style="display:inline-block;padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:800;margin-right:6px;' +
+          (tier === 'gold' ? "background:#f7f1e0;color:#a27808;" : tier === 'silver' ? "background:#e9eef4;color:#5b6b80;" : "background:#eef2ff;color:#4f46e5;") +
+          '">' + tier.toUpperCase() + '</span>'
+        : '';
       var solutions = Array.isArray(app.interested_solutions) ? app.interested_solutions.join(', ') : (app.solutions || 'N/A');
 
       tr.innerHTML =
         '<td data-label="ID"><span class="table-id">' + escHtml(appId) + '</span></td>' +
         '<td data-label="Applicant"><div><div class="table-name">' + escHtml(app.full_name || 'N/A') + '</div><div class="table-email">' + escHtml(app.business_email || '') + '</div></div></td>' +
         '<td data-label="Company"><span class="table-company">' + escHtml(app.company_name || 'N/A') + '</span></td>' +
-        '<td data-label="Capability"><span style="font-size:.85rem;">' + escHtml(capability) + '</span></td>' +
+        '<td data-label="Tier / Capability"><span style="font-size:.85rem;">' + tierBadge + escHtml(capability) + '</span></td>' +
         '<td data-label="Solutions"><span style="font-size:.85rem;max-width:160px;display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escHtml(solutions) + '</span></td>' +
         '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></td>' +
         '<td data-label="Date"><span class="table-date">' + date + '</span></td>' +
@@ -480,6 +490,8 @@
       '<div class="detail-item"><div class="detail-label">Company</div><div class="detail-value">' + escHtml(app.company_name || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Business Type</div><div class="detail-value">' + escHtml(app.business_type || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Partner Capability</div><div class="detail-value">' + escHtml(app.partner_capability || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Tier</div><div class="detail-value">' + escHtml(app.tier || 'Not set') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Entry Fee</div><div class="detail-value">' + (app.entry_fee ? '&#8377;' + app.entry_fee + (app.fee_paid ? ' (Paid)' : ' (Unpaid)') : 'Free') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Interested Solutions</div><div class="detail-value">' + escHtml(Array.isArray(app.interested_solutions) ? app.interested_solutions.join(', ') : (app.interested_solutions || 'N/A')) + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Industries Served</div><div class="detail-value">' + escHtml(app.industries_served || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Customer Base</div><div class="detail-value">' + escHtml(app.customer_base || 'N/A') + '</div></div>' +
@@ -540,6 +552,11 @@
         var solutions = app.interested_solutions || app.solutions || [];
         if (typeof solutions === 'string') solutions = solutions.split(',').map(function(s) { return s.trim(); });
 
+        var appCapability = app.partner_capability || app.partner_type || app.capability || 'refer_sell';
+        var defaultTier = (appCapability === 'refer_sell_implement' || appCapability === 'Refer + Sell + Implement') ? 'solution' : 'sales';
+        var validTiers = { 'sales': 1, 'solution': 1, 'silver': 1, 'gold': 1 };
+        var tier = validTiers[app.tier] ? app.tier : defaultTier;
+
         var partnerData = {
           application_id: app.application_id || '',
           full_name: app.full_name || app.name || '',
@@ -555,8 +572,15 @@
           years_in_business: app.years_in_business || '',
           industries_served: app.industries_served || '',
           customer_base: app.customer_base || '',
-          partner_capability: app.partner_capability || app.partner_type || app.capability || 'refer_sell',
+          partner_capability: appCapability,
           interested_solutions: solutions,
+          tier: tier,
+          entry_fee: app.entry_fee || 0,
+          fee_paid: !!app.fee_paid,
+          directory_visible: true,
+          certified_resources: 0,
+          retention_rate: 0,
+          customers_ytd: 0,
           status: 'ACTIVE'
         };
 

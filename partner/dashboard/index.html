@@ -50,6 +50,13 @@
 .dash-topbar .partner-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:100px;font-size:.85rem;font-weight:600;color:var(--ink-soft)}
 .dash-topbar .partner-badge .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
 
+/* Fee pending banner */
+.fee-banner{display:flex;align-items:center;gap:14px;background:var(--amber-tint);border:1px solid var(--amber);border-left:4px solid var(--amber);border-radius:var(--radius);padding:14px 18px;margin-bottom:24px;flex-wrap:wrap;animation:badgePulse 3s ease-in-out infinite}
+.fee-banner .fee-banner-icon{width:40px;height:40px;border-radius:10px;background:#fff;color:var(--amber-ink);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.fee-banner .fee-banner-text{flex:1;min-width:200px}
+.fee-banner .fee-banner-text strong{display:block;font-size:.95rem;color:var(--amber-ink);margin-bottom:2px}
+.fee-banner .fee-banner-text span{font-size:.85rem;color:var(--ink-soft)}
+
 /* Info Cards Grid */
 .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px}
 .info-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;transition:all .3s var(--transition);position:relative;overflow:hidden}
@@ -169,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function fetchPartnerProfile(token) {
     return SupabaseClient.select(
       'partners',
-      'user_id,partner_id,partner_name,email,phone,company,status,capability,revenue_share',
+      '*',
       token
     ).then(function(data) {
       if (data && data.length > 0) {
@@ -205,8 +212,42 @@ document.addEventListener('DOMContentLoaded', function() {
     statusEl.style.background = status === 'ACTIVE' ? 'var(--green-tint)' : 'var(--amber-tint)';
     statusEl.style.color = status === 'ACTIVE' ? 'var(--green)' : 'var(--amber-ink)';
 
-    document.getElementById('info-capability').textContent = profile.capability || 'REFER + SELL';
-    document.getElementById('info-revenue').textContent = profile.revenue_share || '10%';
+    var tierMap = {
+      'sales':     { label: 'SALES PARTNER',    rate: '10%' },
+      'solution':  { label: 'SOLUTION PARTNER', rate: 'UP TO 20%' },
+      'silver':    { label: 'SILVER PARTNER',   rate: 'UP TO 22%' },
+      'gold':      { label: 'GOLD PARTNER',     rate: 'UP TO 25%' }
+    };
+    var tier = (profile.tier || '').toLowerCase();
+    var meta = tierMap[tier];
+    if (!meta) {
+      var cap = (profile.capability || profile.partner_capability || '').toUpperCase();
+      meta = cap.indexOf('IMPLEMENT') !== -1 ? tierMap.solution : tierMap.sales;
+    }
+
+    document.getElementById('info-capability').textContent = meta.label;
+    document.getElementById('info-revenue').textContent = profile.revenue_share || meta.rate;
+
+    var certEl = document.getElementById('info-cert');
+    if (certEl) certEl.textContent = profile.certified_resources != null ? profile.certified_resources : '0';
+    var retEl = document.getElementById('info-retention');
+    if (retEl) retEl.textContent = profile.retention_rate != null ? profile.retention_rate + '%' : '0%';
+
+    var feeMeta = tier === 'silver' ? { fee: '\u20B94,999', label: 'Silver Partner' } :
+                  tier === 'gold'   ? { fee: '\u20B99,999', label: 'Gold Partner' } :
+                  null;
+    var feeBanner = document.getElementById('fee-pending-banner');
+    if (feeBanner) {
+      if (feeMeta && !profile.fee_paid) {
+        feeBanner.style.display = 'flex';
+        var fbTitle = document.getElementById('fee-banner-title');
+        var fbMsg = document.getElementById('fee-banner-msg');
+        if (fbTitle) fbTitle.textContent = 'Entry Fee Pending';
+        if (fbMsg) fbMsg.textContent = 'Your ' + feeMeta.label + ' subscription requires an annual entry fee of ' + feeMeta.fee + '. Pay now to activate your tier benefits.';
+      } else {
+        feeBanner.style.display = 'none';
+      }
+    }
 
     hideLoading();
   }
@@ -347,6 +388,10 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="nav-icon">&#128176;</span>
           Commissions
         </a>
+        <a href="/partner/payments/" class="dash-nav-link">
+          <span class="nav-icon">&#128179;</span>
+          Entry Fee
+        </a>
         <a href="/partner/renewals/" class="dash-nav-link">
           <span class="nav-icon">&#128260;</span>
           Renewals
@@ -390,6 +435,16 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
+    <!-- Fee Pending Banner -->
+    <div id="fee-pending-banner" class="fee-banner" style="display:none;">
+      <div class="fee-banner-icon">&#128176;</div>
+      <div class="fee-banner-text">
+        <strong id="fee-banner-title">Entry Fee Pending</strong>
+        <span id="fee-banner-msg"></span>
+      </div>
+      <a href="/partner/payments/" class="btn btn-primary btn-sm">Pay Now &#10141;</a>
+    </div>
+
     <!-- Partner Info Cards -->
     <div class="info-grid">
       <div class="info-card c-blue">
@@ -413,6 +468,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="ic-icon" style="background:var(--amber-tint);color:var(--amber-ink);">&#128176;</div>
         <div class="ic-label">Revenue Share</div>
         <div id="info-revenue" class="ic-value">10%</div>
+      </div>
+      <div class="info-card c-purple">
+        <div class="ic-icon" style="background:var(--purple-tint);color:var(--purple);">&#127891;</div>
+        <div class="ic-label">Certified Resources</div>
+        <div id="info-cert" class="ic-value">0</div>
+      </div>
+      <div class="info-card c-green">
+        <div class="ic-icon" style="background:var(--green-tint);color:var(--green);">&#128257;</div>
+        <div class="ic-label">Retention Rate</div>
+        <div id="info-retention" class="ic-value">0%</div>
       </div>
     </div>
 

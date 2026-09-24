@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Entry Fee Payment — Brilliants Partner Portal</title>
+<meta name="description" content="Pay your Silver or Gold partner entry fee, submit your UPI/bank reference, and activate your tier.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}
+
+/* Portal layout */
+.pd-layout{display:flex;min-height:calc(100vh - var(--nav-h));margin-top:var(--nav-h)}
+.pd-sidebar{width:260px;background:var(--surface);border-right:1px solid var(--line);padding:32px 0;position:fixed;top:var(--nav-h);left:0;bottom:0;overflow-y:auto;z-index:900;transition:transform .3s var(--transition)}
+.pd-sidebar-header{padding:0 24px 24px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.pd-sidebar-header h3{font-family:var(--font-display);font-weight:700;font-size:1.05rem;margin-bottom:2px}
+.pd-sidebar-header p{font-size:.82rem;color:var(--ink-faint)}
+.pd-nav{list-style:none;padding:0;margin:0}
+.pd-nav li{margin:2px 0}
+.pd-nav a{display:flex;align-items:center;gap:12px;padding:12px 24px;font-size:.92rem;font-weight:500;color:var(--ink-soft);transition:all .2s var(--transition);border-left:3px solid transparent}
+.pd-nav a:hover{background:var(--primary-tint);color:var(--primary);border-left-color:var(--primary)}
+.pd-nav a.active{background:var(--primary-tint);color:var(--primary);font-weight:600;border-left-color:var(--primary)}
+.pd-nav a .nav-icon{width:20px;text-align:center;font-size:1rem;flex-shrink:0}
+.pd-main{flex:1;margin-left:260px;padding:32px 40px 60px}
+.pd-mobile-toggle{display:none;position:fixed;bottom:24px;right:24px;z-index:1100;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;border:none;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,235,0.4);transition:all .3s var(--transition)}
+.pd-mobile-toggle:hover{transform:scale(1.1)}
+.pd-page-head{margin-bottom:28px}
+.pd-page-head h1{font-family:var(--font-display);font-weight:800;font-size:1.75rem;margin-bottom:4px}
+.pd-page-head p{color:var(--ink-soft);font-size:.95rem}
+
+/* Payment specific */
+.pd-alert{display:none;padding:14px 18px;border-radius:var(--radius);margin-bottom:20px;font-size:.92rem}
+.pd-alert.error{display:block;background:var(--rose-tint);color:var(--rose);border:1px solid rgba(225,29,72,.2)}
+.pd-alert.success{display:block;background:var(--green-tint);color:var(--green);border:1px solid rgba(16,185,129,.2)}
+.pd-alert.info{display:block;background:var(--primary-tint);color:var(--primary);border:1px solid rgba(37,99,235,.2)}
+.fee-hero{background:linear-gradient(135deg,#0F172A,#1E3A8A);color:#fff;border-radius:var(--radius-xl);padding:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.fee-hero h2{font-family:var(--font-display);font-weight:800;font-size:1.4rem;margin-bottom:4px}
+.fee-hero p{color:#CBD5E1;font-size:.92rem}
+.fee-hero .amount{font-family:var(--font-display);font-weight:800;font-size:2.2rem}
+.fee-hero .amount small{font-size:.85rem;color:#93C5FD;font-weight:600}
+.pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.pd-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);padding:28px}
+.pd-card h3{font-family:var(--font-display);font-weight:700;font-size:1.05rem;margin-bottom:16px}
+.step-list{list-style:none;counter-reset:step}
+.step-list li{position:relative;padding:0 0 22px 44px;counter-increment:step}
+.step-list li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--primary-tint);color:var(--primary);font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.step-list li:not(:last-child)::after{content:'';position:absolute;left:14px;top:32px;bottom:2px;width:2px;background:var(--line)}
+.step-list li:last-child{padding-bottom:0}
+.step-list strong{display:block;font-size:.93rem;margin-bottom:2px}
+.step-list p{color:var(--ink-soft);font-size:.87rem}
+.pay-box{background:var(--surface-2);border:1px dashed var(--line-strong);border-radius:var(--radius);padding:18px;margin-top:14px}
+.pay-box .vpa{font-family:var(--font-mono,ui-monospace,monospace);font-weight:700;font-size:1rem;word-break:break-all}
+.pay-box table{width:100%;border-collapse:collapse;margin-top:6px}
+.pay-box td{padding:6px 0;font-size:.88rem}
+.pay-box td:first-child{color:var(--ink-faint);width:130px}
+.pay-note{font-size:.8rem;color:var(--ink-faint);margin-top:12px;line-height:1.5}
+.pd-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pd-form .form-field{margin-bottom:16px}
+.pd-form label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;color:var(--ink-soft)}
+.pd-form input,.pd-form select,.pd-form textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.92rem;transition:border-color .2s var(--transition);background:var(--surface)}
+.pd-form input:focus,.pd-form select:focus,.pd-form textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+.pd-form .hint{font-size:.8rem;color:var(--ink-faint);margin-top:4px}
+
+/* Table */
+.pd-table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden}
+.pd-table-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}
+.pd-table-head h2{font-family:var(--font-display);font-weight:700;font-size:1.1rem}
+.pd-table{width:100%;border-collapse:collapse}
+.pd-table thead th{padding:14px 20px;text-align:left;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);background:var(--surface-2);border-bottom:1px solid var(--line)}
+.pd-table tbody td{padding:16px 20px;font-size:.92rem;border-bottom:1px solid var(--line);vertical-align:middle}
+.pd-table tbody tr:last-child td{border-bottom:none}
+.pd-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.pd-badge.pending{background:var(--amber-tint);color:var(--amber-ink)}
+.pd-badge.verified{background:var(--green-tint);color:var(--green)}
+.pd-badge.failed{background:var(--rose-tint);color:var(--rose)}
+.pd-empty{text-align:center;padding:40px 20px;color:var(--ink-faint);font-size:.92rem}
+.pd-loading{display:flex;align-items:center;justify-content:center;padding:60px 24px}
+.pd-spinner{width:36px;height:36px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.silver{color:#5B6B80}.gold{color:#A27808}
+@media(max-width:1024px){
+  .pd-sidebar{transform:translateX(-100%)}
+  .pd-sidebar.open{transform:translateX(0);box-shadow:var(--shadow-xl)}
+  .pd-main{margin-left:0;padding:24px 20px 80px}
+  .pd-mobile-toggle{display:flex;align-items:center;justify-content:center}
+  .pd-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .pd-form .form-row{grid-template-columns:1fr}
+  .fee-hero .amount{font-size:1.8rem}
+}
+</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+<script src="/partner/js/supabase-config.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var session = SupabaseClient.getSession();
+  if (!session || !session.access_token) {
+    window.location.href = '/partner/login/';
+    return;
+  }
+
+  // ==========================================================
+  // PAYMENT CONFIG - UPDATE WITH YOUR REAL PAYMENT DETAILS
+  // ==========================================================
+  var PAYMENT_CONFIG = {
+    upiVpa: 'brilliants@upi',
+    upiName: 'Brilliants Technology',
+    bankName: 'Brilliants Technology - Bank Account',
+    accountHolder: 'Brilliants Technology',
+    accountNumber: 'XXXX XXXX XXXX XXXX',
+    ifsc: 'XXXX0000000',
+    bankNote: 'Pay via UPI or bank transfer, then submit the UTR/reference number below.'
+  };
+  // ==========================================================
+
+  var TIER_FEE = { silver: 4999, gold: 9999 };
+  var TIER_LABEL = { silver: 'Silver Partner', gold: 'Gold Partner' };
+
+  var feeHero = document.getElementById('fee-hero');
+  var noFeeView = document.getElementById('no-fee-view');
+  var activeView = document.getElementById('active-view');
+  var paidHero = document.getElementById('paid-hero');
+  var historyWrap = document.getElementById('history-wrap');
+  var submitForm = document.getElementById('pay-submit-form');
+  var alertBox = document.getElementById('pay-alert');
+  var partnerData = null;
+
+  function setAlert(msg, type) {
+    alertBox.className = 'pd-alert ' + (type || 'error');
+    alertBox.textContent = msg;
+  }
+
+  SupabaseClient.getUser(session.access_token).then(function(user) {
+    if (!user || !user.id) {
+      window.location.href = '/partner/login/';
+      return null;
+    }
+    return SupabaseClient.select('partners', 'user_id=eq.' + (user ? user.id : '') + '&select=partner_id,application_id,full_name,business_email,company_name,tier,fee_paid,status', session.access_token);
+  }).then(function(data) {
+    if (data && data.length) {
+      partnerData = data[0];
+      document.getElementById('sidebar-partner-name').textContent = partnerData.full_name || 'Partner';
+      document.getElementById('sidebar-partner-id').textContent = partnerData.partner_id || '';
+      render();
+    } else {
+      window.location.href = '/partner/login/';
+    }
+  }).catch(function() {
+    window.location.href = '/partner/login/';
+  });
+
+  function render() {
+    var tier = (partnerData.tier || 'solution').toLowerCase();
+    var amount = TIER_FEE[tier];
+    var feePaid = !!partnerData.fee_paid;
+
+    if (!amount) {
+      document.getElementById('loading').style.display = 'none';
+      noFeeView.style.display = 'block';
+      historyWrap.style.display = 'none';
+      return;
+    }
+
+    document.getElementById('loading').style.display = 'none';
+    var heroEl = feeHero;
+    heroEl.style.display = 'flex';
+
+    if (feePaid) {
+      paidHero.style.display = 'block';
+      activeView.style.display = 'none';
+    } else {
+      paidHero.style.display = 'none';
+      activeView.style.display = 'block';
+    }
+
+    var amountEl = document.getElementById('fee-amount');
+    amountEl.innerHTML = '&#8377;' + amount.toLocaleString('en-IN') +
+      ' <small>/ year · ' + TIER_LABEL[tier] + '</small>';
+    document.getElementById('tier-name').textContent = TIER_LABEL[tier];
+    document.getElementById('tier-name-2').textContent = TIER_LABEL[tier];
+
+    document.getElementById('cfg-upi-vpa').textContent = PAYMENT_CONFIG.upiVpa;
+    document.getElementById('cfg-upi-name').textContent = PAYMENT_CONFIG.upiName;
+    document.getElementById('cfg-bank-name').textContent = PAYMENT_CONFIG.bankName;
+    document.getElementById('cfg-holder').textContent = PAYMENT_CONFIG.accountHolder;
+    document.getElementById('cfg-acc').textContent = PAYMENT_CONFIG.accountNumber;
+    document.getElementById('cfg-ifsc').textContent = PAYMENT_CONFIG.ifsc;
+    document.getElementById('cfg-note').textContent = PAYMENT_CONFIG.bankNote;
+
+    var upiLink = document.getElementById('upi-pay-link');
+    upiLink.href = 'upi://pay?pa=' + encodeURIComponent(PAYMENT_CONFIG.upiVpa) +
+      '&pn=' + encodeURIComponent('Brilliants ' + TIER_LABEL[tier]) +
+      '&am=' + amount + '&cu=INR' +
+      '&tn=' + encodeURIComponent('Brilliants ' + TIER_LABEL[tier] + ' entry fee - ' + (partnerData.partner_id || ''));
+
+    document.getElementById('form-tier').value = tier;
+    document.getElementById('form-amount').value = amount;
+    document.getElementById('form-partner-id').value = partnerData.partner_id || '';
+    document.getElementById('form-application-id').value = partnerData.application_id || '';
+
+    loadHistory(partnerData.partner_id);
+  }
+
+  // Submit reference
+  submitForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    setAlert('', 'info');
+
+    var reference = document.getElementById('pay-reference').value.trim();
+    var method = document.getElementById('pay-method').value;
+    var paidDate = document.getElementById('pay-date').value;
+    var notes = document.getElementById('pay-notes').value.trim();
+
+    if (reference.length < 6) {
+      setAlert('Please enter a valid UTR / transaction reference number (at least 6 characters).');
+      return;
+    }
+    if (!paidDate) {
+      setAlert('Please select the date you made the payment.');
+      return;
+    }
+
+    var btn = document.getElementById('pay-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    var payload = {
+      partner_id: document.getElementById('form-partner-id').value,
+      application_id: document.getElementById('form-application-id').value || null,
+      tier: document.getElementById('form-tier').value,
+      amount: parseFloat(document.getElementById('form-amount').value),
+      method: method,
+      reference: reference,
+      paid_date: paidDate,
+      status: 'PENDING'
+    };
+
+    SupabaseClient.insert('partner_payments', payload, session.access_token).then(function(res) {
+      if (res && res.error) throw new Error(res.error.message || 'Submission failed');
+      submitForm.reset();
+      document.getElementById('form-tier').value = partnerData.tier;
+      document.getElementById('form-amount').value = TIER_FEE[partnerData.tier];
+      document.getElementById('form-partner-id').value = partnerData.partner_id || '';
+      document.getElementById('form-application-id').value = partnerData.application_id || '';
+      setAlert('Payment reference submitted. Our team will verify it and activate your tier within 1-2 business days.', 'success');
+      loadHistory(partnerData.partner_id);
+    }).catch(function(err) {
+      setAlert('Could not submit your payment reference: ' + (err.message || 'Please try again.'));
+    }).finally(function() {
+      btn.disabled = false;
+      btn.textContent = 'Submit Payment Reference';
+    });
+  });
+
+  function loadHistory(partnerId) {
+    SupabaseClient.select('partner_payments', 'partner_id=eq.' + encodeURIComponent(partnerId) + '&order=created_at.desc', session.access_token)
+      .then(function(data) {
+        var list = Array.isArray(data) ? data : [];
+        historyWrap.style.display = 'block';
+        renderHistory(list);
+      })
+      .catch(function() {
+        historyWrap.style.display = 'block';
+        renderHistory([]);
+      });
+  }
+
+  function renderHistory(list) {
+    var tbody = document.getElementById('payments-tbody');
+    var empty = document.getElementById('payments-empty');
+
+    tbody.innerHTML = '';
+    if (!list.length) {
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    list.forEach(function(p) {
+      var st = (p.status || 'PENDING').toUpperCase();
+      var badgeClass = st === 'VERIFIED' ? 'verified' : (st === 'FAILED' || st === 'REFUNDED' ? 'failed' : 'pending');
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td><strong>' + (p.payment_id || '-') + '</strong></td>' +
+        '<td>' + (p.tier ? TIER_LABEL[p.tier] || p.tier : '-') + '</td>' +
+        '<td>' + formatCurrency(p.amount) + '</td>' +
+        '<td>' + (p.method || '-') + '</td>' +
+        '<td style="font-family:var(--font-mono,ui-monospace,monospace);font-size:.85rem;">' + (p.reference || '-') + '</td>' +
+        '<td>' + (p.paid_date || '-') + '</td>' +
+        '<td><span class="pd-badge ' + badgeClass + '">' + st + '</span></td>';
+      tbody.appendChild(tr);
+    });
+  }
+
+  function formatCurrency(v) {
+    if (v == null) return '\u20B90';
+    return '\u20B9' + Number(v).toLocaleString('en-IN');
+  }
+
+  // Mobile sidebar toggle
+  var sidebar = document.getElementById('pd-sidebar');
+  var toggle = document.getElementById('pd-mobile-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', function() { sidebar.classList.toggle('open'); });
+    document.addEventListener('click', function(e) {
+      if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== toggle) {
+        sidebar.classList.remove('open');
+      }
+    });
+  }
+});
+</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<div id="nav-placeholder"></div>
+
+<div class="pd-layout">
+  <aside class="pd-sidebar" id="pd-sidebar">
+    <div class="pd-sidebar-header">
+      <h3 id="sidebar-partner-name">Partner</h3>
+      <p id="sidebar-partner-id">Loading...</p>
+    </div>
+    <ul class="pd-nav">
+      <li><a href="/partner/dashboard/"><span class="nav-icon">&#128202;</span> Dashboard</a></li>
+      <li><a href="/partner/profile/"><span class="nav-icon">&#128100;</span> My Profile</a></li>
+      <li><a href="/partner/leads/new/"><span class="nav-icon">&#128221;</span> Register Lead</a></li>
+      <li><a href="/partner/leads/"><span class="nav-icon">&#128203;</span> My Leads</a></li>
+      <li><a href="/partner/opportunities/"><span class="nav-icon">&#128188;</span> Opportunities</a></li>
+      <li><a href="/partner/commissions/"><span class="nav-icon">&#128176;</span> Commissions</a></li>
+      <li><a href="/partner/payments/" class="active"><span class="nav-icon">&#128179;</span> Entry Fee</a></li>
+      <li><a href="/partner/renewals/"><span class="nav-icon">&#128260;</span> Renewals</a></li>
+      <li><a href="/partner/agreement/"><span class="nav-icon">&#128221;</span> Agreement</a></li>
+      <li><a href="/partner/resources/"><span class="nav-icon">&#128194;</span> Resources</a></li>
+    </ul>
+  </aside>
+
+  <main class="pd-main" id="main-content">
+    <div class="pd-page-head">
+      <h1>Entry Fee Payment</h1>
+      <p>Complete your Silver / Gold tier activation.</p>
+    </div>
+
+    <div class="pd-loading" id="loading">
+      <div class="pd-spinner"></div>
+    </div>
+
+    <div class="pd-alert" id="pay-alert"></div>
+
+    <!-- No fee required -->
+    <div class="pd-card" id="no-fee-view" style="display:none">
+      <h3>No entry fee required</h3>
+      <p style="color:var(--ink-soft);font-size:.95rem;margin-top:8px;">
+        Your current tier does not require an entry fee. Sales and Solution membership is free.
+        Upgrade to <span class="silver" style="font-weight:700;">Silver</span> or
+        <span style="font-weight:700;color:var(--amber-ink);">Gold</span> for higher commission rates
+        (up to 22% / 25%) and certification benefits. Contact our team to upgrade.
+      </p>
+    </div>
+
+    <!-- Fee hero -->
+    <div class="fee-hero" id="fee-hero" style="display:none">
+      <div>
+        <h2 id="tier-name">Silver Partner</h2>
+        <p>Annual membership fee to activate your tier.</p>
+      </div>
+      <div class="amount" id="fee-amount">&#8377;4,999</div>
+    </div>
+
+    <!-- Paid hero -->
+    <div class="pd-card" id="paid-hero" style="display:none">
+      <h3>&#10003; Tier active</h3>
+      <p style="color:var(--ink-soft);font-size:.95rem;margin-top:8px;">
+        Your entry fee is verified and your <span id="tier-name-2">Silver</span> tier is active.
+        Your assigned revenue share is now applied to qualifying commissions.
+      </p>
+    </div>
+
+    <!-- Active pay view -->
+    <div id="active-view" style="display:none">
+      <div class="pd-grid">
+        <div class="pd-card">
+          <h3>How to pay</h3>
+          <ol class="step-list">
+            <li>
+              <strong>Pay the amount</strong>
+              <p>Use any UPI app, netbanking, or bank transfer to the details below.</p>
+              <div class="pay-box">
+                <a class="btn btn-ghost btn-sm" id="upi-pay-link" href="#" style="margin-bottom:12px;">&#128241; Pay with UPI App</a>
+                <div class="vpa" id="cfg-upi-vpa">brilliants@upi</div>
+                <div style="font-size:.85rem;color:var(--ink-soft);" id="cfg-upi-name">Brilliants Technology</div>
+                <table>
+                  <tr><td>Bank</td><td id="cfg-bank-name">Brilliants Technology - Bank Account</td></tr>
+                  <tr><td>Account Holder</td><td id="cfg-holder">Brilliants Technology</td></tr>
+                  <tr><td>Account No.</td><td id="cfg-acc">XXXX XXXX XXXX XXXX</td></tr>
+                  <tr><td>IFSC</td><td id="cfg-ifsc">XXXX0000000</td></tr>
+                </table>
+                <p class="pay-note" id="cfg-note">Pay via UPI or bank transfer, then submit the UTR/reference number below.</p>
+              </div>
+            </li>
+            <li>
+              <strong>Copy your UTR / transaction ID</strong>
+              <p>Find it in your UPI app, bank statement, or SMS confirmation after the payment.</p>
+            </li>
+            <li>
+              <strong>Submit the reference below</strong>
+              <p>Our team verifies it within 1-2 business days and your tier is activated.</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="pd-card">
+          <h3>Submit your payment reference</h3>
+          <form class="pd-form" id="pay-submit-form">
+            <input type="hidden" id="form-partner-id" value="">
+            <input type="hidden" id="form-application-id" value="">
+            <input type="hidden" id="form-tier" value="">
+            <input type="hidden" id="form-amount" value="">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="pay-method">Payment Method</label>
+                <select id="pay-method">
+                  <option value="UPI">UPI</option>
+                  <option value="Bank">Bank Transfer (NEFT/IMPS/RTGS)</option>
+                  <option value="Netbanking">Netbanking</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="pay-date">Payment Date</label>
+                <input type="date" id="pay-date" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="pay-reference">UTR / Transaction Reference</label>
+              <input type="text" id="pay-reference" placeholder="e.g. 412378945612" maxlength="50" required>
+              <span class="hint">The 12-digit UTR or bank transaction ID from your payment confirmation.</span>
+            </div>
+            <div class="form-field">
+              <label for="pay-notes">Notes (optional)</label>
+              <textarea id="pay-notes" rows="3" placeholder="Any additional details for the admin team..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="pay-submit-btn">Submit Payment Reference</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div id="history-wrap" style="display:none">
+      <div class="pd-table-wrap">
+        <div class="pd-table-head"><h2>Payment History</h2></div>
+        <table class="pd-table">
+          <thead>
+            <tr>
+              <th>Payment ID</th>
+              <th>Tier</th>
+              <th>Amount</th>
+              <th>Method</th>
+              <th>Reference</th>
+              <th>Paid On</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="payments-tbody"></tbody>
+        </table>
+        <div class="pd-empty" id="payments-empty">No payment history yet.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<button class="pd-mobile-toggle" id="pd-mobile-toggle" aria-label="Toggle sidebar">&#9776;</button>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

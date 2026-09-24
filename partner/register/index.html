@@ -97,6 +97,9 @@
 .reg-radio-option h4{font-size:1rem;font-weight:700;margin-bottom:4px}
 .reg-radio-option p{font-size:0.88rem;color:var(--ink-soft);line-height:1.5}
 .reg-radio-option .reg-badge{display:inline-block;padding:4px 10px;border-radius:100px;font-size:0.75rem;font-weight:700;margin-top:8px}
+.reg-radio-option h4 .reg-badge{margin:0;margin-left:8px;vertical-align:middle}
+.reg-badge.tier-silver{background:#e9eef4;color:#5b6b80}
+.reg-badge.tier-gold{background:#f7f1e0;color:#a27808}
 
 /* Checkbox group */
 .reg-check-group{display:flex;flex-wrap:wrap;gap:10px}
@@ -195,6 +198,11 @@ document.addEventListener('DOMContentLoaded', function() {
         opt.classList.remove('selected');
       });
       this.closest('.reg-radio-option').classList.add('selected');
+      var tierInput = document.getElementById('tierInput');
+      var tier = this.closest('.reg-radio-option').getAttribute('data-tier');
+      if (tierInput) tierInput.value = tier;
+      var feeNote = document.getElementById('tier-fee-note');
+      if (feeNote) feeNote.style.display = (tier === 'silver' || tier === 'gold') ? 'block' : 'none';
     });
   });
 
@@ -244,6 +252,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Gather data
     var capability = form.querySelector('input[name="capability"]:checked');
+    var tier = form.querySelector('input[name="tier"]');
+    var tierValue = tier ? tier.value : 'sales';
+    var entryFee = (tierValue === 'silver') ? 4999 : (tierValue === 'gold') ? 9999 : 0;
     var solutions = [];
     form.querySelectorAll('input[name="solutions"]:checked').forEach(function(cb) {
       solutions.push(cb.value);
@@ -264,6 +275,9 @@ document.addEventListener('DOMContentLoaded', function() {
       industries_served: form.industries_served.value.trim(),
       customer_base: form.customer_base.value,
       capability: capability ? capability.value : '',
+      tier: tierValue,
+      entry_fee: entryFee,
+      fee_paid: false,
       solutions: solutions,
       business_profile: form.business_profile.value.trim(),
       terms_agreed: form.terms_agreed.checked,
@@ -455,23 +469,41 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="reg-section-header">
         <div class="reg-section-num">3</div>
         <div>
-          <div class="reg-section-title">Partnership Capability</div>
-          <div class="reg-section-subtitle">How would you like to work with Brilliants?</div>
+          <div class="reg-section-title">Choose Your Partner Tier</div>
+          <div class="reg-section-subtitle">Every tier includes Refer + Sell. Higher tiers add implementation, certification and higher commissions.</div>
         </div>
       </div>
       <div class="reg-radio-group">
-        <label class="reg-radio-option selected">
+        <label class="reg-radio-option selected" data-tier="sales">
           <input type="radio" name="capability" value="Refer + Sell" checked>
-          <h4>Refer + Sell</h4>
+          <h4>Sales Partner <span class="reg-badge" style="background:var(--primary-tint);color:var(--primary);">Free to Join</span></h4>
           <p>Identify qualified opportunities, introduce Brilliants solutions, participate in demos and support the sales process.</p>
           <span class="reg-badge" style="background:var(--primary-tint);color:var(--primary);">10% Revenue Share</span>
         </label>
-        <label class="reg-radio-option">
+        <label class="reg-radio-option" data-tier="solution">
           <input type="radio" name="capability" value="Refer + Sell + Implement">
-          <h4>Refer + Sell + Implement</h4>
+          <h4>Solution Partner <span class="reg-badge" style="background:var(--green-tint);color:var(--green);">Recommended to Start</span></h4>
           <p>All of the above plus customer implementation/deployment and agreed technical support.</p>
           <span class="reg-badge" style="background:var(--green-tint);color:var(--green);">Up to 20% Revenue Share</span>
         </label>
+        <label class="reg-radio-option" data-tier="silver">
+          <input type="radio" name="capability" value="Refer + Sell + Implement">
+          <h4>Silver Partner <span class="reg-badge tier-silver">Certified</span></h4>
+          <p>Solution Partner level, plus 1 certified resource, minimum 6 customers each year and 70% retention.</p>
+          <span class="reg-badge tier-silver">Up to 22% &middot; &#8377;4,999/year</span>
+        </label>
+        <label class="reg-radio-option" data-tier="gold">
+          <input type="radio" name="capability" value="Refer + Sell + Implement">
+          <h4>Gold Partner <span class="reg-badge tier-gold">Certified Team</span></h4>
+          <p>Expanded team with 3 certified resources, minimum 10 customers each year and 80% retention.</p>
+          <span class="reg-badge tier-gold">Up to 25% &middot; &#8377;9,999/year</span>
+        </label>
+        <input type="hidden" name="tier" id="tierInput" value="sales">
+      </div>
+      <div id="tier-fee-note" style="display:none;margin-top:14px;padding:14px 16px;border-radius:var(--radius);background:var(--primary-tint);border:1px dashed var(--primary);font-size:.88rem;line-height:1.6;color:var(--ink);">
+        <strong>Annual entry fee:</strong> Silver &amp; Gold require an annual membership fee (&#8377;4,999 / &#8377;9,999). Our
+        team will share payment details after your application is reviewed and your agreement is signed,
+        and your tier will be activated once the fee is received.
       </div>
     </div>
 

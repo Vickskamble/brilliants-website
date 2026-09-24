@@ -190,8 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ro-email').value = partnerData.business_email || '';
     document.getElementById('ro-company').value = partnerData.company_name || '';
     document.getElementById('ro-btype').value = partnerData.business_type || '';
+    var tierMap = { sales: 'Sales Partner', solution: 'Solution Partner', silver: 'Silver Partner', gold: 'Gold Partner' };
+    var tier = partnerData.tier ? tierMap[partnerData.tier] : null;
     var capText = partnerData.partner_capability === 'refer_sell_implement' ? 'Refer + Sell + Implement' : 'Refer + Sell';
-    document.getElementById('ro-capability').value = capText;
+    document.getElementById('ro-capability').value = capText + (tier ? ' (' + tier + ')' : '');
+    document.getElementById('profile-tier').value = tier || 'Solution Partner';
+    document.getElementById('profile-cert').value = partnerData.certified_resources != null ? partnerData.certified_resources : '0';
+    document.getElementById('profile-retention').value = partnerData.retention_rate != null ? partnerData.retention_rate + '%' : '0%';
 
     // Editable fields
     document.getElementById('ed-name').value = partnerData.full_name || '';
@@ -278,6 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <li><a href="/partner/leads/"><span class="nav-icon">&#128203;</span> My Leads</a></li>
       <li><a href="/partner/opportunities/"><span class="nav-icon">&#128188;</span> Opportunities</a></li>
       <li><a href="/partner/commissions/"><span class="nav-icon">&#128176;</span> Commissions</a></li>
+      <li><a href="/partner/payments/"><span class="nav-icon">&#128179;</span> Entry Fee</a></li>
       <li><a href="/partner/renewals/"><span class="nav-icon">&#128260;</span> Renewals</a></li>
       <li><a href="/partner/agreement/"><span class="nav-icon">&#128221;</span> Agreement</a></li>
       <li><a href="/partner/resources/"><span class="nav-icon">&#128194;</span> Resources</a></li>
@@ -324,6 +330,18 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="pd-field">
             <label>Account Status</label>
             <div id="profile-status"></div>
+          </div>
+          <div class="pd-field">
+            <label>Partner Tier</label>
+            <input type="text" id="profile-tier" readonly>
+          </div>
+          <div class="pd-field">
+            <label>Certified Resources</label>
+            <input type="text" id="profile-cert" readonly>
+          </div>
+          <div class="pd-field">
+            <label>Retention Rate</label>
+            <input type="text" id="profile-retention" readonly>
           </div>
           <div class="pd-field full">
             <label>Created Date</label>

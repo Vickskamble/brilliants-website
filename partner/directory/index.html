@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Find a certified Brilliants partner near you. Browse our partner network for sales, implementation and ongoing support.">
+<title>Partner Directory | Brilliants</title>
+<script src="/partner/js/supabase-config.js"></script>
+<style>
+  :root {
+    --primary:#4f46e5;
+    --primary-tint:#eef2ff;
+    --green:#059669;
+    --green-tint:#ecfdf5;
+    --amber-ink:#92400e;
+    --amber-tint:#fef3c7;
+    --ink:#0f172a;
+    --ink-soft:#475569;
+    --ink-faint:#94a3b8;
+    --line:#e2e8f0;
+    --bg:#f8fafc;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  .topbar{background:var(--ink);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
+  .brand mark{background:linear-gradient(135deg,#818cf8,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .topbar a{color:#cbd5e1;text-decoration:none;font-size:.9rem;font-weight:600}
+  .topbar a:hover{color:#fff}
+  .wrap{max-width:1120px;margin:0 auto;padding:48px 24px 64px}
+  .hero{text-align:center;margin-bottom:40px}
+  .hero h1{font-size:2.1rem;font-weight:800;letter-spacing:-.02em}
+  .hero p{color:var(--ink-soft);max-width:640px;margin:12px auto 0}
+  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+  .filters button{border:1.5px solid var(--line);background:#fff;padding:9px 18px;border-radius:100px;font-size:.85rem;font-weight:700;cursor:pointer;color:var(--ink-soft);transition:all .2s}
+  .filters button.active,.filters button:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-tint)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:all .2s}
+  .card:hover{box-shadow:0 10px 30px rgba(15,23,42,.08);transform:translateY(-2px)}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+  .card-initials{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;background:var(--primary-tint);color:var(--primary);flex-shrink:0}
+  .card h3{font-size:1.02rem;font-weight:800}
+  .card .company{color:var(--ink-soft);font-size:.9rem;margin-top:2px}
+  .tier-badge{font-size:.72rem;font-weight:800;padding:5px 12px;border-radius:100px;white-space:nowrap}
+  .tier-sales{background:var(--primary-tint);color:var(--primary)}
+  .tier-solution{background:var(--blue-50,#e0e7ff);color:#3730a3}
+  .tier-silver{background:#e9eef4;color:#5b6b80}
+  .tier-gold{background:#f7f1e0;color:#a27808}
+  .card .loc{color:var(--ink-faint);font-size:.85rem;margin:8px 0 16px}
+  .kpis{display:flex;gap:16px;border-top:1px solid var(--line);padding-top:14px}
+  .kpi{flex:1}
+  .kpi b{display:block;font-size:1rem}
+  .kpi span{font-size:.72rem;color:var(--ink-faint);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .empty{text-align:center;color:var(--ink-faint);padding:48px 0}
+  .cta{text-align:center;margin-top:48px;padding:32px;background:var(--ink);border-radius:var(--radius);color:#fff}
+  .cta h3{font-size:1.3rem;margin-bottom:8px}
+  .cta p{color:#cbd5e1;margin-bottom:20px;font-size:.92rem}
+  .cta .btn{display:inline-block;background:linear-gradient(135deg,#6366f1,#3b82f6);color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:13px 26px;border-radius:100px}
+  .loading{text-align:center;color:var(--ink-faint);padding:48px 0}
+  .spinner{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--primary);border-radius:50%;margin:0 auto 12px;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">BRIL<span>LIANTS</span> <mark>Partner Network</mark></div>
+  <nav style="display:flex;gap:20px">
+    <a href="/partner/">Partner Program</a>
+    <a href="/partner/register/">Become a Partner</a>
+    <a href="/">Back to Brilliants</a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Find a Brilliants Partner</h1>
+    <p>Our certified partner network helps businesses adopt Power EmS, IronBook and more - from implementation to ongoing support.</p>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="active" data-filter="all">All Tiers</button>
+    <button data-filter="sales">Sales Partners</button>
+    <button data-filter="solution">Solution Partners</button>
+    <button data-filter="silver">Silver Partners</button>
+    <button data-filter="gold">Gold Partners</button>
+  </div>
+
+  <div class="loading" id="loading"><div class="spinner"></div><p>Loading partners...</p></div>
+  <div class="grid" id="directory-grid"></div>
+  <div class="empty" id="empty" style="display:none">No partners match this filter yet.</div>
+
+  <div class="cta">
+    <h3>Want to join this network?</h3>
+    <p>Become a Brilliants partner and earn up to 25% revenue share.</p>
+    <a class="btn" href="/partner/register/">Apply Now</a>
+  </div>
+</div>
+
+<script>
+(function() {
+  var TIER_META = {
+    sales:    { label: 'Sales Partner',    cls: 'tier-sales',    rate: '10%' },
+    solution: { label: 'Solution Partner', cls: 'tier-solution', rate: '20%' },
+    silver:   { label: 'Silver Partner',   cls: 'tier-silver',   rate: '22%' },
+    gold:     { label: 'Gold Partner',     cls: 'tier-gold',     rate: '25%' }
+  };
+
+  var loading = document.getElementById('loading');
+  var grid = document.getElementById('directory-grid');
+  var empty = document.getElementById('empty');
+  var currentFilter = 'all';
+
+  SupabaseClient.select('partner_directory', 'select=*', null).then(function(data) {
+    loading.style.display = 'none';
+    if (!Array.isArray(data)) {
+      empty.style.display = 'block';
+      return;
+    }
+    render(data);
+  }).catch(function() {
+    loading.style.display = 'none';
+    empty.style.display = 'block';
+    empty.textContent = 'Could not load the partner directory. Please try again later.';
+  });
+
+  function render(all) {
+    var partnerData = all.filter(function(p) {
+      return p && p.partner_id;
+    });
+
+    document.getElementById('filters').addEventListener('click', function(e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      currentFilter = btn.getAttribute('data-filter');
+      document.querySelectorAll('#filters button').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      paint(partnerData);
+    });
+
+    paint(partnerData);
+  }
+
+  function paint(partnerData) {
+    var list = currentFilter === 'all'
+      ? partnerData
+      : partnerData.filter(function(p) { return (p.tier || 'solution').toLowerCase() === currentFilter; });
+
+    empty.style.display = list.length ? 'none' : 'block';
+    grid.innerHTML = '';
+
+    list.forEach(function(p) {
+      var tier = (p.tier || 'solution').toLowerCase();
+      var meta = TIER_META[tier] || TIER_META.solution;
+      var initials = (p.full_name || 'P')
+        .split(' ')
+        .filter(function(w) { return w; })
+        .slice(0, 2)
+        .map(function(w) { return w.charAt(0).toUpperCase(); })
+        .join('') || 'P';
+
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML =
+        '<div class="card-top">' +
+          '<div class="card-initials">' + initials + '</div>' +
+          '<span class="tier-badge ' + meta.cls + '">' + meta.label + '</span>' +
+        '</div>' +
+        '<h3>' + escapeHtml(p.full_name || 'Partner') + '</h3>' +
+        '<div class="company">' + escapeHtml(p.company_name || '') + '</div>' +
+        '<div class="loc">' +
+          [p.city, p.state].filter(function(x) { return x; }).map(escapeHtml).join(', ') +
+          (p.city || p.state ? '' : 'India') +
+        '</div>' +
+        '<div class="kpis">' +
+          '<div class="kpi"><b>' + (p.certified_resources != null ? p.certified_resources : 0) + '</b><span>Certified</span></div>' +
+          '<div class="kpi"><b>' + (p.customers_ytd != null ? p.customers_ytd : 0) + '</b><span>Customers</span></div>' +
+          '<div class="kpi"><b>' + (p.retention_rate != null ? p.retention_rate + '%' : '0%') + '</b><span>Retention</span></div>' +
+        '</div>';
+
+      grid.appendChild(card);
+    });
+  }
+
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -75,6 +75,7 @@
 .pd-badge.payable{background:var(--primary-tint);color:var(--primary)}
 .pd-badge.paid{background:var(--purple-tint);color:var(--purple)}
 .pd-badge.cancelled{background:var(--rose-tint);color:var(--rose)}
+.pd-badge.hosted{margin-left:6px;background:var(--green-tint);color:var(--green)}
 
 /* Empty State */
 .pd-empty{text-align:center;padding:60px 24px}
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
       html += '<tr>';
       html += '<td><strong>' + (c.commission_id || '-') + '</strong></td>';
       html += '<td>' + (c.opportunity_id || '-') + '</td>';
-      html += '<td>' + formatCurrency(c.subscription_amount) + '</td>';
+      html += '<td>' + formatCurrency(c.subscription_amount) + (c.hosted_subscription ? ' <span class="pd-badge hosted">Hosted</span>' : '') + '</td>';
       html += '<td>' + (c.commission_rate != null ? c.commission_rate + '%' : '-') + '</td>';
       html += '<td><strong>' + formatCurrency(c.commission_amount) + '</strong></td>';
       html += '<td><span class="pd-badge ' + badgeClass + '">' + st + '</span></td>';
@@ -250,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
       mhtml += '<div class="pd-mobile-card">';
       mhtml += '<div class="card-row"><span class="card-label">Commission ID</span><span class="card-value">' + (c.commission_id || '-') + '</span></div>';
       mhtml += '<div class="card-row"><span class="card-label">Opportunity</span><span class="card-value">' + (c.opportunity_id || '-') + '</span></div>';
-      mhtml += '<div class="card-row"><span class="card-label">Subscription</span><span class="card-value">' + formatCurrency(c.subscription_amount) + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Subscription</span><span class="card-value">' + formatCurrency(c.subscription_amount) + (c.hosted_subscription ? ' <span class="pd-badge hosted">Hosted</span>' : '') + '</span></div>';
       mhtml += '<div class="card-row"><span class="card-label">Rate</span><span class="card-value">' + (c.commission_rate != null ? c.commission_rate + '%' : '-') + '</span></div>';
       mhtml += '<div class="card-row"><span class="card-label">Commission</span><span class="card-value"><strong>' + formatCurrency(c.commission_amount) + '</strong></span></div>';
       mhtml += '<div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="pd-badge ' + badgeClass + '">' + st + '</span></span></div>';
@@ -283,6 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <li><a href="/partner/leads/"><span class="nav-icon">&#128203;</span> My Leads</a></li>
       <li><a href="/partner/opportunities/"><span class="nav-icon">&#128188;</span> Opportunities</a></li>
       <li><a href="/partner/commissions/" class="active"><span class="nav-icon">&#128176;</span> Commissions</a></li>
+      <li><a href="/partner/payments/"><span class="nav-icon">&#128179;</span> Entry Fee</a></li>
       <li><a href="/partner/renewals/"><span class="nav-icon">&#128260;</span> Renewals</a></li>
       <li><a href="/partner/agreement/"><span class="nav-icon">&#128221;</span> Agreement</a></li>
       <li><a href="/partner/resources/"><span class="nav-icon">&#128194;</span> Resources</a></li>

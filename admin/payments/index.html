@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Admin Dashboard — Entry Fee Payments</title>
+<meta name="description" content="Brilliants Admin Dashboard for verifying partner entry fee payments.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<link rel="stylesheet" href="/admin/shared.css">
+<style>
+.stats-grid{grid-template-columns:repeat(3,1fr)}
+.status-pending{background:#FFFBEB;color:#B45309}.status-pending::before{background:#F59E0B}
+.status-verified{background:#ECFDF5;color:#047857}.status-verified::before{background:#10B981}
+.status-failed,.status-expired,.status-refunded{background:#FFF1F2;color:#BE123C}.status-failed::before,.status-expired::before,.status-refunded::before{background:#E11D48}
+.action-btn.verify{color:var(--green);border-color:var(--green)}.action-btn.verify:hover{background:var(--green-tint)}
+.action-btn.reject{color:var(--rose);border-color:var(--rose)}.action-btn.reject:hover{background:var(--rose-tint)}
+.mono{font-family:ui-monospace,monospace}
+</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+<script src="/partner/js/supabase-config.js"></script>
+<script src="/admin/shared.js"></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<div id="nav-placeholder"></div>
+
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Access Denied Screen -->
+<div id="accessDenied" style="display:none">
+  <div class="access-denied">
+    <div class="access-denied-card">
+      <div class="icon">&#128274;</div>
+      <h2>Access Denied</h2>
+      <p>You do not have permission to access this page. This area is restricted to administrators only.</p>
+      <a href="/partner/" class="btn btn-primary">Back to Partner Portal</a>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Screen -->
+<div id="loadingScreen">
+  <div class="loading-state">
+    <div class="loading-spinner"></div>
+    <p style="color:var(--ink-faint);font-size:.92rem;">Verifying admin access...</p>
+  </div>
+</div>
+
+<!-- Admin Dashboard (hidden until auth) -->
+<div id="adminDashboard" style="display:none" class="admin-layout">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar-header">
+      <h3>Admin Panel</h3>
+      <p>Management Dashboard</p>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-section">Main</div>
+      <a href="/admin/partners/" class="admin-nav-item">
+        <span class="nav-icon">&#128101;</span>
+        <span>Partners</span>
+      </a>
+      <a href="/admin/leads/" class="admin-nav-item">
+        <span class="nav-icon">&#128203;</span>
+        <span>Leads</span>
+      </a>
+      <div class="admin-nav-section">Finance</div>
+      <a href="/admin/payments/" class="admin-nav-item active">
+        <span class="nav-icon">&#128179;</span>
+        <span>Payments</span>
+      </a>
+      <a href="/admin/commission/" class="admin-nav-item">
+        <span class="nav-icon">&#128176;</span>
+        <span>Commission</span>
+      </a>
+      <div class="admin-nav-section">System</div>
+      <a href="/partner/" class="admin-nav-item">
+        <span class="nav-icon">&#127760;</span>
+        <span>Partner Portal</span>
+      </a>
+    </nav>
+    <div class="admin-sidebar-footer">
+      Brilliants Admin v1.0
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="admin-main">
+
+    <!-- Top Bar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <h2>Entry Fee Payments</h2>
+        <div class="admin-topbar-badge">
+          <span class="pulse-dot"></span>
+          Live
+        </div>
+      </div>
+      <div class="admin-topbar-right">
+        <span style="font-size:.85rem;color:var(--ink-faint);" id="adminEmail"></span>
+        <button class="btn-logout" id="logoutBtn">
+          &#10140; <span class="btn-text">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="admin-content" id="main-content">
+
+      <!-- Stats -->
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:var(--amber-tint);color:var(--amber-ink);">&#9203;</div>
+          <div class="stat-card-value" id="statPending">0</div>
+          <div class="stat-card-label">Pending Verification</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:var(--green-tint);color:var(--green);">&#10003;</div>
+          <div class="stat-card-value" id="statVerified">0</div>
+          <div class="stat-card-label">Verified</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:var(--primary-tint);color:var(--primary);">&#128176;</div>
+          <div class="stat-card-value" id="statCollected">&#8377;0</div>
+          <div class="stat-card-label">Collected (Verified)</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <div class="search-box">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="searchInput" placeholder="Search by payment ID, reference, or partner..." aria-label="Search payments">
+          </div>
+          <select class="filter-select" id="statusFilter" aria-label="Filter by status">
+            <option value="">All Status</option>
+            <option value="PENDING">PENDING</option>
+            <option value="VERIFIED">VERIFIED</option>
+            <option value="FAILED">FAILED</option>
+            <option value="REFUNDED">REFUNDED</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <button class="refresh-btn" id="refreshBtn" title="Refresh">&#8635;</button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <div class="table-scroll">
+          <table id="paymentsTable">
+            <thead>
+              <tr>
+                <th>Payment ID</th>
+                <th>Partner</th>
+                <th>Tier</th>
+                <th>Amount</th>
+                <th>Reference</th>
+                <th>Method</th>
+                <th>Paid On</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="paymentsBody">
+            </tbody>
+          </table>
+        </div>
+        <div id="emptyState" class="empty-state" style="display:none">
+          <div class="empty-state-icon">&#128179;</div>
+          <h3>No payments found</h3>
+          <p>There are no payments matching your criteria.</p>
+        </div>
+        <div id="tableLoading" class="loading-state" style="display:none">
+          <div class="loading-spinner"></div>
+          <p style="color:var(--ink-faint);font-size:.88rem;">Loading payments...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">&#9776;</button>
+
+<!-- Verify Modal -->
+<div class="modal-overlay" id="verifyModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Verify Payment</h3>
+      <button class="modal-close" onclick="AdminPayments.closeVerifyModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="verifyModalBody"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="AdminPayments.closeVerifyModal()">Cancel</button>
+      <button class="btn btn-success btn-sm" id="verifyConfirmBtn" onclick="AdminPayments.confirmVerify()">&#10003; Mark Verified</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reject Modal -->
+<div class="modal-overlay" id="rejectModal">
+  <div class="modal reject-dialog">
+    <div class="modal-head">
+      <h3>Reject Payment</h3>
+      <button class="modal-close" onclick="AdminPayments.closeRejectModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Reason</label>
+        <textarea id="rejectReason" rows="3" placeholder="e.g. Reference not matching, incorrect amount..."></textarea>
+      </div>
+      <p style="font-size:.85rem;color:var(--ink-faint);margin-top:8px;">Rejected payments can be resubmitted by the partner.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="AdminPayments.closeRejectModal()">Cancel</button>
+      <button class="btn btn-danger btn-sm" id="rejectConfirmBtn" onclick="AdminPayments.confirmReject()">&#10007; Reject</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+window.AdminPayments = (function() {
+  'use strict';
+
+  var currentPayments = [];
+  var filteredPayments = [];
+  var currentId = null;
+
+  /* ====== AUTH CHECK ====== */
+  function checkAuth() {
+    if (!window.SupabaseClient) {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('accessDenied').style.display = 'block';
+      return;
+    }
+
+    var session = SupabaseClient.getSession();
+    if (!session || !session.access_token) {
+      window.location.href = '/partner/login/';
+      return;
+    }
+
+    SupabaseClient.getUser(session.access_token)
+      .then(function(result) {
+        var user = result;
+        if (!user || !user.id) {
+          window.location.href = '/partner/login/';
+          return;
+        }
+
+        var role = user.user_metadata && user.user_metadata.role;
+        if (role !== 'admin') {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('accessDenied').style.display = 'block';
+          return;
+        }
+
+        document.getElementById('adminEmail').textContent = user.email || '';
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'flex';
+        loadPayments();
+      }).catch(function() {
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('accessDenied').style.display = 'block';
+      });
+  }
+
+  /* ====== LOAD PAYMENTS ====== */
+  function loadPayments() {
+    var tbody = document.getElementById('paymentsBody');
+    var loading = document.getElementById('tableLoading');
+    var empty = document.getElementById('emptyState');
+    var session = SupabaseClient.getSession();
+
+    tbody.innerHTML = '';
+    loading.style.display = 'block';
+    empty.style.display = 'none';
+
+    SupabaseClient.select('partner_payments', 'select=*,partners(full_name,business_email)&order=created_at.desc', session.access_token)
+      .then(function(data) {
+        loading.style.display = 'none';
+        if (!Array.isArray(data)) {
+          currentPayments = [];
+          updateStats();
+          applyFilters();
+          return;
+        }
+        currentPayments = data || [];
+        updateStats();
+        applyFilters();
+      }).catch(function() {
+        loading.style.display = 'none';
+        currentPayments = [];
+        updateStats();
+        applyFilters();
+        showToast('Error loading payments', 'error');
+      });
+  }
+
+  /* ====== UPDATE STATS ====== */
+  function updateStats() {
+    var pending = 0, verified = 0, collected = 0;
+    currentPayments.forEach(function(p) {
+      var st = (p.status || '').toUpperCase();
+      if (st === 'PENDING') pending++;
+      if (st === 'VERIFIED') { verified++; collected += parseFloat(p.amount) || 0; }
+    });
+    document.getElementById('statPending').textContent = pending;
+    document.getElementById('statVerified').textContent = verified;
+    document.getElementById('statCollected').textContent = '\u20B9' + collected.toLocaleString('en-IN');
+  }
+
+  /* ====== FILTERS ====== */
+  function applyFilters() {
+    var search = document.getElementById('searchInput').value.toLowerCase().trim();
+    var statusFilter = document.getElementById('statusFilter').value;
+
+    filteredPayments = currentPayments.filter(function(p) {
+      var name = (p.partners && p.partners.full_name) || '';
+      var matchesSearch = !search ||
+        (p.payment_id && p.payment_id.toLowerCase().indexOf(search) !== -1) ||
+        (p.reference && p.reference.toLowerCase().indexOf(search) !== -1) ||
+        name.toLowerCase().indexOf(search) !== -1;
+
+      var matchesStatus = !statusFilter || (p.status || '').toUpperCase() === statusFilter;
+
+      return matchesSearch && matchesStatus;
+    });
+
+    renderTable();
+  }
+
+  window.applyFilters = applyFilters;
+  window.onRefresh = loadPayments;
+
+  /* ====== RENDER TABLE ====== */
+  function renderTable() {
+    var tbody = document.getElementById('paymentsBody');
+    var empty = document.getElementById('emptyState');
+    tbody.innerHTML = '';
+
+    if (!filteredPayments.length) {
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    filteredPayments.forEach(function(p) {
+      var st = (p.status || 'PENDING').toUpperCase();
+      var statusClass = 'status-' + st.toLowerCase();
+      var partnerName = (p.partners && p.partners.full_name) || p.partner_id || 'N/A';
+      var tr = document.createElement('tr');
+
+      tr.innerHTML =
+        '<td data-label="Payment ID"><span class="table-id mono">' + escHtml(p.payment_id || 'N/A') + '</span></td>' +
+        '<td data-label="Partner"><div class="table-name">' + escHtml(partnerName) + '</div><div style="font-size:.75rem;color:var(--ink-faint);">' + escHtml(p.partner_id || '') + '</div></td>' +
+        '<td data-label="Tier"><span style="text-transform:capitalize;font-size:.85rem;">' + escHtml(p.tier || '-') + '</span></td>' +
+        '<td data-label="Amount"><strong>' + formatCurrency(p.amount) + '</strong></td>' +
+        '<td data-label="Reference"><span class="mono" style="font-size:.82rem;">' + escHtml(p.reference || '-') + '</span></td>' +
+        '<td data-label="Method"><span style="font-size:.85rem;">' + escHtml(p.method || '-') + '</span></td>' +
+        '<td data-label="Paid On"><span style="font-size:.85rem;">' + escHtml(p.paid_date || '-') + '</span></td>' +
+        '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + st + '</span></td>' +
+        '<td data-label="Actions"><div class="table-actions">' +
+          (st === 'PENDING' ? '<button class="action-btn verify" onclick="AdminPayments.verifyPayment(\'' + p.id + '\')" title="Verify">&#10003; Verify</button>' : '') +
+          (st === 'PENDING' ? '<button class="action-btn reject" onclick="AdminPayments.rejectPayment(\'' + p.id + '\')" title="Reject">&#10007; Reject</button>' : '') +
+        '</div></td>';
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function escHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function formatCurrency(v) {
+    var num = parseFloat(v);
+    if (isNaN(num)) return '\u20B90';
+    return '\u20B9' + num.toLocaleString('en-IN');
+  }
+
+  function findPayment(id) {
+    for (var i = 0; i < currentPayments.length; i++) {
+      if (currentPayments[i].id === id) return currentPayments[i];
+    }
+    return null;
+  }
+
+  /* ====== VERIFY ====== */
+  function verifyPayment(id) {
+    var p = findPayment(id);
+    if (!p) return;
+    currentId = id;
+
+    var html =
+      '<div class="detail-grid">' +
+      '<div class="detail-item"><div class="detail-label">Payment ID</div><div class="detail-value mono">' + escHtml(p.payment_id || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Partner</div><div class="detail-value">' + escHtml((p.partners && p.partners.full_name) || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Tier</div><div class="detail-value" style="text-transform:capitalize;">' + escHtml(p.tier || '-') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Amount</div><div class="detail-value"><strong>' + formatCurrency(p.amount) + '</strong></div></div>' +
+      '<div class="detail-item"><div class="detail-label">Method</div><div class="detail-value">' + escHtml(p.method || '-') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Reference</div><div class="detail-value mono">' + escHtml(p.reference || '-') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Paid On</div><div class="detail-value">' + escHtml(p.paid_date || '-') + '</div></div>' +
+      '</div>' +
+      '<div class="form-group" style="margin-top:16px;"><label>Admin Notes (optional)</label>' +
+      '<textarea id="verifyNotes" rows="2" placeholder="e.g. UTR matched in bank statement"></textarea></div>' +
+      '<p style="font-size:.85rem;color:var(--ink-soft);margin-top:8px;">Verifying activates the partner\'s tier for one year and marks the fee as paid.</p>';
+
+    document.getElementById('verifyModalBody').innerHTML = html;
+    document.getElementById('verifyModal').classList.add('active');
+  }
+
+  function closeVerifyModal() {
+    document.getElementById('verifyModal').classList.remove('active');
+    currentId = null;
+  }
+
+  function confirmVerify() {
+    var id = currentId;
+    if (!id) return;
+
+    var session = SupabaseClient.getSession();
+    var btn = document.getElementById('verifyConfirmBtn');
+    btn.disabled = true;
+    btn.textContent = 'Verifying...';
+
+    var notes = document.getElementById('verifyNotes') ? document.getElementById('verifyNotes').value.trim() : '';
+
+    SupabaseClient.from('partner_payments')
+      .eq('id', id)
+      .update({ status: 'VERIFIED', verified_at: new Date().toISOString(), admin_notes: notes })
+      .then(function(result) {
+        if (result && result.error) throw result.error;
+        closeVerifyModal();
+        showToast('Payment verified! Partner tier activated.', 'success');
+        loadPayments();
+      }).catch(function(err) {
+        showToast('Failed to verify: ' + (err.message || 'Unknown error'), 'error');
+      }).finally(function() {
+        btn.disabled = false;
+        btn.textContent = '\u2713 Mark Verified';
+        currentId = null;
+      });
+  }
+
+  /* ====== REJECT ====== */
+  function rejectPayment(id) {
+    currentId = id;
+    document.getElementById('rejectReason').value = '';
+    document.getElementById('rejectModal').classList.add('active');
+  }
+
+  function closeRejectModal() {
+    document.getElementById('rejectModal').classList.remove('active');
+    currentId = null;
+  }
+
+  function confirmReject() {
+    var id = currentId;
+    if (!id) return;
+
+    var reason = document.getElementById('rejectReason').value.trim();
+    if (!reason) {
+      showToast('Please provide a rejection reason.', 'error');
+      return;
+    }
+
+    var session = SupabaseClient.getSession();
+    var btn = document.getElementById('rejectConfirmBtn');
+    btn.disabled = true;
+    btn.textContent = 'Rejecting...';
+
+    SupabaseClient.from('partner_payments')
+      .eq('id', id)
+      .update({ status: 'FAILED', admin_notes: reason })
+      .then(function(result) {
+        if (result && result.error) throw result.error;
+        closeRejectModal();
+        showToast('Payment rejected.', 'success');
+        loadPayments();
+      }).catch(function(err) {
+        showToast('Failed to reject: ' + (err.message || 'Unknown error'), 'error');
+      }).finally(function() {
+        btn.disabled = false;
+        btn.textContent = '\u2717 Reject';
+        currentId = null;
+      });
+  }
+
+  /* ====== INIT ====== */
+  window.AdminPayments = {
+    verifyPayment: verifyPayment,
+    closeVerifyModal: closeVerifyModal,
+    confirmVerify: confirmVerify,
+    rejectPayment: rejectPayment,
+    closeRejectModal: closeRejectModal,
+    confirmReject: confirmReject
+  };
+
+  document.addEventListener('DOMContentLoaded', checkAuth);
+
+  return window.AdminPayments;
+})();
+</script>
+</body>
+</html>

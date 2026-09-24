@@ -136,6 +136,7 @@
     '<li><a href="/pricing/">Pricing</a></li>' +
     '<li><a href="/#contact-form">Contact</a></li>' +
     '<li><a href="/partner/">Partner Program</a></li>' +
+    '<li><a href="/partner/directory/">Partner Directory</a></li>' +
     '</ul></div>' +
     '<div class="footer-col"><h4>Resources &amp; Legal</h4><ul>' +
     '<li><a href="/downloads/">Download Center</a></li>' +
