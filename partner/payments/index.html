@@ -16,7 +16,7 @@
 </script>
 <meta name="robots" content="noindex, nofollow">
 <title>Entry Fee Payment — Brilliants Partner Portal</title>
-<meta name="description" content="Pay your Silver or Gold partner entry fee, submit your UPI/bank reference, and activate your tier.">
+<meta name="description" content="Pay your Silver or Gold partner entry fee, submit your bank transfer reference, and activate your tier.">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
 <style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}
 
@@ -125,13 +125,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // PAYMENT CONFIG - UPDATE WITH YOUR REAL PAYMENT DETAILS
   // ==========================================================
   var PAYMENT_CONFIG = {
-    upiVpa: 'brilliants@upi',
-    upiName: 'Brilliants Technology',
-    bankName: 'Brilliants Technology - Bank Account',
-    accountHolder: 'Brilliants Technology',
-    accountNumber: 'XXXX XXXX XXXX XXXX',
-    ifsc: 'XXXX0000000',
-    bankNote: 'Pay via UPI or bank transfer, then submit the UTR/reference number below.'
+    bankName: 'Bank of Baroda - Hinganghat (Vikas Kamble)',
+    accountHolder: 'Vikas Kamble',
+    accountNumber: '09288100004458',
+    ifsc: 'BARB0HINGAN',
+    bankNote: 'Pay via bank transfer (NEFT/IMPS/RTGS) to Vikas Kamble (Bank of Baroda), then submit the UTR/reference number below.'
   };
   // ==========================================================
 
@@ -201,19 +199,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('tier-name').textContent = TIER_LABEL[tier];
     document.getElementById('tier-name-2').textContent = TIER_LABEL[tier];
 
-    document.getElementById('cfg-upi-vpa').textContent = PAYMENT_CONFIG.upiVpa;
-    document.getElementById('cfg-upi-name').textContent = PAYMENT_CONFIG.upiName;
     document.getElementById('cfg-bank-name').textContent = PAYMENT_CONFIG.bankName;
     document.getElementById('cfg-holder').textContent = PAYMENT_CONFIG.accountHolder;
     document.getElementById('cfg-acc').textContent = PAYMENT_CONFIG.accountNumber;
     document.getElementById('cfg-ifsc').textContent = PAYMENT_CONFIG.ifsc;
     document.getElementById('cfg-note').textContent = PAYMENT_CONFIG.bankNote;
-
-    var upiLink = document.getElementById('upi-pay-link');
-    upiLink.href = 'upi://pay?pa=' + encodeURIComponent(PAYMENT_CONFIG.upiVpa) +
-      '&pn=' + encodeURIComponent('Brilliants ' + TIER_LABEL[tier]) +
-      '&am=' + amount + '&cu=INR' +
-      '&tn=' + encodeURIComponent('Brilliants ' + TIER_LABEL[tier] + ' entry fee - ' + (partnerData.partner_id || ''));
 
     document.getElementById('form-tier').value = tier;
     document.getElementById('form-amount').value = amount;
@@ -248,7 +238,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var payload = {
       partner_id: document.getElementById('form-partner-id').value,
-      application_id: document.getElementById('form-application-id').value || null,
       tier: document.getElementById('form-tier').value,
       amount: parseFloat(document.getElementById('form-amount').value),
       method: method,
@@ -407,23 +396,20 @@ document.addEventListener('DOMContentLoaded', function() {
           <ol class="step-list">
             <li>
               <strong>Pay the amount</strong>
-              <p>Use any UPI app, netbanking, or bank transfer to the details below.</p>
+              <p>Use netbanking, or bank transfer (NEFT/IMPS/RTGS) to the details below.</p>
               <div class="pay-box">
-                <a class="btn btn-ghost btn-sm" id="upi-pay-link" href="#" style="margin-bottom:12px;">&#128241; Pay with UPI App</a>
-                <div class="vpa" id="cfg-upi-vpa">brilliants@upi</div>
-                <div style="font-size:.85rem;color:var(--ink-soft);" id="cfg-upi-name">Brilliants Technology</div>
                 <table>
-                  <tr><td>Bank</td><td id="cfg-bank-name">Brilliants Technology - Bank Account</td></tr>
-                  <tr><td>Account Holder</td><td id="cfg-holder">Brilliants Technology</td></tr>
-                  <tr><td>Account No.</td><td id="cfg-acc">XXXX XXXX XXXX XXXX</td></tr>
-                  <tr><td>IFSC</td><td id="cfg-ifsc">XXXX0000000</td></tr>
+                  <tr><td>Bank</td><td id="cfg-bank-name">Bank of Baroda - Hinganghat (Vikas Kamble)</td></tr>
+                  <tr><td>Account Holder</td><td id="cfg-holder">Vikas Kamble</td></tr>
+                  <tr><td>Account No.</td><td id="cfg-acc">09288100004458</td></tr>
+                  <tr><td>IFSC</td><td id="cfg-ifsc">BARB0HINGAN</td></tr>
                 </table>
-                <p class="pay-note" id="cfg-note">Pay via UPI or bank transfer, then submit the UTR/reference number below.</p>
+                <p class="pay-note" id="cfg-note">Pay via bank transfer (NEFT/IMPS/RTGS) to Vikas Kamble (Bank of Baroda), then submit the UTR/reference number below.</p>
               </div>
             </li>
             <li>
               <strong>Copy your UTR / transaction ID</strong>
-              <p>Find it in your UPI app, bank statement, or SMS confirmation after the payment.</p>
+              <p>Find it in your netbanking statement or SMS confirmation after the payment.</p>
             </li>
             <li>
               <strong>Submit the reference below</strong>
@@ -443,7 +429,6 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="form-field">
                 <label for="pay-method">Payment Method</label>
                 <select id="pay-method">
-                  <option value="UPI">UPI</option>
                   <option value="Bank">Bank Transfer (NEFT/IMPS/RTGS)</option>
                   <option value="Netbanking">Netbanking</option>
                 </select>

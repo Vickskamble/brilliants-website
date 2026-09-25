@@ -104,7 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  var userId = session.user ? session.user.id : null;
+  var partnerId = null;
+
+  SupabaseClient.getUser(session.access_token).then(function(user) {
+    if (!user || !user.id) return null;
+    return SupabaseClient.select('partners', 'select=partner_id&user_id=eq.' + encodeURIComponent(user.id), session.access_token);
+  }).then(function(data) {
+    if (data && data.length && data[0] && data[0].partner_id) {
+      partnerId = data[0].partner_id;
+    }
+  }).catch(function() { partnerId = null; });
 
   document.getElementById('lead-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -132,12 +141,18 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
+    if (!partnerId) {
+      errorMsg.textContent = 'Could not find your partner account. Please contact support.';
+      errorMsg.classList.add('show');
+      return;
+    }
+
     var data = {
-      user_id: userId,
-      company_name: form.company_name.value.trim(),
+      partner_id: partnerId,
+      customer_name: form.company_name.value.trim(),
       contact_person: form.contact_person.value.trim(),
-      business_email: form.business_email.value.trim(),
-      phone: form.phone.value.trim(),
+      contact_email: form.business_email.value.trim(),
+      contact_phone: form.phone.value.trim(),
       company_website: form.company_website.value.trim(),
       city: form.city.value.trim(),
       industry: form.industry.value.trim(),
@@ -145,10 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
       customer_requirement: form.customer_requirement.value.trim(),
       expected_timeline: form.expected_timeline.value,
       estimated_value: form.estimated_value.value.trim(),
-      additional_notes: form.additional_notes.value.trim(),
-      status: 'registered',
-      registered_at: new Date().toISOString(),
-      created_at: new Date().toISOString()
+      additional_notes: form.additional_notes.value.trim()
     };
 
     btn.classList.add('loading');

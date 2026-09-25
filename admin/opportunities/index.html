@@ -184,6 +184,7 @@
           </select>
         </div>
         <div class="toolbar-right">
+          <button class="btn btn-primary btn-sm" id="addOppBtn" onclick="AdminOpps.openAddOpp()">&#43; Add Opportunity</button>
           <button class="refresh-btn" id="refreshBtn" title="Refresh">&#8635;</button>
         </div>
       </div>
@@ -293,6 +294,59 @@
   </div>
 </div>
 
+<!-- Add Opportunity Modal -->
+<div class="modal-overlay" id="addOppModal">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-header">
+      <h3>Add Opportunity</h3>
+      <button class="modal-close" id="addOppModalClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <label class="form-label" for="oppCustomer">Customer Name *</label>
+          <input type="text" id="oppCustomer" placeholder="Customer name">
+        </div>
+        <div>
+          <label class="form-label" for="oppProduct">Product *</label>
+          <input type="text" id="oppProduct" placeholder="e.g. IronBook">
+        </div>
+        <div>
+          <label class="form-label" for="oppValue">Estimated Value (&#8377;)</label>
+          <input type="number" id="oppValue" placeholder="0">
+        </div>
+        <div>
+          <label class="form-label" for="oppPartner">Partner (Partner ID)</label>
+          <select id="oppPartner">
+            <option value="">-- Select Partner --</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label" for="oppLead">Lead ID</label>
+          <input type="text" id="oppLead" placeholder="Optional">
+        </div>
+        <div>
+          <label class="form-label" for="oppImplBy">Implementation</label>
+          <select id="oppImplBy">
+            <option value="brilliants">Brilliants</option>
+            <option value="partner">Partner</option>
+          </select>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding-top:18px;">
+          <input type="checkbox" id="oppImplReq" style="width:auto;"><label for="oppImplReq" style="font-size:.9rem;color:var(--ink-soft);">Implementation required</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding-top:18px;">
+          <input type="checkbox" id="oppHosted" style="width:auto;"><label for="oppHosted" style="font-size:.9rem;color:var(--ink-soft);">Hosted subscription</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" id="addOppCancelBtn">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="addOppSubmitBtn">Create Opportunity</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast Container -->
 <div class="toast-container" id="toastContainer"></div>
 
@@ -363,7 +417,7 @@
     empty.style.display = 'none';
 
     SupabaseClient.from('opportunities')
-      .select('*, partners(name)')
+      .select('*')
       .order('created_at', { ascending: false })
       .then(function(result) {
         loading.style.display = 'none';
@@ -447,8 +501,11 @@
       var statusLabel = status.charAt(0) + status.slice(1).toLowerCase();
       var date = opp.created_at ? new Date(opp.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
       var partnerName = 'N/A';
-      if (opp.partners) {
-        partnerName = opp.partners.name || 'N/A';
+      var oppPartner = opp.partner_id || '';
+      if (!opp.partners && oppPartner) {
+        partnerName = oppPartner;
+      } else if (opp.partners) {
+        partnerName = opp.partners.name || opp.partners.full_name || oppPartner || 'N/A';
       }
       var customerName = opp.customer_name || 'N/A';
       var product = opp.product || 'N/A';
@@ -721,6 +778,86 @@
     return null;
   }
 
+  function openAddOpp() {
+    var modal = document.getElementById('addOppModal');
+    modal.classList.add('active');
+    var partnerSel = document.getElementById('oppPartner');
+    partnerSel.innerHTML = '<option value="">-- Select Partner --</option>';
+    SupabaseClient.from('partners')
+      .select('partner_id, full_name, status, tier')
+      .order('full_name', { ascending: true })
+      .then(function(result) {
+        if (result && result.data) {
+          result.data.forEach(function(p) {
+            var opt = document.createElement('option');
+            opt.value = p.partner_id;
+            opt.textContent = (p.full_name || p.partner_id) + ' (' + p.tier + ')';
+            partnerSel.appendChild(opt);
+          });
+        }
+      }).catch(function(err) {
+        console.error('Failed to load partners:', err);
+      });
+  }
+
+  function closeAddOpp() {
+    document.getElementById('addOppModal').classList.remove('active');
+  }
+
+  function saveNewOpp() {
+    var submitBtn = document.getElementById('addOppSubmitBtn');
+    var customer = document.getElementById('oppCustomer').value.trim();
+    var product = document.getElementById('oppProduct').value.trim();
+    if (!customer || !product) {
+      showToast('Customer name and product are required.', 'error');
+      return;
+    }
+    var estimatedValue = parseFloat(document.getElementById('oppValue').value) || 0;
+    var partnerId = document.getElementById('oppPartner').value.trim();
+    var leadId = document.getElementById('oppLead').value.trim();
+    var implBy = document.getElementById('oppImplBy').value;
+    var implRequired = document.getElementById('oppImplReq').checked;
+    var hosted = document.getElementById('oppHosted').checked;
+
+    var data = {
+      customer_name: customer,
+      product: product,
+      estimated_value: estimatedValue,
+      status: 'OPEN',
+      implementation_required: implRequired,
+      implementation_by: implBy,
+      hosted_subscription: hosted
+    };
+    if (partnerId) data.partner_id = partnerId;
+    if (leadId) data.lead_id = leadId;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
+    SupabaseClient.from('opportunities')
+      .insert(data)
+      .then(function(result) {
+        if (result.error) {
+          throw result.error;
+        }
+        closeAddOpp();
+        showToast('Opportunity created successfully.', 'success');
+        document.getElementById('oppCustomer').value = '';
+        document.getElementById('oppProduct').value = '';
+        document.getElementById('oppValue').value = '';
+        document.getElementById('oppPartner').value = '';
+        document.getElementById('oppLead').value = '';
+        document.getElementById('oppImplReq').checked = false;
+        document.getElementById('oppHosted').checked = false;
+        loadOpportunities();
+      }).catch(function(err) {
+        console.error('Insert error:', err);
+        showToast('Failed to create opportunity: ' + (err.message || 'Unknown error'), 'error');
+      }).finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Opportunity';
+      });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     checkAuth();
 
@@ -750,6 +887,13 @@
     document.getElementById('lostModal').addEventListener('click', function(e) {
       if (e.target === this) closeLostModal();
     });
+
+    document.getElementById('addOppModalClose').addEventListener('click', closeAddOpp);
+    document.getElementById('addOppCancelBtn').addEventListener('click', closeAddOpp);
+    document.getElementById('addOppSubmitBtn').addEventListener('click', saveNewOpp);
+    document.getElementById('addOppModal').addEventListener('click', function(e) {
+      if (e.target === this) closeAddOpp();
+    });
   });
 
   window.AdminOpps = {
@@ -757,7 +901,8 @@
     advanceStatus: advanceStatus,
     markWon: markWon,
     markLost: markLost,
-    closeViewModal: closeViewModal
+    closeViewModal: closeViewModal,
+    openAddOpp: openAddOpp
   };
 
 })();

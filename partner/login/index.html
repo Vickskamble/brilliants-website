@@ -195,10 +195,10 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.disabled = true;
     btn.textContent = 'Creating...';
 
-    // First, check if partner record exists for this email
-    SupabaseClient.select('partners', 'select=*&business_email=eq.' + encodeURIComponent(email))
+    // First, check if an approved partner record exists for this email
+    SupabaseClient.rpc('find_approved_partner_by_email', { p_email: email })
       .then(function(result) {
-        var partners = result;
+        var partners = Array.isArray(result) ? result : (result && result.data ? result.data : null);
         if (!partners || partners.length === 0) {
           throw new Error('No approved partner found with this email. Please register first or contact us.');
         }
@@ -216,11 +216,17 @@ document.addEventListener('DOMContentLoaded', function() {
           var userId = authResult.user && authResult.user.id;
           if (!userId) throw new Error('No user ID returned');
 
-          // Link user_id to partner record
-          return SupabaseClient.update('partners', 'partner_id=eq.' + partner.partner_id, { user_id: userId })
-            .then(function() {
-              return { partnerId: partner.partner_id, userId: userId };
-            });
+          // Sign in to obtain a usable JWT, then link user_id to the partner record
+          return SupabaseClient.signIn(email, pass).then(function(loginResult) {
+            if (!loginResult || !loginResult.access_token) {
+              var signInError = (loginResult && (loginResult.error_description || loginResult.msg)) || 'Could not start a session after account creation.';
+              throw new Error(signInError);
+            }
+            return SupabaseClient.update('partners', 'partner_id=eq.' + partner.partner_id, { user_id: userId }, loginResult.access_token)
+              .then(function() {
+                return { partnerId: partner.partner_id, userId: userId, token: loginResult.access_token };
+              });
+          });
         });
       })
       .then(function(result) {

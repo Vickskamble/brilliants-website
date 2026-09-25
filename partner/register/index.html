@@ -262,8 +262,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var data = {
       full_name: form.full_name.value.trim(),
-      email: form.email.value.trim(),
-      mobile: form.mobile.value.trim(),
+      business_email: form.email.value.trim(),
+      phone: form.mobile.value.trim(),
       city: form.city.value.trim(),
       state: form.state.value.trim(),
       country: form.country.value.trim() || 'India',
@@ -274,14 +274,12 @@ document.addEventListener('DOMContentLoaded', function() {
       years_in_business: form.years_in_business.value,
       industries_served: form.industries_served.value.trim(),
       customer_base: form.customer_base.value,
-      capability: capability ? capability.value : '',
+      partner_capability: capability && String(capability.value).indexOf('Implement') !== -1 ? 'refer_sell_implement' : 'refer_sell',
+      interested_solutions: solutions,
       tier: tierValue,
       entry_fee: entryFee,
       fee_paid: false,
-      solutions: solutions,
-      business_profile: form.business_profile.value.trim(),
-      terms_agreed: form.terms_agreed.checked,
-      submitted_at: new Date().toISOString()
+      business_profile: form.business_profile.value.trim()
     };
 
     // Show loading

@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function fetchPartnerProfile(token) {
     return SupabaseClient.select(
       'partners',
-      '*',
+      'select=user_id,partner_id,full_name,business_email,status,tier,partner_capability,certified_resources,retention_rate,fee_paid,entry_fee,company_name',
       token
     ).then(function(data) {
       if (data && data.length > 0) {
@@ -200,9 +200,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function renderDashboard(profile) {
-    document.getElementById('welcome-name').textContent = profile.partner_name || 'Partner';
-    document.getElementById('topbar-partner-name').textContent = profile.partner_name || 'Partner';
-    document.getElementById('sidebar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('welcome-name').textContent = profile.full_name || 'Partner';
+    document.getElementById('topbar-partner-name').textContent = profile.full_name || 'Partner';
+    document.getElementById('sidebar-partner-name').textContent = profile.full_name || 'Partner';
     document.getElementById('sidebar-partner-id').textContent = profile.partner_id || '';
     document.getElementById('info-partner-id').textContent = profile.partner_id || 'N/A';
 
@@ -221,12 +221,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var tier = (profile.tier || '').toLowerCase();
     var meta = tierMap[tier];
     if (!meta) {
-      var cap = (profile.capability || profile.partner_capability || '').toUpperCase();
+      var cap = (profile.partner_capability || '').toUpperCase();
       meta = cap.indexOf('IMPLEMENT') !== -1 ? tierMap.solution : tierMap.sales;
     }
 
     document.getElementById('info-capability').textContent = meta.label;
-    document.getElementById('info-revenue').textContent = profile.revenue_share || meta.rate;
+    document.getElementById('info-revenue').textContent = meta.rate;
 
     var certEl = document.getElementById('info-cert');
     if (certEl) certEl.textContent = profile.certified_resources != null ? profile.certified_resources : '0';
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function loadStats(token, profile) {
     var partnerId = profile.partner_id;
 
-    SupabaseClient.select('partner_leads', 'id&partner_id=eq.' + encodeURIComponent(partnerId), token)
+    SupabaseClient.select('partner_leads', 'select=id&partner_id=eq.' + encodeURIComponent(partnerId), token)
       .then(function(data) {
         var count = data && !data.error ? data.length : 0;
         document.getElementById('stat-leads').textContent = count;
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     SupabaseClient.select(
       'opportunities',
-      'id,status&partner_id=eq.' + encodeURIComponent(partnerId),
+      'select=id,status&partner_id=eq.' + encodeURIComponent(partnerId),
       token
     ).then(function(data) {
       var active = 0, won = 0;
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('stat-won').textContent = '0';
     });
 
-    SupabaseClient.select('commissions', 'id,status&partner_id=eq.' + encodeURIComponent(partnerId), token)
+    SupabaseClient.select('commissions', 'select=id,status&partner_id=eq.' + encodeURIComponent(partnerId), token)
       .then(function(data) {
         var pending = 0, paid = 0;
         if (data && !data.error) {

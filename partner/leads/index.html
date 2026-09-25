@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function fetchPartnerProfile(token) {
     return SupabaseClient.select(
       'partners',
-      'user_id,partner_id,partner_name,email,status',
+      'select=user_id,partner_id,full_name,business_email,status,tier',
       token
     ).then(function(data) {
       if (data && data.length > 0) {
@@ -192,9 +192,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function renderSidebar(profile) {
-    document.getElementById('sidebar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('sidebar-partner-name').textContent = profile.full_name || 'Partner';
     document.getElementById('sidebar-partner-id').textContent = profile.partner_id || '';
-    document.getElementById('topbar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('topbar-partner-name').textContent = profile.full_name || 'Partner';
     hideLoading();
   }
 
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           tr.innerHTML =
             '<td data-label="Lead ID"><span class="table-id">' + escHtml(shortId) + '</span></td>' +
-            '<td data-label="Customer"><div><div class="table-name">' + escHtml(customerName) + '</div><div class="table-email">' + escHtml(lead.customer_email || '') + '</div></div></td>' +
+            '<td data-label="Customer"><div><div class="table-name">' + escHtml(customerName) + '</div><div class="table-email">' + escHtml(lead.contact_email || '') + '</div></div></td>' +
             '<td data-label="Product"><span style="font-size:.85rem;">' + escHtml(product) + '</span></td>' +
             '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></td>' +
             '<td data-label="Date"><span class="table-date">' + date + '</span></td>';

@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var allResources = [];
   var currentFilter = 'all';
 
-  SupabaseClient.select('partner_resources', 'order=type,order=created_at.desc', session.access_token).then(function(resources) {
+  SupabaseClient.select('partner_resources', 'order=resource_type,order=created_at.desc', session.access_token).then(function(resources) {
     var loader = document.getElementById('res-loader');
     var grid = document.getElementById('res-grid');
     var emptyState = document.getElementById('res-empty');

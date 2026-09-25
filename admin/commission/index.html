@@ -450,7 +450,7 @@
       var partnerName = c.partner_name || c.partner_id || 'N/A';
       var opportunity = c.opportunity_id ? c.opportunity_id.substring(0, 8) : 'N/A';
       var subAmount = c.subscription_amount != null ? formatCurrency(c.subscription_amount) : 'N/A';
-      var rate = c.commission_rate != null ? (c.commission_rate * 100).toFixed(1) + '%' : 'N/A';
+      var rate = c.commission_rate != null ? c.commission_rate.toFixed(1) + '%' : 'N/A';
       var commAmount = c.commission_amount != null ? formatCurrency(c.commission_amount) : 'N/A';
 
       var actions = '<button class="action-btn view" onclick="AdminCommission.viewCommission(\'' + c.commission_id + '\')" title="View">&#128065; View</button>';
@@ -529,7 +529,7 @@
     var statusClass = getStatusClass(status);
     var statusLabel = status;
     var subAmount = c.subscription_amount != null ? formatCurrency(c.subscription_amount) : 'N/A';
-    var rate = c.commission_rate != null ? (c.commission_rate * 100).toFixed(1) + '%' : 'N/A';
+    var rate = c.commission_rate != null ? c.commission_rate.toFixed(1) + '%' : 'N/A';
     var commAmount = c.commission_amount != null ? formatCurrency(c.commission_amount) : 'N/A';
 
     var approvedAt = c.approved_at ? new Date(c.approved_at).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'N/A';

@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function fetchPartnerProfile(token) {
     return SupabaseClient.select(
       'partners',
-      'user_id,partner_id,partner_name,email,status,capability',
+      'select=user_id,partner_id,full_name,business_email,status,tier,partner_capability',
       token
     ).then(function(data) {
       if (data && data.length > 0) {
@@ -206,9 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function renderSidebar(profile) {
-    document.getElementById('sidebar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('sidebar-partner-name').textContent = profile.full_name || 'Partner';
     document.getElementById('sidebar-partner-id').textContent = profile.partner_id || '';
-    document.getElementById('topbar-partner-name').textContent = profile.partner_name || 'Partner';
+    document.getElementById('topbar-partner-name').textContent = profile.full_name || 'Partner';
     hideLoading();
   }
 

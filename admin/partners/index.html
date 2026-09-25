@@ -554,6 +554,8 @@
 
         var appCapability = app.partner_capability || app.partner_type || app.capability || 'refer_sell';
         var defaultTier = (appCapability === 'refer_sell_implement' || appCapability === 'Refer + Sell + Implement') ? 'solution' : 'sales';
+        var capNorm = String(appCapability || '').toLowerCase();
+        var partnerCapability = capNorm.indexOf('implement') !== -1 ? 'refer_sell_implement' : 'refer_sell';
         var validTiers = { 'sales': 1, 'solution': 1, 'silver': 1, 'gold': 1 };
         var tier = validTiers[app.tier] ? app.tier : defaultTier;
 
@@ -572,7 +574,7 @@
           years_in_business: app.years_in_business || '',
           industries_served: app.industries_served || '',
           customer_base: app.customer_base || '',
-          partner_capability: appCapability,
+          partner_capability: partnerCapability,
           interested_solutions: solutions,
           tier: tier,
           entry_fee: app.entry_fee || 0,

@@ -165,9 +165,15 @@
           </div>
           <select class="filter-select" id="statusFilter" aria-label="Filter by status">
             <option value="">All Status</option>
-            <option value="PENDING">PENDING</option>
+            <option value="SUBMITTED">SUBMITTED</option>
+            <option value="UNDER_REVIEW">UNDER REVIEW</option>
             <option value="ACCEPTED">ACCEPTED</option>
             <option value="REJECTED">REJECTED</option>
+            <option value="DUPLICATE">DUPLICATE</option>
+            <option value="EXISTING_CUSTOMER">EXISTING CUSTOMER</option>
+            <option value="DEMO_SCHEDULED">DEMO SCHEDULED</option>
+            <option value="PROPOSAL">PROPOSAL</option>
+            <option value="NEGOTIATION">NEGOTIATION</option>
             <option value="WON">WON</option>
             <option value="LOST">LOST</option>
           </select>
@@ -379,7 +385,8 @@
 
     for (var i = 0; i < currentLeads.length; i++) {
       var s = (currentLeads[i].status || '').toUpperCase();
-      if (s === 'PENDING' || s === 'ACCEPTED') pending++;
+      var pipeline = ['SUBMITTED','UNDER_REVIEW','ACCEPTED','DEMO_SCHEDULED','PROPOSAL','NEGOTIATION'].indexOf(s) !== -1;
+      if (pipeline) pending++;
       else if (s === 'WON') won++;
       else if (s === 'LOST') lost++;
     }
@@ -399,8 +406,8 @@
       var matchesSearch = !search ||
         (lead.id && lead.id.toLowerCase().indexOf(search) !== -1) ||
         (lead.customer_name && lead.customer_name.toLowerCase().indexOf(search) !== -1) ||
-        (lead.customer_email && lead.customer_email.toLowerCase().indexOf(search) !== -1) ||
-        (lead.partner_name && lead.partner_name.toLowerCase().indexOf(search) !== -1) ||
+        (lead.contact_email && lead.contact_email.toLowerCase().indexOf(search) !== -1) ||
+        (lead.contact_person && lead.contact_person.toLowerCase().indexOf(search) !== -1) ||
         (lead.product && lead.product.toLowerCase().indexOf(search) !== -1);
 
       var matchesStatus = !statusFilter || (lead.status || '').toUpperCase() === statusFilter;
@@ -437,14 +444,14 @@
       var statusClass = getStatusClass(status);
       var statusLabel = status.replace(/_/g, ' ');
       var date = lead.created_at ? new Date(lead.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
-      var partnerName = lead.partner_name || lead.company_name || 'N/A';
+      var partnerName = lead.company_name || lead.partner_id || 'N/A';
       var customerName = lead.customer_name || 'N/A';
       var product = lead.product || lead.solution || 'N/A';
 
       tr.innerHTML =
         '<td data-label="Lead ID"><span class="table-id">' + escHtml(shortId) + '</span></td>' +
         '<td data-label="Partner"><span class="table-name">' + escHtml(partnerName) + '</span></td>' +
-        '<td data-label="Customer"><div><div class="table-name">' + escHtml(customerName) + '</div><div class="table-email">' + escHtml(lead.customer_email || '') + '</div></div></td>' +
+        '<td data-label="Customer"><div><div class="table-name">' + escHtml(customerName) + '</div><div class="table-email">' + escHtml(lead.contact_email || '') + '</div></div></td>' +
         '<td data-label="Product"><span style="font-size:.85rem;">' + escHtml(product) + '</span></td>' +
         '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></td>' +
         '<td data-label="Date"><span class="table-date">' + date + '</span></td>' +
@@ -462,9 +469,15 @@
 
   function getStatusClass(status) {
     var map = {
-      'PENDING': 'status-pending',
+      'SUBMITTED': 'status-pending',
+      'UNDER_REVIEW': 'status-pending',
       'ACCEPTED': 'status-accepted',
       'REJECTED': 'status-rejected',
+      'DUPLICATE': 'status-rejected',
+      'EXISTING_CUSTOMER': 'status-rejected',
+      'DEMO_SCHEDULED': 'status-pending',
+      'PROPOSAL': 'status-pending',
+      'NEGOTIATION': 'status-pending',
       'WON': 'status-won',
       'LOST': 'status-lost'
     };
@@ -473,12 +486,12 @@
 
   function canAccept(status) {
     var s = (status || '').toUpperCase();
-    return s === 'PENDING';
+    return ['SUBMITTED','UNDER_REVIEW','DEMO_SCHEDULED','PROPOSAL','NEGOTIATION'].indexOf(s) !== -1;
   }
 
   function canReject(status) {
     var s = (status || '').toUpperCase();
-    return s === 'PENDING' || s === 'ACCEPTED';
+    return ['SUBMITTED','UNDER_REVIEW','DEMO_SCHEDULED','PROPOSAL','NEGOTIATION','ACCEPTED'].indexOf(s) !== -1;
   }
 
   function canMarkWon(status) {
@@ -488,7 +501,7 @@
 
   function canMarkLost(status) {
     var s = (status || '').toUpperCase();
-    return s === 'PENDING' || s === 'ACCEPTED';
+    return ['SUBMITTED','UNDER_REVIEW','DEMO_SCHEDULED','PROPOSAL','NEGOTIATION','ACCEPTED'].indexOf(s) !== -1;
   }
 
   function escHtml(str) {
@@ -511,21 +524,21 @@
     var html = '<div class="detail-grid">' +
       '<div class="detail-item"><div class="detail-label">Lead ID</div><div class="detail-value mono">' + escHtml(lead.id || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Status</div><div class="detail-value"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></div></div>' +
-      '<div class="detail-item"><div class="detail-label">Partner</div><div class="detail-value">' + escHtml(lead.partner_name || lead.company_name || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Partner</div><div class="detail-value">' + escHtml(lead.company_name || lead.partner_id || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Product</div><div class="detail-value">' + escHtml(lead.product || lead.solution || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Customer Name</div><div class="detail-value">' + escHtml(lead.customer_name || 'N/A') + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">Customer Email</div><div class="detail-value">' + escHtml(lead.customer_email || 'N/A') + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">Customer Phone</div><div class="detail-value">' + escHtml(lead.customer_phone || 'N/A') + '</div></div>' +
-      '<div class="detail-item"><div class="detail-label">Customer Company</div><div class="detail-value">' + escHtml(lead.customer_company || 'N/A') + '</div></div>' +
-      '<div class="detail-item full"><div class="detail-label">Notes</div><div class="detail-value">' + escHtml(lead.notes || lead.description || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Contact Email</div><div class="detail-value">' + escHtml(lead.contact_email || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Contact Phone</div><div class="detail-value">' + escHtml(lead.contact_phone || 'N/A') + '</div></div>' +
+      '<div class="detail-item"><div class="detail-label">Contact Person</div><div class="detail-value">' + escHtml(lead.contact_person || 'N/A') + '</div></div>' +
+      '<div class="detail-item full"><div class="detail-label">Requirement</div><div class="detail-value">' + escHtml(lead.customer_requirement || lead.additional_notes || 'N/A') + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Registered On</div><div class="detail-value">' + date + '</div></div>' +
       '<div class="detail-item"><div class="detail-label">Partner ID</div><div class="detail-value mono">' + escHtml(lead.partner_id || 'N/A') + '</div></div>';
 
     if (lead.rejection_reason) {
       html += '<div class="detail-item full"><div class="detail-label">Rejection Reason</div><div class="detail-value" style="color:var(--rose);">' + escHtml(lead.rejection_reason) + '</div></div>';
     }
-    if (lead.loss_reason) {
-      html += '<div class="detail-item full"><div class="detail-label">Loss Reason</div><div class="detail-value" style="color:var(--purple);">' + escHtml(lead.loss_reason) + '</div></div>';
+    if (lead.admin_notes) {
+      html += '<div class="detail-item full"><div class="detail-label">Admin Notes</div><div class="detail-value" style="color:var(--purple);">' + escHtml(lead.admin_notes) + '</div></div>';
     }
 
     html += '</div>';
@@ -680,7 +693,7 @@
     confirmBtn.textContent = 'Processing...';
 
     SupabaseClient.from('partner_leads')
-      .update({ status: 'LOST', loss_reason: reason })
+      .update({ status: 'LOST', lost_at: new Date().toISOString(), admin_notes: reason })
       .eq('id', id)
       .then(function(result) {
         if (result.error) throw result.error;
