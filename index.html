@@ -38,36 +38,6 @@
 <style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#5B6B80;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:'Plus Jakarta Sans',system-ui,sans-serif;--font-body:'Inter',system-ui,sans-serif;--font-mono:ui-monospace,monospace;--nav-h:64px}html[data-theme="dark"]{--bg:#0B1220;--surface:#111A2E;--surface-2:#0E1729;--ink:#F1F5F9;--ink-soft:#B9C4D6;--ink-faint:#8291A8;--line:#22314B;--line-strong:#2C3E5C}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;transition:none}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.container{max-width:1200px;margin:0 auto;padding:0 24px}.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.6)}.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.15rem}.brand-half-1{color:var(--primary)}.brand-half-2{color:var(--amber)}.nav-brand .brand-text{font-family:var(--font-display);font-weight:800;font-size:1.35rem;letter-spacing:-0.02em;margin-left:2px}.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:var(--nav-h);overflow:hidden}.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:120px 24px 80px;max-width:1200px;margin:0 auto}.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;background:var(--primary-tint);border:1px solid rgba(37,99,235,0.15);font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--primary);margin-bottom:24px;letter-spacing:0.02em}.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--primary)}.hero h1{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1.15;margin-bottom:24px;letter-spacing:-0.02em}.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--primary),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-lede{font-size:1.15rem;max-width:540px;margin:0 auto 36px 0;line-height:1.7;color:var(--ink-soft)}.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}.hero-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:16px 20px;background:rgba(255,255,255,0.5);backdrop-filter:blur(12px);border-radius:var(--radius);border:1px solid var(--line)}.hero-trust-avatars{display:flex}.hero-trust-avatars span{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;font-weight:600;color:#fff;border:2.5px solid var(--bg);margin-left:-10px}.hero-trust-avatars span:first-child{margin-left:0}.hero-trust-text{font-size:0.88rem;color:var(--ink-faint)}.hero-trust-text strong{color:var(--ink)}.hero-visual{display:flex;justify-content:center}.hero-apps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:420px}.hero-app-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 12px 16px;background:rgba(255,255,255,0.75);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:14px;text-decoration:none;transition:all 0.3s var(--transition)}.hero-app-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}.hero-app-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center}.hero-app-icon svg{width:22px;height:22px}.hero-app-name{font-size:0.78rem;font-weight:700;color:var(--ink);text-align:center;line-height:1.2}.hero-app-tag{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:2px 8px;border-radius:100px}@media(max-width:940px){.hero-content{grid-template-columns:1fr;padding:100px 20px 60px;text-align:center}.hero-lede{margin:0 auto 36px;max-width:680px}.hero-actions{justify-content:center}.hero-trust{justify-content:center}.hero-visual{order:2}.hero-apps-grid{max-width:360px}}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:0.92rem;transition:all 0.3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{box-shadow:0 4px 20px var(--primary-glow)}.btn-ghost{background:transparent;border:1.5px solid var(--line-strong);color:var(--ink)}.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}.section{padding:80px 0}.section-head{max-width:640px;margin-bottom:48px}.section-head h2{font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;margin-bottom:12px;line-height:1.25}.section-head p{color:var(--ink-soft);font-size:1.05rem;line-height:1.7}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:12px}.dot{width:6px;height:6px;border-radius:50%;background:var(--primary)}.grid{display:grid;gap:24px}.grid-3{grid-template-columns:repeat(3,1fr)}.h1-accent{position:relative;background:linear-gradient(100deg,#2563EB 8%,#6D8CF5 45%,#F59E0B 95%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;display:inline-block;filter:drop-shadow(0 2px 20px rgba(37,99,235,0.28))}.hero-dot-grid{position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none;background-image:radial-gradient(var(--line-strong) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 28%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse 70% 55% at 50% 28%,#000 0%,transparent 75%)}.hero-mock{position:relative;width:100%;max-width:480px;background:rgba(255,255,255,0.6);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,0.85);border-radius:18px;box-shadow:0 30px 70px -24px rgba(15,23,42,0.3);overflow:visible;transform:rotateY(-7deg) rotateX(2deg);transition:transform .45s cubic-bezier(0.4,0,0.2,1)}.btn-brush{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;border:none;cursor:pointer;font-family:'Space Grotesk',var(--font-display),sans-serif;font-weight:600;font-size:.98rem;color:#fff;text-decoration:none;background:linear-gradient(120deg,#1D4ED8 0%,#2563EB 50%,#4F46E5 100%);box-shadow:0 14px 34px -10px rgba(37,99,235,0.6),inset 0 1px 0 rgba(255,255,255,0.35);transition:transform .25s cubic-bezier(0.4,0,0.2,1),box-shadow .25s cubic-bezier(0.4,0,0.2,1)}.btn-brush .brush-underline{position:absolute;left:14%;right:14%;bottom:5px;height:4px;border-radius:999px;background:linear-gradient(90deg,#F59E0B,#FBBF24 60%,#FDE68A);transform:rotate(-1.5deg) skewX(-18deg);opacity:.95;box-shadow:0 2px 6px rgba(245,158,11,0.4)}.btn-glass{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;font-family:'Space Grotesk',var(--font-display),sans-serif;font-weight:600;font-size:.98rem;color:var(--ink);text-decoration:none;background:rgba(255,255,255,0.55);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1.5px solid rgba(226,232,240,0.9);box-shadow:0 10px 26px -14px rgba(15,23,42,0.25);transition:transform .25s cubic-bezier(0.4,0,0.2,1),border-color .25s cubic-bezier(0.4,0,0.2,1),background .25s cubic-bezier(0.4,0,0.2,1),color .25s cubic-bezier(0.4,0,0.2,1)}.ht-chip{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);padding:7px 12px;border-radius:999px}@media(max-width:940px){.hero-content{padding:100px 20px 60px;text-align:center}.hero-lede{margin-left:auto;margin-right:auto}.grid-3{grid-template-columns:1fr}}</style>
 <link rel="stylesheet" href="assets/css/style.min.css" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="assets/css/enhanced.min.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap">
-<style>
-.hero.odoo-hero{background:#fff;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;text-align:center;padding:calc(var(--nav-h) + 56px) 24px 250px;overflow:hidden;position:relative}
-.oh-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;width:100%}
-.hero.odoo-hero .oh-title{font-family:'Caveat',cursive;font-weight:700;color:#171321;font-size:clamp(2.7rem,6.4vw,5rem);line-height:1.06;margin:0 0 38px;letter-spacing:0}
-.oh-title .oh-l1,.oh-title .oh-l2{display:block}
-.oh-hl{position:relative;display:inline-block;white-space:nowrap;z-index:0;padding:0 .06em}
-.oh-hl::before{content:"";position:absolute;left:-.09em;right:-.11em;top:.1em;bottom:.03em;background:#FFC53D;border-radius:.28em .5em .32em .55em;transform:rotate(-1.2deg);z-index:-1}
-.oh-ul{position:relative;display:inline-block;white-space:nowrap}
-.oh-ul::after{content:"";position:absolute;left:-.03em;right:-.03em;bottom:-.12em;height:.13em;background:#2D9CDB;border-radius:999px;transform:rotate(-.8deg)}
-.oh-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
-.oh-btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-weight:700;font-size:1rem;padding:15px 32px;border-radius:8px;text-decoration:none;transition:transform .15s,box-shadow .2s,background .2s}
-.oh-btn-primary{background:#714B67;color:#fff;box-shadow:0 10px 24px -10px rgba(113,75,103,.55)}
-.oh-btn-primary:hover{background:#5f3f59;transform:translateY(-1px)}
-.oh-btn-ghost{background:#F0F0F3;color:#1c1a22;border:1px solid #E4E4E9}
-.oh-btn-ghost:hover{background:#E7E7EC}
-.oh-note-wrap{position:absolute;right:1%;top:63%;z-index:2;display:flex;align-items:flex-start;gap:2px}
-.oh-arrow{flex:none;width:104px;height:80px;margin-top:-34px}
-.oh-note{font-family:'Caveat',cursive;font-weight:600;font-size:1.65rem;line-height:1.15;color:#714B67;transform:rotate(-4deg);text-align:left;white-space:nowrap}
-.oh-hill{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:150%;height:230px;background:#F0F1F3;border-radius:50% 50% 0 0/100% 100% 0 0;z-index:1;pointer-events:none}
-.oh-pill{position:absolute;left:50%;transform:translateX(-50%);bottom:158px;z-index:3;display:flex;align-items:center;gap:12px;background:#fff;border-radius:999px;box-shadow:0 10px 30px -12px rgba(20,20,40,.25);padding:11px 22px;font-family:var(--font-body);font-size:.92rem;color:#1c1a22;white-space:nowrap;text-decoration:none;max-width:94vw}
-.oh-pill-flag{width:26px;height:26px;border-radius:50%;background:#FFF4E0;border:1px solid #EADFC2;display:inline-flex;align-items:center;justify-content:center;font-size:15px;flex:none}
-.oh-pill strong{font-weight:700}
-.oh-pill-meta{color:#6b6f76}
-.oh-pill-sep{width:1px;height:18px;background:#E2E2E8}
-.oh-pill-cta{color:#714B67;font-weight:700}
-.oh-pill:hover .oh-pill-cta{text-decoration:underline}
-@media(max-width:960px){.oh-note-wrap{position:static;justify-content:center;margin-top:26px}.oh-arrow{display:none}.oh-note{transform:rotate(-2deg);text-align:center}}
-@media(max-width:640px){.hero.odoo-hero{padding-bottom:230px}.oh-hill{height:190px}.oh-pill{bottom:128px;font-size:.8rem;padding:9px 16px;gap:8px}.oh-pill-meta{display:none}.oh-btn{width:100%;max-width:340px}}
-</style>
 <noscript><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/enhanced.min.css"></noscript>
 <script type="application/ld+json">
 {
@@ -148,33 +118,97 @@
 <div class="mouse-follower" aria-hidden="true"></div>
 <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-<!-- 1. HERO (Odoo-style) -->
-<section class="hero odoo-hero" id="main-content" aria-label="Hero">
-  <div class="oh-inner">
-    <h1 class="oh-title">
-      <span class="oh-l1">Run Your Business on <span class="oh-hl">one connected platform.</span></span>
-      <span class="oh-l2">Simple, smart, yet <span class="oh-ul">affordable!</span></span>
-    </h1>
-    <div class="oh-ctas">
-      <a href="#products" class="oh-btn oh-btn-primary">Explore Business Apps</a>
-      <a href="#contact-form" class="oh-btn oh-btn-ghost">Discuss Your Business Problem</a>
-    </div>
-    <div class="oh-note-wrap" aria-hidden="true">
-      <svg class="oh-arrow" viewBox="0 0 104 80" fill="none" aria-hidden="true">
-        <path d="M6 14 C 34 18, 70 24, 84 52 C 88 62, 84 72, 78 76" stroke="#714B67" stroke-width="3" stroke-linecap="round"/>
-        <path d="M70 66 L 78 76 L 66 78" stroke="#714B67" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-      <span class="oh-note">Free for up to 25 members<br>on IronBook</span>
-    </div>
+<!-- 1. HERO -->
+<section class="hero" id="main-content" aria-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dot-grid" aria-hidden="true"></div>
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-blob b3"></div>
+  <div class="energy-bg" aria-hidden="true">
+    <span class="eg-t t1"><span class="ems-blades"><i></i><i></i><i></i></span><span class="ems-hub"></span><span class="ems-pole"></span></span>
+    <span class="eg-t t2"><span class="ems-blades"><i></i><i></i><i></i></span><span class="ems-hub"></span><span class="ems-pole"></span></span>
+    <span class="eg-bolt e1"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg></span>
+    <span class="eg-bolt e2"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg></span>
+    <span class="eg-bolt e3"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg></span>
   </div>
 
-  <div class="oh-hill"></div>
-  <a href="/pricing/" class="oh-pill">
-    <span class="oh-pill-flag">&#127470;&#127475;</span>
-    <span><strong>Made in India</strong> &middot; for Indian businesses</span>
-    <span class="oh-pill-sep"></span>
-    <span class="oh-pill-cta">View pricing &#8594;</span>
-  </a>
+  <div class="container hero-content">
+    <div>
+      <span class="hero-badge"><span class="dot"></span> MSME Business Technology &amp; Digital Transformation Platform</span>
+      <h1>Run Your Business on<br><span class="h1-accent">One Connected Platform.</span></h1>
+      <p class="hero-lede">Every app you need to run your MSME &mdash; CRM, HRMS, billing, inventory, energy, automation and AI &mdash; connected on a single platform. The best way to grow a business is with one platform you understand.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-brush"><span data-icon="arrow-right" data-size="18"></span> <span class="hero-cta-long">Explore Business Apps</span><span class="hero-cta-short">View Apps</span><span class="brush-underline" aria-hidden="true"></span></a>
+        <a href="#contact-form" class="btn btn-glass"><span data-icon="phone" data-size="18"></span> Discuss Your Business Problem</a>
+      </div>
+      <div class="hero-trust">
+        <span class="ht-chip"><span data-icon="check" data-size="14" data-color="var(--green)"></span> <strong>IronBook</strong> is live in real businesses</span>
+        <span class="ht-chip"><span data-icon="rupee" data-size="14" data-color="var(--amber-ink)"></span> Founded <strong>2025</strong> &middot; Hinganghat, Maharashtra</span>
+        <span class="ht-chip"><span data-icon="layers" data-size="14" data-color="var(--primary)"></span> One platform &middot; every app connected</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-peek hp-hrms" aria-hidden="true">
+        <span class="hp-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span>
+        <div class="hp-name">Smart HRMS</div>
+        <div class="hp-tag">Early access</div>
+      </div>
+      <div class="hero-peek hp-ems" aria-hidden="true">
+        <span class="hp-icon" style="background:var(--green-tint);color:var(--green);" data-icon="zap"></span>
+        <div class="hp-name">Power EmS</div>
+        <div class="hp-tag">Live &middot; v1.2.7</div>
+      </div>
+      <div class="hero-mock" aria-hidden="true">
+        <div class="hm-top">
+          <span class="hm-dot"></span><span class="hm-dot"></span><span class="hm-dot"></span>
+          <span class="hm-url">app.brilliants.in</span>
+        </div>
+        <div class="hm-svc">
+          <div class="hm-svc-grid">
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="repeat"></span>
+              <div class="hsi-body">
+                <h4>Business Automation</h4>
+                <div class="hsi-chips"><span>Workflows</span><span>Approvals</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="code"></span>
+              <div class="hsi-body">
+                <h4>Business Software</h4>
+                <div class="hsi-chips"><span>Custom apps</span><span>ERP / CRM</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="ai"></span>
+              <div class="hsi-body">
+                <h4>AI Solutions</h4>
+                <div class="hsi-chips"><span>Assistants</span><span>Chatbots</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item">
+              <span class="hsi-icon" style="background:var(--green-tint);color:var(--green);" data-icon="activity"></span>
+              <div class="hsi-body">
+                <h4>IoT &amp; Monitoring</h4>
+                <div class="hsi-chips"><span>Energy</span><span>Dashboards</span></div>
+              </div>
+            </div>
+            <div class="hm-svc-item hm-svc-item--wide">
+              <span class="hsi-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="file"></span>
+              <div class="hsi-body">
+                <h4>Digital Transformation</h4>
+                <div class="hsi-chips"><span>Digitization</span><span>Data centralization</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hm-chip live"><span data-icon="check" data-size="14" data-color="var(--green)"></span> Live &middot; Real businesses</div>
+        <div class="hm-chip price"><span data-icon="rupee" data-size="14" data-color="var(--amber-ink)"></span> Free to start</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- 1.5 CRM PROMO BANNER -->
