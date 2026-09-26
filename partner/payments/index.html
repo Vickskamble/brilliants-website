@@ -254,6 +254,18 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('form-partner-id').value = partnerData.partner_id || '';
       document.getElementById('form-application-id').value = partnerData.application_id || '';
       setAlert('Payment reference submitted. Our team will verify it and activate your tier within 1-2 business days.', 'success');
+      try {
+        fetch('/api/mail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            to: partnerData.business_email || '',
+            toName: partnerData.full_name || '',
+            subject: 'Payment reference received — Brilliants Partner Portal',
+            text: 'Hello ' + (partnerData.full_name || 'Partner') + ',\n\nWe received your entry fee payment reference for the ' + (partnerData.tier || '') + ' tier (reference: ' + payload.reference + '). Our team will verify it and activate your tier within 1-2 business days.\n\n— Brilliants Technology Team'
+          })
+        }).catch(function(){});
+      } catch (e) {}
       loadHistory(partnerData.partner_id);
     }).catch(function(err) {
       setAlert('Could not submit your payment reference: ' + (err.message || 'Please try again.'));
@@ -342,6 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <li><a href="/partner/commissions/"><span class="nav-icon">&#128176;</span> Commissions</a></li>
       <li><a href="/partner/payments/" class="active"><span class="nav-icon">&#128179;</span> Entry Fee</a></li>
       <li><a href="/partner/renewals/"><span class="nav-icon">&#128260;</span> Renewals</a></li>
+      <li><a href="/partner/certifications/"><span class="nav-icon">&#127891;</span> Certifications</a></li>
       <li><a href="/partner/agreement/"><span class="nav-icon">&#128221;</span> Agreement</a></li>
       <li><a href="/partner/resources/"><span class="nav-icon">&#128194;</span> Resources</a></li>
     </ul>

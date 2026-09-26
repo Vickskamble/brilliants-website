@@ -87,6 +87,14 @@
         <span class="nav-icon">&#128203;</span>
         <span>Leads</span>
       </a>
+      <a href="/admin/opportunities/" class="admin-nav-item">
+        <span class="nav-icon">&#128176;</span>
+        <span>Opportunities</span>
+      </a>
+      <a href="/admin/renewals/" class="admin-nav-item">
+        <span class="nav-icon">&#128260;</span>
+        <span>Renewals</span>
+      </a>
       <div class="admin-nav-section">Finance</div>
       <a href="/admin/payments/" class="admin-nav-item">
         <span class="nav-icon">&#128179;</span>
@@ -684,6 +692,26 @@
         if (result.error) throw result.error;
         closePaidModal();
         showToast('Commission marked as paid!', 'success');
+        var cc = findCommission(id);
+        if (cc && cc.partner_id) {
+          SupabaseClient.from('partners').select('business_email,full_name').eq('partner_id', cc.partner_id).then(function(pres) {
+            var prow = (pres && pres.data && pres.data[0]) ? pres.data[0] : null;
+            if (prow && prow.business_email) {
+              try {
+                fetch('/api/mail', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    to: prow.business_email,
+                    toName: prow.full_name || '',
+                    subject: 'Commission paid — ' + (cc.commission_id || ''),
+                    text: 'Hello ' + (prow.full_name || 'Partner') + ',\n\nYour commission ' + (cc.commission_id || '') + ' has been paid (reference: ' + (ref || '') + '). Thank you for growing with Brilliants.\n\n— Brilliants Technology Team'
+                  })
+                }).catch(function(){});
+              } catch (e) {}
+            }
+          }).catch(function(){});
+        }
         loadCommissions();
       }).catch(function(err) {
         console.error('Paid error:', err);

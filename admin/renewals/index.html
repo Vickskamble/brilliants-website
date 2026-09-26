@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F172A">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('brilliants-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+</script>
+<meta name="robots" content="noindex, nofollow">
+<title>Admin Dashboard — Renewal Management</title>
+<meta name="description" content="Brilliants Admin Dashboard for managing partner renewals.">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
+<link rel="stylesheet" href="/admin/shared.css">
+<style>
+.stats-grid{grid-template-columns:repeat(5,1fr)}
+.table-value{font-weight:600;color:var(--ink);white-space:nowrap}
+.status-upcoming{background:#EFF6FF;color:#1D4ED8}.status-upcoming::before{background:#2563EB}
+.status-renewed{background:#ECFDF5;color:#047857}.status-renewed::before{background:#10B981}
+.status-expired{background:#FFF1F2;color:#BE123C}.status-expired::before{background:#E11D48}
+.status-cancelled{background:#F1F5F9;color:#475569}.status-cancelled::before{background:#94A3B8}
+.action-btn.renew{color:#047857;border-color:var(--green)}.action-btn.renew:hover{background:var(--green-tint)}
+.action-btn.expire{color:var(--rose);border-color:var(--rose)}.action-btn.expire:hover{background:var(--rose-tint)}
+.action-btn.cancel{color:#B45309;border-color:#F59E0B}.action-btn.cancel:hover{background:#FFFBEB}
+@media(max-width:1280px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+<link rel="stylesheet" href="/assets/css/style.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/css/enhanced.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/assets/css/style.min.css"><link rel="stylesheet" href="/assets/css/enhanced.min.css"></noscript>
+<link rel="icon" href="/assets/images/logo/brilliants-logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="/assets/js/icons.min.js" defer></script>
+<script src="/assets/js/layout.min.js" defer></script>
+<script src="/assets/js/enhanced.min.js" defer></script>
+<script src="/partner/js/supabase-config.js"></script>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:8px;z-index:10000;padding:12px 20px;background:var(--ink);color:#fff;border-radius:0 0 8px 8px;font-weight:600;transition:top 0.2s;">Skip to main content</a>
+
+<div id="nav-placeholder"></div>
+
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Access Denied Screen -->
+<div id="accessDenied" style="display:none">
+  <div class="access-denied">
+    <div class="access-denied-card">
+      <div class="icon">&#128274;</div>
+      <h2>Access Denied</h2>
+      <p>You do not have permission to access this page. This area is restricted to administrators only.</p>
+      <a href="/partner/" class="btn btn-primary">Back to Partner Portal</a>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Screen -->
+<div id="loadingScreen">
+  <div class="loading-state">
+    <div class="loading-spinner"></div>
+    <p style="color:var(--ink-faint);font-size:.92rem;">Verifying admin access...</p>
+  </div>
+</div>
+
+<!-- Admin Dashboard (hidden until auth) -->
+<div id="adminDashboard" style="display:none" class="admin-layout">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-sidebar-header">
+      <h3>Admin Panel</h3>
+      <p>Management Dashboard</p>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-section">Main</div>
+      <a href="/admin/partners/" class="admin-nav-item">
+        <span class="nav-icon">&#128101;</span>
+        <span>Partners</span>
+      </a>
+      <a href="/admin/leads/" class="admin-nav-item">
+        <span class="nav-icon">&#128203;</span>
+        <span>Leads</span>
+      </a>
+      <a href="/admin/opportunities/" class="admin-nav-item">
+        <span class="nav-icon">&#128176;</span>
+        <span>Opportunities</span>
+      </a>
+      <a href="/admin/renewals/" class="admin-nav-item active">
+        <span class="nav-icon">&#128260;</span>
+        <span>Renewals</span>
+      </a>
+      <div class="admin-nav-section">Finance</div>
+      <a href="/admin/commission/" class="admin-nav-item">
+        <span class="nav-icon">&#128176;</span>
+        <span>Commission</span>
+      </a>
+      <div class="admin-nav-section">System</div>
+      <a href="/partner/" class="admin-nav-item">
+        <span class="nav-icon">&#127760;</span>
+        <span>Partner Portal</span>
+      </a>
+    </nav>
+    <div class="admin-sidebar-footer">
+      Brilliants Admin v1.0
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="admin-main">
+
+    <!-- Top Bar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <h2>Renewal Management</h2>
+        <div class="admin-topbar-badge">
+          <span class="pulse-dot"></span>
+          Live
+        </div>
+      </div>
+      <div class="admin-topbar-right">
+        <span style="font-size:.85rem;color:var(--ink-faint);" id="adminEmail"></span>
+        <button class="btn-logout" id="logoutBtn">
+          &#10140; <span class="btn-text">Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="admin-content" id="main-content">
+
+      <!-- Stats -->
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:var(--primary-tint);color:var(--primary);">&#128260;</div>
+          <div class="stat-card-value" id="statTotal">0</div>
+          <div class="stat-card-label">Total</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:#EFF6FF;color:#2563EB;">&#9201;</div>
+          <div class="stat-card-value" id="statUpcoming">0</div>
+          <div class="stat-card-label">Upcoming</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:var(--green-tint);color:var(--green);">&#10003;</div>
+          <div class="stat-card-value" id="statRenewed">0</div>
+          <div class="stat-card-label">Renewed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:var(--rose-tint);color:var(--rose);">&#128336;</div>
+          <div class="stat-card-value" id="statExpired">0</div>
+          <div class="stat-card-label">Expired</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon" style="background:#F1F5F9;color:#475569;">&#10007;</div>
+          <div class="stat-card-value" id="statCancelled">0</div>
+          <div class="stat-card-label">Cancelled</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <div class="search-box">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="searchInput" placeholder="Search by customer name..." aria-label="Search renewals">
+          </div>
+          <select class="filter-select" id="statusFilter" aria-label="Filter by status">
+            <option value="">All Status</option>
+            <option value="UPCOMING">Upcoming</option>
+            <option value="RENEWED">Renewed</option>
+            <option value="EXPIRED">Expired</option>
+            <option value="CANCELLED">Cancelled</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <button class="refresh-btn" id="refreshBtn" title="Refresh">&#8635;</button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrapper">
+        <div class="table-scroll">
+          <table id="renewalsTable">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Partner ID</th>
+                <th>Period</th>
+                <th>Renewal Date</th>
+                <th>Eligible</th>
+                <th>Rate</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="renewalsBody">
+            </tbody>
+          </table>
+        </div>
+        <div id="emptyState" class="empty-state" style="display:none">
+          <div class="empty-state-icon">&#128260;</div>
+          <h3>No renewals found</h3>
+          <p>There are no renewals matching your criteria. Renewals are auto-created when an opportunity is won.</p>
+        </div>
+        <div id="tableLoading" class="loading-state" style="display:none">
+          <div class="loading-spinner"></div>
+          <p style="color:var(--ink-faint);font-size:.88rem;">Loading renewals...</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">&#9776;</button>
+
+<!-- Confirm Modal -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-header">
+      <h3 id="confirmModalTitle">Confirm Action</h3>
+      <button class="modal-close" id="confirmModalClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:.92rem;color:var(--ink-soft);" id="confirmModalDesc">Are you sure?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" id="confirmCancelBtn">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="confirmApplyBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<div id="footer-placeholder"></div>
+
+<script src="/admin/shared.js" defer></script>
+<script>
+(function() {
+  'use strict';
+
+  var currentRenewals = [];
+  var filteredRenewals = [];
+  var pendingActionId = null;
+  var pendingActionStatus = null;
+  var authToken = null;
+
+  function checkAuth() {
+    if (!window.SupabaseClient) {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('accessDenied').style.display = 'block';
+      return;
+    }
+
+    SupabaseClient.getSession().then(function(result) {
+      var session = result;
+      if (!session || !session.access_token) {
+        window.location.href = '/partner/login/';
+        return;
+      }
+      authToken = session.access_token;
+
+      return SupabaseClient.getUser(authToken);
+    }).then(function(result) {
+      if (!result) return;
+      var user = result;
+      if (!user || !user.id) {
+        window.location.href = '/partner/login/';
+        return;
+      }
+
+      var role = user.user_metadata && user.user_metadata.role;
+      if (role !== 'admin') {
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('accessDenied').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('adminEmail').textContent = user.email || '';
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('adminDashboard').style.display = 'flex';
+      loadRenewals();
+    }).catch(function(err) {
+      console.error('Auth check failed:', err);
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('accessDenied').style.display = 'block';
+    });
+  }
+
+  function loadRenewals() {
+    var tbody = document.getElementById('renewalsBody');
+    var loading = document.getElementById('tableLoading');
+    var empty = document.getElementById('emptyState');
+
+    tbody.innerHTML = '';
+    loading.style.display = 'block';
+    empty.style.display = 'none';
+
+    SupabaseClient.from('renewals')
+      .select('*')
+      .order('renewal_date', { ascending: true })
+      .then(function(result) {
+        loading.style.display = 'none';
+        if (result.error) {
+          showToast('Failed to load renewals: ' + result.error.message, 'error');
+          return;
+        }
+
+        currentRenewals = result.data || [];
+        updateStats();
+        applyFilters();
+      }).catch(function(err) {
+        loading.style.display = 'none';
+        showToast('Error loading renewals', 'error');
+        console.error(err);
+      });
+  }
+
+  function updateStats() {
+    var total = currentRenewals.length;
+    var upcoming = 0, renewed = 0, expired = 0, cancelled = 0;
+
+    for (var i = 0; i < currentRenewals.length; i++) {
+      var s = (currentRenewals[i].status || '').toUpperCase();
+      if (s === 'UPCOMING') upcoming++;
+      else if (s === 'RENEWED') renewed++;
+      else if (s === 'EXPIRED') expired++;
+      else if (s === 'CANCELLED') cancelled++;
+    }
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statUpcoming').textContent = upcoming;
+    document.getElementById('statRenewed').textContent = renewed;
+    document.getElementById('statExpired').textContent = expired;
+    document.getElementById('statCancelled').textContent = cancelled;
+  }
+
+  function applyFilters() {
+    var search = document.getElementById('searchInput').value.toLowerCase().trim();
+    var statusFilter = document.getElementById('statusFilter').value;
+
+    filteredRenewals = currentRenewals.filter(function(r) {
+      var matchesSearch = !search ||
+        (r.customer_name && r.customer_name.toLowerCase().indexOf(search) !== -1) ||
+        (r.product && r.product.toLowerCase().indexOf(search) !== -1) ||
+        (r.partner_id && r.partner_id.toLowerCase().indexOf(search) !== -1);
+
+      var matchesStatus = !statusFilter || (r.status || '').toUpperCase() === statusFilter;
+
+      return matchesSearch && matchesStatus;
+    });
+
+    renderTable();
+  }
+
+  window.applyFilters = applyFilters;
+  window.onRefresh = loadRenewals;
+
+  function renderTable() {
+    var tbody = document.getElementById('renewalsBody');
+    var empty = document.getElementById('emptyState');
+
+    tbody.innerHTML = '';
+
+    if (filteredRenewals.length === 0) {
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+
+    for (var i = 0; i < filteredRenewals.length; i++) {
+      var r = filteredRenewals[i];
+      var tr = document.createElement('tr');
+
+      var status = (r.status || 'UPCOMING').toUpperCase();
+      var statusClass = getStatusClass(status);
+      var statusLabel = status.replace(/_/g, ' ');
+      var date = r.renewal_date ? new Date(r.renewal_date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
+      var eligible = r.partner_eligible ? 'Yes' : 'No';
+      var rate = r.commission_rate != null ? r.commission_rate + '%' : '-';
+
+      tr.innerHTML =
+        '<td data-label="Customer"><span class="table-name">' + escHtml(r.customer_name || 'N/A') + '</span></td>' +
+        '<td data-label="Product"><span style="font-size:.85rem;">' + escHtml(r.product || 'N/A') + '</span></td>' +
+        '<td data-label="Partner"><span class="table-value mono">' + escHtml(r.partner_id || 'N/A') + '</span></td>' +
+        '<td data-label="Period"><span style="font-size:.85rem;">' + escHtml(r.subscription_period || 'N/A') + '</span></td>' +
+        '<td data-label="Date"><span class="table-date">' + date + '</span></td>' +
+        '<td data-label="Eligible"><span style="font-size:.85rem;color:var(--ink-soft);">' + eligible + '</span></td>' +
+        '<td data-label="Rate"><span class="table-value">' + rate + '</span></td>' +
+        '<td data-label="Status"><span class="status-badge ' + statusClass + '">' + statusLabel + '</span></td>' +
+        '<td data-label="Actions"><div class="table-actions">' +
+          (canRenew(status) ? '<button class="action-btn renew" onclick="AdminRenewals.renew(\'' + r.id + '\')" title="Mark Renewed">&#10003; Renew</button>' : '') +
+          (canExpire(status) ? '<button class="action-btn expire" onclick="AdminRenewals.expire(\'' + r.id + '\')" title="Mark Expired">&#128336; Expire</button>' : '') +
+          (canCancel(status) ? '<button class="action-btn cancel" onclick="AdminRenewals.cancel(\'' + r.id + '\')" title="Cancel">&#10007; Cancel</button>' : '') +
+        '</div></td>';
+
+      tbody.appendChild(tr);
+    }
+  }
+
+  function getStatusClass(status) {
+    var map = { 'UPCOMING': 'status-upcoming', 'RENEWED': 'status-renewed', 'EXPIRED': 'status-expired', 'CANCELLED': 'status-cancelled' };
+    return map[status] || 'status-upcoming';
+  }
+
+  function canRenew(status) { return status === 'UPCOMING' || status === 'EXPIRED'; }
+  function canExpire(status) { return status === 'UPCOMING'; }
+  function canCancel(status) { return status === 'UPCOMING'; }
+
+  function escHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function openConfirm(title, desc, actionId, actionStatus) {
+    document.getElementById('confirmModalTitle').textContent = title;
+    document.getElementById('confirmModalDesc').textContent = desc;
+    pendingActionId = actionId;
+    pendingActionStatus = actionStatus;
+    document.getElementById('confirmModal').classList.add('active');
+  }
+
+  function closeConfirm() {
+    document.getElementById('confirmModal').classList.remove('active');
+    pendingActionId = null;
+    pendingActionStatus = null;
+  }
+
+  function confirmAction() {
+    if (!pendingActionId || !pendingActionStatus) return;
+
+    var payload = { status: pendingActionStatus };
+    var label = 'Renewal updated';
+    if (pendingActionStatus === 'RENEWED') {
+      payload.renewed_at = new Date().toISOString();
+      label = 'Renewal marked as renewed';
+    }
+
+    var applyBtn = document.getElementById('confirmApplyBtn');
+    applyBtn.disabled = true;
+    applyBtn.textContent = 'Saving...';
+
+    SupabaseClient.from('renewals')
+      .update(payload)
+      .eq('id', pendingActionId)
+      .then(function(result) {
+        applyBtn.disabled = false;
+        applyBtn.textContent = 'Confirm';
+        if (result.error) {
+          showToast('Failed to update: ' + result.error.message, 'error');
+          return;
+        }
+        closeConfirm();
+        showToast(label + '.', 'success');
+        loadRenewals();
+      }).catch(function(err) {
+        applyBtn.disabled = false;
+        applyBtn.textContent = 'Confirm';
+        showToast('Error updating renewal', 'error');
+        console.error(err);
+      });
+  }
+
+  document.getElementById('refreshBtn') && document.getElementById('refreshBtn').addEventListener('click', loadRenewals);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    checkAuth();
+
+    document.getElementById('confirmModalClose').addEventListener('click', closeConfirm);
+    document.getElementById('confirmCancelBtn').addEventListener('click', closeConfirm);
+    document.getElementById('confirmApplyBtn').addEventListener('click', confirmAction);
+    document.getElementById('confirmModal').addEventListener('click', function(e) {
+      if (e.target === this) closeConfirm();
+    });
+  });
+
+  window.AdminRenewals = {
+    renew: function(id) { openConfirm('Mark Renewed', 'Confirm marking this renewal as renewed?', id, 'RENEWED'); },
+    expire: function(id) { openConfirm('Mark Expired', 'Confirm marking this renewal as expired?', id, 'EXPIRED'); },
+    cancel: function(id) { openConfirm('Cancel Renewal', 'Confirm cancelling this renewal?', id, 'CANCELLED'); }
+  };
+
+})();
+</script>
+</body>
+</html>

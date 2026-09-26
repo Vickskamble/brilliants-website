@@ -87,6 +87,14 @@
         <span class="nav-icon">&#128203;</span>
         <span>Leads</span>
       </a>
+      <a href="/admin/opportunities/" class="admin-nav-item">
+        <span class="nav-icon">&#128176;</span>
+        <span>Opportunities</span>
+      </a>
+      <a href="/admin/renewals/" class="admin-nav-item">
+        <span class="nav-icon">&#128260;</span>
+        <span>Renewals</span>
+      </a>
       <div class="admin-nav-section">Finance</div>
       <a href="/admin/payments/" class="admin-nav-item active">
         <span class="nav-icon">&#128179;</span>
@@ -465,6 +473,21 @@ window.AdminPayments = (function() {
         if (result && result.error) throw result.error;
         closeVerifyModal();
         showToast('Payment verified! Partner tier activated.', 'success');
+        var pp = findPayment(id);
+        if (pp && pp.partners && pp.partners.business_email) {
+          try {
+            fetch('/api/mail', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                to: pp.partners.business_email,
+                toName: pp.partners.full_name || '',
+                subject: 'Your entry fee is verified — Brilliants Partner Portal',
+                text: 'Hello ' + (pp.partners.full_name || 'Partner') + ',\n\nYour ' + (pp.tier || '') + ' tier entry fee payment (reference: ' + (pp.reference || '') + ') has been verified. Your partner tier is now ACTIVE for one year.\n\n— Brilliants Technology Team'
+              })
+            }).catch(function(){});
+          } catch (e) {}
+        }
         loadPayments();
       }).catch(function(err) {
         showToast('Failed to verify: ' + (err.message || 'Unknown error'), 'error');

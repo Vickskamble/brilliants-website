@@ -15,8 +15,8 @@
 })();
 </script>
 <meta name="robots" content="noindex, nofollow">
-<title>Renewals — Brilliants Partner Portal</title>
-<meta name="description" content="View customer renewals, renewal status, and revenue share eligibility in the Brilliants Partner Portal.">
+<title>Certifications — Brilliants Partner Portal</title>
+<meta name="description" content="View your certifications, products you are certified for, and their validity in the Brilliants Partner Portal.">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" crossorigin>
 <style>:root{--primary:#2563EB;--primary-tint:#EFF6FF;--primary-glow:rgba(37,99,235,0.15);--amber:#F59E0B;--amber-tint:#FFFBEB;--amber-ink:#B45309;--green:#10B981;--green-tint:#ECFDF5;--purple:#7C3AED;--purple-tint:#F5F3FF;--rose:#E11D48;--rose-tint:#FFF1F2;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#F8FAFC;--ink:#0F172A;--ink-soft:#475569;--ink-faint:#64748B;--line:#E2E8F0;--line-strong:#CBD5E1;--radius:12px;--radius-sm:8px;--radius-xl:20px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);--shadow-lg:0 8px 32px rgba(0,0,0,0.1);--shadow-xl:0 16px 48px rgba(0,0,0,0.12);--transition:cubic-bezier(0.4,0,0.2,1);--font-display:"Plus Jakarta Sans",system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--nav-h:64px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font-body);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius);font-weight:600;font-size:.92rem;transition:all .3s var(--transition);cursor:pointer;border:none;font-family:var(--font-body)}.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 4px 16px rgba(37,99,235,0.3)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,0.4)}.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}.btn-ghost{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}.btn-ghost:hover{background:var(--primary-tint)}
 
@@ -41,6 +41,12 @@
 .pd-page-head h1{font-family:var(--font-display);font-weight:800;font-size:1.75rem;margin-bottom:4px}
 .pd-page-head p{color:var(--ink-soft);font-size:.95rem}
 
+/* Summary chips */
+.pd-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.pd-chip{flex:1;min-width:150px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px}
+.pd-chip .chip-value{font-family:var(--font-display);font-weight:800;font-size:1.4rem;color:var(--primary)}
+.pd-chip .chip-label{font-size:.8rem;color:var(--ink-faint);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+
 /* Table */
 .pd-table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden}
 .pd-table-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line)}
@@ -54,21 +60,19 @@
 
 /* Status badges */
 .pd-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.pd-badge.upcoming{background:var(--primary-tint);color:var(--primary)}
-.pd-badge.renewed{background:var(--green-tint);color:var(--green)}
-.pd-badge.expired{background:var(--surface-2);color:var(--ink-faint)}
-.pd-badge.cancelled{background:var(--rose-tint);color:var(--rose)}
+.pd-badge.active{background:var(--green-tint);color:var(--green)}
+.pd-badge.expired{background:var(--rose-tint);color:var(--rose)}
+.pd-badge.issuing{background:var(--amber-tint);color:var(--amber-ink)}
 
-/* Eligible / Not Eligible */
-.pd-eligible{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:.82rem;font-weight:600}
-.pd-eligible.yes{background:var(--green-tint);color:var(--green)}
-.pd-eligible.no{background:var(--rose-tint);color:var(--rose)}
+/* Cert link */
+.pd-cert-link{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--primary)}
+.pd-cert-link:hover{text-decoration:underline}
 
 /* Empty State */
 .pd-empty{text-align:center;padding:60px 24px}
 .pd-empty-icon{font-size:3rem;margin-bottom:16px;opacity:.6}
 .pd-empty h3{font-family:var(--font-display);font-weight:700;font-size:1.15rem;margin-bottom:8px}
-.pd-empty p{color:var(--ink-soft);font-size:.95rem;max-width:400px;margin:0 auto}
+.pd-empty p{color:var(--ink-soft);font-size:.95rem;max-width:420px;margin:0 auto}
 
 /* Loading */
 .pd-loading{display:flex;align-items:center;justify-content:center;padding:60px 24px}
@@ -119,9 +123,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   var partnerId = null;
-  var renewals = [];
+  var certifications = [];
 
-  // Mobile sidebar toggle
   var sidebar = document.getElementById('pd-sidebar');
   var toggle = document.getElementById('pd-mobile-toggle');
   if (toggle) {
@@ -135,54 +138,76 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Load partner profile
   SupabaseClient.getUser(session.access_token).then(function(user) {
-    if (!user || user.id) {
-      return SupabaseClient.select('partners', 'user_id=eq.' + (user ? user.id : '') + '&select=partner_id,full_name,business_email,status', session.access_token);
+    if (!user || !user.id) {
+      return null;
     }
-    return null;
+    return SupabaseClient.select('partners', 'user_id=eq.' + user.id + '&select=partner_id,full_name,business_email,status', session.access_token);
   }).then(function(data) {
-    if (data && data.length) {
-      var partnerData = data[0];
-      partnerId = partnerData.partner_id;
-      document.getElementById('sidebar-partner-name').textContent = partnerData.full_name || 'Partner';
-      document.getElementById('sidebar-partner-id').textContent = partnerId;
-      loadRenewals();
-    } else {
+    if (!data || !data.length) {
       window.location.href = '/partner/login/';
+      return;
     }
+    var partnerData = data[0];
+    partnerId = partnerData.partner_id;
+    document.getElementById('sidebar-partner-name').textContent = partnerData.full_name || 'Partner';
+    document.getElementById('sidebar-partner-id').textContent = partnerId;
+    loadCertifications();
   }).catch(function() {
     window.location.href = '/partner/login/';
   });
 
-  function loadRenewals() {
+  function loadCertifications() {
     if (!partnerId) return;
-    SupabaseClient.select('renewals', 'partner_id=eq.' + partnerId + '&order=renewal_date.desc', session.access_token)
+    SupabaseClient.select('certifications', 'partner_id=eq.' + partnerId + '&order=certified_date.desc', session.access_token)
       .then(function(data) {
-        renewals = Array.isArray(data) ? data : [];
-        renderRenewals();
+        certifications = Array.isArray(data) ? data : [];
+        renderCertifications();
       })
       .catch(function() {
-        renewals = [];
-        renderRenewals();
+        certifications = [];
+        renderCertifications();
       });
+  }
+
+  function effStatus(c) {
+    if (c.status === 'EXPIRED') return 'EXPIRED';
+    if (c.expires_at) {
+      var exp = new Date(c.expires_at);
+      if (!isNaN(exp.getTime()) && exp < new Date()) return 'EXPIRED';
+    }
+    return 'ACTIVE';
   }
 
   function formatDate(d) {
     if (!d) return '-';
     var dt = new Date(d);
+    if (isNaN(dt.getTime())) return '-';
     return dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
   }
 
-  function renderRenewals() {
-    var tbody = document.getElementById('renewals-tbody');
-    var mobileCards = document.getElementById('renewals-mobile');
-    var loading = document.getElementById('renewals-loading');
-    var empty = document.getElementById('renewals-empty');
+  function renderCertifications() {
+    var tbody = document.getElementById('cert-tbody');
+    var mobileCards = document.getElementById('cert-mobile');
+    var loading = document.getElementById('cert-loading');
+    var empty = document.getElementById('cert-empty');
+    var chips = document.getElementById('cert-chips');
 
     if (loading) loading.style.display = 'none';
 
-    if (!renewals.length) {
+    var activeCount = 0, expiredCount = 0;
+    certifications.forEach(function(c) {
+      if (effStatus(c) === 'ACTIVE') activeCount++; else expiredCount++;
+    });
+
+    if (chips) {
+      chips.innerHTML =
+        '<div class="pd-chip"><div class="chip-value">' + activeCount + '</div><div class="chip-label">ACTIVE</div></div>' +
+        '<div class="pd-chip"><div class="chip-value">' + expiredCount + '</div><div class="chip-label">EXPIRED</div></div>' +
+        '<div class="pd-chip"><div class="chip-value">' + certifications.length + '</div><div class="chip-label">TOTAL</div></div>';
+    }
+
+    if (!certifications.length) {
       if (empty) empty.style.display = 'block';
       tbody.innerHTML = '';
       mobileCards.innerHTML = '';
@@ -193,37 +218,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var html = '';
     var mhtml = '';
-    renewals.forEach(function(r) {
-      var st = (r.status || 'UPCOMING').toUpperCase();
-      var badgeClass = 'upcoming';
-      if (st === 'RENEWED') badgeClass = 'renewed';
-      if (st === 'EXPIRED') badgeClass = 'expired';
-      if (st === 'CANCELLED') badgeClass = 'cancelled';
-
-      var eligible = r.partner_eligible !== false;
-      var eligibleClass = eligible ? 'yes' : 'no';
-      var eligibleText = eligible ? 'Yes' : 'No';
-
-      var rate = r.commission_rate != null ? r.commission_rate + '%' : '-';
+    certifications.forEach(function(c) {
+      var st = effStatus(c);
+      var badgeClass = st === 'ACTIVE' ? 'active' : 'expired';
+      var certLink = c.certificate_url ?
+        '<a class="pd-cert-link" href="' + c.certificate_url + '" target="_blank" rel="noopener">View &#8599;</a>' : '-';
 
       html += '<tr>';
-      html += '<td>' + (r.customer_name || '-') + '</td>';
-      html += '<td>' + (r.product || '-') + '</td>';
-      html += '<td>' + (r.subscription_period || '-') + '</td>';
-      html += '<td>' + formatDate(r.renewal_date) + '</td>';
+      html += '<td><strong>' + (c.certification_name || '-') + '</strong></td>';
+      html += '<td>' + (c.certified_for || '-') + '</td>';
+      html += '<td>' + formatDate(c.certified_date) + '</td>';
+      html += '<td>' + formatDate(c.expires_at) + '</td>';
       html += '<td><span class="pd-badge ' + badgeClass + '">' + st + '</span></td>';
-      html += '<td><span class="pd-eligible ' + eligibleClass + '">' + eligibleText + '</span></td>';
-      html += '<td>' + rate + '</td>';
+      html += '<td>' + certLink + '</td>';
       html += '</tr>';
 
       mhtml += '<div class="pd-mobile-card">';
-      mhtml += '<div class="card-row"><span class="card-label">Customer</span><span class="card-value">' + (r.customer_name || '-') + '</span></div>';
-      mhtml += '<div class="card-row"><span class="card-label">Product</span><span class="card-value">' + (r.product || '-') + '</span></div>';
-      mhtml += '<div class="card-row"><span class="card-label">Period</span><span class="card-value">' + (r.subscription_period || '-') + '</span></div>';
-      mhtml += '<div class="card-row"><span class="card-label">Renewal Date</span><span class="card-value">' + formatDate(r.renewal_date) + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Certification</span><span class="card-value"><strong>' + (c.certification_name || '-') + '</strong></span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Certified For</span><span class="card-value">' + (c.certified_for || '-') + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Certified Date</span><span class="card-value">' + formatDate(c.certified_date) + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Expires</span><span class="card-value">' + formatDate(c.expires_at) + '</span></div>';
       mhtml += '<div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="pd-badge ' + badgeClass + '">' + st + '</span></span></div>';
-      mhtml += '<div class="card-row"><span class="card-label">Partner Eligible</span><span class="card-value"><span class="pd-eligible ' + eligibleClass + '">' + eligibleText + '</span></span></div>';
-      mhtml += '<div class="card-row"><span class="card-label">Revenue Share</span><span class="card-value">' + rate + '</span></div>';
+      mhtml += '<div class="card-row"><span class="card-label">Certificate</span><span class="card-value">' + certLink + '</span></div>';
       mhtml += '</div>';
     });
 
@@ -253,8 +269,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <li><a href="/partner/opportunities/"><span class="nav-icon">&#128188;</span> Opportunities</a></li>
       <li><a href="/partner/commissions/"><span class="nav-icon">&#128176;</span> Commissions</a></li>
       <li><a href="/partner/payments/"><span class="nav-icon">&#128179;</span> Entry Fee</a></li>
-      <li><a href="/partner/renewals/" class="active"><span class="nav-icon">&#128260;</span> Renewals</a></li>
-      <li><a href="/partner/certifications/"><span class="nav-icon">&#127891;</span> Certifications</a></li>
+      <li><a href="/partner/renewals/"><span class="nav-icon">&#128260;</span> Renewals</a></li>
+      <li><a href="/partner/certifications/" class="active"><span class="nav-icon">&#127891;</span> Certifications</a></li>
       <li><a href="/partner/agreement/"><span class="nav-icon">&#128221;</span> Agreement</a></li>
       <li><a href="/partner/resources/"><span class="nav-icon">&#128194;</span> Resources</a></li>
     </ul>
@@ -263,47 +279,49 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- Main Content -->
   <main class="pd-main" id="main-content">
     <div class="pd-page-head">
-      <h1>Renewals</h1>
-      <p>Track customer renewal dates, status, and your revenue share eligibility.</p>
+      <h1>Certifications</h1>
+      <p>View the certifications Brilliants has issued to your team, the products you are certified for, and their validity.</p>
     </div>
 
-    <!-- Renewals Table -->
+    <!-- Summary Chips -->
+    <div class="pd-chips" id="cert-chips">
+      <div class="pd-chip"><div class="chip-value">0</div><div class="chip-label">ACTIVE</div></div>
+      <div class="pd-chip"><div class="chip-value">0</div><div class="chip-label">EXPIRED</div></div>
+      <div class="pd-chip"><div class="chip-value">0</div><div class="chip-label">TOTAL</div></div>
+    </div>
+
+    <!-- Certifications Table -->
     <div class="pd-table-wrap">
       <div class="pd-table-head">
-        <h2>Renewal Records</h2>
+        <h2>Certification Records</h2>
       </div>
 
-      <!-- Loading -->
-      <div class="pd-loading" id="renewals-loading">
+      <div class="pd-loading" id="cert-loading">
         <div class="pd-spinner"></div>
       </div>
 
-      <!-- Empty State -->
-      <div class="pd-empty" id="renewals-empty" style="display:none">
-        <div class="pd-empty-icon">&#128260;</div>
-        <h3>No Renewals Yet</h3>
-        <p>When your referred customers' subscriptions come up for renewal, those records will appear here.</p>
+      <div class="pd-empty" id="cert-empty" style="display:none">
+        <div class="pd-empty-icon">&#127891;</div>
+        <h3>No Certifications Yet</h3>
+        <p>Once Brilliants issues a certification to your team, it will appear here along with your certified product expertise and expiry date.</p>
       </div>
 
-      <!-- Desktop Table -->
       <table class="pd-table">
         <thead>
           <tr>
-            <th>Customer</th>
-            <th>Product</th>
-            <th>Period</th>
-            <th>Renewal Date</th>
+            <th>Certification</th>
+            <th>Certified For</th>
+            <th>Certified On</th>
+            <th>Expires</th>
             <th>Status</th>
-            <th>Partner Eligible</th>
-            <th>Revenue Share</th>
+            <th>Certificate</th>
           </tr>
         </thead>
-        <tbody id="renewals-tbody">
+        <tbody id="cert-tbody">
         </tbody>
       </table>
 
-      <!-- Mobile Cards -->
-      <div class="pd-mobile-cards" id="renewals-mobile" style="display:none">
+      <div class="pd-mobile-cards" id="cert-mobile" style="display:none">
       </div>
     </div>
   </main>

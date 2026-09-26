@@ -323,6 +323,18 @@ function loadAgreement(userId, token) {
           if (formView) formView.style.display = 'none';
           if (signedView) signedView.style.display = 'block';
           applySignedFeeCta();
+          try {
+            fetch('/api/mail', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                to: partnerRow.business_email || '',
+                toName: partnerRow.full_name || '',
+                subject: 'Partner Agreement Signed — Brilliants Partner Portal',
+                text: 'Hello ' + (partnerRow.full_name || 'Partner') + ',\n\nThank you for signing the Brilliants Partner Agreement (v2.0). Your partnership with Brilliants Technology is now formally active.\n\n— Brilliants Technology Team'
+              })
+            }).catch(function(){});
+          } catch (e) {}
         }).catch(function(err) {
           errorMsg.textContent = err.message || 'Something went wrong. Please try again.';
           errorMsg.classList.add('show');
