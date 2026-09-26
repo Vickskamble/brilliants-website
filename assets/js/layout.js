@@ -11,6 +11,177 @@
   }
 
   var navHtml =
+    '<nav class="nav nav-platform" role="navigation" aria-label="Main navigation">' +
+    '<div class="nav-inner">' +
+    '<a href="/" class="nav-brand" aria-label="Brilliants Home">' +
+    '<img src="/assets/images/logo/brilliants-logo-full.png" alt="" style="height:32px;width:auto;display:block;">' +
+    '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
+    '<div class="nav-links" role="menubar">' +
+
+    '<div class="nav-drop" data-pages="/crm/ /smart-hrms/ /ironbook/ /power-ems/ /ai-engine/ /downloads/ /pay/">' +
+    dd('apps', 'Apps') +
+    '<div class="nav-panel" data-panel="apps">' +
+    '<div class="nav-panel-grid">' +
+    '<div class="nav-panel-col">' +
+    '<a href="/crm/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="target"></span><span class="np-text"><strong>Brilliants CRM</strong><small>Sales, support &amp; marketing</small><em class="np-tag live">Live</em></span></a>' +
+    '<a href="/smart-hrms/"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="hrms"></span><span class="np-text"><strong>Smart HRMS</strong><small>Payroll &amp; attendance</small><em class="np-tag soon">Early Access</em></span></a>' +
+    '<a href="/ironbook/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span><span class="np-text"><strong>IronBook</strong><small>AI Gym Operating System</small><em class="np-tag live">Live</em></span></a>' +
+    '<a href="/power-ems/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="zap"></span><span class="np-text"><strong>Power EmS</strong><small>Energy monitoring &amp; IoT</small><em class="np-tag live">Live</em></span></a>' +
+    '<a href="/ai-engine/"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="ai"></span><span class="np-text"><strong>AI Engine</strong><small>One AI core for every product</small><em class="np-tag live">Live</em></span></a>' +
+    '</div>' +
+    '<div class="nav-panel-col">' +
+    '<a href="/#products"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="billing"></span><span class="np-text"><strong>Billing</strong><small>Invoices &amp; subscriptions</small><em class="np-tag dev">In Development</em></span></a>' +
+    '<a href="/#products"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="inventory"></span><span class="np-text"><strong>Inventory</strong><small>Stock &amp; purchase management</small><em class="np-tag dev">In Development</em></span></a>' +
+    '<a href="/#products"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="layers"></span><span class="np-text"><strong>Maintenance</strong><small>Asset &amp; breakdown tracking</small><em class="np-tag dev">In Development</em></span></a>' +
+    '<a href="/#products"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="repeat"></span><span class="np-text"><strong>Workflow Automation</strong><small>Approvals, alerts &amp; bots</small><em class="np-tag dev">In Development</em></span></a>' +
+    '<a href="/downloads/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="download"></span><span class="np-text"><strong>Download Center</strong><small>APKs, guides &amp; install help</small></span></a>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+
+    '<div class="nav-drop" data-pages="/solutions/">' +
+    dd('solutions', 'Solutions') +
+    '<div class="nav-panel" data-panel="solutions">' +
+    '<div class="nav-panel-grid nav-panel-2col">' +
+    '<div class="nav-panel-col">' +
+    '<a href="/solutions/#automation"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="repeat"></span><span class="np-text"><strong>Business Automation</strong><small>Workflows, alerts &amp; approvals</small></span></a>' +
+    '<a href="/solutions/#custom-software"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="code"></span><span class="np-text"><strong>Custom Software</strong><small>Apps built around your process</small></span></a>' +
+    '<a href="/solutions/#erp-implementation"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="database"></span><span class="np-text"><strong>ERP Implementation</strong><small>One system across departments</small></span></a>' +
+    '<a href="/solutions/#crm-automation"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="target"></span><span class="np-text"><strong>CRM &amp; Sales Automation</strong><small>Leads that never go cold</small></span></a>' +
+    '<a href="/solutions/#ai-integration"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="ai"></span><span class="np-text"><strong>AI Integration</strong><small>Assistants, chatbots &amp; insights</small></span></a>' +
+    '</div>' +
+    '<div class="nav-panel-col">' +
+    '<a href="/solutions/#industrial-digitalisation"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="factory"></span><span class="np-text"><strong>Industrial Digitalisation</strong><small>Shop-floor data for better decisions</small></span></a>' +
+    '<a href="/solutions/#energy-management"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="zap"></span><span class="np-text"><strong>Energy Management</strong><small>Monitor, optimise &amp; save</small></span></a>' +
+    '<a href="/solutions/#maintenance-management"><span class="np-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="settings"></span><span class="np-text"><strong>Maintenance Management</strong><small>Plan upkeep, cut downtime</small></span></a>' +
+    '<a href="/solutions/#system-integration"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="cloud"></span><span class="np-text"><strong>System Integration</strong><small>Connect the tools you already use</small></span></a>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+
+    '<div class="nav-drop" data-pages="/industries/">' +
+    dd('industries', 'Industries') +
+    '<div class="nav-panel" data-panel="industries">' +
+    '<div class="nav-panel-grid nav-panel-2col">' +
+    '<div class="nav-panel-col">' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="gym"></span><span class="np-text"><strong>Gym &amp; Fitness</strong><small>IronBook — live</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="factory"></span><span class="np-text"><strong>Manufacturing</strong><small>Automation &amp; dashboards</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="retail"></span><span class="np-text"><strong>Retail</strong><small>Inventory &amp; sales tools</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="healthcare"></span><span class="np-text"><strong>Pharma</strong><small>Compliance &amp; monitoring</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="healthcare"></span><span class="np-text"><strong>Healthcare</strong><small>Clinics &amp; diagnostics</small></span></a>' +
+    '</div>' +
+    '<div class="nav-panel-col">' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="warehouse"></span><span class="np-text"><strong>Warehousing</strong><small>Stock &amp; logistics tools</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="education"></span><span class="np-text"><strong>Education</strong><small>Schools &amp; institutes</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="office"></span><span class="np-text"><strong>Offices &amp; Coworking</strong><small>Smart HRMS</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--ink);color:#fff;" data-icon="dashboard"></span><span class="np-text"><strong>Every MSME</strong><small>One AI platform</small></span></a>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+
+    '<a href="/pricing/" role="menuitem" data-page="/pricing/">Pricing</a>' +
+
+    '<div class="nav-drop" data-pages="/technology/ /vision/ /stories/ /ai-engine/">' +
+    dd('resources', 'Resources') +
+    '<div class="nav-panel" data-panel="resources">' +
+    '<div class="nav-panel-grid nav-panel-2col">' +
+    '<div class="nav-panel-col">' +
+    '<a href="/technology/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="settings"></span><span class="np-text"><strong>Technology</strong><small>Stack, security &amp; infra</small></span></a>' +
+    '<a href="/ai-engine/"><span class="np-icon" style="background:var(--purple-tint);color:var(--purple);" data-icon="ai"></span><span class="np-text"><strong>AI Engine</strong><small>Capabilities &amp; roadmap</small></span></a>' +
+    '<a href="/vision/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="trending"></span><span class="np-text"><strong>Vision 2030</strong><small>Platform roadmap</small></span></a>' +
+    '</div>' +
+    '<div class="nav-panel-col">' +
+    '<a href="/stories/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="graph"></span><span class="np-text"><strong>Stories &amp; Blog</strong><small>Case studies &amp; guides</small></span></a>' +
+    '<a href="/downloads/"><span class="np-icon" style="background:var(--rose-tint);color:var(--rose);" data-icon="download"></span><span class="np-text"><strong>Downloads</strong><small>APKs &amp; install guides</small></span></a>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+
+    '<a href="/partner/" role="menuitem" data-page="/partner/">Partners</a>' +
+
+    '<div class="nav-drop" data-pages="/privacy/ /terms/ /refund-policy/ /grievance-redressal/">' +
+    dd('company', 'Company') +
+    '<div class="nav-panel" data-panel="company">' +
+    '<div class="nav-panel-grid nav-panel-2col">' +
+    '<div class="nav-panel-col">' +
+    '<a href="/#founder"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="users"></span><span class="np-text"><strong>About Us</strong><small>Founder &amp; mission</small></span></a>' +
+    '<a href="/#contact-form"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="phone"></span><span class="np-text"><strong>Contact</strong><small>Talk to our team</small></span></a>' +
+    '</div>' +
+    '<div class="nav-panel-col">' +
+    '<a href="/privacy/"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="lock"></span><span class="np-text"><strong>Privacy Policy</strong><small>How we protect data</small></span></a>' +
+    '<a href="/terms/"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="check"></span><span class="np-text"><strong>Terms of Service</strong><small>Usage terms</small></span></a>' +
+    '<a href="/refund-policy/"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="refresh"></span><span class="np-text"><strong>Refund Policy</strong><small>Money-back terms</small></span></a>' +
+    '<a href="/grievance-redressal/"><span class="np-icon" style="background:var(--surface-2);color:var(--ink);" data-icon="bell"></span><span class="np-text"><strong>Grievance Redressal</strong><small>File a complaint</small></span></a>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>' +
+
+    '</div>' +
+    '<div class="nav-cta">' +
+    '<a href="/partner/login/" class="btn btn-ghost btn-sm">Login</a>' +
+    '<a href="/#contact-form" class="btn btn-primary btn-sm"><span class="nav-cta-long">Get Started</span><span class="nav-cta-short">Start</span></a>' +
+    '<button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">' +
+    '<span></span><span></span><span></span></button>' +
+    '</div></div></nav>';
+
+  var footerHtml =
+    '<footer class="footer" role="contentinfo">' +
+    '<div class="container">' +
+    '<div class="footer-col footer-about">' +
+    '<a href="/" class="footer-brand" aria-label="Brilliants Home">' +
+    '<img src="/assets/images/logo/brilliants-logo-full.png" alt="" style="height:28px;width:auto;display:block;">' +
+    '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
+    '<p>India\'s connected business platform for MSMEs — every app you need to run your business on one platform: CRM, HRMS, billing, inventory, energy, automation, IoT and business intelligence.</p>' +
+    '<div class="footer-contact">' +
+    '<span>+91-9146121280</span>' +
+    '<a href="mailto:contact@brilliants.in">contact@brilliants.in</a>' +
+    '</div>' +
+    '<div class="footer-social">' +
+    '<a href="https://www.linkedin.com/in/vikas-kamble-2603b6120" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>' +
+    '<a href="https://www.instagram.com/brilliants.in" aria-label="Instagram" target="_blank" rel="noopener">ig</a>' +
+    '<a href="https://wa.me/919146121280" aria-label="WhatsApp" target="_blank" rel="noopener">wa</a>' +
+    '<a href="mailto:contact@brilliants.in" aria-label="Email">&#9993;</a>' +
+    '</div></div>' +
+    '<div class="footer-col"><h4>Products</h4><ul>' +
+    '<li><a href="/crm/">Brilliants CRM</a></li>' +
+    '<li><a href="/smart-hrms/">Smart HRMS</a></li>' +
+    '<li><a href="/ironbook/">IronBook</a></li>' +
+    '<li><a href="/power-ems/">Power EmS</a></li>' +
+    '<li><a href="/ai-engine/">AI Engine</a></li>' +
+    '<li><a href="/downloads/">Download Center</a></li>' +
+    '</ul></div>' +
+    '<div class="footer-col"><h4>Company</h4><ul>' +
+    '<li><a href="/solutions/">Solutions</a></li>' +
+    '<li><a href="/technology/">Technology</a></li>' +
+    '<li><a href="/industries/">Industries</a></li>' +
+    '<li><a href="/stories/">Blog / Stories</a></li>' +
+    '<li><a href="/vision/">Vision 2030</a></li>' +
+    '<li><a href="/pricing/">Pricing</a></li>' +
+    '<li><a href="/#contact-form">Contact</a></li>' +
+    '<li><a href="/partner/">Partner Program</a></li>' +
+    '<li><a href="/partner/directory/">Partner Directory</a></li>' +
+    '</ul></div>' +
+    '<div class="footer-col"><h4>Resources &amp; Legal</h4><ul>' +
+    '<li><a href="/downloads/">Download Center</a></li>' +
+    '<li><a href="/privacy/">Privacy Policy</a></li>' +
+    '<li><a href="/terms/">Terms of Service</a></li>' +
+    '<li><a href="/refund-policy/">Refund Policy</a></li>' +
+    '<li><a href="/grievance-redressal/">Grievance Redressal</a></li>' +
+    '</ul></div></div>' +
+    '<div class="container footer-bottom">' +
+    '<span>&copy; ' + new Date().getFullYear() + ' Brilliants. All rights reserved.</span>' +
+    '<span>Made in India &middot; for every MSME.</span>' +
+    '</div></footer>';
+
+  // Legacy partner-portal shell: the partner pages keep the ORIGINAL nav + footer.
+  // (Partner portal must stay byte-for-byte unchanged while the public site moves
+  // to the platform navigation.)
+  var partnerNavHtml =
     '<nav class="nav" role="navigation" aria-label="Main navigation">' +
     '<div class="nav-inner">' +
     '<a href="/" class="nav-brand" aria-label="Brilliants Home">' +
@@ -104,7 +275,7 @@
     '<span></span><span></span><span></span></button>' +
     '</div></div></nav>';
 
-  var footerHtml =
+  var partnerFooterHtml =
     '<footer class="footer" role="contentinfo">' +
     '<div class="container">' +
     '<div class="footer-col footer-about">' +
@@ -165,10 +336,14 @@
   }
 
   function inject() {
+    var isPartner = currentPath.indexOf('/partner/') === 0;
+    var usedNavHtml = isPartner ? partnerNavHtml : navHtml;
+    var usedFooterHtml = isPartner ? partnerFooterHtml : footerHtml;
+
     // Nav
     var navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) {
-      navPlaceholder.outerHTML = navHtml;
+      navPlaceholder.outerHTML = usedNavHtml;
       paintIcons(document);
 
       // Mark active page
@@ -222,7 +397,7 @@
     // Footer
     var footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
-      footerPlaceholder.outerHTML = footerHtml;
+      footerPlaceholder.outerHTML = usedFooterHtml;
       paintIcons(document);
     }
   }

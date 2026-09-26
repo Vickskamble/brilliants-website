@@ -111,3 +111,12 @@
   .ps-thumb img{width:40px;height:40px}
   .ps-header .btn-sm{display:none}
 }
+@media(max-width:1180px){
+  .nav-platform .nav-links{gap:18px}
+  .nav-platform .nav-cta .btn-ghost{display:none}
+}
+
+
+.at-tag.dev{background:var(--surface-2);color:var(--ink-faint)}
+.np-tag.dev{background:var(--surface-2);color:var(--ink-faint)}
+
