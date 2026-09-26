@@ -76,7 +76,7 @@
     '<a href="/industries/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="warehouse"></span><span class="np-text"><strong>Warehousing</strong><small>Stock &amp; logistics tools</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="education"></span><span class="np-text"><strong>Education</strong><small>Schools &amp; institutes</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="office"></span><span class="np-text"><strong>Offices &amp; Coworking</strong><small>Smart HRMS</small></span></a>' +
-    '<a href="/industries/"><span class="np-icon" style="background:var(--ink);color:#fff;" data-icon="dashboard"></span><span class="np-text"><strong>Every MSME</strong><small>One AI platform</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--ink);color:#fff;" data-icon="dashboard"></span><span class="np-text"><strong>Every Business</strong><small>One AI platform</small></span></a>' +
     '</div>' +
     '</div>' +
     '</div>' +
@@ -136,7 +136,7 @@
     '<a href="/" class="footer-brand" aria-label="Brilliants Home">' +
     '<img src="/assets/images/logo/brilliants-logo-full.png" alt="" style="height:28px;width:auto;display:block;">' +
     '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
-    '<p>India\'s connected business platform for MSMEs — every app you need to run your business on one platform: CRM, HRMS, billing, inventory, energy, automation, IoT and business intelligence.</p>' +
+    '<p>India\'s connected business platform for small businesses — every app you need to run your business on one platform: CRM, HRMS, billing, inventory, energy, automation, IoT and business intelligence.</p>' +
     '<div class="footer-contact">' +
     '<span>+91-9146121280</span>' +
     '<a href="mailto:contact@brilliants.in">contact@brilliants.in</a>' +
@@ -175,7 +175,7 @@
     '</ul></div></div>' +
     '<div class="container footer-bottom">' +
     '<span>&copy; ' + new Date().getFullYear() + ' Brilliants. All rights reserved.</span>' +
-    '<span>Made in India &middot; for every MSME.</span>' +
+    '<span>Made in India &middot; for every business.</span>' +
     '</div></footer>';
 
   // Legacy partner-portal shell: the partner pages keep the ORIGINAL nav + footer.
@@ -223,7 +223,7 @@
     '<a href="/industries/"><span class="np-icon" style="background:var(--green-tint);color:var(--green);" data-icon="warehouse"></span><span class="np-text"><strong>Warehousing</strong><small>Stock &amp; logistics tools</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--primary-tint);color:var(--primary);" data-icon="education"></span><span class="np-text"><strong>Education</strong><small>Schools &amp; institutes</small></span></a>' +
     '<a href="/industries/"><span class="np-icon" style="background:var(--amber-tint);color:var(--amber-ink);" data-icon="office"></span><span class="np-text"><strong>Offices &amp; Coworking</strong><small>Smart HRMS</small></span></a>' +
-    '<a href="/industries/"><span class="np-icon" style="background:var(--ink);color:#fff;" data-icon="dashboard"></span><span class="np-text"><strong>Every MSME</strong><small>One AI platform</small></span></a>' +
+    '<a href="/industries/"><span class="np-icon" style="background:var(--ink);color:#fff;" data-icon="dashboard"></span><span class="np-text"><strong>Every Business</strong><small>One AI platform</small></span></a>' +
     '</div>' +
     '</div>' +
     '</div>' +
@@ -282,7 +282,7 @@
     '<a href="/" class="footer-brand" aria-label="Brilliants Home">' +
     '<img src="/assets/images/logo/brilliants-logo-full.png" alt="" style="height:28px;width:auto;display:block;">' +
     '<span class="brand-text"><span class="brand-half-1">Bril</span><span class="brand-half-2">liants</span></span></a>' +
-    '<p>India\'s AI Operating System for MSMEs — one platform with AI, analytics, automation, IoT, computer vision and business intelligence.</p>' +
+    '<p>India\'s AI Operating System for small businesses — one platform with AI, analytics, automation, IoT, computer vision and business intelligence.</p>' +
     '<div class="footer-contact">' +
     '<span>+91-9146121280</span>' +
     '<a href="mailto:contact@brilliants.in">contact@brilliants.in</a>' +
@@ -318,7 +318,7 @@
     '</ul></div></div>' +
     '<div class="container footer-bottom">' +
     '<span>&copy; ' + new Date().getFullYear() + ' Brilliants. All rights reserved.</span>' +
-    '<span>Made in India &middot; for every MSME.</span>' +
+    '<span>Made in India &middot; for every business.</span>' +
     '</div></footer>';
 
   // Paint data-icon spans injected after icons.min.js has already run.
