@@ -30,7 +30,7 @@
   --shadow-md: 0 8px 24px -8px rgba(20,22,31,0.14), 0 2px 6px rgba(20,22,31,0.05);
   --shadow-lg: 0 24px 60px -20px rgba(20,22,31,0.22);
 
-  --font-display: 'Manrope', 'Inter', sans-serif;
+  --font-display:'Space Grotesk',system-ui,sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
