@@ -125,3 +125,31 @@
 /* ===== Premium heading font (Space Grotesk) ===== */
 h1,h2,h3,h4,h5{font-family:'Space Grotesk',var(--font-display),sans-serif}
 .section-head h2,.hero h1,.page-hero h1,.feature-title,.hm-svc-item h4,.work-cap h3{font-family:'Space Grotesk',var(--font-display),sans-serif}
+
+/* ===== Dark premium hero + white title ===== */
+.hero{background:linear-gradient(160deg,#0B1220 0%,#0E1A33 45%,#13224A 100%)}
+.hero-blob{opacity:.16}
+.hero-bg{opacity:.5}
+.hero-dot-grid{opacity:.28}
+.energy-bg{opacity:.5}
+.hero h1{color:#fff}
+.h1-accent{background:none;-webkit-text-fill-color:#fff;background-clip:initial;color:#fff;-webkit-text-fill-color:#fff;filter:none}
+.hero h1 em,.hero h1 .h1-accent{-webkit-text-fill-color:#fff;filter:drop-shadow(0 2px 24px rgba(37,99,235,0.45))}
+.h1-accent{position:relative;display:inline-block;padding-bottom:6px}
+.h1-accent::after{content:'';position:absolute;left:2px;right:2px;bottom:0;height:6px;border-radius:4px;background:linear-gradient(90deg,#F59E0B,#FBBF24 60%,#FDE68A);box-shadow:0 2px 10px rgba(245,158,11,0.5);transform-origin:left center;animation:accentUnderline 2.6s cubic-bezier(0.65,0,0.35,1) infinite}
+@keyframes accentUnderline{0%{transform:scaleX(0)}35%{transform:scaleX(1)}80%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+.hero-badge{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.16);color:#fff}
+.hero-badge .dot{background:#FBBF24;box-shadow:0 0 10px rgba(251,191,36,0.7)}
+.hero-lede{color:rgba(230,238,255,0.88)}
+.hero-trust{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);backdrop-filter:blur(14px)}
+.hero-trust-text{color:rgba(200,214,240,0.85)}
+.hero-trust-text strong{color:#fff}
+.ht-chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);color:rgba(214,226,250,0.92)}
+.hero-mock{background:rgba(15,25,50,0.45);border:1px solid rgba(255,255,255,0.14);box-shadow:0 30px 70px -24px rgba(0,0,0,0.55)}
+.hero-app-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);backdrop-filter:blur(14px)}
+.hero-app-name{color:#fff}
+.hero-app-tag{color:#0B1220;background:rgba(255,255,255,0.85)}
+.btn-glass{color:#fff;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.35)}
+.btn-glass:hover{border-color:#fff;background:rgba(255,255,255,0.16)}
+.hero-visual .hero-mock-draw{opacity:.9}
+@media(max-width:940px){.hero{background:linear-gradient(160deg,#0B1220 0%,#0E1A33 45%,#13224A 100%)}}
