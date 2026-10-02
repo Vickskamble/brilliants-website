@@ -4,6 +4,9 @@ Allow: /
 Disallow: /assets/downloads/
 Disallow: /pay/
 Disallow: /pay/success/
+Disallow: /ironbook/
+Disallow: /crm/
+Disallow: /ai-engine/
 Disallow: /partner/login/
 Disallow: /partner/dashboard/
 Disallow: /partner/profile/

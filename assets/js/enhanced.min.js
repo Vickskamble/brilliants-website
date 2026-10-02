@@ -555,11 +555,8 @@
                   '<select id="lead-product" name="product" required aria-label="Product interest">' +
                     '<option value="">Select a product</option>' +
                     '<option>Power EmS</option>' +
-                    '<option>IronBook</option>' +
                     '<option>Smart HRMS</option>' +
-                    '<option>Smart Billing</option>' +
-                    '<option>Smart Factory</option>' +
-                    '<option>Smart Inventory</option>' +
+                    '<option>Brilliants ERP</option>' +
                     '<option>General Inquiry</option>' +
                   '</select>' +
                 '</div>' +
