@@ -636,9 +636,25 @@ CREATE TRIGGER set_commission_id BEFORE INSERT ON commissions
 -- SEED: Default resources
 -- ============================================================
 INSERT INTO partner_resources (title, description, resource_type, url, product, sort_order) VALUES
-  ('Power EmS Product Overview', 'Energy management system overview and features', 'brochure', '/power-ems/', 'PowerEMS', 1),
-  ('IronBook Product Overview', 'AI Gym Operating System overview and features', 'brochure', '/ironbook/', 'IronBook', 2),
-  ('Brilliants Partner Guide', 'Complete guide for Brilliants partners', 'sales_guide', NULL, NULL, 3),
-  ('Power EmS Demo', 'Live demo link for Power EmS', 'demo_link', '/power-ems/', 'PowerEMS', 4),
-  ('IronBook Demo', 'Live demo link for IronBook', 'demo_link', '/ironbook/', 'IronBook', 5)
+  ('Power EmS Product Overview', 'Industrial energy management with submetering, alerts and automated MIS', 'brochure', '/power-ems/', 'Power EmS', 1),
+  ('Brilliants ERP Product Overview', 'Industrial maintenance ERP for work orders, assets, spares and preventive maintenance', 'brochure', 'https://erp.brilliants.in', 'Brilliants ERP', 2),
+  ('Smart HRMS Product Overview', 'Face-recognition HRMS for attendance, leave and payroll', 'brochure', '/smart-hrms/', 'Smart HRMS', 3),
+  ('Brilliants Partner Guide', 'Complete guide for Brilliants partners', 'sales_guide', NULL, NULL, 4),
+  ('Power EmS Demo', 'Live demo link for Power EmS', 'demo_link', 'https://app.brilliants.in', 'Power EmS', 5),
+  ('Brilliants ERP Demo', 'Live app link for Brilliants ERP', 'demo_link', 'https://erp.brilliants.in', 'Brilliants ERP', 6),
+  ('Smart HRMS Demo', 'Smart HRMS early access page', 'demo_link', '/smart-hrms/', 'Smart HRMS', 7)
 ON CONFLICT DO NOTHING;
+
+-- ============================================================
+-- LIVE DB FIX: Replace IronBook seed resources (run after 001)
+-- Deactivates old IronBook rows seeded pre-2026-10 and inserts
+-- Brilliants ERP / Smart HRMS resources in their place.
+-- ============================================================
+-- UPDATE partner_resources SET is_active = false
+--   WHERE product IN ('IronBook') OR url LIKE '/ironbook/%';
+-- INSERT INTO partner_resources (title, description, resource_type, url, product, sort_order) VALUES
+--   ('Brilliants ERP Product Overview', 'Industrial maintenance ERP for work orders, assets, spares and preventive maintenance', 'brochure', 'https://erp.brilliants.in', 'Brilliants ERP', 2),
+--   ('Smart HRMS Product Overview', 'Face-recognition HRMS for attendance, leave and payroll', 'brochure', '/smart-hrms/', 'Smart HRMS', 3),
+--   ('Brilliants ERP Demo', 'Live app link for Brilliants ERP', 'demo_link', 'https://erp.brilliants.in', 'Brilliants ERP', 5),
+--   ('Smart HRMS Demo', 'Smart HRMS early access page', 'demo_link', '/smart-hrms/', 'Smart HRMS', 6)
+-- ON CONFLICT DO NOTHING;
